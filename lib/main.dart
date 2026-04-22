@@ -1,11 +1,30 @@
 import 'package:app_laundry/core/theme/core_theme.dart';
 import 'package:app_laundry/core/utils/formatters/date_extension.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   await initializeDateFormatting('id_ID');
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // --------------------------------------------------------------------------
+  // Init Firebase
+  // --------------------------------------------------------------------------
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyCbpDpfwmyG99lDah-9gkh1qkVewULgA7w",
+      authDomain: "kasirlaundry-87ef6.firebaseapp.com",
+      projectId: "kasirlaundry-87ef6",
+      storageBucket: "kasirlaundry-87ef6.appspot.com",
+      messagingSenderId: "726441484292",
+      appId: "1:726441484292:web:03c24940e97783af731551",
+      measurementId: "G-QVBVVY91CR",
+    ),
+  );
+
   runApp(const MyApp());
 }
 
