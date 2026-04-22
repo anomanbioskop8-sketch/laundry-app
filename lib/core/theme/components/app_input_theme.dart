@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppInputTheme {
-  static InputDecorationTheme call(ColorScheme scheme) {
+  static InputDecorationTheme build(ColorScheme scheme) {
     return InputDecorationTheme(
       filled: true,
       fillColor: scheme.surface,

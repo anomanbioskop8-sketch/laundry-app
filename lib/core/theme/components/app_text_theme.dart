@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTextTheme {
-  static TextTheme call(ColorScheme scheme) {
+  AppTextTheme(ColorScheme colorScheme);
+
+  static TextTheme build(ColorScheme scheme) {
     final base = GoogleFonts.poppinsTextTheme();
 
     return base.copyWith(
