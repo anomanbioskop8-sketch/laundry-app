@@ -1,62 +1,26 @@
+import 'package:app_laundry/core/theme/app_color_scheme.dart';
+import 'package:app_laundry/core/theme/components/app_appbar_theme.dart';
+import 'package:app_laundry/core/theme/components/app_bottom_nav_theme.dart';
+import 'package:app_laundry/core/theme/components/app_button_theme.dart';
+import 'package:app_laundry/core/theme/components/app_input_theme.dart';
+import 'package:app_laundry/core/theme/components/app_text_theme.dart';
 import 'package:flutter/material.dart';
-import 'app_color_scheme.dart';
 
 class AppTheme {
-  static final ThemeData light = ThemeData(
-    useMaterial3: true,
-    colorScheme: AppColorScheme.light,
+  static ThemeData light = _theme(AppColorScheme.light);
+  static ThemeData dark = _theme(AppColorScheme.dark);
 
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: AppColorScheme.light.surface,
+  static ThemeData _theme(ColorScheme scheme) {
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: scheme,
 
-      selectedItemColor: AppColorScheme.light.primary,
-      unselectedItemColor: AppColorScheme.light.onSurfaceVariant,
+      appBarTheme: AppAppBarTheme.call(scheme),
+      bottomNavigationBarTheme: AppBottomNavTheme.call(scheme),
+      elevatedButtonTheme: AppButtonTheme.call(scheme),
 
-      selectedIconTheme: IconThemeData(
-        color: AppColorScheme.light.primary,
-        size: 24,
-      ),
-
-      unselectedIconTheme: IconThemeData(
-        color: AppColorScheme.light.onSurfaceVariant,
-        size: 22,
-      ),
-
-      selectedLabelStyle: const TextStyle(
-        fontWeight: FontWeight.w600,
-      ),
-
-      unselectedLabelStyle: const TextStyle(
-        fontWeight: FontWeight.w400,
-      ),
-
-      showUnselectedLabels: true,
-      elevation: 0,
-    ),
-  );
-
-  static final ThemeData dark = ThemeData(
-    useMaterial3: true,
-    colorScheme: AppColorScheme.dark,
-
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: AppColorScheme.dark.surface,
-
-      selectedItemColor: AppColorScheme.dark.primary,
-      unselectedItemColor: AppColorScheme.dark.onSurfaceVariant,
-
-      selectedIconTheme: IconThemeData(
-        color: AppColorScheme.dark.primary,
-      ),
-
-      unselectedIconTheme: IconThemeData(
-        color: AppColorScheme.dark.onSurfaceVariant,
-      ),
-
-      showUnselectedLabels: true,
-      elevation: 0,
-    ),
-  );
+      inputDecorationTheme: AppInputTheme.call(scheme),
+      textTheme: AppTextTheme.call(scheme),
+    );
+  }
 }
