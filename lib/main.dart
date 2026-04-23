@@ -1,12 +1,17 @@
+import 'package:app_laundry/core/di/injection.dart';
 import 'package:app_laundry/core/theme/core_theme.dart';
-import 'package:app_laundry/core/utils/formatters/date_extension.dart';
+import 'package:app_laundry/features/customers/presentation/cubit/customer_cubit.dart';
+import 'package:app_laundry/features/customers/presentation/pages/customer_list_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   await initializeDateFormatting('id_ID');
+
+  await init();
 
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -47,67 +52,9 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            Badge(
-              label: const Text("New"),
-              child: const Icon(Icons.notifications),
-            ),
-
-            Text(DateTime.now().toShortDate()),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1,
-        onTap: (index) {},
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-        ],
+      home: BlocProvider(
+        create: (_) => getIt<CustomerCubit>()..listen('202603202155396483'),
+        child: CustomerListPage(companyId: '202603202155396483'),
       ),
     );
   }
