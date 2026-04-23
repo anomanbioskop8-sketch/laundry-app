@@ -1,17 +1,67 @@
-import 'package:app_laundry/core/theme/dialog/dialog_type.dart';
+// =============================================================================
+// File        : app_ui_service.dart
+// Path        : core/services/app_ui_service.dart
+// Layer       : Core (UI Service - Facade)
+// -----------------------------------------------------------------------------
+// AppUIService (Facade)
+//
+// Responsibility:
+// - Menjadi single entry point untuk semua kebutuhan UI global:
+//   - Snackbar
+//   - Dialog
+//   - Loading Overlay
+//
+// - Digunakan oleh Cubit / Service layer (tanpa BuildContext).
+// - Menyederhanakan penggunaan UI service (hindari import banyak service).
+//
+// Pattern:
+// - Facade Pattern (wrapper dari beberapa service kecil)
+//
+// Dependencies:
+// - AppSnackbar
+// - DialogService
+// - LoadingOverlayService
+// =============================================================================
+
 import 'package:flutter/material.dart';
+import 'package:app_laundry/core/theme/dialog/dialog_type.dart';
 
 import 'snackbar_service.dart';
 import 'dialog_service.dart';
 import 'loading_overlay_service.dart';
 
 class AppUIService {
+  AppUIService._(); // ❌ prevent instantiation
+
+  // ===========================================================================
   // SNACKBAR
-  static void success(String message) => AppSnackbar.showSuccess(message);
+  // ===========================================================================
+  //
+  // Menampilkan feedback cepat ke user
+  //
 
-  static void error(String message) => AppSnackbar.showError(message);
+  /// Snackbar sukses (warna hijau)
+  static void success(String message) {
+    AppSnackbar.success(message);
+  }
 
+  /// Snackbar error (warna merah)
+  static void error(String message) {
+    AppSnackbar.error(message);
+  }
+
+  // ===========================================================================
   // DIALOG
+  // ===========================================================================
+  //
+  // Digunakan untuk konfirmasi user (blocking interaction)
+  //
+
+  /// Dialog konfirmasi global
+  ///
+  /// Return:
+  /// - true  → user confirm
+  /// - false → user cancel
   static Future<bool> confirm({
     String title = 'Konfirmasi',
     String message = 'Apakah kamu yakin?',
@@ -23,15 +73,27 @@ class AppUIService {
     return DialogService.confirm(
       title: title,
       message: message,
-      type: type,
-      confirmColor: confirmColor,
       cancelText: cancelText,
       confirmText: confirmText,
+      type: type,
+      confirmColor: confirmColor,
     );
   }
 
+  // ===========================================================================
   // LOADING
-  static void showLoading() => LoadingOverlayService.show();
+  // ===========================================================================
+  //
+  // Global blocking loading (biasanya untuk API call)
+  //
 
-  static void hideLoading() => LoadingOverlayService.hide();
+  /// Tampilkan loading overlay
+  static void showLoading() {
+    LoadingOverlayService.show();
+  }
+
+  /// Sembunyikan loading overlay
+  static void hideLoading() {
+    LoadingOverlayService.hide();
+  }
 }

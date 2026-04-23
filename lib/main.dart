@@ -1,7 +1,5 @@
 import 'package:app_laundry/core/di/injection.dart';
 import 'package:app_laundry/core/services/app_navigator.dart';
-import 'package:app_laundry/core/services/loading_overlay_service.dart';
-import 'package:app_laundry/core/services/snackbar_service.dart';
 import 'package:app_laundry/core/theme/core_theme.dart';
 import 'package:app_laundry/features/customers/presentation/cubit/customer_action_cubit.dart';
 import 'package:app_laundry/features/customers/presentation/cubit/customer_cubit.dart';
@@ -56,8 +54,8 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      //scaffoldMessengerKey: AppSnackbar.messengerKey,
-      navigatorKey: AppNavigator.key,
+      scaffoldMessengerKey: AppNavigator.messengerKey,
+      navigatorKey: AppNavigator.navigatorKey,
       home: MultiBlocProvider(
         providers: [
           BlocProvider(

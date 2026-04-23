@@ -1,32 +1,69 @@
+// =============================================================================
+// File        : app_snackbar.dart
+// Path        : core/services/app_snackbar.dart
+// Layer       : Core (UI Service)
+// -----------------------------------------------------------------------------
+// Global Snackbar Service.
+//
+// Responsibility:
+// - Menampilkan snackbar global tanpa perlu BuildContext.
+// - Digunakan oleh Cubit / Service layer (bukan langsung dari UI).
+// - Menjaga konsistensi UI feedback (success, error, info).
+//
+// Notes:
+// - Bergantung pada AppNavigator.messengerKey.
+// - Pastikan sudah di-assign di MaterialApp.
+// =============================================================================
+
 import 'package:flutter/material.dart';
+import 'app_navigator.dart';
 
 class AppSnackbar {
-  static final messengerKey = GlobalKey<ScaffoldMessengerState>();
+  AppSnackbar._(); // ❌ prevent instantiation
 
-  static void showSuccess(String message) {
-    _show(message, Colors.green);
+  // ===========================================================================
+  // PUBLIC API
+  // ===========================================================================
+
+  /// Menampilkan snackbar sukses (warna hijau)
+  static void success(String message) {
+    _show(message: message, backgroundColor: Colors.green);
   }
 
-  static void showError(String message) {
-    _show(message, Colors.red);
+  /// Menampilkan snackbar error (warna merah)
+  static void error(String message) {
+    _show(message: message, backgroundColor: Colors.red);
   }
 
-  static void showInfo(String message) {
-    _show(message, Colors.blue);
+  /// Menampilkan snackbar informasi (warna biru)
+  static void info(String message) {
+    _show(message: message, backgroundColor: Colors.blue);
   }
 
-  static void _show(String message, Color color) {
-    final messenger = messengerKey.currentState;
+  // ===========================================================================
+  // CORE IMPLEMENTATION
+  // ===========================================================================
 
+  static void _show({
+    required String message,
+    required Color backgroundColor,
+    Duration duration = const Duration(seconds: 3),
+    SnackBarBehavior behavior = SnackBarBehavior.floating,
+  }) {
+    final messenger = AppNavigator.messengerKey.currentState;
+
+    // 🔒 Safety check: jika belum ada context (misalnya app belum ready)
     if (messenger == null) return;
 
+    // 🔄 Hapus snackbar sebelumnya agar tidak numpuk
     messenger.hideCurrentSnackBar();
 
     messenger.showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: color,
-        behavior: SnackBarBehavior.floating,
+        backgroundColor: backgroundColor,
+        duration: duration,
+        behavior: behavior,
       ),
     );
   }
