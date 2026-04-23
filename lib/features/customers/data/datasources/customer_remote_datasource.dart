@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/network/base_crud_remote_datasource.dart';
+import 'package:app_laundry/core/base/datasource/base_crud_remote_datasource.dart';
 import 'package:app_laundry/features/customers/data/models/customer_model.dart';
 
 class CustomerRemoteDataSource extends BaseCrudRemoteDataSource<CustomerModel> {

@@ -1,3 +1,5 @@
+import 'package:app_laundry/core/base/cubit/base_state.dart';
+import 'package:app_laundry/features/customers/domain/entities/customer_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,21 +40,21 @@ class _CustomerListPageState extends State<CustomerListPage> {
           ),
 
           Expanded(
-            child: BlocBuilder<CustomerCubit, CustomerState>(
+            child: BlocBuilder<CustomerCubit, BaseState<List<CustomerEntity>>>(
               builder: (context, state) {
-                if (state is CustomerLoading) {
+                if (state is BaseLoading<List<CustomerEntity>>) {
                   return const Center(child: CircularProgressIndicator());
                 }
 
-                if (state is CustomerError) {
+                if (state is BaseError<List<CustomerEntity>>) {
                   return Center(child: Text(state.message));
                 }
 
-                if (state is CustomerEmpty) {
+                if (state is BaseEmpty) {
                   return const Center(child: Text('Belum ada customer'));
                 }
 
-                if (state is CustomerLoaded) {
+                if (state is BaseSuccess<List<CustomerEntity>>) {
                   final filtered = state.data
                       .where(
                         (e) => e.name.toLowerCase().contains(

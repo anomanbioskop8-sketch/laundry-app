@@ -1,4 +1,4 @@
-import 'package:app_laundry/features/customers/presentation/cubit/customer_cubit.dart';
+import 'package:app_laundry/features/customers/presentation/cubit/customer_action_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/customer_entity.dart';
@@ -23,7 +23,7 @@ class CustomerListView extends StatelessWidget {
             trailing: IconButton(
               icon: const Icon(Icons.delete),
               onPressed: () {
-                context.read<CustomerCubit>().delete(c.id);
+                context.read<CustomerActionCubit>().delete(c.id);
               },
             ),
           ),

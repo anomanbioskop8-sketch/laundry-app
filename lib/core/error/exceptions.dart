@@ -1,17 +1,30 @@
-class ServerException implements Exception {
+abstract class AppException implements Exception {
   final String message;
-
-  ServerException(this.message);
+  const AppException(this.message);
 }
 
-class AuthException implements Exception {
-  final String message;
-
-  AuthException(this.message);
+/// 🔥 General
+class ServerException extends AppException {
+  const ServerException(super.message);
 }
 
-class NetworkException implements Exception {
-  final String message;
+/// 🔥 Specific
+class PermissionException extends AppException {
+  const PermissionException(super.message);
+}
 
-  NetworkException(this.message);
+class NotFoundException extends AppException {
+  const NotFoundException(super.message);
+}
+
+class NetworkException extends AppException {
+  const NetworkException(super.message);
+}
+
+class TimeoutException extends AppException {
+  const TimeoutException(super.message);
+}
+
+class UnknownException extends AppException {
+  const UnknownException(super.message);
 }

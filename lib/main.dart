@@ -1,5 +1,9 @@
 import 'package:app_laundry/core/di/injection.dart';
+import 'package:app_laundry/core/services/app_navigator.dart';
+import 'package:app_laundry/core/services/loading_overlay_service.dart';
+import 'package:app_laundry/core/services/snackbar_service.dart';
 import 'package:app_laundry/core/theme/core_theme.dart';
+import 'package:app_laundry/features/customers/presentation/cubit/customer_action_cubit.dart';
 import 'package:app_laundry/features/customers/presentation/cubit/customer_cubit.dart';
 import 'package:app_laundry/features/customers/presentation/pages/customer_list_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -52,8 +56,15 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: BlocProvider(
-        create: (_) => getIt<CustomerCubit>()..listen('202603202155396483'),
+      //scaffoldMessengerKey: AppSnackbar.messengerKey,
+      navigatorKey: AppNavigator.key,
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => getIt<CustomerCubit>()..listen('202603202155396483'),
+          ),
+          BlocProvider(create: (_) => getIt<CustomerActionCubit>()),
+        ],
         child: CustomerListPage(companyId: '202603202155396483'),
       ),
     );

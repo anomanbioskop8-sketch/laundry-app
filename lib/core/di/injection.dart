@@ -5,6 +5,7 @@ import 'package:app_laundry/features/customers/domain/usecases/create_customer_u
 import 'package:app_laundry/features/customers/domain/usecases/delete_customer_usecase.dart';
 import 'package:app_laundry/features/customers/domain/usecases/stream_customers_usecase.dart';
 import 'package:app_laundry/features/customers/domain/usecases/update_customer_usecase.dart';
+import 'package:app_laundry/features/customers/presentation/cubit/customer_action_cubit.dart';
 import 'package:app_laundry/features/customers/presentation/cubit/customer_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -55,7 +56,7 @@ Future<void> init() async {
   /// ===============================
   //getIt.registerFactory(() => AuthCubit(getIt(), getIt()));
 
-  getIt.registerFactory(
-    () => CustomerCubit(getIt(), getIt(), getIt(), getIt()),
-  );
+  getIt.registerFactory(() => CustomerCubit(getIt()));
+
+  getIt.registerFactory(() => CustomerActionCubit(getIt(), getIt(), getIt()));
 }
