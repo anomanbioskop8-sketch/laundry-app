@@ -1,102 +1,113 @@
 // =============================================================================
 // File        : base_page.dart
-// Path        : core/base/widgets/base_page.dart
-// Layer       : Presentation (UI - Page Wrapper)
+// Path        : core/base/pages/base_page.dart
+// Layer       : Presentation (UI - Base Page)
 // -----------------------------------------------------------------------------
-// BasePage<C, T>
+// BasePage<C, T, AC>
 //
 // Responsibility:
-// - Wrapper halaman standar berbasis Scaffold.
-// - Mengintegrasikan BaseBuilder untuk handling state UI.
-// - Menyederhanakan struktur halaman (reduce boilerplate).
+// - Combine:
+//   1. BlocBuilder  → render UI state
+//   2. BlocListener → handle action (snackbar, loading, dll)
+//   3. Scaffold     → layout utama
 //
-// Supported State (via BaseBuilder):
-// - BaseLoading  → tampilkan loading widget
-// - BaseError    → tampilkan error widget / message
-// - BaseEmpty    → tampilkan empty state
-// - BaseSuccess  → render data via onSuccess
+// Generic:
+// - C  = Cubit untuk state (BaseCubit)
+// - T  = Data type
+// - AC = Action Cubit (BaseActionCubit)
 //
-// Usage:
-// BlocBuilder<CustomerCubit, BaseState<List<CustomerEntity>>>(
-//   builder: (context, state) {
-//     return BasePage<CustomerCubit, List<CustomerEntity>>(
-//       cubit: context.read<CustomerCubit>(),
-//       state: state,
-//       appBar: AppBar(title: Text('Customer')),
-//       onSuccess: (data) => CustomerListView(data: data),
-//     );
-//   },
-// )
-//
-// Notes:
-// - Tidak meng-handle BlocBuilder → fleksibel digunakan di mana saja.
-// - Cocok untuk semua halaman berbasis state (list/detail).
-// - Fokus hanya pada UI layer (tidak ada logic bisnis).
+// Benefits:
+// - Zero boilerplate UI
+// - Centralized UI behavior
+// - Clean Architecture compliant
 // =============================================================================
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubit/base_state.dart';
+import '../action/base_action_state.dart';
+import '../../services/app_ui_service.dart';
 import '../widgets/base_builder.dart';
 
-class BasePage<C extends Cubit<BaseState<T>>, T> extends StatelessWidget {
-  /// 🔹 Instance Cubit (optional, untuk extensibility / debugging)
-  final C cubit;
-
-  /// 🔄 State dari Cubit
-  final BaseState<T> state;
-
-  /// ✅ Builder utama saat data berhasil
-  final Widget Function(T data) onSuccess;
-
-  /// 🧭 AppBar halaman (optional)
+class BasePage<
+  C extends Cubit<BaseState<T>>,
+  T,
+  AC extends Cubit<BaseActionState>
+>
+    extends StatelessWidget {
   final PreferredSizeWidget? appBar;
-
-  /// ➕ Floating Action Button (optional)
   final Widget? floatingActionButton;
 
-  /// ⏳ Custom loading widget (optional)
+  /// =========================
+  /// STATE BUILDER
+  /// =========================
+  final Widget Function(BuildContext context, T data) onSuccess;
+
   final Widget? loading;
-
-  /// ❌ Custom error builder (optional)
   final Widget Function(String message)? onError;
-
-  /// 📭 Custom empty widget (optional)
   final Widget? empty;
+
+  /// =========================
+  /// OPTIONAL CUSTOM LISTENER
+  /// =========================
+  final void Function(BuildContext context, BaseActionState state)?
+  actionListener;
 
   const BasePage({
     super.key,
-    required this.cubit,
-    required this.state,
-    required this.onSuccess,
     this.appBar,
     this.floatingActionButton,
+    required this.onSuccess,
     this.loading,
     this.onError,
     this.empty,
+    this.actionListener,
   });
 
   @override
   Widget build(BuildContext context) {
-    // ===========================================================
-    // BODY (STATE HANDLER)
-    // ===========================================================
-    final Widget body = BaseBuilder<T>(
-      state: state,
-      onSuccess: onSuccess,
-      loading: loading,
-      onError: onError,
-      empty: empty,
-    );
+    return BlocListener<AC, BaseActionState>(
+      listener: (context, actionState) {
+        // ===========================================================
+        // DEFAULT HANDLER (AUTO UI)
+        // ===========================================================
+        if (actionState is ActionLoading) {
+          AppUIService.showLoading();
+        }
 
-    // ===========================================================
-    // MAIN SCAFFOLD
-    // ===========================================================
-    return Scaffold(
-      appBar: appBar,
-      body: body,
-      floatingActionButton: floatingActionButton,
+        if (actionState is ActionError) {
+          AppUIService.hideLoading();
+          AppUIService.error(actionState.message);
+        }
+
+        if (actionState is ActionSuccess) {
+          AppUIService.hideLoading();
+          AppUIService.success(actionState.message);
+        }
+
+        // ===========================================================
+        // CUSTOM LISTENER (OPTIONAL OVERRIDE)
+        // ===========================================================
+        actionListener?.call(context, actionState);
+      },
+
+      child: BlocBuilder<C, BaseState<T>>(
+        builder: (context, state) {
+          return Scaffold(
+            appBar: appBar,
+            floatingActionButton: floatingActionButton,
+
+            body: BaseBuilder<T>(
+              state: state,
+              onSuccess: (data) => onSuccess(context, data),
+              loading: loading,
+              onError: onError,
+              empty: empty,
+            ),
+          );
+        },
+      ),
     );
   }
 }
