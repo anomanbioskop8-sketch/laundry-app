@@ -25,10 +25,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubit/base_state.dart';
-import '../action/base_action_state.dart';
+import '../../base/cubit/base_state.dart';
+import '../../base/action/base_action_state.dart';
 import '../../services/app_ui_service.dart';
-import '../widgets/base_builder.dart';
+import '../../base/widgets/base_builder.dart';
 
 class BasePage<
   C extends Cubit<BaseState<T>>,

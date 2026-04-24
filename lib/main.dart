@@ -58,9 +58,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: AppNavigator.navigatorKey,
       home: MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (_) => getIt<CustomerCubit>()..listen('202603202155396483'),
-          ),
+          BlocProvider(create: (_) => getIt<CustomerCubit>()),
           BlocProvider(create: (_) => getIt<CustomerActionCubit>()),
         ],
         child: CustomerListPage(companyId: '202603202155396483'),
