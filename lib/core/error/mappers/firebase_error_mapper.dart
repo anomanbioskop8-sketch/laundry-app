@@ -1,38 +1,27 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import '../exceptions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../../../../core/error/exceptions.dart';
 
 class FirebaseErrorMapper {
-  /// ===============================
-  /// FirebaseException → AppException
-  /// ===============================
-  static AppException toException(FirebaseException e) {
-    switch (e.code) {
-      case 'permission-denied':
-        return PermissionException('Tidak punya izin akses');
+  static AppException map(Object error) {
+    if (error is FirebaseAuthException) {
+      switch (error.code) {
+        case 'user-not-found':
+          return const NotFoundException('User tidak ditemukan');
 
-      case 'not-found':
-        return NotFoundException('Data tidak ditemukan');
+        case 'wrong-password':
+          return const PermissionException('Password salah');
 
-      case 'unavailable':
-        return NetworkException('Layanan tidak tersedia');
+        case 'email-already-in-use':
+          return const ServerException('Email sudah digunakan');
 
-      case 'deadline-exceeded':
-        return TimeoutException('Request timeout');
+        case 'network-request-failed':
+          return const NetworkException('Tidak ada koneksi');
 
-      case 'resource-exhausted':
-        return ServerException('Quota habis');
-
-      case 'already-exists':
-        return ServerException('Data sudah ada');
-
-      case 'cancelled':
-        return ServerException('Request dibatalkan');
-
-      case 'invalid-argument':
-        return ServerException('Data tidak valid');
-
-      default:
-        return UnknownException('Terjadi kesalahan (${e.code})');
+        default:
+          return ServerException(error.message ?? 'Firebase error');
+      }
     }
+
+    return const UnknownException('Terjadi kesalahan');
   }
 }
