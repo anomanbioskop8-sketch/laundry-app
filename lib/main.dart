@@ -1,12 +1,13 @@
+import 'package:app_laundry/app/block/app_bloc_observer.dart';
 import 'package:app_laundry/app/di/injection_container.dart';
 import 'package:app_laundry/app/router/app_router.dart';
+import 'package:app_laundry/core/services/app_navigator.dart';
 import 'package:app_laundry/core/theme/core_theme.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 Future<void> main() async {
@@ -27,6 +28,8 @@ Future<void> main() async {
   );
 
   await initDI();
+
+  Bloc.observer = AppBlocObserver();
 
   runApp(const MyApp());
 }
@@ -51,11 +54,14 @@ class MyApp extends StatelessWidget {
         routerConfig: router,
         locale: const Locale('id', 'ID'),
         supportedLocales: const [Locale('id', 'ID'), Locale('en', 'US')],
+
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
+        scaffoldMessengerKey: AppNavigator.messengerKey,
+        //navigatorKey: AppNavigator.navigatorKey,
       ),
     );
   }

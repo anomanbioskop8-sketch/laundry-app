@@ -1,3 +1,4 @@
+import 'package:app_laundry/core/services/app_ui_service.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_state.dart';
 import 'package:flutter/material.dart';
@@ -18,14 +19,10 @@ class LoginPage extends StatelessWidget {
         listener: (context, state) {
           state.whenOrNull(
             authenticated: (user) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text('Welcome, ${user.name}!')));
+              AppUIService.success('Berhasil');
             },
             error: (message) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(message)));
+              AppUIService.error(message);
             },
           );
         },

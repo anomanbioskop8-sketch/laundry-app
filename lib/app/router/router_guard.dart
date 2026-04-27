@@ -16,8 +16,6 @@ class RouterGuard {
     final isLoginRoute = state.matchedLocation == RoutePaths.login;
     final isRegisterRoute = state.matchedLocation == RoutePaths.register;
 
-    debugPrint(authState.toString());
-
     return authState.when(
       initial: () => isSplashRoute ? null : RoutePaths.splash,
 

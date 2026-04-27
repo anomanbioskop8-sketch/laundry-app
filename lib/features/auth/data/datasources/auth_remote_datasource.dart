@@ -27,6 +27,7 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
           name: name,
           email: email,
           companyId: companyId,
+          role: 'user', // Set a default role or fetch it from your data source
         );
 
         return userModel;
@@ -49,6 +50,7 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
           name: 'name',
           email: 'email',
           companyId: 'companyId',
+          role: 'user',
         );
       } catch (e) {
         throw FirebaseErrorMapper.map(e);
@@ -68,7 +70,8 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
           id: user.uid,
           name: user.displayName ?? '',
           email: user.email ?? '',
-          companyId: '',
+          companyId: 'tQ9XUVI0xvON7k8DMbKg',
+          role: 'user',
         );
       } catch (e) {
         throw FirebaseErrorMapper.map(e);

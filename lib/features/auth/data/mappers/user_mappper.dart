@@ -9,6 +9,7 @@ class UserMappper {
       name: model.name,
       email: model.email,
       companyId: model.companyId,
+      role: model.role,
     );
   }
 
@@ -19,6 +20,7 @@ class UserMappper {
       name: entity.name,
       email: entity.email,
       companyId: entity.companyId,
+      role: entity.role,
     );
   }
 

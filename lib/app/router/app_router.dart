@@ -1,4 +1,5 @@
 import 'package:app_laundry/app/router/go_router_refresh_stream.dart';
+import 'package:app_laundry/core/services/app_navigator.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:app_laundry/features/auth/presentation/pages/splash_page.dart';
 import 'package:app_laundry/features/customer/presentation/customer_page.dart';
@@ -17,6 +18,7 @@ class AppRouter {
 
   late final GoRouter router = GoRouter(
     initialLocation: RoutePaths.splash,
+    navigatorKey: AppNavigator.navigatorKey,
     refreshListenable: GoRouterRefreshStream(authCubit.stream),
     redirect: (context, state) {
       return RouterGuard(authCubit).redirectLogic(state);
@@ -54,7 +56,7 @@ class AppRouter {
       /// =========================
       GoRoute(
         path: RoutePaths.customers,
-        builder: (context, state) => const CustomerPage(),
+        builder: (context, state) => const CustomerPageWrapper(),
       ),
     ],
   );

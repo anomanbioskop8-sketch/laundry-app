@@ -8,6 +8,8 @@ class SessionState with _$SessionState {
 
   const factory SessionState.active({
     required UserEntity user,
+    required String userId,
+    required String role,
     required String companyId,
   }) = _Active;
 

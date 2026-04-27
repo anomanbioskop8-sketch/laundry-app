@@ -10,7 +10,14 @@ class SessionCubit extends Cubit<SessionState> {
   /// SET SESSION (LOGIN SUCCESS)
   /// =========================
   void setSession(UserEntity user) {
-    emit(SessionState.active(user: user, companyId: user.companyId));
+    emit(
+      SessionState.active(
+        user: user,
+        userId: user.id,
+        role: user.role,
+        companyId: user.companyId,
+      ),
+    );
   }
 
   /// =========================
@@ -25,19 +32,33 @@ class SessionCubit extends Cubit<SessionState> {
   /// =========================
   String get companyId {
     return state.maybeWhen(
-      active: (_, companyId) => companyId,
+      active: (_, _, _, companyId) => companyId,
+      orElse: () => throw const UnauthorizedException('Session belum aktif'),
+    );
+  }
+
+  String get role {
+    return state.maybeWhen(
+      active: (_, role, _, _) => role,
+      orElse: () => throw const UnauthorizedException('Session belum aktif'),
+    );
+  }
+
+  String get userId {
+    return state.maybeWhen(
+      active: (user, _, _, _) => user.id,
       orElse: () => throw const UnauthorizedException('Session belum aktif'),
     );
   }
 
   UserEntity get user {
     return state.maybeWhen(
-      active: (user, _) => user,
+      active: (user, _, _, _) => user,
       orElse: () => throw Exception('Session belum aktif'),
     );
   }
 
   bool get isActive {
-    return state.maybeWhen(active: (_, _) => true, orElse: () => false);
+    return state.maybeWhen(active: (_, _, _, _) => true, orElse: () => false);
   }
 }

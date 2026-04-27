@@ -1,9 +1,7 @@
 import 'package:app_laundry/core/session/cubit/session_cubit.dart';
-import 'package:app_laundry/features/auth/domain/repositories/auth_repository.dart';
 import 'package:app_laundry/features/auth/domain/usecases/get_current_user.dart';
 import 'package:app_laundry/features/auth/domain/usecases/login.dart';
 import 'package:app_laundry/features/auth/domain/usecases/register.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'auth_state.dart';
 
