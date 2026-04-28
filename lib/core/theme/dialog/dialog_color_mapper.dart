@@ -18,20 +18,4 @@ class DialogColorMapper {
         return context.status.success;
     }
   }
-
-  static Color background(BuildContext context, DialogType type) {
-    switch (type) {
-      case DialogType.delete:
-        return context.status.error.withOpacity(0.1);
-
-      case DialogType.update:
-        return context.status.info.withOpacity(0.1);
-
-      case DialogType.warning:
-        return context.status.warning.withOpacity(0.1);
-
-      case DialogType.info:
-        return context.status.success.withOpacity(0.1);
-    }
-  }
 }

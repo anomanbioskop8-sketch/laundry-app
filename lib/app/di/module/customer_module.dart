@@ -34,7 +34,7 @@ class CustomerModule {
     );
 
     // cubit
-    sl.registerFactory(() => CustomerCubit(sl(), sl(), sl(), sl()));
+    sl.registerFactory(() => CustomerCubit(sl()));
     sl.registerFactory(() => CustomerActionCubit(sl(), sl(), sl()));
   }
 }

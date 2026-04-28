@@ -39,7 +39,7 @@ class SessionCubit extends Cubit<SessionState> {
 
   String get role {
     return state.maybeWhen(
-      active: (_, role, _, _) => role,
+      active: (_, role, _, _) => user.role,
       orElse: () => throw const UnauthorizedException('Session belum aktif'),
     );
   }

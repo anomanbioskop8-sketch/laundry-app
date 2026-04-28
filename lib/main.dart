@@ -1,6 +1,7 @@
 import 'package:app_laundry/app/block/app_bloc_observer.dart';
 import 'package:app_laundry/app/di/injection_container.dart';
 import 'package:app_laundry/app/router/app_router.dart';
+import 'package:app_laundry/core/base/cubit/base_action_cubit.dart';
 import 'package:app_laundry/core/services/app_navigator.dart';
 import 'package:app_laundry/core/theme/core_theme.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_cubit.dart';
@@ -29,7 +30,7 @@ Future<void> main() async {
 
   await initDI();
 
-  Bloc.observer = AppBlocObserver();
+  //Bloc.observer = AppBlocObserver();
 
   runApp(const MyApp());
 }
@@ -44,7 +45,10 @@ class MyApp extends StatelessWidget {
     final router = AppRouter(authCubit).router;
 
     return MultiBlocProvider(
-      providers: [BlocProvider<AuthCubit>.value(value: authCubit)],
+      providers: [
+        BlocProvider<AuthCubit>.value(value: authCubit),
+        BlocProvider(create: (_) => sl<BaseActionCubit>()),
+      ],
       child: MaterialApp.router(
         title: 'Laundry SaaS App',
         theme: CoreTheme.light(),

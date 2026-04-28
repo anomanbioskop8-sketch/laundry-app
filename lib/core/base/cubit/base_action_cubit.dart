@@ -8,6 +8,7 @@ abstract class BaseActionCubit<T> extends Cubit<BaseActionState<T>> {
 
   Future<void> execute({
     required Future<Either<Failure, T>> Function() call,
+    String? successMessage,
   }) async {
     emit(const BaseActionState.loading());
 
@@ -19,7 +20,7 @@ abstract class BaseActionCubit<T> extends Cubit<BaseActionState<T>> {
           emit(BaseActionState.error(message: failure.message));
         },
         (data) {
-          emit(BaseActionState.success(data));
+          emit(BaseActionState.success(data: data, message: successMessage));
         },
       );
     } catch (e) {

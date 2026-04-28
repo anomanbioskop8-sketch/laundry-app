@@ -128,12 +128,12 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( T? data)?  success,TResult Function( String message,  String? code)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( T data,  String? message)?  success,TResult Function( String message,  String? code)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Success() when success != null:
-return success(_that.data);case _Error() when error != null:
+return success(_that.data,_that.message);case _Error() when error != null:
 return error(_that.message,_that.code);case _:
   return orElse();
 
@@ -152,12 +152,12 @@ return error(_that.message,_that.code);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( T? data)  success,required TResult Function( String message,  String? code)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( T data,  String? message)  success,required TResult Function( String message,  String? code)  error,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Success():
-return success(_that.data);case _Error():
+return success(_that.data,_that.message);case _Error():
 return error(_that.message,_that.code);case _:
   throw StateError('Unexpected subclass');
 
@@ -175,12 +175,12 @@ return error(_that.message,_that.code);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( T? data)?  success,TResult? Function( String message,  String? code)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( T data,  String? message)?  success,TResult? Function( String message,  String? code)?  error,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Success() when success != null:
-return success(_that.data);case _Error() when error != null:
+return success(_that.data,_that.message);case _Error() when error != null:
 return error(_that.message,_that.code);case _:
   return null;
 
@@ -257,10 +257,11 @@ String toString() {
 
 
 class _Success<T> implements BaseActionState<T> {
-  const _Success([this.data]);
+  const _Success({required this.data, this.message});
   
 
- final  T? data;
+ final  T data;
+ final  String? message;
 
 /// Create a copy of BaseActionState
 /// with the given fields replaced by the non-null parameter values.
@@ -272,16 +273,16 @@ _$SuccessCopyWith<T, _Success<T>> get copyWith => __$SuccessCopyWithImpl<T, _Suc
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success<T>&&const DeepCollectionEquality().equals(other.data, data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Success<T>&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.message, message) || other.message == message));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(data),message);
 
 @override
 String toString() {
-  return 'BaseActionState<$T>.success(data: $data)';
+  return 'BaseActionState<$T>.success(data: $data, message: $message)';
 }
 
 
@@ -292,7 +293,7 @@ abstract mixin class _$SuccessCopyWith<T,$Res> implements $BaseActionStateCopyWi
   factory _$SuccessCopyWith(_Success<T> value, $Res Function(_Success<T>) _then) = __$SuccessCopyWithImpl;
 @useResult
 $Res call({
- T? data
+ T data, String? message
 });
 
 
@@ -309,10 +310,11 @@ class __$SuccessCopyWithImpl<T,$Res>
 
 /// Create a copy of BaseActionState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? data = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? data = freezed,Object? message = freezed,}) {
   return _then(_Success<T>(
-freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as T?,
+data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as T,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

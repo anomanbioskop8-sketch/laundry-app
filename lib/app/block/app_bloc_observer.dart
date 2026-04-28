@@ -1,7 +1,7 @@
 import 'package:app_laundry/core/base/cubit/base_action_state.dart';
 import 'package:app_laundry/core/services/app_ui_service.dart';
+import 'package:app_laundry/core/services/snackbar_service.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_state.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -11,22 +11,22 @@ class AppBlocObserver extends BlocObserver {
 
     final state = change.nextState;
 
-    debugPrint('[${bloc.runtimeType}] → $state');
-
     /// =========================
     /// ACTION (CRUD, dll)
     /// =========================
     if (state is BaseActionState) {
-      state.when(
+      state.whenOrNull(
         initial: () {},
 
         loading: () {
           AppUIService.showLoading();
         },
 
-        success: (data) {
+        success: (data, message) {
           AppUIService.hideLoading();
-          // ❌ jangan hardcode message di sini
+          if (message != null) {
+            AppSnackbar.success(message);
+          }
         },
 
         error: (message, _) {

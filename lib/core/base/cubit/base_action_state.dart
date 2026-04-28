@@ -11,7 +11,8 @@ class BaseActionState<T> with _$BaseActionState<T> {
   const factory BaseActionState.loading() = _Loading<T>;
 
   /// success (optional data)
-  const factory BaseActionState.success([T? data]) = _Success<T>;
+  const factory BaseActionState.success({required T data, String? message}) =
+      _Success<T>;
 
   /// error
   const factory BaseActionState.error({required String message, String? code}) =

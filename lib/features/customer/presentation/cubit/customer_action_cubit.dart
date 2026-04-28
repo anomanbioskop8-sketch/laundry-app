@@ -3,7 +3,6 @@ import 'package:app_laundry/features/customer/domain/usecase/create_customer.dar
 import 'package:app_laundry/features/customer/domain/usecase/customer_params.dart';
 import 'package:app_laundry/features/customer/domain/usecase/delete_customer.dart';
 import 'package:app_laundry/features/customer/domain/usecase/update_customer.dart';
-import 'package:flutter/material.dart';
 
 class CustomerActionCubit extends BaseActionCubit<void> {
   final CreateCustomer create;
@@ -13,12 +12,16 @@ class CustomerActionCubit extends BaseActionCubit<void> {
   CustomerActionCubit(this.create, this.update, this.delete);
 
   Future<void> createCustomer(CreateCustomerParams params) {
-    debugPrint('Action Cubit Success: ');
-    return execute(call: () => create(params));
+    return execute(
+      call: () => create(params),
+      successMessage: 'Customer berhasil ditambahkan',
+    );
   }
 
   Future<void> deleteCustomer(DeleteCustomerParams params) {
-    debugPrint('Action Cubit Success: ');
-    return execute(call: () => delete(params));
+    return execute(
+      call: () => delete(params),
+      successMessage: 'Customer berhasil dihapus',
+    );
   }
 }

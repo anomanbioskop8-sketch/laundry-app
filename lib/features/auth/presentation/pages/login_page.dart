@@ -42,18 +42,11 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              BlocBuilder<AuthCubit, AuthState>(
-                builder: (context, state) {
-                  return state.maybeWhen(
-                    loading: () => const CircularProgressIndicator(),
-                    orElse: () => ElevatedButton(
-                      onPressed: () {
-                        context.read<AuthCubit>().login(email.text, pass.text);
-                      },
-                      child: const Text('Login'),
-                    ),
-                  );
+              ElevatedButton(
+                onPressed: () {
+                  context.read<AuthCubit>().login(email.text, pass.text);
                 },
+                child: const Text('Login'),
               ),
 
               TextButton(

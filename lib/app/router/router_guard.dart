@@ -1,7 +1,6 @@
 import 'package:app_laundry/app/router/route_paths.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_state.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
 class RouterGuard {
@@ -19,7 +18,7 @@ class RouterGuard {
     return authState.when(
       initial: () => isSplashRoute ? null : RoutePaths.splash,
 
-      loading: () => isSplashRoute ? null : RoutePaths.splash,
+      loading: () => null,
 
       authenticated: (user) {
         if (isLoginRoute || isRegisterRoute || isSplashRoute) {

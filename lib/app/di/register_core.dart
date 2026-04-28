@@ -1,6 +1,7 @@
 import 'package:app_laundry/app/router/app_router.dart';
 import 'package:app_laundry/app/router/router_guard.dart';
 import 'package:app_laundry/core/network/base_remote_datasource.dart';
+import 'package:app_laundry/core/services/permission/permission_service.dart';
 import 'package:app_laundry/core/session/cubit/session_cubit.dart';
 import 'package:app_laundry/core/session/data/services/session_service_impl.dart';
 import 'package:app_laundry/core/session/domain/services/session_service.dart';
@@ -21,6 +22,8 @@ Future<void> registerCore(GetIt sl) async {
   sl.registerLazySingleton<SessionCubit>(() => SessionCubit());
 
   sl.registerLazySingleton<SessionService>(() => SessionServiceImpl(sl()));
+
+  sl.registerLazySingleton<PermissionService>(() => PermissionService(sl()));
 
   //sl.registerLazySingleton<AppRouter>(() => AppRouter(sl()));
 

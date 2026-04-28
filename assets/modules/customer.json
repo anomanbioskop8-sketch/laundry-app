@@ -1,0 +1,20 @@
+{
+  "name": "Customer",
+
+  "fields": [
+    {"name":"name","label":"Nama","type":"text","required":true},
+    {"name":"phone","label":"Telepon","type":"phone"},
+    {"name":"address","label":"Alamat","type":"textarea"}
+  ],
+
+  "list": {
+    "title": "name",
+    "subtitle": "phone,address"
+  },
+
+  "actions": [
+    {"type":"detail"},
+    {"type":"edit"},
+    {"type":"delete"}
+  ]
+}
