@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/session/cubit/session_cubit.dart';
+import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
 import 'package:app_laundry/features/auth/domain/usecases/get_current_user.dart';
 import 'package:app_laundry/features/auth/domain/usecases/login.dart';
 import 'package:app_laundry/features/auth/domain/usecases/register.dart';

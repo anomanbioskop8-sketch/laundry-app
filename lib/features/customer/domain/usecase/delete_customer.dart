@@ -1,6 +1,5 @@
-import 'package:app_laundry/core/error/exceptions.dart';
 import 'package:app_laundry/core/error/failure.dart';
-import 'package:app_laundry/core/session/domain/services/session_service.dart';
+import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/customer/domain/repositories/customer_repository.dart';
 import 'package:app_laundry/features/customer/domain/usecase/customer_params.dart';

@@ -1,3 +1,5 @@
+import 'package:app_laundry/core/auth/role/user_role.dart';
+
 import '../../cubit/session_cubit.dart';
 import '../../domain/services/session_service.dart';
 
@@ -13,5 +15,5 @@ class SessionServiceImpl implements SessionService {
   String get companyId => cubit.companyId;
 
   @override
-  String get role => cubit.role;
+  UserRole get role => cubit.role;
 }

@@ -1,9 +1,11 @@
+import 'package:app_laundry/core/auth/role/user_role.dart';
+
 class UserModel {
   final String id;
   final String name;
   final String email;
   final String companyId;
-  final String role;
+  final UserRole role;
 
   UserModel({
     required this.id,
@@ -19,7 +21,7 @@ class UserModel {
       name: map['name'] ?? '',
       email: map['email'] ?? '',
       companyId: map['companyId'] ?? '',
-      role: map['role'] ?? '',
+      role: UserRole.owner,
     );
   }
 

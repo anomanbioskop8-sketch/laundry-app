@@ -1,8 +1,11 @@
 import 'package:app_laundry/app/router/go_router_refresh_stream.dart';
+import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
 import 'package:app_laundry/core/services/app_navigator.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:app_laundry/features/auth/presentation/pages/splash_page.dart';
 import 'package:app_laundry/features/customer/presentation/pages/customer_page_wrapper.dart';
+import 'package:app_laundry/features/main/presentation/pages/main_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'route_paths.dart';
 import 'router_guard.dart';
@@ -44,10 +47,16 @@ class AppRouter {
       /// =========================
       /// HOME (SHELL / MAIN APP)
       /// =========================
-      // GoRoute(
-      //   path: RoutePaths.home,
-      //   builder: (context, state) => const HomePage(),
-      // ),
+      GoRoute(
+        path: RoutePaths.main,
+        builder: (context, state) => const MainPage(),
+        // redirect: (context, state) {
+        //   final session = context.read<SessionCubit>();
+
+        //   if (!session.isActive) return '/login';
+        //   return null;
+        // },
+      ),
 
       /// =========================
       /// MODULES (SAAS FEATURES)

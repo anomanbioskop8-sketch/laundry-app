@@ -1,4 +1,3 @@
-import 'package:app_laundry/app/block/app_bloc_observer.dart';
 import 'package:app_laundry/app/di/injection_container.dart';
 import 'package:app_laundry/app/router/app_router.dart';
 import 'package:app_laundry/core/base/cubit/base_action_cubit.dart';

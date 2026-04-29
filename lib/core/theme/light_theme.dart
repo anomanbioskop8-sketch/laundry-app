@@ -1,5 +1,6 @@
 import 'package:app_laundry/core/theme/app_color_scheme.dart';
 import 'package:app_laundry/core/theme/components/app_card_theme.dart';
+import 'package:app_laundry/core/theme/components/app_navigation_bar_theme.dart';
 import 'package:app_laundry/core/theme/factories/app_status_color_factory.dart';
 import 'package:app_laundry/core/theme/components/app_appbar_theme.dart';
 import 'package:app_laundry/core/theme/components/app_button_theme.dart';
@@ -29,6 +30,7 @@ class LightTheme {
       inputDecorationTheme: AppInputTheme.build(colorScheme),
       textTheme: AppTextTheme.build(colorScheme),
       cardTheme: AppCardTheme.build(colorScheme),
+      navigationBarTheme: AppNavigationBarTheme.build(colorScheme),
     );
   }
 }

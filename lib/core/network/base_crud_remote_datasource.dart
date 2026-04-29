@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/session/cubit/session_cubit.dart';
+import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'base_remote_datasource.dart';
 

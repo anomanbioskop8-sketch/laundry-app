@@ -22,7 +22,7 @@ class RouterGuard {
 
       authenticated: (user) {
         if (isLoginRoute || isRegisterRoute || isSplashRoute) {
-          return RoutePaths.customers;
+          return RoutePaths.main;
         }
         return null;
       },

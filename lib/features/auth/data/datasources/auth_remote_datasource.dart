@@ -1,3 +1,4 @@
+import 'package:app_laundry/core/auth/role/user_role.dart';
 import 'package:app_laundry/core/error/mappers/firebase_error_mapper.dart';
 import 'package:app_laundry/core/network/base_remote_datasource.dart';
 import 'package:app_laundry/features/auth/data/models/user_model.dart';
@@ -27,7 +28,7 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
           name: name,
           email: email,
           companyId: 'tQ9XUVI0xvON7k8DMbKg',
-          role: 'owner', // Set a default role or fetch it from your data source
+          role: UserRole.owner,
         );
 
         return userModel;
@@ -50,7 +51,7 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
           name: 'name',
           email: 'email',
           companyId: 'tQ9XUVI0xvON7k8DMbKg',
-          role: 'owner',
+          role: UserRole.owner,
         );
       } catch (e) {
         throw FirebaseErrorMapper.map(e);
@@ -71,7 +72,7 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
           name: user.displayName ?? '',
           email: user.email ?? '',
           companyId: 'tQ9XUVI0xvON7k8DMbKg',
-          role: 'owner',
+          role: UserRole.owner,
         );
       } catch (e) {
         throw FirebaseErrorMapper.map(e);

@@ -28,7 +28,7 @@ abstract class BaseStreamCubit<T> extends Cubit<BaseStreamState<T>> {
             if (data.isEmpty) {
               emit(const BaseStreamState.empty());
             } else {
-              emit(BaseStreamState.loaded(data));
+              onData(data);
             }
           },
         );
@@ -37,6 +37,10 @@ abstract class BaseStreamCubit<T> extends Cubit<BaseStreamState<T>> {
         emit(BaseStreamState.error(e.toString()));
       },
     );
+  }
+
+  void onData(List<T> data) {
+    emit(BaseStreamState.loaded(data));
   }
 
   /// =========================

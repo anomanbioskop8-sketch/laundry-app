@@ -125,11 +125,11 @@ return inactive(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( UserEntity user,  String userId,  String role,  String companyId)?  active,TResult Function()?  inactive,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( UserEntity user)?  active,TResult Function()?  inactive,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Active() when active != null:
-return active(_that.user,_that.userId,_that.role,_that.companyId);case _Inactive() when inactive != null:
+return active(_that.user);case _Inactive() when inactive != null:
 return inactive();case _:
   return orElse();
 
@@ -148,11 +148,11 @@ return inactive();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( UserEntity user,  String userId,  String role,  String companyId)  active,required TResult Function()  inactive,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( UserEntity user)  active,required TResult Function()  inactive,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Active():
-return active(_that.user,_that.userId,_that.role,_that.companyId);case _Inactive():
+return active(_that.user);case _Inactive():
 return inactive();case _:
   throw StateError('Unexpected subclass');
 
@@ -170,11 +170,11 @@ return inactive();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( UserEntity user,  String userId,  String role,  String companyId)?  active,TResult? Function()?  inactive,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( UserEntity user)?  active,TResult? Function()?  inactive,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Active() when active != null:
-return active(_that.user,_that.userId,_that.role,_that.companyId);case _Inactive() when inactive != null:
+return active(_that.user);case _Inactive() when inactive != null:
 return inactive();case _:
   return null;
 
@@ -219,13 +219,10 @@ String toString() {
 
 
 class _Active implements SessionState {
-  const _Active({required this.user, required this.userId, required this.role, required this.companyId});
+  const _Active({required this.user});
   
 
  final  UserEntity user;
- final  String userId;
- final  String role;
- final  String companyId;
 
 /// Create a copy of SessionState
 /// with the given fields replaced by the non-null parameter values.
@@ -237,16 +234,16 @@ _$ActiveCopyWith<_Active> get copyWith => __$ActiveCopyWithImpl<_Active>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Active&&(identical(other.user, user) || other.user == user)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.role, role) || other.role == role)&&(identical(other.companyId, companyId) || other.companyId == companyId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Active&&(identical(other.user, user) || other.user == user));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,user,userId,role,companyId);
+int get hashCode => Object.hash(runtimeType,user);
 
 @override
 String toString() {
-  return 'SessionState.active(user: $user, userId: $userId, role: $role, companyId: $companyId)';
+  return 'SessionState.active(user: $user)';
 }
 
 
@@ -257,7 +254,7 @@ abstract mixin class _$ActiveCopyWith<$Res> implements $SessionStateCopyWith<$Re
   factory _$ActiveCopyWith(_Active value, $Res Function(_Active) _then) = __$ActiveCopyWithImpl;
 @useResult
 $Res call({
- UserEntity user, String userId, String role, String companyId
+ UserEntity user
 });
 
 
@@ -274,13 +271,10 @@ class __$ActiveCopyWithImpl<$Res>
 
 /// Create a copy of SessionState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? user = null,Object? userId = null,Object? role = null,Object? companyId = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? user = null,}) {
   return _then(_Active(
 user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserEntity,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
-as String,companyId: null == companyId ? _self.companyId : companyId // ignore: cast_nullable_to_non_nullable
-as String,
+as UserEntity,
   ));
 }
 
