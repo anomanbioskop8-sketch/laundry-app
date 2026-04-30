@@ -6,13 +6,10 @@ import 'package:app_laundry/features/customer/domain/entities/customer_entity.da
 /// =========================
 class CustomerSortFilter {
   static List<SortOption<CustomerEntity>> get sorts => [
-    SortOption(
-      label: 'Nama A-Z',
-      selector: (c) => (c.name ?? '').toLowerCase(),
-    ),
+    SortOption(label: 'Nama A-Z', selector: (c) => (c.name).toLowerCase()),
     SortOption(
       label: 'Nama Z-A',
-      selector: (c) => (c.name ?? '').toLowerCase(),
+      selector: (c) => (c.name).toLowerCase(),
       ascending: false,
     ),
     // SortOption(

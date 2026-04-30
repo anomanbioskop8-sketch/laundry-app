@@ -21,7 +21,7 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
         );
 
         final uid = credential.user!.uid;
-        final companyId = 'const Uuid().v4()';
+        //final companyId = 'const Uuid().v4()';
 
         final userModel = UserModel(
           id: uid,
@@ -46,10 +46,11 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
           email: email,
           password: password,
         );
+        final user = credential.user;
         return UserModel(
-          id: 'uid',
-          name: 'name',
-          email: 'email',
+          id: user?.uid ?? '-',
+          name: user?.displayName ?? '-',
+          email: user?.email ?? '-',
           companyId: 'tQ9XUVI0xvON7k8DMbKg',
           role: UserRole.owner,
         );

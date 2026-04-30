@@ -1,16 +1,34 @@
+import 'package:app_laundry/core/base/form/form_builder.dart';
 import 'package:app_laundry/core/services/app_ui_service.dart';
+import 'package:app_laundry/core/services/snackbar_service.dart';
+import 'package:app_laundry/core/theme/tokens/app_spacing.dart';
+import 'package:app_laundry/features/auth/presentation/config/login_form_config.dart';
+import 'package:app_laundry/features/auth/presentation/controllers/login_form_controller.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final controller = LoginFormController();
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final email = TextEditingController();
-    final pass = TextEditingController();
+    final cubit = context.read<AuthCubit>();
+    final config = LoginFormConfig(controller);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Login')),
@@ -19,35 +37,27 @@ class LoginPage extends StatelessWidget {
         listener: (context, state) {
           state.whenOrNull(
             authenticated: (user) {
-              AppUIService.success('Berhasil');
+              AppSnackbar1.success(context, 'Login berhasil');
             },
             error: (message) {
-              AppUIService.error(message);
+              AppSnackbar1.success(context, message);
             },
           );
         },
 
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(AppSpacing.lg),
           child: Column(
             children: [
-              TextField(
-                controller: email,
-                decoration: const InputDecoration(labelText: 'Email'),
-              ),
-              TextField(
-                controller: pass,
-                obscureText: true,
-                decoration: const InputDecoration(labelText: 'Password'),
-              ),
-              const SizedBox(height: 20),
-
-              ElevatedButton(
-                onPressed: () {
-                  context.read<AuthCubit>().login(email.text, pass.text);
+              FormBuilder(
+                formKey: controller.formKey,
+                fields: config.fields,
+                onSubmit: () {
+                  cubit.login(controller.buildParams());
                 },
-                child: const Text('Login'),
               ),
+
+              SizedBox(height: AppSpacing.md),
 
               TextButton(
                 onPressed: () {

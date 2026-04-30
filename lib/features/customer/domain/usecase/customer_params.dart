@@ -48,3 +48,15 @@ class GetCustomerParams {
 
   bool get isValid => id.isNotEmpty;
 }
+
+class SaveCustomerParams {
+  final String? id;
+  final String name;
+  final String phone;
+
+  const SaveCustomerParams({this.id, required this.name, required this.phone});
+
+  bool get isEdit => id != null;
+
+  bool get isValid => name.isNotEmpty && phone.isNotEmpty;
+}

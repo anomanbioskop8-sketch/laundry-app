@@ -11,6 +11,7 @@ import 'package:app_laundry/features/customer/domain/usecase/customer_params.dar
 import 'package:app_laundry/features/customer/presentation/cubit/customer_action_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomerActionBuilder {
   final CustomerEntity customer;
@@ -28,8 +29,9 @@ class CustomerActionBuilder {
         icon: Icons.edit,
         type: DialogType.info,
         canShow: () => canView,
-        onTap: () {
+        onTap: () async {
           // navigate edit
+          await context.pushNamed('customerForm', extra: customer);
         },
       ),
 

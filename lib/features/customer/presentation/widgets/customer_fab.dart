@@ -1,7 +1,5 @@
-import 'package:app_laundry/features/customer/domain/usecase/customer_params.dart';
-import 'package:app_laundry/features/customer/presentation/cubit/customer_action_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomerFab extends StatelessWidget {
   const CustomerFab({super.key});
@@ -9,13 +7,8 @@ class CustomerFab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {
-        context.read<CustomerActionCubit>().createCustomer(
-          CreateCustomerParams(
-            name: 'Customer ${DateTime.now().millisecondsSinceEpoch}',
-            phone: '081234567890',
-          ),
-        );
+      onPressed: () async {
+        await context.pushNamed('customerForm', extra: null);
       },
       child: const Icon(Icons.add),
     );

@@ -3,6 +3,7 @@ import 'package:app_laundry/features/customer/data/repositories/customer_reposit
 import 'package:app_laundry/features/customer/domain/repositories/customer_repository.dart';
 import 'package:app_laundry/features/customer/domain/usecase/create_customer.dart';
 import 'package:app_laundry/features/customer/domain/usecase/delete_customer.dart';
+import 'package:app_laundry/features/customer/domain/usecase/save_customer.dart';
 import 'package:app_laundry/features/customer/domain/usecase/stream_customers.dart';
 import 'package:app_laundry/features/customer/domain/usecase/update_customer.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_action_cubit.dart';
@@ -29,12 +30,13 @@ class CustomerModule {
     sl.registerLazySingleton(() => StreamCustomers(sl()));
     sl.registerLazySingleton(() => CreateCustomer(sl()));
     sl.registerLazySingleton(() => UpdateCustomer(sl()));
+    sl.registerLazySingleton(() => SaveCustomer(sl(), sl()));
     sl.registerLazySingleton(
       () => DeleteCustomer(repository: sl(), session: sl()),
     );
 
     // cubit
     sl.registerFactory(() => CustomerCubit(sl()));
-    sl.registerFactory(() => CustomerActionCubit(sl(), sl(), sl()));
+    sl.registerFactory(() => CustomerActionCubit(save: sl(), delete: sl()));
   }
 }

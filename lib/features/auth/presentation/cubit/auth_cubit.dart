@@ -1,4 +1,5 @@
 import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
+import 'package:app_laundry/features/auth/domain/usecases/auth_params.dart';
 import 'package:app_laundry/features/auth/domain/usecases/get_current_user.dart';
 import 'package:app_laundry/features/auth/domain/usecases/login.dart';
 import 'package:app_laundry/features/auth/domain/usecases/register.dart';
@@ -43,10 +44,10 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   /// LOGIN
-  Future<void> login(String email, String password) async {
+  Future<void> login(LoginParams params) async {
     emit(const AuthState.loading());
 
-    final result = await loginUseCase(email, password);
+    final result = await loginUseCase(params);
     result.fold(
       (failure) {
         emit(AuthState.error(failure.message));
