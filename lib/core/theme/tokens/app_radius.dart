@@ -1,8 +1,8 @@
 class AppRadius {
-  AppRadius._();
+  AppRadius();
 
-  static const sm = 6.0;
-  static const md = 10.0;
-  static const lg = 16.0;
-  static const xl = 24.0;
+  final sm = 6.0;
+  final md = 10.0;
+  final lg = 16.0;
+  final xl = 24.0;
 }

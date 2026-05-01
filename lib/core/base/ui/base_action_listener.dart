@@ -2,7 +2,6 @@
 import 'package:app_laundry/core/base/cubit/base_action_cubit.dart';
 import 'package:app_laundry/core/base/cubit/base_action_state.dart';
 import 'package:app_laundry/core/services/app_ui_service.dart';
-import 'package:app_laundry/core/services/snackbar_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,7 +35,7 @@ class BaseActionListener<C extends BaseActionCubit<T>, T>
             AppUIService.hideLoading();
 
             if (message != null) {
-              AppSnackbar1.success(context, message);
+              AppUIService.success(message);
             }
 
             /// 🔥 CALLBACK
@@ -50,7 +49,7 @@ class BaseActionListener<C extends BaseActionCubit<T>, T>
 
           error: (message, _) {
             AppUIService.hideLoading();
-            AppSnackbar1.error(context, message);
+            AppUIService.error(message);
           },
         );
       },

@@ -16,10 +16,13 @@
 // - Aman dipanggil dari mana saja (selama Navigator sudah siap).
 // =============================================================================
 
+import 'package:app_laundry/core/theme/dialog/dialog_ext.dart';
+import 'package:app_laundry/core/theme/helpers/radius_ext.dart';
+import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
+import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:app_laundry/core/services/app_navigator.dart';
 import 'package:app_laundry/core/theme/dialog/dialog_type.dart';
-import 'package:app_laundry/core/theme/dialog/dialog_color_mapper.dart';
 
 class DialogService {
   DialogService._(); // ❌ prevent instantiation
@@ -48,23 +51,23 @@ class DialogService {
     // 🔒 Safety: context belum tersedia
     if (context == null) return false;
 
-    // 🎨 Resolve color dari mapper (design system)
-    final Color primaryColor =
-        confirmColor ?? DialogColorMapper.primary(context, type);
-
     final result = await showDialog<bool>(
       context: context,
       barrierDismissible: false, // 🔒 wajib pilih aksi
       builder: (_) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: context.radius.md.r),
 
           // =========================
           // CONTENT
           // =========================
-          title: Text(title),
+          title: Row(
+            children: [
+              Icon(type.icon(), color: type.color(context)),
+              context.spacing.sm.w,
+              Expanded(child: Text(title, style: context.titleLarge)),
+            ],
+          ),
           content: Text(message),
 
           // =========================
@@ -72,14 +75,16 @@ class DialogService {
           // =========================
           actions: [
             /// Cancel button
-            TextButton(
+            ElevatedButton(
               onPressed: () => Navigator.pop(context, false),
               child: Text(cancelText),
             ),
 
             /// Confirm button
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: primaryColor),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: type.color(context),
+              ),
               onPressed: () => Navigator.pop(context, true),
               child: Text(confirmText),
             ),

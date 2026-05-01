@@ -6,13 +6,14 @@ class AppCardTheme {
   AppCardTheme._();
 
   static CardThemeData build(ColorScheme colorScheme) {
+    final radius = AppRadius();
     return CardThemeData(
       elevation: AppElevation.low,
       color: colorScheme.surface,
       shadowColor: colorScheme.shadow.withValues(alpha: 0.1),
 
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppRadius.lg),
+        borderRadius: BorderRadius.circular(radius.lg),
       ),
 
       margin: EdgeInsets.zero,

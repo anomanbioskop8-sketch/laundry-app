@@ -1,4 +1,5 @@
 import 'package:app_laundry/core/base/ui/search_field.dart';
+import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_cubit.dart';
 import 'package:app_laundry/features/customer/presentation/widgets/customer_fab.dart';
 import 'package:app_laundry/features/customer/presentation/widgets/customer_view.dart';
@@ -16,7 +17,7 @@ class CustomerPage extends StatelessWidget {
         children: [
           /// 🔍 SEARCH BAR
           Padding(
-            padding: const EdgeInsets.all(12),
+            padding: EdgeInsets.all(context.spacing.lg),
             child: AppSearchField(
               hintText: 'Cari nama atau nomor...',
               onChanged: context.read<CustomerCubit>().search,

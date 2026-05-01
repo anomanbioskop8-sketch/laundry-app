@@ -15,69 +15,20 @@
 // - Pastikan sudah di-assign di MaterialApp.
 // =============================================================================
 
-import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
-import 'package:app_laundry/core/theme/tokens/app_spacing.dart';
+import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
+import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:flutter/material.dart';
 import 'app_navigator.dart';
 
 class AppSnackbar {
-  AppSnackbar._(); // ❌ prevent instantiation
-
-  // ===========================================================================
-  // PUBLIC API
-  // ===========================================================================
-
-  /// Menampilkan snackbar sukses (warna hijau)
-  static void success(String message) {
-    _show(message: message, backgroundColor: Colors.green);
-  }
-
-  /// Menampilkan snackbar error (warna merah)
-  static void error(String message) {
-    _show(message: message, backgroundColor: Colors.red);
-  }
-
-  /// Menampilkan snackbar informasi (warna biru)
-  static void info(String message) {
-    _show(message: message, backgroundColor: Colors.blue);
-  }
-
-  // ===========================================================================
-  // CORE IMPLEMENTATION
-  // ===========================================================================
-
-  static void _show({
-    required String message,
-    required Color backgroundColor,
-    Duration duration = const Duration(seconds: 3),
-    SnackBarBehavior behavior = SnackBarBehavior.floating,
-  }) {
-    final messenger = AppNavigator.messengerKey.currentState;
-
-    // 🔒 Safety check: jika belum ada context (misalnya app belum ready)
-    if (messenger == null) return;
-
-    // 🔄 Hapus snackbar sebelumnya agar tidak numpuk
-    messenger.hideCurrentSnackBar();
-
-    messenger.showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: backgroundColor,
-        duration: duration,
-        behavior: behavior,
-      ),
-    );
-  }
-}
-
-class AppSnackbar1 {
-  AppSnackbar1._();
+  AppSnackbar._();
 
   // =========================
   // SUCCESS
   // =========================
-  static void success(BuildContext context, String message) {
+  static void success(String message) {
+    final context = AppNavigator.navigatorKey.currentContext;
+    if (context == null) return;
     _show(
       context,
       message: message,
@@ -89,7 +40,9 @@ class AppSnackbar1 {
   // =========================
   // ERROR
   // =========================
-  static void error(BuildContext context, String message) {
+  static void error(String message) {
+    final context = AppNavigator.navigatorKey.currentContext;
+    if (context == null) return;
     _show(
       context,
       message: message,
@@ -137,7 +90,7 @@ class _SnackbarContent extends StatelessWidget {
     return Row(
       children: [
         Icon(icon, color: color),
-        const SizedBox(width: AppSpacing.sm),
+        context.spacing.sm.w,
         Expanded(child: Text(message)),
       ],
     );

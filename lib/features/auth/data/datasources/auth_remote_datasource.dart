@@ -1,4 +1,5 @@
 import 'package:app_laundry/core/auth/role/user_role.dart';
+import 'package:app_laundry/core/constants/firestore_path.dart';
 import 'package:app_laundry/core/error/mappers/firebase_error_mapper.dart';
 import 'package:app_laundry/core/network/base_remote_datasource.dart';
 import 'package:app_laundry/features/auth/data/models/user_model.dart';
@@ -11,7 +12,12 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
 
   AuthRemoteDataSource(super.logger, this.auth, this.firestore);
 
+  /// 🔥 sementara hardcode (nanti pindah ke Session / user_index)
+  static const _companyId = 'tQ9XUVI0xvON7k8DMbKg';
+
+  /// =========================
   /// REGISTER
+  /// =========================
   Future<UserModel> register(String name, String email, String password) async {
     return safeCall(() async {
       try {
@@ -20,25 +26,33 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
           password: password,
         );
 
-        final uid = credential.user!.uid;
-        //final companyId = 'const Uuid().v4()';
+        final user = credential.user!;
+        final uid = user.uid;
 
-        final userModel = UserModel(
-          id: uid,
-          name: name,
-          email: email,
-          companyId: 'tQ9XUVI0xvON7k8DMbKg',
-          role: UserRole.owner,
-        );
+        final data = {
+          'name': name,
+          'email': email,
+          'companyId': _companyId,
+          'role': UserRole.owner.name,
+          'createdAt': FieldValue.serverTimestamp(),
+        };
 
-        return userModel;
+        final ref = FirestorePath.userDoc(firestore, uid);
+
+        await ref.set(data);
+
+        final doc = await ref.get();
+
+        return UserModel.fromMap(doc.data()!, uid);
       } catch (e) {
         throw FirebaseErrorMapper.map(e);
       }
     });
   }
 
+  /// =========================
   /// LOGIN
+  /// =========================
   Future<UserModel> login(String email, String password) async {
     return safeCall(() async {
       try {
@@ -46,41 +60,57 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
           email: email,
           password: password,
         );
-        final user = credential.user;
-        return UserModel(
-          id: user?.uid ?? '-',
-          name: user?.displayName ?? '-',
-          email: user?.email ?? '-',
-          companyId: 'tQ9XUVI0xvON7k8DMbKg',
-          role: UserRole.owner,
-        );
+
+        final user = credential.user!;
+        final uid = user.uid;
+
+        final ref = FirestorePath.userDoc(firestore, uid);
+        final doc = await ref.get();
+
+        /// 🔥 auto create jika belum ada (anti null)
+        if (!doc.exists || doc.data() == null) {
+          await ref.set({
+            'name': user.displayName ?? '',
+            'email': user.email ?? '',
+            'companyId': _companyId,
+            'role': UserRole.owner.name,
+            'createdAt': FieldValue.serverTimestamp(),
+          });
+        }
+
+        final freshDoc = await ref.get();
+
+        return UserModel.fromMap(freshDoc.data()!, uid);
       } catch (e) {
         throw FirebaseErrorMapper.map(e);
       }
     });
   }
 
+  /// =========================
   /// CURRENT USER
+  /// =========================
   Future<UserModel?> getCurrentUser() {
     return safeCall(() async {
-      try {
-        final user = auth.currentUser;
+      final user = auth.currentUser;
+      if (user == null) return null;
 
-        if (user == null) return null;
+      final uid = user.uid;
 
-        return UserModel(
-          id: user.uid,
-          name: user.displayName ?? '',
-          email: user.email ?? '',
-          companyId: 'tQ9XUVI0xvON7k8DMbKg',
-          role: UserRole.owner,
-        );
-      } catch (e) {
-        throw FirebaseErrorMapper.map(e);
+      final ref = FirestorePath.userDoc(firestore, uid);
+      final doc = await ref.get();
+
+      if (!doc.exists || doc.data() == null) {
+        return null;
       }
+
+      return UserModel.fromMap(doc.data()!, uid);
     });
   }
 
+  /// =========================
+  /// LOGOUT
+  /// =========================
   Future<void> logout() async {
     await auth.signOut();
   }

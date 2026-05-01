@@ -40,12 +40,10 @@ class AppUIService {
   // Menampilkan feedback cepat ke user
   //
 
-  /// Snackbar sukses (warna hijau)
   static void success(String message) {
     AppSnackbar.success(message);
   }
 
-  /// Snackbar error (warna merah)
   static void error(String message) {
     AppSnackbar.error(message);
   }

@@ -1,1 +1,1 @@
-enum DialogType { delete, update, warning, info }
+enum DialogType { info, success, warning, danger }

@@ -1,3 +1,4 @@
+import 'package:app_laundry/core/theme/tokens/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppStatusColors extends ThemeExtension<AppStatusColors> {
@@ -21,6 +22,35 @@ class AppStatusColors extends ThemeExtension<AppStatusColors> {
     required this.done,
     required this.cancel,
   });
+
+  // ✅ Light Theme
+  static const light = AppStatusColors(
+    success: AppColors.green600,
+    warning: AppColors.amber500,
+    error: AppColors.red600,
+    info: AppColors.blue600,
+
+    pending: AppColors.amber400,
+    process: AppColors.blue500,
+    done: AppColors.green500,
+    cancel: AppColors.gray500,
+  );
+
+  // ✅ Dark Theme
+  static const dark = AppStatusColors(
+    success: AppColors.green500,
+    warning: AppColors.amber400,
+    error: AppColors.red500,
+    info: AppColors.blue500,
+
+    pending: AppColors.amber400,
+    process: AppColors.blue500,
+    done: AppColors.green500,
+    cancel: AppColors.gray400,
+  );
+
+  // ✅ Fallback (anti crash)
+  factory AppStatusColors.fallback() => light;
 
   @override
   AppStatusColors copyWith({

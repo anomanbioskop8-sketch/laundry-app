@@ -1,4 +1,5 @@
-import 'package:app_laundry/core/theme/tokens/app_spacing.dart';
+import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
+import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:flutter/material.dart';
 import 'form_field_config.dart';
 
@@ -25,7 +26,7 @@ class FormBuilder extends StatelessWidget {
         children: [
           ...fields.map((f) {
             return Padding(
-              padding: EdgeInsets.only(bottom: AppSpacing.md),
+              padding: EdgeInsets.only(bottom: context.spacing.md),
               child: TextFormField(
                 controller: f.controller,
                 keyboardType: f.keyboardType,
@@ -37,7 +38,7 @@ class FormBuilder extends StatelessWidget {
             );
           }),
 
-          const SizedBox(height: AppSpacing.xl),
+          context.spacing.xl.h,
 
           SizedBox(
             width: double.infinity,

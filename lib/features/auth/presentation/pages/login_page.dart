@@ -1,7 +1,7 @@
 import 'package:app_laundry/core/base/form/form_builder.dart';
 import 'package:app_laundry/core/services/app_ui_service.dart';
-import 'package:app_laundry/core/services/snackbar_service.dart';
-import 'package:app_laundry/core/theme/tokens/app_spacing.dart';
+import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
+import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/features/auth/presentation/config/login_form_config.dart';
 import 'package:app_laundry/features/auth/presentation/controllers/login_form_controller.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_cubit.dart';
@@ -37,16 +37,16 @@ class _LoginPageState extends State<LoginPage> {
         listener: (context, state) {
           state.whenOrNull(
             authenticated: (user) {
-              AppSnackbar1.success(context, 'Login berhasil');
+              AppUIService.success('Login berhasil');
             },
             error: (message) {
-              AppSnackbar1.success(context, message);
+              AppUIService.error(message);
             },
           );
         },
 
         child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.lg),
+          padding: EdgeInsets.all(context.spacing.lg),
           child: Column(
             children: [
               FormBuilder(
@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
 
-              SizedBox(height: AppSpacing.md),
+              context.spacing.md.h,
 
               TextButton(
                 onPressed: () {

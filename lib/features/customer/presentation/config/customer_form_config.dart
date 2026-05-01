@@ -36,6 +36,6 @@ class CustomerFormConfig {
   /// SUBMIT LABEL
   /// =========================
   String get submitLabel {
-    return controller.isEdit ? 'Update' : 'Simpan';
+    return controller.isEdit ? 'Update' : 'Create';
   }
 }
