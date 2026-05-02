@@ -55,11 +55,12 @@ extension SessionStatePatterns on SessionState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Active value)?  active,TResult Function( _Inactive value)?  inactive,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Active value)?  active,TResult Function( _Inactive value)?  inactive,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial(_that);case _Active() when active != null:
+return initial(_that);case _Loading() when loading != null:
+return loading(_that);case _Active() when active != null:
 return active(_that);case _Inactive() when inactive != null:
 return inactive(_that);case _:
   return orElse();
@@ -79,11 +80,12 @@ return inactive(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Active value)  active,required TResult Function( _Inactive value)  inactive,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Active value)  active,required TResult Function( _Inactive value)  inactive,}){
 final _that = this;
 switch (_that) {
 case _Initial():
-return initial(_that);case _Active():
+return initial(_that);case _Loading():
+return loading(_that);case _Active():
 return active(_that);case _Inactive():
 return inactive(_that);case _:
   throw StateError('Unexpected subclass');
@@ -102,11 +104,12 @@ return inactive(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Active value)?  active,TResult? Function( _Inactive value)?  inactive,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Active value)?  active,TResult? Function( _Inactive value)?  inactive,}){
 final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial(_that);case _Active() when active != null:
+return initial(_that);case _Loading() when loading != null:
+return loading(_that);case _Active() when active != null:
 return active(_that);case _Inactive() when inactive != null:
 return inactive(_that);case _:
   return null;
@@ -125,10 +128,11 @@ return inactive(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( UserEntity user)?  active,TResult Function()?  inactive,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( UserEntity user)?  active,TResult Function()?  inactive,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial();case _Active() when active != null:
+return initial();case _Loading() when loading != null:
+return loading();case _Active() when active != null:
 return active(_that.user);case _Inactive() when inactive != null:
 return inactive();case _:
   return orElse();
@@ -148,10 +152,11 @@ return inactive();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( UserEntity user)  active,required TResult Function()  inactive,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( UserEntity user)  active,required TResult Function()  inactive,}) {final _that = this;
 switch (_that) {
 case _Initial():
-return initial();case _Active():
+return initial();case _Loading():
+return loading();case _Active():
 return active(_that.user);case _Inactive():
 return inactive();case _:
   throw StateError('Unexpected subclass');
@@ -170,10 +175,11 @@ return inactive();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( UserEntity user)?  active,TResult? Function()?  inactive,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( UserEntity user)?  active,TResult? Function()?  inactive,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
-return initial();case _Active() when active != null:
+return initial();case _Loading() when loading != null:
+return loading();case _Active() when active != null:
 return active(_that.user);case _Inactive() when inactive != null:
 return inactive();case _:
   return null;
@@ -218,8 +224,40 @@ String toString() {
 /// @nodoc
 
 
+class _Loading implements SessionState {
+  const _Loading();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'SessionState.loading()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
 class _Active implements SessionState {
-  const _Active({required this.user});
+  const _Active(this.user);
   
 
  final  UserEntity user;
@@ -273,7 +311,7 @@ class __$ActiveCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? user = null,}) {
   return _then(_Active(
-user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
 as UserEntity,
   ));
 }

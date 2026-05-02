@@ -1,4 +1,5 @@
 import 'package:app_laundry/core/base/ui/search_field.dart';
+import 'package:app_laundry/core/constants/customer_strings.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_cubit.dart';
 import 'package:app_laundry/features/customer/presentation/widgets/customer_fab.dart';
@@ -12,7 +13,7 @@ class CustomerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Customers')),
+      appBar: AppBar(title: const Text(CustomerStrings.title)),
       body: Column(
         children: [
           /// 🔍 SEARCH BAR

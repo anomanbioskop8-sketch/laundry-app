@@ -16,11 +16,14 @@ class CustomerRepositoryImpl implements CustomerRepository {
   /// CREATE
   /// =========================
   @override
-  Future<Either<Failure, void>> createCustomer(CustomerEntity customer) async {
+  Future<Either<Failure, void>> createCustomer({
+    required String companyId,
+    required CustomerEntity customer,
+  }) async {
     try {
       final model = CustomerMapper.toModel(customer);
 
-      await remote.create(id: model.id, data: model);
+      await remote.create(companyId: companyId, id: model.id, data: model);
 
       return const Right(null);
     } on AppException catch (e) {
@@ -32,11 +35,12 @@ class CustomerRepositoryImpl implements CustomerRepository {
   /// GET BY ID
   /// =========================
   @override
-  Future<Either<Failure, CustomerEntity?>> getCustomerById(
-    String customerId,
-  ) async {
+  Future<Either<Failure, CustomerEntity?>> getCustomerById({
+    required String companyId,
+    required String customerId,
+  }) async {
     try {
-      final model = await remote.getById(id: customerId);
+      final model = await remote.getById(companyId: companyId, id: customerId);
 
       if (model == null) return const Right(null);
 
@@ -50,9 +54,11 @@ class CustomerRepositoryImpl implements CustomerRepository {
   /// STREAM ALL (REALTIME)
   /// =========================
   @override
-  Stream<Either<Failure, List<CustomerEntity>>> streamCustomers() async* {
+  Stream<Either<Failure, List<CustomerEntity>>> streamCustomers(
+    String companyId,
+  ) async* {
     try {
-      await for (final models in remote.streamAll()) {
+      await for (final models in remote.streamAll(companyId)) {
         final entities = models.map(CustomerMapper.toEntity).toList();
 
         yield Right(entities);
@@ -66,11 +72,14 @@ class CustomerRepositoryImpl implements CustomerRepository {
   /// UPDATE
   /// =========================
   @override
-  Future<Either<Failure, void>> updateCustomer(CustomerEntity customer) async {
+  Future<Either<Failure, void>> updateCustomer({
+    required String companyId,
+    required CustomerEntity customer,
+  }) async {
     try {
       final model = CustomerMapper.toModel(customer);
 
-      await remote.update(id: model.id, data: model);
+      await remote.update(companyId: companyId, id: model.id, data: model);
 
       return const Right(null);
     } on AppException catch (e) {
@@ -82,9 +91,12 @@ class CustomerRepositoryImpl implements CustomerRepository {
   /// DELETE
   /// =========================
   @override
-  Future<Either<Failure, void>> deleteCustomer(String customerId) async {
+  Future<Either<Failure, void>> deleteCustomer({
+    required String companyId,
+    required String customerId,
+  }) async {
     try {
-      await remote.delete(id: customerId);
+      await remote.delete(companyId: companyId, id: customerId);
       return const Right(null);
     } on AppException catch (e) {
       return Left(FailureMapper.mapExceptionToFailure(e));

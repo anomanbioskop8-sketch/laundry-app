@@ -21,7 +21,7 @@ Future<void> registerCore(GetIt sl) async {
 
   sl.registerLazySingleton<FirebaseFirestore>(() => FirebaseFirestore.instance);
 
-  sl.registerLazySingleton<SessionCubit>(() => SessionCubit());
+  sl.registerLazySingleton<SessionCubit>(() => SessionCubit(sl()));
 
   sl.registerLazySingleton<SessionService>(() => SessionServiceImpl(sl()));
 

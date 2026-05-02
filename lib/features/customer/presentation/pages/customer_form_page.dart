@@ -1,4 +1,5 @@
 import 'package:app_laundry/core/base/form/form_builder.dart';
+import 'package:app_laundry/core/constants/app_strings.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/presentation/config/customer_form_config.dart';
@@ -48,7 +49,7 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
         child: FormBuilder(
           formKey: controller.formKey,
           fields: config.fields,
-          submitLabel: 'Simpan',
+          submitLabel: AppStrings.save,
           onSubmit: () {
             cubit.submit(controller.buildParams());
           },

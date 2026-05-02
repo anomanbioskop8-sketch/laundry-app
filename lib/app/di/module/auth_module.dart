@@ -5,6 +5,7 @@ import 'package:app_laundry/features/auth/domain/usecases/get_current_user.dart'
 import 'package:app_laundry/features/auth/domain/usecases/login.dart';
 import 'package:app_laundry/features/auth/domain/usecases/register.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:app_laundry/features/auth/presentation/cubit/login_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 class AuthModule {
@@ -27,12 +28,12 @@ class AuthModule {
     sl.registerLazySingleton(() => GetCurrentUser(sl()));
 
     sl.registerFactory(
-      () => AuthCubit(
-        loginUseCase: sl(),
-        registerUseCase: sl(),
-        getCurrentUserUseCase: sl(),
-        sessionCubit: sl(),
-      ),
+      () => AuthCubit(getCurrentUserUseCase: sl(), sessionCubit: sl()),
+    );
+
+    sl.registerFactory(
+      () =>
+          LoginCubit(loginUseCase: sl(), registerUseCase: sl(), session: sl()),
     );
   }
 }

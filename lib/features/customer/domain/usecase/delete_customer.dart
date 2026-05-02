@@ -1,3 +1,4 @@
+import 'package:app_laundry/core/error/exceptions.dart';
 import 'package:app_laundry/core/error/failure.dart';
 import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
 import 'package:app_laundry/core/utils/either.dart';
@@ -11,10 +12,20 @@ class DeleteCustomer {
   DeleteCustomer({required this.repository, required this.session});
 
   Future<Either<Failure, void>> call(DeleteCustomerParams params) async {
-    // if (session.role != 'admin') {
-    //   throw const PermissionException('Tidak punya akses');
-    // }
+    try {
+      final companyId = session.companyId;
 
-    return repository.deleteCustomer(params.id);
+      /// 🔐 (optional) permission check
+      // if (session.role != UserRole.owner) {
+      //   return Left(PermissionFailure('Tidak punya akses'));
+      // }
+
+      return repository.deleteCustomer(
+        companyId: companyId,
+        customerId: params.id,
+      );
+    } on UnauthorizedException catch (e) {
+      return Left(UnauthorizedFailure(e.message));
+    }
   }
 }

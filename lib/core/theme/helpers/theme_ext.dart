@@ -1,5 +1,6 @@
 import 'package:app_laundry/core/theme/extensions/app_status_colors.dart';
 import 'package:app_laundry/core/theme/tokens/app_radius.dart';
+import 'package:app_laundry/core/theme/tokens/app_sizes.dart';
 import 'package:app_laundry/core/theme/tokens/app_spacing.dart';
 import 'package:flutter/material.dart';
 
@@ -31,4 +32,5 @@ extension ThemeExt on BuildContext {
   // Design Tokens
   AppSpacing get spacing => AppSpacing();
   AppRadius get radius => AppRadius();
+  AppSizes get sizes => AppSizes();
 }

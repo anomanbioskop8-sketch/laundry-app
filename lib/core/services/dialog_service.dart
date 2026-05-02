@@ -63,7 +63,11 @@ class DialogService {
           // =========================
           title: Row(
             children: [
-              Icon(type.icon(), color: type.color(context)),
+              Icon(
+                type.icon(),
+                size: context.sizes.iconLg,
+                color: type.color(context),
+              ),
               context.spacing.sm.w,
               Expanded(child: Text(title, style: context.titleLarge)),
             ],

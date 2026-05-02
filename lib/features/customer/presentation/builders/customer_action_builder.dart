@@ -2,6 +2,7 @@ import 'package:app_laundry/app/di/injection_container.dart';
 import 'package:app_laundry/core/auth/permission/permission.dart';
 import 'package:app_laundry/core/base/ui/bottom_sheet/action_intent.dart';
 import 'package:app_laundry/core/base/ui/bottom_sheet/action_item.dart';
+import 'package:app_laundry/core/constants/customer_strings.dart';
 import 'package:app_laundry/core/services/app_ui_service.dart';
 import 'package:app_laundry/core/auth/permission/permission_service.dart';
 import 'package:app_laundry/core/theme/dialog/dialog_type.dart';
@@ -46,15 +47,15 @@ class CustomerActionBuilder {
       ),
 
       ActionItem(
-        title: 'Hapus',
+        title: CustomerStrings.delete,
         icon: Icons.delete_outline,
         intent: ActionIntent.delete,
         canShow: () => canDelete,
         onTap: () async {
           final confirmed = await AppUIService.confirm(
-            title: 'Hapus Customer',
+            title: CustomerStrings.delete,
             type: DialogType.danger,
-            message: 'Yakin hapus customer?',
+            message: CustomerStrings.confirmDelete,
           );
 
           if (confirmed != true || !context.mounted) return;

@@ -1,16 +1,10 @@
-import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
+import 'package:app_laundry/core/network/base_remote_datasource.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'base_remote_datasource.dart';
 
 abstract class BaseCrudRemoteDataSource<T> extends BaseRemoteDataSource {
   final FirebaseFirestore firestore;
-  final SessionCubit session;
 
-  BaseCrudRemoteDataSource(
-    super.logger, {
-    required this.firestore,
-    required this.session,
-  });
+  BaseCrudRemoteDataSource(super.logger, {required this.firestore});
 
   /// =========================
   /// CONTRACT
@@ -22,22 +16,25 @@ abstract class BaseCrudRemoteDataSource<T> extends BaseRemoteDataSource {
   Map<String, dynamic> toMap(T data);
 
   /// =========================
-  /// SAFE COMPANY ID
+  /// REF BUILDER
   /// =========================
-  String get _companyId => session.companyId;
-
-  /// =========================
-  /// COLLECTION REFERENCE (AUTO SCOPE)
-  /// =========================
-  CollectionReference<Map<String, dynamic>> get _ref =>
-      firestore.collection('companies').doc(_companyId).collection(collection);
+  CollectionReference<Map<String, dynamic>> _ref(String companyId) {
+    return firestore
+        .collection('companies')
+        .doc(companyId)
+        .collection(collection);
+  }
 
   /// =========================
   /// CREATE
   /// =========================
-  Future<void> create({required String id, required T data}) {
+  Future<void> create({
+    required String companyId,
+    required String id,
+    required T data,
+  }) {
     return safeCall(() async {
-      await _ref.doc(id).set({
+      await _ref(companyId).doc(id).set({
         ...toMap(data),
         'createdAt': FieldValue.serverTimestamp(),
       });
@@ -47,9 +44,13 @@ abstract class BaseCrudRemoteDataSource<T> extends BaseRemoteDataSource {
   /// =========================
   /// UPDATE
   /// =========================
-  Future<void> update({required String id, required T data}) {
+  Future<void> update({
+    required String companyId,
+    required String id,
+    required T data,
+  }) {
     return safeCall(() async {
-      await _ref.doc(id).update({
+      await _ref(companyId).doc(id).update({
         ...toMap(data),
         'updatedAt': FieldValue.serverTimestamp(),
       });
@@ -59,20 +60,20 @@ abstract class BaseCrudRemoteDataSource<T> extends BaseRemoteDataSource {
   /// =========================
   /// DELETE
   /// =========================
-  Future<void> delete({required String id}) {
+  Future<void> delete({required String companyId, required String id}) {
     return safeCall(() async {
-      await _ref.doc(id).delete();
+      await _ref(companyId).doc(id).delete();
     });
   }
 
   /// =========================
   /// GET SINGLE
   /// =========================
-  Future<T?> getById({required String id}) {
+  Future<T?> getById({required String companyId, required String id}) {
     return safeCall(() async {
-      final doc = await _ref.doc(id).get();
+      final doc = await _ref(companyId).doc(id).get();
 
-      if (!doc.exists) return null;
+      if (!doc.exists || doc.data() == null) return null;
 
       return fromMap(doc.data()!, doc.id);
     });
@@ -81,9 +82,9 @@ abstract class BaseCrudRemoteDataSource<T> extends BaseRemoteDataSource {
   /// =========================
   /// STREAM ALL
   /// =========================
-  Stream<List<T>> streamAll() {
+  Stream<List<T>> streamAll(String companyId) {
     return safeStream(() {
-      return _ref.snapshots().map((snapshot) {
+      return _ref(companyId).snapshots().map((snapshot) {
         return snapshot.docs.map((doc) => fromMap(doc.data(), doc.id)).toList();
       });
     });

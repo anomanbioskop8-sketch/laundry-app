@@ -18,7 +18,7 @@ class CustomerModule {
   Future<void> init() async {
     /// DataSource
     sl.registerLazySingleton<CustomerRemoteDataSource>(
-      () => CustomerRemoteDataSource(sl(), firestore: sl(), session: sl()),
+      () => CustomerRemoteDataSource(sl(), firestore: sl()),
     );
 
     /// Repository
@@ -27,9 +27,15 @@ class CustomerModule {
     );
 
     // usecases
-    sl.registerLazySingleton(() => StreamCustomers(sl()));
-    sl.registerLazySingleton(() => CreateCustomer(sl()));
-    sl.registerLazySingleton(() => UpdateCustomer(sl()));
+    sl.registerLazySingleton(
+      () => StreamCustomers(repository: sl(), session: sl()),
+    );
+    sl.registerLazySingleton(
+      () => CreateCustomer(repository: sl(), session: sl()),
+    );
+    sl.registerLazySingleton(
+      () => UpdateCustomer(repository: sl(), session: sl()),
+    );
     sl.registerLazySingleton(() => SaveCustomer(sl(), sl()));
     sl.registerLazySingleton(
       () => DeleteCustomer(repository: sl(), session: sl()),

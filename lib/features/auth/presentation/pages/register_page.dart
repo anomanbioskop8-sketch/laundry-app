@@ -6,6 +6,7 @@ import 'package:app_laundry/features/auth/presentation/config/login_form_config.
 import 'package:app_laundry/features/auth/presentation/controllers/login_form_controller.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/auth_state.dart';
+import 'package:app_laundry/features/auth/presentation/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<AuthCubit>();
+    final cubit = context.read<LoginCubit>();
     final config = LoginFormConfig(controller);
 
     return Scaffold(
