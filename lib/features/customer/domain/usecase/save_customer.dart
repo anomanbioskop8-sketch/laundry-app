@@ -8,7 +8,7 @@ class SaveCustomer {
   final CreateCustomer createCustomer;
   final UpdateCustomer updateCustomer;
 
-  SaveCustomer(this.createCustomer, this.updateCustomer);
+  SaveCustomer({required this.createCustomer, required this.updateCustomer});
 
   Future<Either<Failure, void>> call(SaveCustomerParams params) async {
     if (!params.isValid) {
@@ -24,6 +24,7 @@ class SaveCustomer {
           id: params.id!,
           name: params.name,
           phone: params.phone,
+          address: params.address,
         ),
       );
     }
@@ -32,7 +33,11 @@ class SaveCustomer {
     /// CREATE
     /// =========================
     return createCustomer(
-      CreateCustomerParams(name: params.name, phone: params.phone),
+      CreateCustomerParams(
+        name: params.name,
+        phone: params.phone,
+        address: params.address,
+      ),
     );
   }
 }

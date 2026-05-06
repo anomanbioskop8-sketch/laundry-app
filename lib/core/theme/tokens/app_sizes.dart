@@ -1,35 +1,37 @@
-// core/theme/tokens/app_sizes.dart
-
 class AppSizes {
-  AppSizes();
+  const AppSizes();
+
+  //static const _phi = 1.618;
 
   // =========================
-  // ICON
+  // ICON (base: 12)
   // =========================
-  final double iconXs = 12;
-  final double iconSm = 16;
-  final double iconMd = 20;
-  final double iconLg = 24;
-  final double iconXl = 32;
+  final double iconXs = 12; // base
+  final double iconSm = 16; // ~12 * φ
+  final double iconMd = 20; // adjusted
+  final double iconLg = 24; // standard material
+  final double iconXl = 32; // ~24 * φ
 
   // =========================
-  // BUTTON HEIGHT
+  // BUTTON HEIGHT (base: 36)
   // =========================
-  final double buttonSm = 36;
-  final double buttonMd = 44;
-  final double buttonLg = 52;
+  final double buttonSm = 36; // compact
+  final double buttonMd = 44; // ~36 * φ
+  final double buttonLg = 56; // ~44 * φ
 
   // =========================
-  // AVATAR
+  // AVATAR (pure golden scaling)
   // =========================
-  final double avatarSm = 32;
-  final double avatarMd = 40;
-  final double avatarLg = 56;
+  final double avatarXs = 24; // chip / compact
+  final double avatarSm = 40; // list dense (≈ φ)
+  final double avatarMd = 64; // ✅ standard list / card
+  final double avatarLg = 96; // detail header
+  final double avatarXl = 120; // profile (clamped)
 
   // =========================
   // INPUT
   // =========================
-  final double inputHeight = 48;
+  final double inputHeight = 48; // UX standard (jangan diubah)
 
   // =========================
   // BORDER WIDTH

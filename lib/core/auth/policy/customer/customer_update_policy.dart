@@ -1,18 +1,16 @@
 import 'package:app_laundry/core/auth/role/user_role.dart';
-import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
+import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 
 class CustomerUpdatePolicy {
-  final SessionCubit session;
+  final SessionService session;
 
   CustomerUpdatePolicy(this.session);
 
   bool canUpdate(CustomerEntity customer) {
-    if (!session.isActive) return false;
+    final userRole = session.role;
 
-    final user = session.user;
-
-    if (user.role == UserRole.owner) return true;
+    if (userRole == UserRole.owner) return true;
 
     // if (user.role == UserRole.cashier) {
     //   return customer.createdBy == user.id;

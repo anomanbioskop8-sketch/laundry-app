@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/base/form/form_controller.dart';
+import 'package:app_laundry/core/base/form/controllers/form_controller.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/domain/usecase/customer_params.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class CustomerFormController extends FormController {
   final name = TextEditingController();
   final phone = TextEditingController();
+  final address = TextEditingController();
 
   String? _id;
 
@@ -19,6 +20,7 @@ class CustomerFormController extends FormController {
     _id = customer.id;
     name.text = customer.name;
     phone.text = customer.phone;
+    address.text = customer.address;
   }
 
   /// =========================
@@ -34,6 +36,7 @@ class CustomerFormController extends FormController {
       id: _id,
       name: name.text.trim(),
       phone: phone.text.trim(),
+      address: address.text.trim(),
     );
   }
 }

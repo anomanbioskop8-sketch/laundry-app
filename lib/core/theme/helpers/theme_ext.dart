@@ -16,14 +16,19 @@ extension ThemeExt on BuildContext {
   // Colors
   Color get primary => colors.primary;
   Color get surface => colors.surface;
-  //Color get background => colors.background;
   Color get onSurface => colors.onSurface;
   Color get error => colors.error;
 
   // Typography
-  TextStyle? get bodyMedium => text.bodyMedium;
-  TextStyle? get titleMedium => text.titleMedium;
+  TextStyle? get headlineLarge => text.headlineLarge;
+  TextStyle? get headlineMedium => text.headlineMedium;
+  TextStyle? get headlineSmall => text.headlineSmall;
   TextStyle? get titleLarge => text.titleLarge;
+  TextStyle? get titleMedium => text.titleMedium;
+  TextStyle? get titleSmall => text.titleSmall;
+  TextStyle? get bodyLarge => text.bodyLarge;
+  TextStyle? get bodyMedium => text.bodyMedium;
+  TextStyle? get bodySmall => text.bodySmall;
 
   // Brightness
   bool get isDark => theme.brightness == Brightness.dark;

@@ -1,10 +1,11 @@
 class AppSpacing {
-  AppSpacing();
+  const AppSpacing();
 
-  final xs = 4.0;
-  final sm = 8.0;
-  final md = 12.0;
-  final lg = 16.0;
-  final xl = 24.0;
-  final xxl = 32.0;
+  final double xs = 4;
+  final double sm = 8;
+  final double md = 12;
+  final double lg = 16;
+  final double xl = 24;
+  final double xxl = 40; // golden adjusted
+  final double xxxl = 64; // golden adjusted
 }

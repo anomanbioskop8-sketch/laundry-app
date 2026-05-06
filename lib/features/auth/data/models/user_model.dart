@@ -1,4 +1,5 @@
 import 'package:app_laundry/core/auth/role/user_role.dart';
+import 'package:app_laundry/core/auth/role/user_role_mapper.dart';
 
 class UserModel {
   final String id;
@@ -21,11 +22,16 @@ class UserModel {
       name: map['name'] ?? '',
       email: map['email'] ?? '',
       companyId: map['companyId'] ?? '',
-      role: UserRole.owner,
+      role: mapRole(map['role']),
     );
   }
 
   Map<String, dynamic> toMap() {
-    return {'companyId': companyId, 'name': name, 'email': email, 'role': role};
+    return {
+      'companyId': companyId,
+      'name': name,
+      'email': email,
+      'role': role.name,
+    };
   }
 }

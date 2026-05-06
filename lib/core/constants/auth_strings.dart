@@ -15,4 +15,19 @@ class AuthStrings {
 
   static const noAccount = 'Belum punya akun?';
   static const alreadyHaveAccount = 'Sudah punya akun?';
+
+  static const unknownError = 'Terjadi kesalahan tidak diketahui';
+
+  static const userNotFound = 'User tidak ditemukan';
+  static const wrongPassword = 'Password salah';
+  static const invalidCredential = 'Email atau password tidak valid';
+
+  static const emailAlreadyUsed = 'Email sudah digunakan';
+  static const invalidEmail = 'Format email tidak valid';
+  static const weakPassword = 'Password terlalu lemah';
+
+  static const noInternet = 'Tidak ada koneksi internet';
+  static const tooManyRequests = 'Terlalu banyak percobaan, coba lagi nanti';
+
+  static const firebaseError = 'Terjadi kesalahan pada server';
 }

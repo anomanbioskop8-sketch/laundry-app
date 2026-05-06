@@ -69,7 +69,7 @@ class DialogService {
                 color: type.color(context),
               ),
               context.spacing.sm.w,
-              Expanded(child: Text(title, style: context.titleLarge)),
+              Expanded(child: Text(title)),
             ],
           ),
           content: Text(message),

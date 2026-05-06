@@ -1,90 +1,123 @@
-import 'package:app_laundry/core/network/base_remote_datasource.dart';
+// =============================================================================
+// File        : base_crud_remote_datasource.dart
+// Path        : lib/core/network/datasources/base_crud_remote_datasource.dart
+// Layer       : Core (Data)
+// -----------------------------------------------------------------------------
+// Fungsi:
+// - Abstraksi CRUD untuk Firestore berbasis multi-tenant (companyId)
+// - Menyediakan operasi standar: create, update, delete, get, stream
+// =============================================================================
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:app_laundry/core/network/base_remote_datasource.dart';
 
 abstract class BaseCrudRemoteDataSource<T> extends BaseRemoteDataSource {
   final FirebaseFirestore firestore;
 
   BaseCrudRemoteDataSource(super.logger, {required this.firestore});
 
-  /// =========================
-  /// CONTRACT
-  /// =========================
+  // =========================
+  // CONTRACT
+  // =========================
+
   String get collection;
 
   T fromMap(Map<String, dynamic> map, String id);
 
   Map<String, dynamic> toMap(T data);
 
-  /// =========================
-  /// REF BUILDER
-  /// =========================
-  CollectionReference<Map<String, dynamic>> _ref(String companyId) {
+  // =========================
+  // COLLECTION REF
+  // =========================
+
+  CollectionReference<Map<String, dynamic>> _collectionRef(String companyId) {
     return firestore
         .collection('companies')
         .doc(companyId)
         .collection(collection);
   }
 
-  /// =========================
-  /// CREATE
-  /// =========================
+  DocumentReference<Map<String, dynamic>> _docRef(String companyId, String id) {
+    return _collectionRef(companyId).doc(id);
+  }
+
+  // =========================
+  // CREATE
+  // =========================
+
   Future<void> create({
     required String companyId,
     required String id,
     required T data,
   }) {
     return safeCall(() async {
-      await _ref(companyId).doc(id).set({
+      await _docRef(companyId, id).set({
         ...toMap(data),
         'createdAt': FieldValue.serverTimestamp(),
-      });
+      }, SetOptions(merge: true));
     });
   }
 
-  /// =========================
-  /// UPDATE
-  /// =========================
+  // =========================
+  // UPDATE
+  // =========================
+
   Future<void> update({
     required String companyId,
     required String id,
     required T data,
   }) {
     return safeCall(() async {
-      await _ref(companyId).doc(id).update({
-        ...toMap(data),
-        'updatedAt': FieldValue.serverTimestamp(),
-      });
+      await _docRef(
+        companyId,
+        id,
+      ).update({...toMap(data), 'updatedAt': FieldValue.serverTimestamp()});
     });
   }
 
-  /// =========================
-  /// DELETE
-  /// =========================
+  // =========================
+  // DELETE
+  // =========================
+
   Future<void> delete({required String companyId, required String id}) {
     return safeCall(() async {
-      await _ref(companyId).doc(id).delete();
+      await _docRef(companyId, id).delete();
     });
   }
 
-  /// =========================
-  /// GET SINGLE
-  /// =========================
+  // =========================
+  // GET SINGLE
+  // =========================
+
   Future<T?> getById({required String companyId, required String id}) {
     return safeCall(() async {
-      final doc = await _ref(companyId).doc(id).get();
+      final doc = await _docRef(companyId, id).get();
 
-      if (!doc.exists || doc.data() == null) return null;
+      final data = doc.data();
+      if (!doc.exists || data == null) return null;
 
-      return fromMap(doc.data()!, doc.id);
+      return fromMap(data, doc.id);
     });
   }
 
-  /// =========================
-  /// STREAM ALL
-  /// =========================
-  Stream<List<T>> streamAll(String companyId) {
+  // =========================
+  // STREAM ALL
+  // =========================
+
+  Stream<List<T>> streamAll(
+    String companyId, {
+    Query<Map<String, dynamic>> Function(Query<Map<String, dynamic>> query)?
+    queryBuilder,
+  }) {
     return safeStream(() {
-      return _ref(companyId).snapshots().map((snapshot) {
+      Query<Map<String, dynamic>> query = _collectionRef(companyId);
+
+      /// 🔥 Optional query customization
+      if (queryBuilder != null) {
+        query = queryBuilder(query);
+      }
+
+      return query.snapshots().map((snapshot) {
         return snapshot.docs.map((doc) => fromMap(doc.data(), doc.id)).toList();
       });
     });

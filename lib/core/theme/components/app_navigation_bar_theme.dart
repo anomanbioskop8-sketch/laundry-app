@@ -1,26 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:app_laundry/core/theme/tokens/app_sizes.dart';
 
 class AppNavigationBarTheme {
-  static NavigationBarThemeData build(ColorScheme scheme) {
+  const AppNavigationBarTheme._();
+
+  static NavigationBarThemeData build({
+    required ColorScheme cs,
+    required TextTheme text,
+  }) {
+    final sizes = AppSizes();
+    final label = text.labelSmall ?? const TextStyle(fontSize: 12);
+
     return NavigationBarThemeData(
-      height: 70,
+      /// ======================
+      /// SIZE (FROM TOKEN 🔥)
+      /// ======================
+      height: sizes.buttonLg + 16, // 56 + padding → ~72
 
-      backgroundColor: scheme.surface,
+      backgroundColor: cs.surfaceContainer,
+      indicatorColor: cs.primary.withValues(alpha: 0.2),
 
-      indicatorColor: scheme.primary.withValues(alpha: 0.12),
+      labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
 
+      /// ======================
+      /// LABEL
+      /// ======================
       labelTextStyle: WidgetStateProperty.resolveWith((states) {
-        if (states.contains(WidgetState.selected)) {
-          return TextStyle(color: scheme.primary, fontWeight: FontWeight.w600);
+        if (states.contains(WidgetState.disabled)) {
+          return label.copyWith(
+            color: cs.onSurfaceVariant.withValues(alpha: 0.4),
+          );
         }
-        return TextStyle(color: scheme.onSurfaceVariant);
+
+        if (states.contains(WidgetState.selected)) {
+          return label.copyWith(color: cs.primary, fontWeight: FontWeight.w600);
+        }
+
+        return label.copyWith(color: cs.onSurfaceVariant);
       }),
 
+      /// ======================
+      /// ICON
+      /// ======================
       iconTheme: WidgetStateProperty.resolveWith((states) {
-        if (states.contains(WidgetState.selected)) {
-          return IconThemeData(color: scheme.primary);
+        if (states.contains(WidgetState.disabled)) {
+          return IconThemeData(
+            color: cs.onSurfaceVariant.withValues(alpha: 0.4),
+            size: sizes.iconMd,
+          );
         }
-        return IconThemeData(color: scheme.onSurfaceVariant);
+
+        if (states.contains(WidgetState.selected)) {
+          return IconThemeData(color: cs.primary, size: sizes.iconLg);
+        }
+
+        return IconThemeData(color: cs.onSurfaceVariant, size: sizes.iconMd);
+      }),
+
+      /// ======================
+      /// INTERACTION
+      /// ======================
+      overlayColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.pressed)) {
+          return cs.primary.withValues(alpha: 0.1);
+        }
+        if (states.contains(WidgetState.hovered)) {
+          return cs.primary.withValues(alpha: 0.05);
+        }
+        return null;
       }),
     );
   }

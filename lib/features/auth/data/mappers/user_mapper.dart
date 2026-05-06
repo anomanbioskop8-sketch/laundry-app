@@ -1,7 +1,7 @@
 import 'package:app_laundry/features/auth/data/models/user_model.dart';
 import 'package:app_laundry/features/auth/domain/entities/user_entity.dart';
 
-class UserMappper {
+class UserMapper {
   /// Model → Entity
   static UserEntity toEntity(UserModel model) {
     return UserEntity(

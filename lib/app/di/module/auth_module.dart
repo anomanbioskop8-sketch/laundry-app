@@ -1,3 +1,12 @@
+// =============================================================================
+// File        : auth_module.dart
+// Path        : lib/app/di/module/auth_module.dart
+// Layer       : App (Dependency Injection)
+// -----------------------------------------------------------------------------
+// Fungsi:
+// - Register dependency untuk fitur Auth (DataSource → Repository → UseCase → Cubit)
+// =============================================================================
+
 import 'package:app_laundry/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:app_laundry/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:app_laundry/features/auth/domain/repositories/auth_repository.dart';
@@ -14,26 +23,68 @@ class AuthModule {
   AuthModule(this.sl);
 
   Future<void> init() async {
-    /// DataSource
+    _dataSources();
+    _repositories();
+    _useCases();
+    _cubits();
+  }
+
+  // =========================
+  // DATA SOURCE
+  // =========================
+  void _dataSources() {
     sl.registerLazySingleton<AuthRemoteDataSource>(
-      () => AuthRemoteDataSource(sl(), sl(), sl()),
+      () => AuthRemoteDataSource(
+        sl(), // logger
+        sl(), // FirebaseAuth
+        sl(), // FirebaseFirestore
+      ),
+    );
+  }
+
+  // =========================
+  // REPOSITORY
+  // =========================
+  void _repositories() {
+    sl.registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(
+        sl<AuthRemoteDataSource>(), // explicit biar jelas
+      ),
+    );
+  }
+
+  // =========================
+  // USE CASE
+  // =========================
+  void _useCases() {
+    sl.registerLazySingleton<Login>(() => Login(sl<AuthRepository>()));
+
+    sl.registerLazySingleton<Register>(() => Register(sl<AuthRepository>()));
+
+    sl.registerLazySingleton<GetCurrentUser>(
+      () => GetCurrentUser(sl<AuthRepository>()),
+    );
+  }
+
+  // =========================
+  // CUBIT (UI LAYER)
+  // =========================
+  void _cubits() {
+    /// AuthCubit → handle bootstrap auth & session check
+    sl.registerFactory<AuthCubit>(
+      () => AuthCubit(
+        getCurrentUserUseCase: sl(),
+        sessionCubit: sl(), // ⚠️ pastikan sudah di-register di core
+      ),
     );
 
-    /// Repository
-    sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
-
-    /// UseCase
-    sl.registerLazySingleton(() => Login(sl()));
-    sl.registerLazySingleton(() => Register(sl()));
-    sl.registerLazySingleton(() => GetCurrentUser(sl()));
-
-    sl.registerFactory(
-      () => AuthCubit(getCurrentUserUseCase: sl(), sessionCubit: sl()),
-    );
-
-    sl.registerFactory(
-      () =>
-          LoginCubit(loginUseCase: sl(), registerUseCase: sl(), session: sl()),
+    /// LoginCubit → hanya handle action login (tidak global state)
+    sl.registerFactory<LoginCubit>(
+      () => LoginCubit(
+        loginUseCase: sl(),
+        registerUseCase: sl(),
+        session: sl(), // update session saat login sukses
+      ),
     );
   }
 }

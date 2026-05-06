@@ -1,3 +1,5 @@
+import 'package:app_laundry/core/error/exceptions.dart';
+
 import 'user_role.dart';
 
 UserRole mapRole(String value) {
@@ -9,6 +11,6 @@ UserRole mapRole(String value) {
     case 'cashier':
       return UserRole.cashier;
     default:
-      throw Exception('Unknown role: $value');
+      throw UnknownException('Unknown role: $value');
   }
 }

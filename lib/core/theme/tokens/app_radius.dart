@@ -5,4 +5,5 @@ class AppRadius {
   final md = 10.0;
   final lg = 16.0;
   final xl = 24.0;
+  final xxl = 32.0;
 }

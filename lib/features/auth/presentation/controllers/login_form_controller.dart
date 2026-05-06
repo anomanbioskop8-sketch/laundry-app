@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/base/form/form_controller.dart';
+import 'package:app_laundry/core/base/form/controllers/form_controller.dart';
 import 'package:app_laundry/features/auth/domain/usecases/auth_params.dart';
 import 'package:flutter/material.dart';
 

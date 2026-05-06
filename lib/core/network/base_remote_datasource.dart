@@ -1,44 +1,63 @@
+// =============================================================================
+// File        : base_remote_datasource.dart
+// Path        : lib/core/network/base_remote_datasource.dart
+// Layer       : Core (Data)
+// -----------------------------------------------------------------------------
+// Fungsi:
+// - Menyediakan helper untuk safe call (Future & Stream)
+// - Menangani logging & mapping error secara konsisten
+// =============================================================================
+
 import 'package:app_laundry/core/error/exceptions.dart';
 import 'package:app_laundry/core/utils/logger_service.dart';
 
 abstract class BaseRemoteDataSource {
   final LoggerService logger;
 
-  BaseRemoteDataSource(this.logger);
+  const BaseRemoteDataSource(this.logger);
 
-  /// =========================
-  /// 🔥 SAFE FUTURE CALL
-  /// =========================
-  Future<T> safeCall<T>(Future<T> Function() call) async {
+  // =========================
+  // SAFE FUTURE CALL
+  // =========================
+
+  Future<T> safeCall<T>(
+    Future<T> Function() call, {
+    String? errorMessage,
+  }) async {
     try {
       return await call();
     } on AppException {
       rethrow;
-    } catch (error, stack) {
-      logger.error(error, stack);
+    } catch (error, stackTrace) {
+      logger.error(error, stackTrace);
 
-      throw const UnknownException('Terjadi kesalahan tidak diketahui');
+      throw UnknownException(
+        errorMessage ?? 'Terjadi kesalahan tidak diketahui',
+      );
     }
   }
 
-  /// =========================
-  /// 🔥 SAFE STREAM
-  /// =========================
-  Stream<T> safeStream<T>(Stream<T> Function() stream) {
+  // =========================
+  // SAFE STREAM
+  // =========================
+
+  Stream<T> safeStream<T>(Stream<T> Function() stream, {String? errorMessage}) {
+    final message = errorMessage ?? 'Terjadi kesalahan pada stream';
+
     try {
-      return stream().handleError((error, stack) {
-        logger.error(error, stack);
+      return stream().handleError((error, stackTrace) {
+        logger.error(error, stackTrace);
 
         if (error is AppException) {
           throw error;
         }
 
-        throw const UnknownException('Terjadi kesalahan pada stream');
+        throw UnknownException(message);
       });
-    } catch (error, stack) {
-      logger.error(error, stack);
+    } catch (error, stackTrace) {
+      logger.error(error, stackTrace);
 
-      return Stream.error(const UnknownException('Gagal membuat stream'));
+      return Stream.error(UnknownException('Gagal membuat stream'));
     }
   }
 }

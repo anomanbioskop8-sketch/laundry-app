@@ -4,10 +4,15 @@
 class CreateCustomerParams {
   final String name;
   final String phone;
+  final String address;
 
-  const CreateCustomerParams({required this.name, required this.phone});
+  const CreateCustomerParams({
+    required this.name,
+    required this.phone,
+    required this.address,
+  });
 
-  bool get isValid => name.isNotEmpty && phone.isNotEmpty;
+  bool get isValid => name.isNotEmpty && phone.isNotEmpty && address.isNotEmpty;
 }
 
 /// =========================
@@ -17,14 +22,20 @@ class UpdateCustomerParams {
   final String id;
   final String name;
   final String phone;
+  final String address;
 
   const UpdateCustomerParams({
     required this.id,
     required this.name,
     required this.phone,
+    required this.address,
   });
 
-  bool get isValid => id.isNotEmpty && name.isNotEmpty && phone.isNotEmpty;
+  bool get isValid =>
+      id.isNotEmpty &&
+      name.isNotEmpty &&
+      phone.isNotEmpty &&
+      address.isNotEmpty;
 }
 
 /// =========================
@@ -53,10 +64,16 @@ class SaveCustomerParams {
   final String? id;
   final String name;
   final String phone;
+  final String address;
 
-  const SaveCustomerParams({this.id, required this.name, required this.phone});
+  const SaveCustomerParams({
+    this.id,
+    required this.name,
+    required this.phone,
+    required this.address,
+  });
 
   bool get isEdit => id != null;
 
-  bool get isValid => name.isNotEmpty && phone.isNotEmpty;
+  bool get isValid => name.isNotEmpty && phone.isNotEmpty && address.isNotEmpty;
 }

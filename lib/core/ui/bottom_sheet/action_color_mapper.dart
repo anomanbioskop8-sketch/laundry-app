@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/base/ui/bottom_sheet/action_intent.dart';
+import 'package:app_laundry/core/ui/bottom_sheet/action_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 

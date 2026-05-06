@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/base/ui/search_field.dart';
+import 'package:app_laundry/core/ui/search_field.dart';
 import 'package:app_laundry/core/constants/customer_strings.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_cubit.dart';

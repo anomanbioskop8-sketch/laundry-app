@@ -1,5 +1,5 @@
 import 'package:app_laundry/app/di/injection_container.dart';
-import 'package:app_laundry/core/base/ui/base_action_listener.dart';
+import 'package:app_laundry/core/base/listeners/base_action_listener.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_action_cubit.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_cubit.dart';
 import 'package:app_laundry/features/customer/presentation/pages/customer_page.dart';

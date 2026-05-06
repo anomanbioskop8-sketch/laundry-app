@@ -20,6 +20,7 @@ class UpdateCustomer {
         id: params.id,
         name: params.name,
         phone: params.phone,
+        address: params.address,
       );
 
       return await repository.updateCustomer(

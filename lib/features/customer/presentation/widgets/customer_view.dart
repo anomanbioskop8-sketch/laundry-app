@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/base/ui/wrapper/base_stream_wrapper.dart';
+import 'package:app_laundry/core/base/builders/base_stream_builder.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_cubit.dart';
 import 'package:app_laundry/features/customer/presentation/widgets/customer_list_item.dart';
@@ -9,7 +9,7 @@ class CustomerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseStreamWrapper<CustomerCubit, CustomerEntity>(
+    return BaseStreamBuilder<CustomerCubit, CustomerEntity>(
       builder: (customers) {
         return ListView.separated(
           itemCount: customers.length,
@@ -20,7 +20,7 @@ class CustomerView extends StatelessWidget {
           },
 
           /// 🔥 separator
-          separatorBuilder: (_, i) => const Divider(height: 1, thickness: 0.5),
+          separatorBuilder: (_, i) => const Divider(),
         );
       },
     );

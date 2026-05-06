@@ -39,6 +39,7 @@
 
 import 'package:app_laundry/app/router/route_paths.dart';
 import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class RouterGuard {
@@ -46,7 +47,7 @@ class RouterGuard {
 
   RouterGuard(this.session);
 
-  String? redirect(GoRouterState state) {
+  String? redirect(BuildContext context, GoRouterState state) {
     final location = state.matchedLocation;
 
     final isSplash = location == RoutePaths.splash;

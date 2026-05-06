@@ -1,7 +1,12 @@
+import 'package:app_laundry/core/base/form/fields/checkbox_field_widget.dart';
+import 'package:app_laundry/core/base/form/fields/date_field_widget.dart';
+import 'package:app_laundry/core/base/form/fields/dropdown_field_widget.dart';
+import 'package:app_laundry/core/base/form/fields/text_field_widget.dart';
+import 'package:app_laundry/core/base/form/form_field_config.dart';
+import 'package:app_laundry/core/base/form/form_field_type.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:flutter/material.dart';
-import 'form_field_config.dart';
 
 class FormBuilder extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -27,14 +32,7 @@ class FormBuilder extends StatelessWidget {
           ...fields.map((f) {
             return Padding(
               padding: EdgeInsets.only(bottom: context.spacing.md),
-              child: TextFormField(
-                controller: f.controller,
-                keyboardType: f.keyboardType,
-                obscureText: f.obscureText,
-                validator: f.validate,
-                autofillHints: f.autofillHints,
-                decoration: InputDecoration(labelText: f.label),
-              ),
+              child: _buildField(f),
             );
           }),
 
@@ -53,5 +51,30 @@ class FormBuilder extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _buildField(FormFieldConfig f) {
+    /// 🔥 custom builder override (super powerful)
+    if (f.builder != null) {
+      return f.builder!(f);
+    }
+
+    switch (f.type) {
+      case FormFieldType.text:
+      case FormFieldType.email:
+      case FormFieldType.number:
+      case FormFieldType.password:
+      case FormFieldType.multiline:
+        return TextFieldWidget(field: f);
+
+      case FormFieldType.dropdown:
+        return DropdownFieldWidget(field: f);
+
+      case FormFieldType.date:
+        return DateFieldWidget(field: f);
+
+      case FormFieldType.checkbox:
+        return CheckboxFieldWidget(field: f);
+    }
   }
 }

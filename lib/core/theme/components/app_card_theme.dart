@@ -9,7 +9,7 @@ class AppCardTheme {
     final radius = AppRadius();
     return CardThemeData(
       elevation: AppElevation.low,
-      color: colorScheme.surface,
+      color: colorScheme.surfaceContainer,
       shadowColor: colorScheme.shadow.withValues(alpha: 0.1),
 
       shape: RoundedRectangleBorder(

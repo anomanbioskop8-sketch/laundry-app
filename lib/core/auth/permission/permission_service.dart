@@ -1,37 +1,60 @@
-import 'package:app_laundry/core/auth/policy/permission_policy.dart';
+// =============================================================================
+// File        : permission_service.dart
+// Path        : lib/core/auth/permission/permission_service.dart
+// Layer       : Core (Authorization)
+// -----------------------------------------------------------------------------
+// Fungsi:
+// - Interface utama untuk pengecekan permission di seluruh aplikasi
+// - Menyederhanakan akses ke PermissionPolicy
+// =============================================================================
 
+import 'package:app_laundry/core/auth/policy/permission_policy.dart';
 import 'permission.dart';
 
 class PermissionService {
-  final PermissionPolicy _policy;
+  final PermissionPolicy policy;
 
-  PermissionService(this._policy);
+  PermissionService(this.policy);
 
   /// =========================
-  /// BASIC CHECK
+  /// SINGLE CHECK
   /// =========================
   bool can(Permission permission) {
-    return _policy.can(permission);
+    return policy.can(permission);
   }
 
   /// =========================
-  /// WITH CONTEXT (entity / ownership)
+  /// CHECK WITH CONTEXT (resource / ownership)
   /// =========================
   bool canWith<T>(Permission permission, {T? resource}) {
-    return _policy.canWith(permission, resource: resource);
+    return policy.canWith(permission, resource: resource);
   }
 
   /// =========================
   /// MULTI CHECK (ALL)
   /// =========================
   bool canAll(List<Permission> permissions) {
-    return permissions.every(_policy.can);
+    return permissions.every(policy.can);
   }
 
   /// =========================
   /// MULTI CHECK (ANY)
   /// =========================
   bool canAny(List<Permission> permissions) {
-    return permissions.any(_policy.can);
+    return permissions.any(policy.can);
+  }
+
+  /// =========================
+  /// MULTI CHECK WITH CONTEXT (ALL)
+  /// =========================
+  bool canAllWith<T>(List<Permission> permissions, {T? resource}) {
+    return permissions.every((p) => policy.canWith(p, resource: resource));
+  }
+
+  /// =========================
+  /// MULTI CHECK WITH CONTEXT (ANY)
+  /// =========================
+  bool canAnyWith<T>(List<Permission> permissions, {T? resource}) {
+    return permissions.any((p) => policy.canWith(p, resource: resource));
   }
 }

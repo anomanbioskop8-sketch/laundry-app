@@ -4,12 +4,26 @@ import 'package:app_laundry/features/customer/domain/entities/customer_entity.da
 class CustomerMapper {
   /// Model → Entity
   static CustomerEntity toEntity(CustomerModel model) {
-    return CustomerEntity(id: model.id, name: model.name, phone: model.phone);
+    return CustomerEntity(
+      id: model.id,
+      name: model.name,
+      phone: model.phone,
+      address: model.address,
+      createdAt: model.createdAt,
+      updatedAt: model.updatedAt,
+    );
   }
 
   /// Entity → Model
   static CustomerModel toModel(CustomerEntity entity) {
-    return CustomerModel(id: entity.id, name: entity.name, phone: entity.phone);
+    return CustomerModel(
+      id: entity.id,
+      name: entity.name,
+      phone: entity.phone,
+      address: entity.address,
+      createdAt: entity.createdAt,
+      updatedAt: entity.createdAt,
+    );
   }
 
   /// List Model → List Entity

@@ -1,20 +1,28 @@
+// =============================================================================
+// File        : permission_policy.dart
+// Path        : lib/core/auth/policy/permission_policy.dart
+// Layer       : Core (Authorization)
+// -----------------------------------------------------------------------------
+// Fungsi:
+// - Menentukan apakah user memiliki permission
+// - Mendukung role-based & resource-based (policy)
+// =============================================================================
+
 import 'package:app_laundry/core/auth/permission/permission.dart';
 import 'package:app_laundry/core/auth/permission/policy_resolver.dart';
 import 'package:app_laundry/core/auth/permission/role_permissions.dart';
-import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
+import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
 
 class PermissionPolicy {
-  final SessionCubit session;
+  final SessionService session;
   final PolicyResolver resolver;
 
-  PermissionPolicy(this.session, this.resolver);
+  PermissionPolicy({required this.session, required this.resolver});
 
   /// =========================
-  /// BASIC
+  /// BASIC CHECK (ROLE ONLY)
   /// =========================
   bool can(Permission permission) {
-    if (!session.isActive) return false;
-
     final role = session.role;
     final permissions = RolePermissions.get(role);
 
@@ -22,20 +30,22 @@ class PermissionPolicy {
   }
 
   /// =========================
-  /// WITH RESOURCE (ownership, dll)
+  /// CHECK WITH RESOURCE
   /// =========================
-  bool canWith<T>(Permission permission, {T? resource}) {
-    // 1. cek role dulu
+  bool canWith(Permission permission, {Object? resource}) {
+    /// 1. 🔥 Guard role permission
     if (!can(permission)) return false;
 
-    // 2. kalau tidak ada resource
+    /// 2. 🔥 Tidak ada resource → cukup role saja
     if (resource == null) return true;
 
-    // 3. resolve policy
+    /// 3. 🔥 Resolve policy berdasarkan resource
     final policy = resolver.resolve(resource);
 
+    /// 4. 🔥 Tidak ada policy → fallback allow (role cukup)
     if (policy == null) return true;
 
+    /// 5. 🔥 Delegasi ke policy spesifik (ownership, dll)
     return policy.can(permission, resource);
   }
 }

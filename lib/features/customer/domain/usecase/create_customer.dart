@@ -23,6 +23,7 @@ class CreateCustomer {
         id: id,
         name: params.name,
         phone: params.phone,
+        address: params.address,
       );
 
       return await repository.createCustomer(
