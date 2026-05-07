@@ -1,3 +1,16 @@
+// =============================================================================
+// File        : save_customer.dart
+// Path        : lib/features/customer/domain/usecase/save_customer.dart
+// Layer       : Domain (Use Case)
+// -----------------------------------------------------------------------------
+// Fungsi:
+// - Menentukan proses create atau update customer
+// - Melakukan validasi data sebelum disimpan
+// - Menjalankan use case `CreateCustomer` untuk data baru
+// - Menjalankan use case `UpdateCustomer` untuk edit data
+// - Menjadi entry point utama proses penyimpanan customer
+// =============================================================================
+
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/core/error/failure.dart';
 import 'package:app_laundry/features/customer/domain/usecase/create_customer.dart';
@@ -5,11 +18,16 @@ import 'package:app_laundry/features/customer/domain/usecase/customer_params.dar
 import 'package:app_laundry/features/customer/domain/usecase/update_customer.dart';
 
 class SaveCustomer {
-  final CreateCustomer createCustomer;
-  final UpdateCustomer updateCustomer;
+  final CreateCustomer _createCustomer;
+  final UpdateCustomer _updateCustomer;
 
-  SaveCustomer({required this.createCustomer, required this.updateCustomer});
+  SaveCustomer({
+    required CreateCustomer createCustomer,
+    required UpdateCustomer updateCustomer,
+  }) : _createCustomer = createCustomer,
+       _updateCustomer = updateCustomer;
 
+  /// Menyimpan data customer baru atau memperbarui data existing
   Future<Either<Failure, void>> call(SaveCustomerParams params) async {
     if (!params.isValid) {
       return Left(AuthFailure('Data tidak valid'));
@@ -19,7 +37,7 @@ class SaveCustomer {
     /// UPDATE
     /// =========================
     if (params.isEdit) {
-      return updateCustomer(
+      return _updateCustomer(
         UpdateCustomerParams(
           id: params.id!,
           name: params.name,
@@ -32,7 +50,7 @@ class SaveCustomer {
     /// =========================
     /// CREATE
     /// =========================
-    return createCustomer(
+    return _createCustomer(
       CreateCustomerParams(
         name: params.name,
         phone: params.phone,

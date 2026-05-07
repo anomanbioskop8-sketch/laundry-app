@@ -1,3 +1,19 @@
+// =============================================================================
+// File        : customer_action_builder.dart
+// Path        : lib/features/customer/presentation/builders/customer_action_builder.dart
+// Layer       : Presentation (Builder)
+// -----------------------------------------------------------------------------
+// Fungsi:
+// - Membangun daftar action menu untuk customer
+// - Mengatur visibilitas action berdasarkan permission user
+// - Menyediakan aksi:
+//   - View detail customer
+//   - Edit customer
+//   - Delete customer
+// - Menangani konfirmasi sebelum proses delete dijalankan
+// - Menghubungkan UI dengan navigation dan CustomerActionCubit
+// =============================================================================
+
 import 'package:app_laundry/app/di/injection_container.dart';
 import 'package:app_laundry/app/router/route_paths.dart';
 import 'package:app_laundry/core/auth/permission/permission.dart';
@@ -16,18 +32,27 @@ import 'package:go_router/go_router.dart';
 
 class CustomerActionBuilder {
   final CustomerEntity customer;
+
   CustomerActionBuilder(this.customer);
 
+  /// Membangun daftar action customer
   static List<ActionItem> build(BuildContext context, CustomerEntity customer) {
-    //final canView = sl<PermissionService>().canWith(Permission.canViewCustomer);
+    // final canView =
+    //     sl<PermissionService>().canWith(Permission.canViewCustomer);
+
     final canUpdate = sl<PermissionService>().canWith(
       Permission.canUpdateCustomer,
     );
+
     final canDelete = sl<PermissionService>().canWith(
       Permission.canDeleteCustomer,
       resource: customer,
     );
+
     return [
+      /// =========================
+      /// VIEW CUSTOMER
+      /// =========================
       ActionItem(
         title: 'View',
         icon: Icons.view_agenda,
@@ -40,6 +65,10 @@ class CustomerActionBuilder {
           );
         },
       ),
+
+      /// =========================
+      /// EDIT CUSTOMER
+      /// =========================
       ActionItem(
         title: 'Edit',
         icon: Icons.edit_outlined,
@@ -50,6 +79,9 @@ class CustomerActionBuilder {
         },
       ),
 
+      /// =========================
+      /// DELETE CUSTOMER
+      /// =========================
       ActionItem(
         title: CustomerStrings.delete,
         icon: Icons.delete_outline,

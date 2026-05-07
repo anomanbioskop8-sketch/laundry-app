@@ -7,14 +7,18 @@ import 'package:app_laundry/features/laundry_item/domain/repositories/laundry_it
 import 'package:app_laundry/features/laundry_item/domain/usecases/laundry_item_params.dart';
 
 class UpdateLaundryItem {
-  final LaundryItemRepository repository;
-  final SessionService session;
+  final LaundryItemRepository _repository;
+  final SessionService _session;
 
-  UpdateLaundryItem({required this.repository, required this.session});
+  UpdateLaundryItem({
+    required LaundryItemRepository repository,
+    required SessionService session,
+  }) : _repository = repository,
+       _session = session;
 
   Future<Either<Failure, void>> call(UpdateLaundryItemParams params) async {
     try {
-      final companyId = session.companyId;
+      final companyId = _session.companyId;
 
       final item = LaundryItemEntity(
         id: params.id,
@@ -22,7 +26,7 @@ class UpdateLaundryItem {
         category: params.category,
       );
 
-      return await repository.updateLaundryItem(
+      return await _repository.updateLaundryItem(
         companyId: companyId,
         item: item,
       );

@@ -8,6 +8,7 @@ class LaundryItemFab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      heroTag: 'fab_laundry_item',
       onPressed: () async {
         await context.pushNamed(RoutePaths.laundryItemFormName, extra: null);
       },

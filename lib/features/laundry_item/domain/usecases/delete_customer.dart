@@ -6,21 +6,25 @@ import 'package:app_laundry/features/laundry_item/domain/repositories/laundry_it
 import 'package:app_laundry/features/laundry_item/domain/usecases/laundry_item_params.dart';
 
 class DeleteLaundryItem {
-  final LaundryItemRepository repository;
-  final SessionService session;
+  final LaundryItemRepository _repository;
+  final SessionService _session;
 
-  DeleteLaundryItem({required this.repository, required this.session});
+  DeleteLaundryItem({
+    required LaundryItemRepository repository,
+    required SessionService session,
+  }) : _repository = repository,
+       _session = session;
 
   Future<Either<Failure, void>> call(DeleteLaundryItemParams params) async {
     try {
-      final companyId = session.companyId;
+      final companyId = _session.companyId;
 
       /// 🔐 (optional) permission check
       // if (session.role != UserRole.owner) {
       //   return Left(PermissionFailure('Tidak punya akses'));
       // }
 
-      return repository.deleteLaundryItem(
+      return _repository.deleteLaundryItem(
         companyId: companyId,
         itemId: params.id,
       );

@@ -3,4 +3,9 @@ enum Permission {
   canCreateCustomer,
   canUpdateCustomer,
   canDeleteCustomer,
+
+  canViewLaundryItem,
+  canCreateLaundryItem,
+  canUpdateLaundryItem,
+  canDeleteLaundryItem,
 }

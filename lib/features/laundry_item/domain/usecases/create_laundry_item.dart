@@ -8,14 +8,18 @@ import 'package:app_laundry/features/laundry_item/domain/usecases/laundry_item_p
 import 'package:uuid/uuid.dart';
 
 class CreateLaundryItem {
-  final LaundryItemRepository repository;
-  final SessionService session;
+  final LaundryItemRepository _repository;
+  final SessionService _session;
 
-  CreateLaundryItem({required this.repository, required this.session});
+  CreateLaundryItem({
+    required LaundryItemRepository repository,
+    required SessionService session,
+  }) : _repository = repository,
+       _session = session;
 
   Future<Either<Failure, void>> call(CreateLaundryItemParams params) async {
     try {
-      final companyId = session.companyId;
+      final companyId = _session.companyId;
 
       final id = const Uuid().v4();
 
@@ -25,7 +29,7 @@ class CreateLaundryItem {
         category: params.category,
       );
 
-      return await repository.createLaundryItem(
+      return await _repository.createLaundryItem(
         companyId: companyId,
         item: item,
       );

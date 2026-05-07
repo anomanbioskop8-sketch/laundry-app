@@ -1,3 +1,21 @@
+// =============================================================================
+// File        : customer_form_config.dart
+// Path        : lib/features/customer/presentation/config/customer_form_config.dart
+// Layer       : Presentation (Form Configuration)
+// -----------------------------------------------------------------------------
+// Fungsi:
+// - Menyediakan konfigurasi field form customer
+// - Mengatur:
+//   - nama field
+//   - label field
+//   - tipe input
+//   - controller
+//   - validator
+// - Menentukan label tombol submit berdasarkan mode form
+//   (Tambah atau Edit)
+// - Menjadi central configuration untuk form customer
+// =============================================================================
+
 import 'package:app_laundry/core/base/form/form_field_type.dart';
 import 'package:app_laundry/core/constants/app_strings.dart';
 import 'package:app_laundry/core/base/form/form_field_config.dart';
@@ -10,20 +28,26 @@ class CustomerFormConfig {
   CustomerFormConfig(this.controller);
 
   /// =========================
-  /// BUILD FIELDS
+  /// BUILD FORM FIELDS
   /// =========================
   List<FormFieldConfig> get fields {
     return [
+      /// =========================
+      /// NAME
+      /// =========================
       FormFieldConfig(
         name: 'name',
         label: 'Nama',
         controller: controller.name,
-
         validators: [
           (v) => AppValidator.required(v, field: 'Nama'),
           (v) => AppValidator.minLength(v, 3, field: 'Nama'),
         ],
       ),
+
+      /// =========================
+      /// PHONE
+      /// =========================
       FormFieldConfig(
         name: 'phone',
         label: 'No HP',
@@ -31,6 +55,10 @@ class CustomerFormConfig {
         type: FormFieldType.number,
         validators: [AppValidator.phone],
       ),
+
+      /// =========================
+      /// ADDRESS
+      /// =========================
       FormFieldConfig(
         name: 'address',
         label: 'Alamat',
@@ -42,7 +70,7 @@ class CustomerFormConfig {
   }
 
   /// =========================
-  /// SUBMIT LABEL
+  /// SUBMIT BUTTON LABEL
   /// =========================
   String get submitLabel {
     return controller.isEdit ? AppStrings.edit : AppStrings.add;

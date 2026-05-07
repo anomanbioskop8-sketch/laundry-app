@@ -9,6 +9,11 @@ class RolePermissions {
       Permission.canCreateCustomer,
       Permission.canUpdateCustomer,
       Permission.canDeleteCustomer,
+
+      Permission.canViewLaundryItem,
+      Permission.canCreateLaundryItem,
+      Permission.canUpdateLaundryItem,
+      Permission.canDeleteLaundryItem,
     },
 
     UserRole.staff: {

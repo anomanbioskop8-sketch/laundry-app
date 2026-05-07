@@ -7,6 +7,7 @@ class CustomerFab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      heroTag: 'fab_customer',
       onPressed: () async {
         await context.pushNamed('customerForm', extra: null);
       },

@@ -1,3 +1,16 @@
+// =============================================================================
+// File        : update_customer.dart
+// Path        : lib/features/customer/domain/usecase/update_customer.dart
+// Layer       : Domain (Use Case)
+// -----------------------------------------------------------------------------
+// Fungsi:
+// - Memperbarui data customer yang sudah ada
+// - Mengambil `companyId` dari session aktif
+// - Membentuk entity customer dari parameter update
+// - Menjalankan proses update melalui CustomerRepository
+// - Menangani error autentikasi menjadi Failure
+// =============================================================================
+
 import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
 import 'package:app_laundry/core/error/exceptions.dart';
 import 'package:app_laundry/core/error/failure.dart';
@@ -7,14 +20,19 @@ import 'package:app_laundry/features/customer/domain/repositories/customer_repos
 import 'package:app_laundry/features/customer/domain/usecase/customer_params.dart';
 
 class UpdateCustomer {
-  final CustomerRepository repository;
-  final SessionService session;
+  final CustomerRepository _repository;
+  final SessionService _session;
 
-  UpdateCustomer({required this.repository, required this.session});
+  UpdateCustomer({
+    required CustomerRepository repository,
+    required SessionService session,
+  }) : _repository = repository,
+       _session = session;
 
+  /// Memperbarui data customer
   Future<Either<Failure, void>> call(UpdateCustomerParams params) async {
     try {
-      final companyId = session.companyId;
+      final companyId = _session.companyId;
 
       final customer = CustomerEntity(
         id: params.id,
@@ -23,7 +41,7 @@ class UpdateCustomer {
         address: params.address,
       );
 
-      return await repository.updateCustomer(
+      return await _repository.updateCustomer(
         companyId: companyId,
         customer: customer,
       );

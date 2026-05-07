@@ -1,3 +1,16 @@
+// =============================================================================
+// File        : create_customer.dart
+// Path        : lib/features/customer/domain/usecase/create_customer.dart
+// Layer       : Domain (Use Case)
+// -----------------------------------------------------------------------------
+// Fungsi:
+// - Membuat data customer baru
+// - Menghasilkan ID customer secara otomatis menggunakan UUID
+// - Mengambil `companyId` dari session aktif
+// - Membentuk entity customer sebelum dikirim ke repository
+// - Menangani error autentikasi menjadi Failure
+// =============================================================================
+
 import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
 import 'package:app_laundry/core/error/exceptions.dart';
 import 'package:app_laundry/core/error/failure.dart';
@@ -8,14 +21,19 @@ import 'package:app_laundry/features/customer/domain/usecase/customer_params.dar
 import 'package:uuid/uuid.dart';
 
 class CreateCustomer {
-  final CustomerRepository repository;
-  final SessionService session;
+  final CustomerRepository _repository;
+  final SessionService _session;
 
-  CreateCustomer({required this.repository, required this.session});
+  CreateCustomer({
+    required CustomerRepository repository,
+    required SessionService session,
+  }) : _repository = repository,
+       _session = session;
 
+  /// Membuat customer baru
   Future<Either<Failure, void>> call(CreateCustomerParams params) async {
     try {
-      final companyId = session.companyId;
+      final companyId = _session.companyId;
 
       final id = const Uuid().v4();
 
@@ -26,7 +44,7 @@ class CreateCustomer {
         address: params.address,
       );
 
-      return await repository.createCustomer(
+      return await _repository.createCustomer(
         companyId: companyId,
         customer: customer,
       );

@@ -1,3 +1,15 @@
+// =============================================================================
+// File        : delete_customer.dart
+// Path        : lib/features/customer/domain/usecase/delete_customer.dart
+// Layer       : Domain (Use Case)
+// -----------------------------------------------------------------------------
+// Fungsi:
+// - Menghapus data customer berdasarkan ID
+// - Mengambil `companyId` dari session aktif
+// - Menjalankan proses hapus melalui CustomerRepository
+// - Menangani error autentikasi menjadi Failure
+// =============================================================================
+
 import 'package:app_laundry/core/error/exceptions.dart';
 import 'package:app_laundry/core/error/failure.dart';
 import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
@@ -6,21 +18,21 @@ import 'package:app_laundry/features/customer/domain/repositories/customer_repos
 import 'package:app_laundry/features/customer/domain/usecase/customer_params.dart';
 
 class DeleteCustomer {
-  final CustomerRepository repository;
-  final SessionService session;
+  final CustomerRepository _repository;
+  final SessionService _session;
 
-  DeleteCustomer({required this.repository, required this.session});
+  DeleteCustomer({
+    required CustomerRepository repository,
+    required SessionService session,
+  }) : _repository = repository,
+       _session = session;
 
+  /// Menghapus customer berdasarkan ID
   Future<Either<Failure, void>> call(DeleteCustomerParams params) async {
     try {
-      final companyId = session.companyId;
+      final companyId = _session.companyId;
 
-      /// 🔐 (optional) permission check
-      // if (session.role != UserRole.owner) {
-      //   return Left(PermissionFailure('Tidak punya akses'));
-      // }
-
-      return repository.deleteCustomer(
+      return _repository.deleteCustomer(
         companyId: companyId,
         customerId: params.id,
       );

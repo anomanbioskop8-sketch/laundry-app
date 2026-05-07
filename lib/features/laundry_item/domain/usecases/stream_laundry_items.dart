@@ -6,16 +6,20 @@ import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_e
 import 'package:app_laundry/features/laundry_item/domain/repositories/laundry_item_repository.dart';
 
 class StreamLaundryItems {
-  final LaundryItemRepository repository;
-  final SessionService session;
+  final LaundryItemRepository _repository;
+  final SessionService _session;
 
-  StreamLaundryItems({required this.repository, required this.session});
+  StreamLaundryItems({
+    required LaundryItemRepository repository,
+    required SessionService session,
+  }) : _repository = repository,
+       _session = session;
 
   Stream<Either<Failure, List<LaundryItemEntity>>> call() {
     try {
-      final companyId = session.companyId;
+      final companyId = _session.companyId;
 
-      return repository.streamLaundryItems(companyId);
+      return _repository.streamLaundryItems(companyId);
     } on UnauthorizedException catch (e) {
       return Stream.value(Left(UnauthorizedFailure(e.message)));
     }
