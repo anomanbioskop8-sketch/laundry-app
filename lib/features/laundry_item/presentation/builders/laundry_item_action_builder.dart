@@ -8,7 +8,6 @@ import 'package:app_laundry/core/services/app_ui_service.dart';
 import 'package:app_laundry/core/auth/permission/permission_service.dart';
 import 'package:app_laundry/core/theme/dialog/dialog_type.dart';
 import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_entity.dart';
-import 'package:app_laundry/features/laundry_item/domain/usecases/laundry_item_params.dart';
 import 'package:app_laundry/features/laundry_item/presentation/cubit/laundry_item_action_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +32,7 @@ class LaundryItemActionBuilder {
         intent: ActionIntent.view,
         canShow: () => canUpdate,
         onTap: () async {
-          await context.pushNamed(RoutePaths.customerDetailName, extra: item);
+          await context.pushNamed(RoutePaths.laundryPriceName, extra: item);
         },
       ),
       ActionItem(
@@ -60,9 +59,7 @@ class LaundryItemActionBuilder {
 
           if (confirmed != true || !context.mounted) return;
 
-          context.read<LaundryItemActionCubit>().delete(
-            DeleteLaundryItemParams(item.id),
-          );
+          context.read<LaundryItemActionCubit>().delete(item.id);
         },
       ),
     ];

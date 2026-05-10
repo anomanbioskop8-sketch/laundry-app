@@ -21,7 +21,7 @@ class LaundryItemMapper {
       name: entity.name,
       category: entity.category.value,
       createdAt: entity.createdAt,
-      updatedAt: entity.createdAt,
+      updatedAt: entity.updatedAt,
     );
   }
 

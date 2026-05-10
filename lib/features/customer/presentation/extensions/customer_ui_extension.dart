@@ -11,7 +11,7 @@
 // - Mempermudah pemanggilan data UI langsung dari entity
 // =============================================================================
 
-import 'package:app_laundry/core/theme/tokens/app_colors.dart';
+import 'package:app_laundry/core/theme/tokens/app_semantic_colors.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +40,7 @@ extension CustomerUIX on CustomerEntity {
   ///
   /// Warna akan konsisten untuk nama yang sama
   Color get avatarColor {
-    final colors = AppColors.avatarColors;
+    final colors = AppSemanticColors.avatarColors;
 
     return colors[displayName.hashCode % colors.length];
   }

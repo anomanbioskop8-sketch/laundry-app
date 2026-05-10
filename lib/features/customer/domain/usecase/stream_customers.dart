@@ -13,6 +13,7 @@
 
 import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
 import 'package:app_laundry/core/error/exceptions.dart';
+import 'package:app_laundry/core/error/extensions/unauthorized_exception_ext.dart';
 import 'package:app_laundry/core/error/failure.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
@@ -33,9 +34,9 @@ class StreamCustomers {
     try {
       final companyId = _session.companyId;
 
-      return _repository.streamCustomers(companyId);
+      return _repository.streamAll(companyId);
     } on UnauthorizedException catch (e) {
-      return Stream.value(Left(UnauthorizedFailure(e.message)));
+      return Stream.value(Left(e.failure));
     }
   }
 }

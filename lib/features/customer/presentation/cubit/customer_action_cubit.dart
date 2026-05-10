@@ -35,9 +35,9 @@ class CustomerActionCubit extends BaseActionCubit<void> {
   }
 
   /// Menghapus data customer
-  Future<void> deleteCustomer(DeleteCustomerParams params) {
+  Future<void> deleteCustomer(String id) {
     return execute(
-      call: () => _delete(params),
+      call: () => _delete(id),
       successMessage: CustomerStrings.deleteSuccess,
     );
   }

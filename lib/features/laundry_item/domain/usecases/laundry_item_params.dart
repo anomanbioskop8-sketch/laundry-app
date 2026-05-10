@@ -29,28 +29,6 @@ class UpdateLaundryItemParams {
   bool get isValid => id.isNotEmpty && name.isNotEmpty;
 }
 
-/// =========================
-/// DELETE CUSTOMER
-/// =========================
-class DeleteLaundryItemParams {
-  final String id;
-
-  const DeleteLaundryItemParams(this.id);
-
-  bool get isValid => id.isNotEmpty;
-}
-
-/// =========================
-/// GET CUSTOMER
-/// =========================
-class GetLaundryItemParams {
-  final String id;
-
-  const GetLaundryItemParams(this.id);
-
-  bool get isValid => id.isNotEmpty;
-}
-
 class SaveLaundryItemParams {
   final String? id;
   final String name;

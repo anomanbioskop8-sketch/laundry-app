@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/theme/tokens/app_colors.dart';
+import 'package:app_laundry/core/theme/tokens/app_semantic_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppStatusColors extends ThemeExtension<AppStatusColors> {
@@ -25,28 +25,28 @@ class AppStatusColors extends ThemeExtension<AppStatusColors> {
 
   // ✅ Light Theme
   static const light = AppStatusColors(
-    success: AppColors.green600,
-    warning: AppColors.amber500,
-    error: AppColors.red600,
-    info: AppColors.blue600,
+    success: AppSemanticColors.success,
+    warning: AppSemanticColors.warning,
+    error: AppSemanticColors.error,
+    info: AppSemanticColors.info,
 
-    pending: AppColors.amber400,
-    process: AppColors.blue500,
-    done: AppColors.green500,
-    cancel: AppColors.gray500,
+    pending: AppSemanticColors.pending,
+    process: AppSemanticColors.process,
+    done: AppSemanticColors.done,
+    cancel: AppSemanticColors.cancel,
   );
 
   // ✅ Dark Theme
   static const dark = AppStatusColors(
-    success: AppColors.green500,
-    warning: AppColors.amber400,
-    error: AppColors.red500,
-    info: AppColors.blue500,
+    success: AppSemanticColors.success,
+    warning: AppSemanticColors.warning,
+    error: AppSemanticColors.error,
+    info: AppSemanticColors.info,
 
-    pending: AppColors.amber400,
-    process: AppColors.blue500,
-    done: AppColors.green500,
-    cancel: AppColors.gray400,
+    pending: AppSemanticColors.pending,
+    process: AppSemanticColors.process,
+    done: AppSemanticColors.done,
+    cancel: AppSemanticColors.cancel,
   );
 
   // ✅ Fallback (anti crash)

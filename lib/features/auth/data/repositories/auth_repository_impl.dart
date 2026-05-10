@@ -1,6 +1,6 @@
 import 'package:app_laundry/core/error/exceptions.dart';
+import 'package:app_laundry/core/error/extensions/app_exception_ext.dart';
 import 'package:app_laundry/core/error/failure.dart';
-import 'package:app_laundry/core/error/mappers/failure_mapper.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:app_laundry/features/auth/data/mappers/user_mapper_ext.dart';
@@ -19,9 +19,9 @@ class AuthRepositoryImpl implements AuthRepository {
   ) async {
     try {
       final model = await remote.login(email, password);
-      return Right(model.toEntity());
+      return Right(model.toEntity);
     } on AppException catch (e) {
-      return Left(FailureMapper.mapExceptionToFailure(e));
+      return Left(e.toFailure);
     }
   }
 
@@ -33,9 +33,9 @@ class AuthRepositoryImpl implements AuthRepository {
   ) async {
     try {
       final model = await remote.register(name, email, password);
-      return Right(model.toEntity());
+      return Right(model.toEntity);
     } on AppException catch (e) {
-      return Left(FailureMapper.mapExceptionToFailure(e));
+      return Left(e.toFailure);
     }
   }
 
@@ -49,11 +49,9 @@ class AuthRepositoryImpl implements AuthRepository {
         return const Right(null);
       }
 
-      final entity = model.toEntity();
-
-      return Right(entity);
+      return Right(model.toEntity);
     } on AppException catch (e) {
-      return Left(FailureMapper.mapExceptionToFailure(e));
+      return Left(e.toFailure);
     }
   }
 

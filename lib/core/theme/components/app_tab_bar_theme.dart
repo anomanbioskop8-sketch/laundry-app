@@ -16,7 +16,7 @@ class AppTabBarTheme {
       indicatorSize: TabBarIndicatorSize.label,
 
       // 🔥 Label color
-      labelColor: cs.onSurface,
+      labelColor: cs.primary,
       unselectedLabelColor: cs.onSurfaceVariant,
 
       // 🔥 Text style (pakai AppTextTheme)

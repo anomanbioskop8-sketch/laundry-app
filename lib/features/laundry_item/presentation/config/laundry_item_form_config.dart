@@ -1,8 +1,8 @@
 import 'package:app_laundry/core/base/form/fields/form_option.dart';
 import 'package:app_laundry/core/base/form/form_field_type.dart';
-import 'package:app_laundry/core/constants/app_strings.dart';
 import 'package:app_laundry/core/base/form/form_field_config.dart';
 import 'package:app_laundry/core/base/validators/app_validator.dart';
+import 'package:app_laundry/core/constants/laundry_item_strings.dart';
 import 'package:app_laundry/features/laundry_item/domain/enums/laundry_item_category.dart';
 import 'package:app_laundry/features/laundry_item/presentation/controllers/laundry_item_form_controller.dart';
 
@@ -18,7 +18,7 @@ class LaundryItemFormConfig {
     return [
       FormFieldConfig(
         name: 'name',
-        label: 'Nama',
+        label: LaundryItemStrings.name,
         controller: controller.name,
 
         validators: [
@@ -28,9 +28,9 @@ class LaundryItemFormConfig {
       ),
       FormFieldConfig(
         name: 'category',
+        label: LaundryItemStrings.category,
         initialValue: true,
         type: FormFieldType.dropdown,
-        label: 'Kategori',
         controller: controller.category,
         options: LaundryItemCategory.values
             .map(
@@ -46,6 +46,6 @@ class LaundryItemFormConfig {
   /// SUBMIT LABEL
   /// =========================
   String get submitLabel {
-    return controller.isEdit ? AppStrings.edit : AppStrings.add;
+    return controller.isEdit ? LaundryItemStrings.edit : LaundryItemStrings.add;
   }
 }

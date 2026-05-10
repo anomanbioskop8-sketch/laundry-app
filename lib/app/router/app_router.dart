@@ -22,7 +22,11 @@ import 'package:app_laundry/features/customer/presentation/pages/customer_detail
 import 'package:app_laundry/features/customer/presentation/pages/customer_form_page_wrapper.dart';
 import 'package:app_laundry/features/customer/presentation/pages/customer_page_wrapper.dart';
 import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_entity.dart';
+import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_entity_ext.dart';
 import 'package:app_laundry/features/laundry_item/presentation/pages/laundry_item_form_page_wrapper.dart';
+import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
+import 'package:app_laundry/features/laundry_price/presentation/pages/laundry_price_form_page_wrapper.dart';
+import 'package:app_laundry/features/laundry_price/presentation/pages/laundry_price_page_wrapper.dart';
 import 'package:app_laundry/features/main/presentation/pages/main_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -116,6 +120,23 @@ class AppRouter {
         builder: (context, state) {
           final item = state.extra as LaundryItemEntity?;
           return LaundryItemFormPageWrapper(item: item);
+        },
+      ),
+
+      GoRoute(
+        path: RoutePaths.laundryPrice,
+        name: RoutePaths.laundryPriceName,
+        builder: (context, state) {
+          final item = state.extra as LaundryItemEntity;
+          return LaundryPricePageWrapper(itemId: item.id, itemName: item.title);
+        },
+      ),
+      GoRoute(
+        path: RoutePaths.laundryPriceForm,
+        name: RoutePaths.laundryPriceFormName,
+        builder: (context, state) {
+          final price = state.extra as LaundryPriceEntity?;
+          return LaundryPriceFormPageWrapper(price: price);
         },
       ),
     ],

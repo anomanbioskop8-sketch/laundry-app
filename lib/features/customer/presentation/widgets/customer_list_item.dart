@@ -19,6 +19,7 @@ class CustomerListItem extends StatelessWidget {
     final phone = customer.phone;
 
     return ListTile(
+      tileColor: context.colors.surfaceContainer,
       leading: CircleAvatar(
         radius: context.sizes.avatarSm.radius, // 🔥 list = pakai sm, bukan md
         backgroundColor: customer.avatarColor,

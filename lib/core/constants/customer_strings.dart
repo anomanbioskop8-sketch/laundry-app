@@ -30,4 +30,10 @@ class CustomerStrings {
   // EMPTY STATE
   // =========================
   static const empty = 'Belum ada customer';
+
+  // =========================
+  // VALIDATION
+  // =========================
+  static const nameRequired = 'Nama item wajib diisi';
+  static const categoryRequired = 'Kategori wajib dipilih';
 }

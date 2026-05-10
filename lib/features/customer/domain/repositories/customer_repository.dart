@@ -4,32 +4,30 @@ import 'package:app_laundry/features/customer/domain/entities/customer_entity.da
 
 abstract class CustomerRepository {
   /// =========================
+  /// STREAM ALL (REALTIME)
+  /// =========================
+  Stream<Either<Failure, List<CustomerEntity>>> streamAll(String companyId);
+
+  /// =========================
+  /// GET SINGLE
+  /// =========================
+  Future<Either<Failure, CustomerEntity?>> getById({
+    required String companyId,
+    required String id,
+  });
+
+  /// =========================
   /// CREATE
   /// =========================
-  Future<Either<Failure, void>> createCustomer({
+  Future<Either<Failure, void>> create({
     required String companyId,
     required CustomerEntity customer,
   });
 
   /// =========================
-  /// GET SINGLE
-  /// =========================
-  Future<Either<Failure, CustomerEntity?>> getCustomerById({
-    required String companyId,
-    required String customerId,
-  });
-
-  /// =========================
-  /// STREAM ALL (REALTIME)
-  /// =========================
-  Stream<Either<Failure, List<CustomerEntity>>> streamCustomers(
-    String companyId,
-  );
-
-  /// =========================
   /// UPDATE
   /// =========================
-  Future<Either<Failure, void>> updateCustomer({
+  Future<Either<Failure, void>> update({
     required String companyId,
     required CustomerEntity customer,
   });
@@ -37,8 +35,8 @@ abstract class CustomerRepository {
   /// =========================
   /// DELETE
   /// =========================
-  Future<Either<Failure, void>> deleteCustomer({
+  Future<Either<Failure, void>> deleteById({
     required String companyId,
-    required String customerId,
+    required String id,
   });
 }

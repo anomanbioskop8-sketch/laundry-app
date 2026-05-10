@@ -11,11 +11,11 @@
 // =============================================================================
 
 import 'package:app_laundry/core/error/exceptions.dart';
+import 'package:app_laundry/core/error/extensions/unauthorized_exception_ext.dart';
 import 'package:app_laundry/core/error/failure.dart';
 import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/customer/domain/repositories/customer_repository.dart';
-import 'package:app_laundry/features/customer/domain/usecase/customer_params.dart';
 
 class DeleteCustomer {
   final CustomerRepository _repository;
@@ -28,16 +28,13 @@ class DeleteCustomer {
        _session = session;
 
   /// Menghapus customer berdasarkan ID
-  Future<Either<Failure, void>> call(DeleteCustomerParams params) async {
+  Future<Either<Failure, void>> call(String id) async {
     try {
       final companyId = _session.companyId;
 
-      return _repository.deleteCustomer(
-        companyId: companyId,
-        customerId: params.id,
-      );
+      return _repository.deleteById(companyId: companyId, id: id);
     } on UnauthorizedException catch (e) {
-      return Left(UnauthorizedFailure(e.message));
+      return Left(e.failure);
     }
   }
 }

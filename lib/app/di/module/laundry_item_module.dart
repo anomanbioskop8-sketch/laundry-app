@@ -11,12 +11,16 @@ import 'package:app_laundry/features/laundry_item/data/datasources/laundry_item_
 import 'package:app_laundry/features/laundry_item/data/repositories/laundry_item_repository_impl.dart';
 import 'package:app_laundry/features/laundry_item/domain/repositories/laundry_item_repository.dart';
 import 'package:app_laundry/features/laundry_item/domain/usecases/create_laundry_item.dart';
-import 'package:app_laundry/features/laundry_item/domain/usecases/delete_customer.dart';
+import 'package:app_laundry/features/laundry_item/domain/usecases/create_laundry_item_orchestration.dart';
+import 'package:app_laundry/features/laundry_item/domain/usecases/delete_laundry_item.dart';
+import 'package:app_laundry/features/laundry_item/domain/usecases/delete_laundry_item_orchestration.dart';
 import 'package:app_laundry/features/laundry_item/domain/usecases/save_laundry_item.dart';
 import 'package:app_laundry/features/laundry_item/domain/usecases/stream_laundry_items.dart';
 import 'package:app_laundry/features/laundry_item/domain/usecases/update_laundry_item.dart';
 import 'package:app_laundry/features/laundry_item/presentation/cubit/laundry_item_action_cubit.dart';
 import 'package:app_laundry/features/laundry_item/presentation/cubit/laundry_item_cubit.dart';
+import 'package:app_laundry/features/laundry_price/domain/usecases/create_default_price_item.dart';
+import 'package:app_laundry/features/laundry_price/domain/usecases/delete_laundry_price_by_item_id.dart';
 import 'package:get_it/get_it.dart';
 
 class LaundryItemModule {
@@ -70,6 +74,13 @@ class LaundryItemModule {
       ),
     );
 
+    sl.registerLazySingleton<CreateLaundryItemOrchestration>(
+      () => CreateLaundryItemOrchestration(
+        createLaundryItem: sl<CreateLaundryItem>(),
+        createDefaultLaundryPrices: sl<CreateDefaultLaundryPrices>(),
+      ),
+    );
+
     sl.registerLazySingleton<UpdateLaundryItem>(
       () => UpdateLaundryItem(
         repository: sl<LaundryItemRepository>(),
@@ -80,8 +91,8 @@ class LaundryItemModule {
     /// 🔥 SaveCustomer = wrapper create/update
     sl.registerLazySingleton<SaveLaundryItem>(
       () => SaveLaundryItem(
-        createLaundryItem: sl<CreateLaundryItem>(),
-        updateLaundryItem: sl<UpdateLaundryItem>(),
+        create: sl<CreateLaundryItemOrchestration>(),
+        update: sl<UpdateLaundryItem>(),
       ),
     );
 
@@ -89,6 +100,13 @@ class LaundryItemModule {
       () => DeleteLaundryItem(
         repository: sl<LaundryItemRepository>(),
         session: sl(), // ⚠️ guard akses
+      ),
+    );
+
+    sl.registerLazySingleton<DeleteLaundryItemOrchestration>(
+      () => DeleteLaundryItemOrchestration(
+        deleteLaundryItem: sl<DeleteLaundryItem>(),
+        deleteLaundryPrices: sl<DeleteLaundryPriceByItemId>(),
       ),
     );
   }
@@ -106,7 +124,7 @@ class LaundryItemModule {
     sl.registerFactory<LaundryItemActionCubit>(
       () => LaundryItemActionCubit(
         save: sl<SaveLaundryItem>(),
-        delete: sl<DeleteLaundryItem>(),
+        delete: sl<DeleteLaundryItemOrchestration>(),
       ),
     );
   }

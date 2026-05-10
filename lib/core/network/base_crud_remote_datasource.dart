@@ -21,24 +21,65 @@ abstract class BaseCrudRemoteDataSource<T> extends BaseRemoteDataSource {
   // =========================
 
   String get collection;
-
   T fromMap(Map<String, dynamic> map, String id);
-
   Map<String, dynamic> toMap(T data);
 
   // =========================
-  // COLLECTION REF
+  // COLLECTION REFERENCE
   // =========================
 
-  CollectionReference<Map<String, dynamic>> _collectionRef(String companyId) {
+  CollectionReference<Map<String, dynamic>> collectionRef(String companyId) {
     return firestore
         .collection('companies')
         .doc(companyId)
         .collection(collection);
   }
 
-  DocumentReference<Map<String, dynamic>> _docRef(String companyId, String id) {
-    return _collectionRef(companyId).doc(id);
+  DocumentReference<Map<String, dynamic>> docRef(String companyId, String id) {
+    return collectionRef(companyId).doc(id);
+  }
+
+  // =========================
+  // STREAM ALL
+  // =========================
+
+  Stream<List<T>> streamAll(
+    String companyId, {
+    Query<Map<String, dynamic>> Function(Query<Map<String, dynamic>> query)?
+    queryBuilder,
+  }) {
+    return safeStream(() {
+      Query<Map<String, dynamic>> query = collectionRef(companyId);
+
+      /// Optional query customization
+      if (queryBuilder != null) {
+        query = queryBuilder(query);
+      }
+
+      return query.snapshots().map((snapshot) {
+        return snapshot.docs.map((doc) {
+          return fromMap(doc.data(), doc.id);
+        }).toList();
+      });
+    });
+  }
+
+  // =========================
+  // GET BY ID
+  // =========================
+
+  Future<T?> getById({required String companyId, required String id}) {
+    return safeCall(() async {
+      final doc = await docRef(companyId, id).get();
+
+      final data = doc.data();
+
+      if (!doc.exists || data == null) {
+        return null;
+      }
+
+      return fromMap(data, doc.id);
+    });
   }
 
   // =========================
@@ -51,7 +92,7 @@ abstract class BaseCrudRemoteDataSource<T> extends BaseRemoteDataSource {
     required T data,
   }) {
     return safeCall(() async {
-      await _docRef(companyId, id).set({
+      await docRef(companyId, id).set({
         ...toMap(data),
         'createdAt': FieldValue.serverTimestamp(),
       }, SetOptions(merge: true));
@@ -68,7 +109,7 @@ abstract class BaseCrudRemoteDataSource<T> extends BaseRemoteDataSource {
     required T data,
   }) {
     return safeCall(() async {
-      await _docRef(
+      await docRef(
         companyId,
         id,
       ).update({...toMap(data), 'updatedAt': FieldValue.serverTimestamp()});
@@ -81,45 +122,7 @@ abstract class BaseCrudRemoteDataSource<T> extends BaseRemoteDataSource {
 
   Future<void> delete({required String companyId, required String id}) {
     return safeCall(() async {
-      await _docRef(companyId, id).delete();
-    });
-  }
-
-  // =========================
-  // GET SINGLE
-  // =========================
-
-  Future<T?> getById({required String companyId, required String id}) {
-    return safeCall(() async {
-      final doc = await _docRef(companyId, id).get();
-
-      final data = doc.data();
-      if (!doc.exists || data == null) return null;
-
-      return fromMap(data, doc.id);
-    });
-  }
-
-  // =========================
-  // STREAM ALL
-  // =========================
-
-  Stream<List<T>> streamAll(
-    String companyId, {
-    Query<Map<String, dynamic>> Function(Query<Map<String, dynamic>> query)?
-    queryBuilder,
-  }) {
-    return safeStream(() {
-      Query<Map<String, dynamic>> query = _collectionRef(companyId);
-
-      /// 🔥 Optional query customization
-      if (queryBuilder != null) {
-        query = queryBuilder(query);
-      }
-
-      return query.snapshots().map((snapshot) {
-        return snapshot.docs.map((doc) => fromMap(doc.data(), doc.id)).toList();
-      });
+      await docRef(companyId, id).delete();
     });
   }
 }

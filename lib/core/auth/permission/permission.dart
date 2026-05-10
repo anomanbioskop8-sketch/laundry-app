@@ -8,4 +8,9 @@ enum Permission {
   canCreateLaundryItem,
   canUpdateLaundryItem,
   canDeleteLaundryItem,
+
+  canViewLaundryPrice,
+  canCreateLaundryPrice,
+  canUpdateLaundryPrice,
+  canDeleteLaundryPrice,
 }

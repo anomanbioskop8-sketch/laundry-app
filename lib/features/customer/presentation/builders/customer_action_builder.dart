@@ -24,7 +24,6 @@ import 'package:app_laundry/core/services/app_ui_service.dart';
 import 'package:app_laundry/core/auth/permission/permission_service.dart';
 import 'package:app_laundry/core/theme/dialog/dialog_type.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
-import 'package:app_laundry/features/customer/domain/usecase/customer_params.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_action_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -96,9 +95,7 @@ class CustomerActionBuilder {
 
           if (confirmed != true || !context.mounted) return;
 
-          context.read<CustomerActionCubit>().deleteCustomer(
-            DeleteCustomerParams(customer.id),
-          );
+          context.read<CustomerActionCubit>().deleteCustomer(customer.id);
         },
       ),
     ];

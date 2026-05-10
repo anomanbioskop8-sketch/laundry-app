@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:app_laundry/core/extensions/timestamp_ext.dart';
 
 class CustomerModel {
   final String id;
@@ -23,8 +23,8 @@ class CustomerModel {
       name: map['name'] ?? '',
       phone: map['phone'] ?? '',
       address: map['address'] ?? '',
-      createdAt: (map['createdAt'] as Timestamp?)?.toDate(),
-      updatedAt: (map['updatedAt'] as Timestamp?)?.toDate(),
+      createdAt: map.timestamp('createdAt'),
+      updatedAt: map.timestamp('updatedAt'),
     );
   }
 

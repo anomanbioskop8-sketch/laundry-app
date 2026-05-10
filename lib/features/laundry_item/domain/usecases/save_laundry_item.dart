@@ -1,18 +1,18 @@
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/core/error/failure.dart';
-import 'package:app_laundry/features/laundry_item/domain/usecases/create_laundry_item.dart';
+import 'package:app_laundry/features/laundry_item/domain/usecases/create_laundry_item_orchestration.dart';
 import 'package:app_laundry/features/laundry_item/domain/usecases/laundry_item_params.dart';
 import 'package:app_laundry/features/laundry_item/domain/usecases/update_laundry_item.dart';
 
 class SaveLaundryItem {
-  final CreateLaundryItem _createLaundryItem;
-  final UpdateLaundryItem _updateLaundryItem;
+  final CreateLaundryItemOrchestration _create;
+  final UpdateLaundryItem _update;
 
   SaveLaundryItem({
-    required CreateLaundryItem createLaundryItem,
-    required UpdateLaundryItem updateLaundryItem,
-  }) : _createLaundryItem = createLaundryItem,
-       _updateLaundryItem = updateLaundryItem;
+    required CreateLaundryItemOrchestration create,
+    required UpdateLaundryItem update,
+  }) : _create = create,
+       _update = update;
 
   Future<Either<Failure, void>> call(SaveLaundryItemParams params) async {
     if (!params.isValid) {
@@ -23,7 +23,7 @@ class SaveLaundryItem {
     /// UPDATE
     /// =========================
     if (params.isEdit) {
-      return _updateLaundryItem(
+      return _update(
         UpdateLaundryItemParams(
           id: params.id!,
           name: params.name,
@@ -35,7 +35,7 @@ class SaveLaundryItem {
     /// =========================
     /// CREATE
     /// =========================
-    return _createLaundryItem(
+    return _create(
       CreateLaundryItemParams(name: params.name, category: params.category),
     );
   }

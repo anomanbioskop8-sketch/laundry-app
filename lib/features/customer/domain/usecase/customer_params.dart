@@ -56,32 +56,6 @@ class UpdateCustomerParams {
 }
 
 /// =========================
-/// DELETE CUSTOMER
-/// =========================
-/// Parameter untuk menghapus customer
-class DeleteCustomerParams {
-  final String id;
-
-  const DeleteCustomerParams(this.id);
-
-  /// Validasi ID customer
-  bool get isValid => id.isNotEmpty;
-}
-
-/// =========================
-/// GET CUSTOMER
-/// =========================
-/// Parameter untuk mengambil detail customer
-class GetCustomerParams {
-  final String id;
-
-  const GetCustomerParams(this.id);
-
-  /// Validasi ID customer
-  bool get isValid => id.isNotEmpty;
-}
-
-/// =========================
 /// SAVE CUSTOMER
 /// =========================
 /// Parameter untuk proses simpan customer

@@ -1,3 +1,5 @@
+import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
+import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:flutter/material.dart';
 
 class AppEmptyWidget extends StatelessWidget {
@@ -18,11 +20,15 @@ class AppEmptyWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 64, color: Colors.grey),
-          const SizedBox(height: 12),
-          Text(message, style: Theme.of(context).textTheme.bodyMedium),
+          Icon(
+            icon,
+            size: context.sizes.avatarMd,
+            color: context.colors.onSurfaceVariant,
+          ),
+          context.spacing.md.h,
+          Text(message, style: context.bodyMedium),
           if (onRetry != null) ...[
-            const SizedBox(height: 12),
+            context.spacing.md.h,
             TextButton(onPressed: onRetry, child: const Text('Coba Lagi')),
           ],
         ],

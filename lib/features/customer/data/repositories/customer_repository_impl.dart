@@ -17,11 +17,11 @@
 // =============================================================================
 
 import 'package:app_laundry/core/error/exceptions.dart';
+import 'package:app_laundry/core/error/extensions/app_exception_ext.dart';
 import 'package:app_laundry/core/error/failure.dart';
-import 'package:app_laundry/core/error/mappers/failure_mapper.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/customer/data/datasources/customer_remote_data_source.dart';
-import 'package:app_laundry/features/customer/data/mappers/customer_mapper.dart';
+import 'package:app_laundry/features/customer/data/mappers/customer_mapper_ext.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/domain/repositories/customer_repository.dart';
 
@@ -31,41 +31,39 @@ class CustomerRepositoryImpl implements CustomerRepository {
   CustomerRepositoryImpl(this.remote);
 
   /// =========================
+  /// STREAM CUSTOMERS (REALTIME)
+  /// =========================
+  @override
+  Stream<Either<Failure, List<CustomerEntity>>> streamAll(
+    String companyId,
+  ) async* {
+    try {
+      await for (final models in remote.streamAll(companyId)) {
+        yield Right(models.toEntities);
+      }
+    } on AppException catch (e) {
+      yield Left(e.toFailure);
+    }
+  }
+
+  /// =========================
   /// GET CUSTOMER BY ID
   /// =========================
   @override
-  Future<Either<Failure, CustomerEntity?>> getCustomerById({
+  Future<Either<Failure, CustomerEntity?>> getById({
     required String companyId,
-    required String customerId,
+    required String id,
   }) async {
     try {
-      final model = await remote.getById(companyId: companyId, id: customerId);
+      final model = await remote.getById(companyId: companyId, id: id);
 
       if (model == null) {
         return const Right(null);
       }
 
-      return Right(CustomerMapper.toEntity(model));
+      return Right(model.toEntity);
     } on AppException catch (e) {
-      return Left(FailureMapper.mapExceptionToFailure(e));
-    }
-  }
-
-  /// =========================
-  /// STREAM CUSTOMERS (REALTIME)
-  /// =========================
-  @override
-  Stream<Either<Failure, List<CustomerEntity>>> streamCustomers(
-    String companyId,
-  ) async* {
-    try {
-      await for (final models in remote.streamAll(companyId)) {
-        final entities = models.map(CustomerMapper.toEntity).toList();
-
-        yield Right(entities);
-      }
-    } on AppException catch (e) {
-      yield Left(FailureMapper.mapExceptionToFailure(e));
+      return Left(e.toFailure);
     }
   }
 
@@ -73,18 +71,18 @@ class CustomerRepositoryImpl implements CustomerRepository {
   /// CREATE CUSTOMER
   /// =========================
   @override
-  Future<Either<Failure, void>> createCustomer({
+  Future<Either<Failure, void>> create({
     required String companyId,
     required CustomerEntity customer,
   }) async {
     try {
-      final model = CustomerMapper.toModel(customer);
+      final model = customer.toModel;
 
       await remote.create(companyId: companyId, id: model.id, data: model);
 
       return const Right(null);
     } on AppException catch (e) {
-      return Left(FailureMapper.mapExceptionToFailure(e));
+      return Left(e.toFailure);
     }
   }
 
@@ -92,18 +90,18 @@ class CustomerRepositoryImpl implements CustomerRepository {
   /// UPDATE CUSTOMER
   /// =========================
   @override
-  Future<Either<Failure, void>> updateCustomer({
+  Future<Either<Failure, void>> update({
     required String companyId,
     required CustomerEntity customer,
   }) async {
     try {
-      final model = CustomerMapper.toModel(customer);
+      final model = customer.toModel;
 
       await remote.update(companyId: companyId, id: model.id, data: model);
 
       return const Right(null);
     } on AppException catch (e) {
-      return Left(FailureMapper.mapExceptionToFailure(e));
+      return Left(e.toFailure);
     }
   }
 
@@ -111,16 +109,16 @@ class CustomerRepositoryImpl implements CustomerRepository {
   /// DELETE CUSTOMER
   /// =========================
   @override
-  Future<Either<Failure, void>> deleteCustomer({
+  Future<Either<Failure, void>> deleteById({
     required String companyId,
-    required String customerId,
+    required String id,
   }) async {
     try {
-      await remote.delete(companyId: companyId, id: customerId);
+      await remote.delete(companyId: companyId, id: id);
 
       return const Right(null);
     } on AppException catch (e) {
-      return Left(FailureMapper.mapExceptionToFailure(e));
+      return Left(e.toFailure);
     }
   }
 }

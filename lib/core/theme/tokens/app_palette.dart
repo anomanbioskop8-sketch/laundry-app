@@ -1,35 +1,19 @@
 import 'package:flutter/material.dart';
 
 class AppPalette {
-  // 🎯 Seed (brand utama)
-  static const Color seed = Color(0xFF2563EB);
+  static const clearChill = Color(0xFF1E90FF);
+  static const frenchSkyBlue = Color(0xFF70A1FF);
+  static const ufoGreen = Color(0xFF2ED573);
+  static const orange = Color(0xFFFFA502);
+  static const watermelon = Color(0xFFFF4757);
 
-  // Optional override (kalau mau tweak)
-  static const Color error = Color(0xFFEF4444);
+  static const prestigeBlue = Color(0xFF2F3542);
+  static const grisaille = Color(0xFF57606F);
+  static const white = Color(0xFFFFFFFF);
+  static const antiFlashWhite = Color(0xFFF1F2F6);
 
-  //
-  // 🔵 Blue
-  static const blue50 = Color(0xFFE3F2FD);
-  static const blue100 = Color(0xFFBBDEFB);
-  static const blue300 = Color(0xFF64B5F6);
-  static const blue500 = Color(0xFF2196F3);
-  static const blue700 = Color(0xFF1976D2);
-
-  // 🟢 Green
-  static const green500 = Color(0xFF4CAF50);
-
-  // 🔴 Red
-  static const red500 = Color(0xFFF44336);
-
-  // 🟡 Orange
-  static const orange500 = Color(0xFFFF9800);
-
-  // ⚫ Neutral
-  static const gray50 = Color(0xFFFAFAFA);
-  static const gray100 = Color(0xFFF5F5F5);
-  static const gray200 = Color(0xFFEEEEEE);
-  static const gray400 = Color(0xFFBDBDBD);
-  static const gray600 = Color(0xFF757575);
-  static const gray800 = Color(0xFF424242);
-  static const gray900 = Color(0xFF212121);
+  static const bayWharf = Color(0xFF747D8C);
+  static const goldSand = Color(0xFFECCC68);
+  static const limeSoap = Color(0xFF7BED9F);
+  static const wildWatermelon = Color(0xFFFF6B81);
 }

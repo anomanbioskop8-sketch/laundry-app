@@ -62,4 +62,10 @@ class RoutePaths {
   /// =========================
   static const laundryItemForm = '/laundry_item/form';
   static const laundryItemFormName = 'laundryItemForm';
+
+  static const laundryPrice = '/laundry_price';
+  static const laundryPriceName = 'laundryPrice';
+
+  static const laundryPriceForm = '/laundry_price/form';
+  static const laundryPriceFormName = 'laundryPriceForm';
 }

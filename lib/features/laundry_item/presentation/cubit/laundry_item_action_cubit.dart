@@ -12,17 +12,17 @@
 
 import 'package:app_laundry/core/base/cubit/base_action_cubit.dart';
 import 'package:app_laundry/core/constants/laundry_item_strings.dart';
-import 'package:app_laundry/features/laundry_item/domain/usecases/delete_customer.dart';
+import 'package:app_laundry/features/laundry_item/domain/usecases/delete_laundry_item_orchestration.dart';
 import 'package:app_laundry/features/laundry_item/domain/usecases/laundry_item_params.dart';
 import 'package:app_laundry/features/laundry_item/domain/usecases/save_laundry_item.dart';
 
 class LaundryItemActionCubit extends BaseActionCubit<void> {
   final SaveLaundryItem _save;
-  final DeleteLaundryItem _delete;
+  final DeleteLaundryItemOrchestration _delete;
 
   LaundryItemActionCubit({
     required SaveLaundryItem save,
-    required DeleteLaundryItem delete,
+    required DeleteLaundryItemOrchestration delete,
   }) : _save = save,
        _delete = delete;
 
@@ -35,9 +35,9 @@ class LaundryItemActionCubit extends BaseActionCubit<void> {
   }
 
   /// Menghapus data laundry item
-  Future<void> delete(DeleteLaundryItemParams params) async {
+  Future<void> delete(String id) async {
     await execute(
-      call: () => _delete(params),
+      call: () => _delete(id),
       successMessage: LaundryItemStrings.deleteSuccess,
     );
   }
