@@ -5,7 +5,7 @@ import 'package:app_laundry/core/extensions/timestamp_ext.dart';
 class LaundryPriceModel {
   final String id;
   final String laundryItemId;
-  final String orderType;
+  final String speedType;
   final String serviceType;
   final int price;
   final DateTime? createdAt;
@@ -15,7 +15,7 @@ class LaundryPriceModel {
     required this.id,
 
     required this.laundryItemId,
-    required this.orderType,
+    required this.speedType,
     required this.serviceType,
     required this.price,
     this.createdAt,
@@ -26,7 +26,7 @@ class LaundryPriceModel {
     return LaundryPriceModel(
       id: id,
       laundryItemId: map['laundryItemId'] ?? '',
-      orderType: map['orderType'] ?? '',
+      speedType: map['speedType'] ?? '',
       serviceType: map['serviceType'] ?? '',
       price: map['price'] ?? 0,
       createdAt: map.timestamp('createdAt'),
@@ -37,7 +37,7 @@ class LaundryPriceModel {
   Map<String, dynamic> toMap() {
     return {
       'laundryItemId': laundryItemId,
-      'orderType': orderType,
+      'speedType': speedType,
       'serviceType': serviceType,
       'price': price,
     };

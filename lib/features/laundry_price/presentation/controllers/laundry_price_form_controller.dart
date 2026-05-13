@@ -1,7 +1,7 @@
 import 'package:app_laundry/core/base/form/controllers/form_controller.dart';
+import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
-import 'package:app_laundry/features/laundry_price/domain/enums/laundry_service_type.dart';
-import 'package:app_laundry/features/laundry_price/domain/enums/order_type.dart';
+import 'package:app_laundry/features/laundry/domain/enums/laundry_service_type.dart';
 import 'package:app_laundry/features/laundry_price/domain/usecases/laundry_price_params.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +10,7 @@ class LaundryPriceFormController extends FormController {
 
   String? _id;
   String? _laundryItemId;
-  OrderType? _orderType;
+  LaundrySpeedType? _speedType;
   LaundryServiceType? _serviceType;
 
   @override
@@ -22,7 +22,7 @@ class LaundryPriceFormController extends FormController {
   void setData(LaundryPriceEntity item) {
     _id = item.id;
     _laundryItemId = item.laundryItemId;
-    _orderType = item.orderType;
+    _speedType = item.speedType;
     _serviceType = item.serviceType;
     price.text = item.price.toString();
   }
@@ -40,7 +40,7 @@ class LaundryPriceFormController extends FormController {
     return SaveLaundryPriceParams(
       id: _id,
       laundryItemId: _laundryItemId!,
-      orderType: _orderType!,
+      speedType: _speedType!,
       serviceType: _serviceType!,
       price: int.tryParse(price.text) ?? 0,
     );

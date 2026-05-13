@@ -22,12 +22,14 @@ import 'package:app_laundry/features/customer/presentation/pages/customer_detail
 import 'package:app_laundry/features/customer/presentation/pages/customer_form_page_wrapper.dart';
 import 'package:app_laundry/features/customer/presentation/pages/customer_page_wrapper.dart';
 import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_entity.dart';
-import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_entity_ext.dart';
+import 'package:app_laundry/features/laundry_item/domain/extensions/laundry_item_entity_ext.dart';
 import 'package:app_laundry/features/laundry_item/presentation/pages/laundry_item_form_page_wrapper.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
 import 'package:app_laundry/features/laundry_price/presentation/pages/laundry_price_form_page_wrapper.dart';
 import 'package:app_laundry/features/laundry_price/presentation/pages/laundry_price_page_wrapper.dart';
 import 'package:app_laundry/features/main/presentation/pages/main_page.dart';
+import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
+import 'package:app_laundry/features/order/presentation/pages/order_form_page_wrapper.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -137,6 +139,18 @@ class AppRouter {
         builder: (context, state) {
           final price = state.extra as LaundryPriceEntity?;
           return LaundryPriceFormPageWrapper(price: price);
+        },
+      ),
+
+      /// =========================
+      /// ORDER MODULE
+      /// =========================
+      GoRoute(
+        path: RoutePaths.orderForm,
+        name: RoutePaths.orderFormName,
+        builder: (context, state) {
+          final order = state.extra as OrderEntity?;
+          return OrderFormPageWrapper(item: order);
         },
       ),
     ],

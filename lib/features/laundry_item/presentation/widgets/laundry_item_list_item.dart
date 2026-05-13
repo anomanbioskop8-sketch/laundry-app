@@ -4,7 +4,7 @@ import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/core/ui/bottom_sheet/app_action_sheet.dart';
 import 'package:app_laundry/core/ui/components/avatar/app_icon_avatar.dart';
 import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_entity.dart';
-import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_entity_ext.dart';
+import 'package:app_laundry/features/laundry_item/domain/extensions/laundry_item_entity_ext.dart';
 import 'package:app_laundry/features/laundry_item/presentation/builders/laundry_item_action_builder.dart';
 import 'package:flutter/material.dart';
 

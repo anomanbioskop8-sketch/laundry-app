@@ -1,5 +1,6 @@
 import 'package:app_laundry/features/customer/presentation/pages/customer_page_wrapper.dart';
 import 'package:app_laundry/features/laundry_item/presentation/pages/laundry_item_page_wrapper.dart';
+import 'package:app_laundry/features/order/presentation/pages/order_page_wrapper.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -15,7 +16,7 @@ class _MainPageState extends State<MainPage> {
   final _pages = const [
     CustomerPageWrapper(),
     LaundryItemPageWrapper(),
-    _PlaceholderPage(title: 'Report'),
+    OrderPageWrapper(),
     _PlaceholderPage(title: 'Settings'),
   ];
 
@@ -45,7 +46,7 @@ class _MainPageState extends State<MainPage> {
           NavigationDestination(
             icon: Icon(Icons.bar_chart_outlined),
             selectedIcon: Icon(Icons.bar_chart),
-            label: 'Report',
+            label: 'Orders',
           ),
           NavigationDestination(
             icon: Icon(Icons.settings_outlined),

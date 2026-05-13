@@ -9,6 +9,9 @@
 // - Integrasi dengan FormFieldConfig
 // =============================================================================
 
+import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
+import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
+import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:flutter/material.dart';
 import '../form_field_config.dart';
 
@@ -22,6 +25,7 @@ class DropdownFieldWidget extends StatelessWidget {
     final options = field.options ?? [];
 
     return DropdownButtonFormField<String>(
+      isExpanded: true,
       initialValue: field.controller.text.isEmpty
           ? null
           : field.controller.text,
@@ -32,9 +36,9 @@ class DropdownFieldWidget extends StatelessWidget {
               value: e.value,
               child: Row(
                 children: [
-                  Icon(e.icon, size: 18),
-                  const SizedBox(width: 8),
-                  Text(e.label),
+                  Icon(e.icon, size: context.sizes.iconMd),
+                  context.spacing.md.w,
+                  Text(e.label, style: context.labelLarge!.onSurface(context)),
                 ],
               ),
             ),
@@ -44,9 +48,14 @@ class DropdownFieldWidget extends StatelessWidget {
       onChanged: (value) {
         field.controller.text = value ?? '';
       },
-
       validator: field.validate,
-
+      hint: Text(
+        field.label,
+        textDirection: TextDirection.ltr,
+        style: context.bodyMedium?.copyWith(
+          color: context.colors.onSurfaceVariant.withValues(alpha: 0.5),
+        ),
+      ),
       decoration: InputDecoration(labelText: field.label),
     );
   }

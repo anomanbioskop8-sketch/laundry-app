@@ -16,7 +16,7 @@ class AppDividerTheme {
       thickness: sizes.borderThin,
 
       /// tinggi total area divider
-      space: spacing.md,
+      space: spacing.lg,
 
       /// indent kiri/kanan (biar tidak nempel)
       indent: 0,

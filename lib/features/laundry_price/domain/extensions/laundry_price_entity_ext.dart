@@ -2,8 +2,8 @@
 
 import 'package:app_laundry/core/utils/formatters/currency_formatter.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
-import 'package:app_laundry/features/laundry_price/domain/enums/laundry_service_type_ext.dart';
-import 'package:app_laundry/features/laundry_price/domain/enums/order_type_ext.dart';
+import 'package:app_laundry/features/laundry/domain/extensions/laundry_speed_type_ext.dart';
+import 'package:app_laundry/features/laundry/domain/extensions/laundry_service_type_ext.dart';
 import 'package:flutter/material.dart';
 
 extension LaundryPriceEntityX on LaundryPriceEntity {
@@ -11,9 +11,9 @@ extension LaundryPriceEntityX on LaundryPriceEntity {
   /// ORDER
   /// =========================
 
-  String get orderLabel => orderType.label;
+  String get orderLabel => speedType.label;
 
-  IconData get orderIcon => orderType.icon;
+  IconData get orderIcon => speedType.icon;
 
   /// =========================
   /// SERVICE
@@ -21,7 +21,7 @@ extension LaundryPriceEntityX on LaundryPriceEntity {
 
   String get serviceLabel => serviceType.label;
 
-  Color get serviceColor => serviceType.color;
+  Color get serviceColor => Colors.black;
 
   /// =========================
   /// PRICE

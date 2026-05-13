@@ -10,7 +10,7 @@ class AppSemanticColors {
   static const warning = AppPalette.orange;
   static const error = AppPalette.watermelon;
 
-  static const pending = AppPalette.bayWharf;
+  static const pending = AppPalette.frenchSkyBlue;
   static const process = AppPalette.goldSand;
   static const done = AppPalette.limeSoap;
   static const cancel = AppPalette.wildWatermelon;

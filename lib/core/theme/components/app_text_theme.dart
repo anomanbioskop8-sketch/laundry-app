@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTextTheme {
   static TextTheme build(ColorScheme scheme) {
-    final base = GoogleFonts.robotoTextTheme();
+    final base = GoogleFonts.poppinsTextTheme();
 
     // 🔥 Golden Ratio (compressed for mobile)
     const displayLarge = 40.0;

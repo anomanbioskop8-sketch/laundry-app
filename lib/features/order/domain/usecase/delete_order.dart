@@ -1,0 +1,27 @@
+import 'package:app_laundry/core/error/exceptions.dart';
+import 'package:app_laundry/core/error/extensions/unauthorized_exception_ext.dart';
+import 'package:app_laundry/core/error/failure.dart';
+import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
+import 'package:app_laundry/core/utils/either.dart';
+import 'package:app_laundry/features/order/domain/repositories/order_repository.dart';
+
+class DeleteOrder {
+  final OrderRepository _repository;
+  final SessionService _session;
+
+  const DeleteOrder({
+    required OrderRepository repository,
+    required SessionService session,
+  }) : _repository = repository,
+       _session = session;
+
+  Future<Either<Failure, void>> call(String id) async {
+    try {
+      final companyId = _session.companyId;
+
+      return _repository.deleteById(companyId: companyId, id: id);
+    } on UnauthorizedException catch (e) {
+      return Left(e.failure);
+    }
+  }
+}

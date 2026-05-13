@@ -24,7 +24,7 @@ class UpdateLaundryPrice {
       final price = LaundryPriceEntity(
         id: params.id!,
         laundryItemId: params.laundryItemId,
-        orderType: params.orderType,
+        speedType: params.speedType,
         serviceType: params.serviceType,
         price: params.price,
       );

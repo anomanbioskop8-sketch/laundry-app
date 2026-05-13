@@ -26,8 +26,8 @@ class AppInputTheme {
       alignLabelWithHint: true,
 
       contentPadding: EdgeInsets.symmetric(
-        horizontal: spacing.lg,
-        vertical: spacing.md,
+        horizontal: spacing.md,
+        vertical: spacing.lg,
       ),
 
       // ======================

@@ -1,7 +1,9 @@
+import 'package:app_laundry/features/laundry/domain/extensions/laundry_speed_type_ext.dart';
+import 'package:app_laundry/features/laundry/domain/extensions/string_laundry_speed_type_ext.dart';
 import 'package:app_laundry/features/laundry_price/data/models/laundry_price_model.dart';
-import 'package:app_laundry/features/laundry_price/domain/enums/laundry_service_type_ext.dart';
-import 'package:app_laundry/features/laundry_price/domain/enums/order_type_ext.dart';
+import 'package:app_laundry/features/laundry/domain/extensions/laundry_service_type_ext.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
+import 'package:app_laundry/features/laundry/domain/extensions/string_laundry_service_type_ext.dart';
 
 class LaundryPriceMapper {
   /// Model → Entity
@@ -9,8 +11,8 @@ class LaundryPriceMapper {
     return LaundryPriceEntity(
       id: model.id,
       laundryItemId: model.laundryItemId,
-      orderType: OrderTypeX.fromString(model.orderType),
-      serviceType: LaundryServiceTypeX.fromString(model.serviceType),
+      speedType: model.speedType.toLaundrySpeedType,
+      serviceType: model.serviceType.toLaundryServiceType,
       price: model.price,
       createdAt: model.createdAt,
       updatedAt: model.createdAt,
@@ -22,7 +24,7 @@ class LaundryPriceMapper {
     return LaundryPriceModel(
       id: entity.id,
       laundryItemId: entity.laundryItemId,
-      orderType: entity.orderType.value,
+      speedType: entity.speedType.value,
       serviceType: entity.serviceType.value,
       price: entity.price,
       createdAt: entity.createdAt,

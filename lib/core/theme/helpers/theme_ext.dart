@@ -29,6 +29,9 @@ extension ThemeExt on BuildContext {
   TextStyle? get bodyLarge => text.bodyLarge;
   TextStyle? get bodyMedium => text.bodyMedium;
   TextStyle? get bodySmall => text.bodySmall;
+  TextStyle? get labelLarge => text.labelLarge;
+  TextStyle? get labelMedium => text.labelMedium;
+  TextStyle? get labelSmall => text.labelSmall;
 
   // Brightness
   bool get isDark => theme.brightness == Brightness.dark;

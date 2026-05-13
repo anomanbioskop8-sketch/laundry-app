@@ -1,8 +1,8 @@
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/core/ui/components/app_tab_bar.dart';
-import 'package:app_laundry/features/laundry_price/domain/enums/laundry_service_type.dart';
-import 'package:app_laundry/features/laundry_price/domain/enums/laundry_service_type_ext.dart';
+import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
+import 'package:app_laundry/features/laundry/domain/extensions/laundry_speed_type_ext.dart';
 import 'package:app_laundry/features/laundry_price/presentation/widgets/laundry_price_view.dart';
 import 'package:flutter/material.dart';
 
@@ -24,9 +24,9 @@ class LaundryPricePage extends StatelessWidget {
             /// =========================
             AppTabBar(
               tabs: [
-                LaundryServiceType.regular.label,
-                LaundryServiceType.express.label,
-                LaundryServiceType.sameDay.label,
+                LaundrySpeedType.regular.label,
+                LaundrySpeedType.express.label,
+                LaundrySpeedType.sameDay.label,
               ],
             ),
 
@@ -38,9 +38,9 @@ class LaundryPricePage extends StatelessWidget {
             Expanded(
               child: TabBarView(
                 children: [
-                  LaundryPriceView(serviceType: LaundryServiceType.regular),
-                  LaundryPriceView(serviceType: LaundryServiceType.express),
-                  LaundryPriceView(serviceType: LaundryServiceType.sameDay),
+                  LaundryPriceView(speedType: LaundrySpeedType.regular),
+                  LaundryPriceView(speedType: LaundrySpeedType.express),
+                  LaundryPriceView(speedType: LaundrySpeedType.sameDay),
                 ],
               ),
             ),

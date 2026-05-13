@@ -31,7 +31,7 @@ class FormBuilder extends StatelessWidget {
         children: [
           ...fields.map((f) {
             return Padding(
-              padding: EdgeInsets.only(bottom: context.spacing.md),
+              padding: EdgeInsets.only(bottom: context.spacing.lg),
               child: _buildField(f),
             );
           }),

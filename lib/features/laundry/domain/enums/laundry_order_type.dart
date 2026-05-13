@@ -1,0 +1,1 @@
+enum LaundryOrderType { pcs, kg }

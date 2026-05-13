@@ -1,0 +1,62 @@
+import 'package:app_laundry/core/base/builders/base_stream_builder.dart';
+import 'package:app_laundry/core/base/form/form_builder.dart';
+import 'package:app_laundry/core/constants/app_strings.dart';
+import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
+import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
+import 'package:app_laundry/features/customer/presentation/cubit/customer_cubit.dart';
+import 'package:app_laundry/features/order/presentation/config/order_form_config.dart';
+import 'package:app_laundry/features/order/presentation/controllers/order_form_controller.dart';
+import 'package:app_laundry/features/order/presentation/cubit/order_action_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class OrderFormPage extends StatefulWidget {
+  const OrderFormPage({super.key});
+
+  @override
+  State<OrderFormPage> createState() => OrderFormPageState();
+}
+
+class OrderFormPageState extends State<OrderFormPage> {
+  final controller = OrderFormController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('config.submitLabel')),
+      body: BaseStreamBuilder<CustomerCubit, CustomerEntity>(
+        builder: (customers) {
+          final cubit = context.read<OrderActionCubit>();
+          final config = OrderFormConfig(
+            controller: controller,
+            customers: customers,
+          );
+          return Padding(
+            padding: EdgeInsets.all(context.spacing.lg),
+
+            /// 🔥 GANTI JADI BlocConsumer (lebih clean)
+            child: FormBuilder(
+              formKey: controller.formKey,
+              fields: config.fields,
+              submitLabel: AppStrings.save,
+              onSubmit: () {
+                cubit.create(controller.buildParams());
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+}

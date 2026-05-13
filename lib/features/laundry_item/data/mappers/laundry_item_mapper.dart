@@ -1,6 +1,7 @@
 import 'package:app_laundry/features/laundry_item/data/models/laundry_item_model.dart';
 import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_entity.dart';
 import 'package:app_laundry/features/laundry_item/domain/enums/laundry_item_category.dart';
+import 'package:app_laundry/features/laundry_item/domain/extensions/string_laundry_item_category_ext.dart';
 
 class LaundryItemMapper {
   /// Model → Entity
@@ -8,7 +9,7 @@ class LaundryItemMapper {
     return LaundryItemEntity(
       id: model.id,
       name: model.name,
-      category: LaundryItemCategoryX.fromString(model.category),
+      category: model.category.toLaundryItemCategory,
       createdAt: model.createdAt,
       updatedAt: model.updatedAt,
     );

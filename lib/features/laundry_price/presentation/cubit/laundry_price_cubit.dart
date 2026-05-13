@@ -11,9 +11,9 @@
 // =============================================================================
 
 import 'package:app_laundry/core/base/cubit/base_search_cubit.dart';
+import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
+import 'package:app_laundry/features/laundry/domain/extensions/laundry_speed_type_ext.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
-import 'package:app_laundry/features/laundry_price/domain/enums/laundry_service_type.dart';
-import 'package:app_laundry/features/laundry_price/domain/enums/order_type_ext.dart';
 import 'package:app_laundry/features/laundry_price/domain/usecases/stream_laundry_prices.dart';
 
 class LaundryPriceCubit extends BaseSearchCubit<LaundryPriceEntity> {
@@ -32,10 +32,10 @@ class LaundryPriceCubit extends BaseSearchCubit<LaundryPriceEntity> {
 
   List<LaundryPriceEntity> filterByServiceType(
     List<LaundryPriceEntity> items,
-    LaundryServiceType type,
+    LaundrySpeedType type,
   ) {
-    return items.where((e) => e.serviceType == type).toList()..sort((a, b) {
-      return a.orderType.label.compareTo(b.orderType.label);
+    return items.where((e) => e.speedType == type).toList()..sort((a, b) {
+      return a.speedType.label.compareTo(b.speedType.label);
     });
   }
 }
