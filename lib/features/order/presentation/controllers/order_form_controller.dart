@@ -1,14 +1,14 @@
 import 'package:app_laundry/core/base/form/controllers/form_controller.dart';
-import 'package:app_laundry/features/laundry/domain/enums/laundry_service_type.dart';
-import 'package:app_laundry/features/laundry/domain/extensions/laundry_service_type_ext.dart';
+
+import 'package:app_laundry/features/order/domain/entities/order_group_entity.dart';
+
 import 'package:app_laundry/features/order/domain/enums/payment_status.dart';
+
 import 'package:app_laundry/features/order/domain/enums/payment_status_ext.dart';
 
-import 'package:app_laundry/features/order/domain/usecase/order_params.dart';
-
-import 'package:app_laundry/features/laundry/domain/extensions/string_laundry_service_type_ext.dart';
-
 import 'package:app_laundry/features/order/domain/extensions/string_payment_status_ext.dart';
+
+import 'package:app_laundry/features/order/domain/usecase/order_params.dart';
 
 import 'package:flutter/material.dart';
 
@@ -18,27 +18,36 @@ class OrderFormController extends FormController {
   // =========================
 
   final customerId = TextEditingController();
-  final serviceType = TextEditingController();
+
   final paymentStatus = TextEditingController();
+
+  // =========================
+  // GROUPS
+  // =========================
+
+  List<OrderGroupEntity> groups = [];
 
   // =========================
   // FORM CONTROLLERS
   // =========================
 
   @override
-  List<TextEditingController> get controllers => [
-    customerId,
-    serviceType,
-    paymentStatus,
-  ];
+  List<TextEditingController> get controllers => [customerId, paymentStatus];
 
   // =========================
   // INITIALIZE
   // =========================
 
   OrderFormController() {
-    serviceType.text = LaundryServiceType.dryClean.value;
     paymentStatus.text = PaymentStatus.unpaid.value;
+  }
+
+  // =========================
+  // TOTAL
+  // =========================
+
+  int get total {
+    return groups.fold<int>(0, (sum, e) => sum + e.subtotal);
   }
 
   // =========================
@@ -48,8 +57,9 @@ class OrderFormController extends FormController {
   CreateOrderParams buildParams() {
     return CreateOrderParams(
       customerId: customerId.text.trim(),
-      groups: [],
-      serviceType: serviceType.text.trim().toLaundryServiceType,
+
+      groups: groups,
+
       paymentStatus: paymentStatus.text.trim().toPaymentStatus,
     );
   }

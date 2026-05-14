@@ -1,6 +1,5 @@
 import 'package:app_laundry/core/base/form/form_builder.dart';
 import 'package:app_laundry/core/constants/app_strings.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
 import 'package:app_laundry/features/laundry_price/presentation/config/laundry_price_form_config.dart';
 import 'package:app_laundry/features/laundry_price/presentation/controllers/laundry_price_form_controller.dart';
@@ -42,18 +41,13 @@ class _LaundryPriceFormPageState extends State<LaundryPriceFormPage> {
 
     return Scaffold(
       appBar: AppBar(title: Text(config.submitLabel)),
-      body: Padding(
-        padding: EdgeInsets.all(context.spacing.lg),
-
-        /// 🔥 GANTI JADI BlocConsumer (lebih clean)
-        child: FormBuilder(
-          formKey: controller.formKey,
-          fields: config.fields,
-          submitLabel: AppStrings.save,
-          onSubmit: () {
-            cubit.submit(controller.buildParams());
-          },
-        ),
+      body: FormBuilder(
+        formKey: controller.formKey,
+        fields: config.fields,
+        submitLabel: AppStrings.save,
+        onSubmit: () {
+          cubit.submit(controller.buildParams());
+        },
       ),
     );
   }

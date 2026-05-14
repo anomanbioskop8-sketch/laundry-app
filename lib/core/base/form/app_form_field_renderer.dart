@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------------
 
 import 'package:app_laundry/core/base/form/fields/checkbox_field_widget.dart';
+import 'package:app_laundry/core/base/form/fields/custom_field_widget.dart';
 import 'package:app_laundry/core/base/form/fields/date_field_widget.dart';
 import 'package:app_laundry/core/base/form/fields/dropdown_field_widget.dart';
 import 'package:app_laundry/core/base/form/fields/text_field_widget.dart';
@@ -35,6 +36,9 @@ class AppFormFieldRenderer {
 
       case FormFieldType.checkbox:
         return CheckboxFieldWidget(field: f);
+
+      case FormFieldType.custom:
+        return CustomFieldWidget(field: f);
     }
   }
 }

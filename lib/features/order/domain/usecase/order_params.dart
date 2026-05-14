@@ -1,4 +1,3 @@
-import 'package:app_laundry/features/laundry/domain/enums/laundry_service_type.dart';
 import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
 import 'package:app_laundry/features/order/domain/entities/order_group_entity.dart';
 
@@ -24,13 +23,11 @@ class SaveOrderParams {
 class CreateOrderParams {
   final String customerId;
   final List<OrderGroupEntity> groups;
-  final LaundryServiceType serviceType;
   final PaymentStatus paymentStatus;
 
   CreateOrderParams({
     required this.customerId,
     required this.groups,
-    required this.serviceType,
     required this.paymentStatus,
   });
 }

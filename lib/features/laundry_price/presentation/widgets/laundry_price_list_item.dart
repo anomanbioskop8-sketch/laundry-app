@@ -16,25 +16,22 @@ class LaundryPriceListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final title = price.title;
-    final orderlabel = price.orderLabel;
-    final orderIcon = price.orderIcon;
+    final speedLabel = price.speedLabel;
+    final speedIcon = price.speedIcon;
+    final speedColor = price.speedColor;
     final serviceLabel = price.serviceLabel;
-    final serviceColor = price.serviceColor;
     final formattedPrice = price.formattedPrice;
 
     return ListTile(
       tileColor: context.colors.surfaceContainer,
 
-      leading: AppIconAvatar(icon: orderIcon, backgroundColor: serviceColor),
+      leading: AppIconAvatar(icon: speedIcon, backgroundColor: speedColor),
 
       title: Text(
-        orderlabel,
+        serviceLabel,
         style: context.titleSmall!.semiBold.onSurface(context),
       ),
-      subtitle: Text(
-        serviceLabel,
-        style: context.bodyMedium!.secondary(context),
-      ),
+      subtitle: Text(speedLabel, style: context.bodyMedium!.secondary(context)),
       trailing: Text(
         formattedPrice,
         style: context.titleSmall!.semiBold.primary(context),

@@ -11,17 +11,17 @@ extension LaundryPriceEntityX on LaundryPriceEntity {
   /// ORDER
   /// =========================
 
-  String get orderLabel => speedType.label;
+  String get speedLabel => speedType.label;
 
-  IconData get orderIcon => speedType.icon;
+  IconData get speedIcon => speedType.icon;
+
+  Color get speedColor => speedType.color;
 
   /// =========================
   /// SERVICE
   /// =========================
 
   String get serviceLabel => serviceType.label;
-
-  Color get serviceColor => Colors.black;
 
   /// =========================
   /// PRICE
@@ -32,6 +32,6 @@ extension LaundryPriceEntityX on LaundryPriceEntity {
   }
 
   String get title {
-    return '$orderLabel $serviceLabel';
+    return '$speedLabel $serviceLabel';
   }
 }

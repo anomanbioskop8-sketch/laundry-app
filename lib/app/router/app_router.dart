@@ -30,6 +30,7 @@ import 'package:app_laundry/features/laundry_price/presentation/pages/laundry_pr
 import 'package:app_laundry/features/main/presentation/pages/main_page.dart';
 import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
 import 'package:app_laundry/features/order/presentation/pages/order_form_page_wrapper.dart';
+import 'package:app_laundry/features/order/presentation/pages/order_group_form_page.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {
@@ -151,6 +152,13 @@ class AppRouter {
         builder: (context, state) {
           final order = state.extra as OrderEntity?;
           return OrderFormPageWrapper(item: order);
+        },
+      ),
+      GoRoute(
+        path: RoutePaths.orderGroupForm,
+        name: RoutePaths.orderGroupFormName,
+        builder: (context, state) {
+          return OrderGroupFormPage();
         },
       ),
     ],

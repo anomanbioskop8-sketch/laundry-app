@@ -1,6 +1,6 @@
-// features/laundry/domain/enums/order_type_ext.dart
-
-import 'package:app_laundry/core/theme/tokens/app_semantic_colors.dart';
+// =============================================================================
+// File : laundry_order_type_ext.dart
+// =============================================================================
 
 import 'package:flutter/material.dart';
 
@@ -28,24 +28,10 @@ extension LaundryOrderTypeExt on LaundryOrderType {
   String get label {
     switch (this) {
       case LaundryOrderType.pcs:
-        return 'Per Pcs';
+        return 'Per Item';
 
       case LaundryOrderType.kg:
         return 'Per Kg';
-    }
-  }
-
-  // =========================
-  // SHORT LABEL
-  // =========================
-
-  String get shortLabel {
-    switch (this) {
-      case LaundryOrderType.pcs:
-        return 'PCS';
-
-      case LaundryOrderType.kg:
-        return 'KG';
     }
   }
 
@@ -56,26 +42,20 @@ extension LaundryOrderTypeExt on LaundryOrderType {
   IconData get icon {
     switch (this) {
       case LaundryOrderType.pcs:
-        return Icons.checkroom_rounded;
+        return Icons.checkroom;
 
       case LaundryOrderType.kg:
-        return Icons.scale_rounded;
+        return Icons.scale;
     }
   }
 
   // =========================
-  // COLOR
+  // HELPERS
   // =========================
 
-  Color get color {
-    switch (this) {
-      case LaundryOrderType.pcs:
-        return AppSemanticColors.info;
+  bool get isKg => this == LaundryOrderType.kg;
 
-      case LaundryOrderType.kg:
-        return AppSemanticColors.success;
-    }
-  }
+  bool get isPcs => this == LaundryOrderType.pcs;
 
   // =========================
   // FROM STRING

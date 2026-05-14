@@ -71,4 +71,6 @@ class RoutePaths {
 
   static const orderForm = '/order/form';
   static const orderFormName = 'orderForm';
+  static const orderGroupForm = '/order/form/groupForm';
+  static const orderGroupFormName = 'orderGroupForm';
 }

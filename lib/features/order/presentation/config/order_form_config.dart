@@ -9,13 +9,11 @@ import 'package:app_laundry/core/constants/order_strings.dart';
 
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 
-import 'package:app_laundry/features/laundry/domain/enums/laundry_service_type.dart';
-import 'package:app_laundry/features/laundry/domain/extensions/laundry_service_type_ext.dart';
-
 import 'package:app_laundry/features/order/domain/enums/payment_status.dart';
 import 'package:app_laundry/features/order/domain/enums/payment_status_ext.dart';
 
 import 'package:app_laundry/features/order/presentation/controllers/order_form_controller.dart';
+import 'package:app_laundry/features/order/presentation/widgets/order_group_field_widget.dart';
 
 import 'package:flutter/material.dart';
 
@@ -51,23 +49,6 @@ class OrderFormConfig {
       ),
 
       // =========================
-      // SERVICE TYPE
-      // =========================
-      FormFieldConfig(
-        name: 'serviceType',
-        label: OrderStrings.serviceType,
-        initialValue: false,
-        type: FormFieldType.dropdown,
-        controller: controller.serviceType,
-        options: LaundryServiceType.values
-            .map(
-              (e) => FormOption(value: e.value, label: e.label, icon: e.icon),
-            )
-            .toList(),
-        validators: [(v) => AppValidator.required(v, field: 'Kategori')],
-      ),
-
-      // =========================
       // PAYMENT STATUS
       // =========================
       FormFieldConfig(
@@ -82,6 +63,22 @@ class OrderFormConfig {
             )
             .toList(),
         validators: [(v) => AppValidator.required(v, field: 'Payment')],
+      ),
+
+      FormFieldConfig(
+        name: 'groups',
+        label: '',
+        type: FormFieldType.custom,
+        controller: TextEditingController(),
+        customBuilder: (context) {
+          return OrderGroupFieldWidget(
+            groups: controller.groups,
+
+            onChanged: (value) {
+              controller.groups = value;
+            },
+          );
+        },
       ),
     ];
   }

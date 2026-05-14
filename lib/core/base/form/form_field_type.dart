@@ -7,4 +7,5 @@ enum FormFieldType {
   dropdown,
   date,
   checkbox,
+  custom,
 }
