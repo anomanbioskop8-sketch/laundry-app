@@ -77,7 +77,7 @@ class AppInputTheme {
       // ======================
       // ICON
       // ======================
-      prefixIconColor: cs.onSurfaceVariant,
+      prefixIconColor: cs.primary,
       suffixIconColor: cs.onSurfaceVariant,
 
       // ======================

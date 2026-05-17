@@ -15,7 +15,7 @@ extension LaundryPriceEntityX on LaundryPriceEntity {
 
   IconData get speedIcon => speedType.icon;
 
-  Color get speedColor => speedType.color;
+  Color speedColor(BuildContext context) => speedType.color(context);
 
   /// =========================
   /// SERVICE

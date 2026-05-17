@@ -1,10 +1,28 @@
 class AppValidator {
   /// =========================
+  /// REQUIRED COLLECTION
+  /// =========================
+
+  static String? requiredCollection(
+    Iterable<dynamic>? items, {
+    String message = 'Data wajib diisi',
+  }) {
+    if (items == null || items.isEmpty) {
+      return message;
+    }
+
+    return null;
+  }
+
+  /// =========================
   /// REQUIRED
   /// =========================
-  static String? required(String? value, {String field = 'Field'}) {
+  static String? required(
+    String? value, {
+    String message = 'Field wajib diisi',
+  }) {
     if (value == null || value.trim().isEmpty) {
-      return '$field wajib diisi';
+      return message;
     }
     return null;
   }

@@ -11,8 +11,8 @@ class CustomerStrings {
   // =========================
   // ACTION
   // =========================
-  static const add = 'Tambah Customer';
-  static const edit = 'Edit Customer';
+  static const create = 'Tambah Customer';
+  static const update = 'Edit Customer';
   static const delete = 'Hapus Customer';
 
   // =========================
@@ -32,8 +32,16 @@ class CustomerStrings {
   static const empty = 'Belum ada customer';
 
   // =========================
+  // HINT TEXT
+  // =========================
+  static const nameHint = 'Masukkan nama customer';
+  static const phoneHint = 'Masukkan nomor HP';
+  static const addressHint = 'Masukkan alamat customer';
+
+  // =========================
   // VALIDATION
   // =========================
-  static const nameRequired = 'Nama item wajib diisi';
+  static const nameRequired = 'Nama customer wajib diisi';
+  static const addressRequired = 'Alamat customer wajib diisi';
   static const categoryRequired = 'Kategori wajib dipilih';
 }

@@ -36,7 +36,7 @@ class CreateOrder {
       final order = OrderEntity(
         id: const Uuid().v4(),
         invoiceNumber: InvoiceGenerator.generate(),
-        customerId: params.customerId,
+        customerId: params.customer.id,
         groups: params.groups,
         orderStatus: OrderStatus.pending,
         paymentStatus: params.paymentStatus,

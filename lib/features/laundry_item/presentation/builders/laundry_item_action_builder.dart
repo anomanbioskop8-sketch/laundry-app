@@ -32,7 +32,10 @@ class LaundryItemActionBuilder {
         intent: ActionIntent.view,
         canShow: () => canUpdate,
         onTap: () async {
-          await context.pushNamed(RoutePaths.laundryPriceName, extra: item);
+          await context.pushNamed(
+            LaundryPricePaths.laundryPriceName,
+            extra: item,
+          );
         },
       ),
       ActionItem(
@@ -41,7 +44,10 @@ class LaundryItemActionBuilder {
         intent: ActionIntent.update,
         canShow: () => canUpdate,
         onTap: () async {
-          await context.pushNamed(RoutePaths.laundryItemFormName, extra: item);
+          await context.pushNamed(
+            LaundryItemPaths.laundryItemFormName,
+            extra: item,
+          );
         },
       ),
 

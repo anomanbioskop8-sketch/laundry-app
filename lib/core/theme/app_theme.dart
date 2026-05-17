@@ -1,6 +1,7 @@
 import 'package:app_laundry/core/theme/components/app_dialog_theme.dart';
 import 'package:app_laundry/core/theme/components/app_divider_theme.dart';
 import 'package:app_laundry/core/theme/components/app_floating_action_button_theme.dart';
+import 'package:app_laundry/core/theme/components/app_outlined_button_theme.dart';
 import 'package:app_laundry/core/theme/components/app_snack_bar_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:app_laundry/core/theme/components/app_appbar_theme.dart';
@@ -46,6 +47,7 @@ class AppTheme {
       /// Components
       appBarTheme: AppAppBarTheme.build(cs),
       elevatedButtonTheme: AppButtonTheme.build(cs),
+      outlinedButtonTheme: AppOutlinedButtonTheme.build(cs),
       inputDecorationTheme: AppInputTheme.build(cs: cs, text: text),
       cardTheme: AppCardTheme.build(cs),
 

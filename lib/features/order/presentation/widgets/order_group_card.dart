@@ -2,13 +2,13 @@
 // File : order_group_card.dart
 // =============================================================================
 
+import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
-
+import 'package:app_laundry/core/ui/components/app_chip.dart';
 import 'package:app_laundry/features/order/domain/entities/order_group_entity.dart';
 import 'package:app_laundry/features/order/domain/extensions/order_group_entity_ext.dart';
-
 import 'package:flutter/material.dart';
 
 class OrderGroupCard extends StatelessWidget {
@@ -21,33 +21,59 @@ class OrderGroupCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: ListTile(
-        // =========================
-        // TITLE
-        // =========================
-        leading: IconButton(
-          onPressed: onDelete,
-          icon: const Icon(Icons.delete),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          vertical: context.spacing.md,
+          horizontal: context.spacing.lg,
         ),
-        title: Text(
-          group.title,
-          style: context.labelMedium!.semiBold.onSurface(context),
-        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              group.serviceLabel,
+              style: context.labelLarge!.semiBold.onSurface(context),
+            ),
 
-        // =========================
-        // SUBTITLE
-        // =========================
-        subtitle: Text(
-          group.description,
-          style: context.labelSmall!.secondary(context),
-        ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    AppChip(
+                      label: group.speedLabel,
+                      icon: group.speedIcon,
+                      color: group.orderColor(context),
+                    ),
+                    context.spacing.sm.w,
+                    AppChip(
+                      label: group.orderLabel,
+                      icon: group.orderIcon,
+                      color: group.orderColor(context),
+                    ),
+                  ],
+                ),
 
-        // =========================
-        // TRAILING
-        // =========================
-        trailing: Text(
-          group.formattedSubtotal,
-          style: context.labelMedium!.primary(context),
+                IconButton(
+                  onPressed: onDelete,
+                  icon: Icon(Icons.delete_outline, color: context.error),
+                ),
+              ],
+            ),
+            context.spacing.md.h,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  group.description,
+                  style: context.labelSmall!.secondary(context),
+                ),
+                Text(
+                  group.formattedSubtotal,
+                  style: context.labelLarge!.primary(context),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

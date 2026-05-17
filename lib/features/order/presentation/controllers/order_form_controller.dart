@@ -1,4 +1,5 @@
 import 'package:app_laundry/core/base/form/controllers/form_controller.dart';
+import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 
 import 'package:app_laundry/features/order/domain/entities/order_group_entity.dart';
 
@@ -22,6 +23,12 @@ class OrderFormController extends FormController {
   final paymentStatus = TextEditingController();
 
   // =========================
+  // SELECTED CUSTOMER
+  // =========================
+
+  CustomerEntity? customer;
+
+  // =========================
   // GROUPS
   // =========================
 
@@ -43,6 +50,23 @@ class OrderFormController extends FormController {
   }
 
   // =========================
+  // SET CUSTOMER
+  // =========================
+
+  void setCustomer(CustomerEntity value) {
+    customer = value;
+    customerId.text = value.id;
+  }
+
+  // =========================
+  // PAYMENT STATUS
+  // =========================
+
+  PaymentStatus get selectedPaymentStatus {
+    return paymentStatus.text.trim().toPaymentStatus;
+  }
+
+  // =========================
   // TOTAL
   // =========================
 
@@ -55,12 +79,17 @@ class OrderFormController extends FormController {
   // =========================
 
   CreateOrderParams buildParams() {
+    final selectedCustomer = customer;
+
+    if (selectedCustomer == null) {
+      throw Exception('Customer belum dipilih');
+    }
     return CreateOrderParams(
-      customerId: customerId.text.trim(),
+      customer: selectedCustomer,
 
       groups: groups,
 
-      paymentStatus: paymentStatus.text.trim().toPaymentStatus,
+      paymentStatus: selectedPaymentStatus,
     );
   }
 }

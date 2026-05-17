@@ -1,6 +1,6 @@
 // features/laundry_price/domain/enums/laundry_service_type_ext.dart
 
-import 'package:app_laundry/core/theme/tokens/app_semantic_colors.dart';
+import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
 import 'package:flutter/material.dart';
 
@@ -52,16 +52,16 @@ extension LaundrySpeedTypeExt on LaundrySpeedType {
   // COLOR
   // =========================
 
-  Color get color {
+  Color color(BuildContext context) {
     switch (this) {
       case LaundrySpeedType.regular:
-        return AppSemanticColors.info;
+        return context.status.info;
 
       case LaundrySpeedType.express:
-        return AppSemanticColors.warning;
+        return context.status.warning;
 
       case LaundrySpeedType.sameDay:
-        return AppSemanticColors.success;
+        return context.status.success;
     }
   }
 

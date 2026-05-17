@@ -8,6 +8,7 @@
 // - Mengatur:
 //   - nama field
 //   - label field
+//   - icon field
 //   - tipe input
 //   - controller
 //   - validator
@@ -16,11 +17,12 @@
 // - Menjadi central configuration untuk form customer
 // =============================================================================
 
-import 'package:app_laundry/core/base/form/form_field_type.dart';
 import 'package:app_laundry/core/base/form/form_field_config.dart';
+import 'package:app_laundry/core/base/form/form_field_type.dart';
 import 'package:app_laundry/core/base/validators/app_validator.dart';
 import 'package:app_laundry/core/constants/customer_strings.dart';
 import 'package:app_laundry/features/customer/presentation/controllers/customer_form_controller.dart';
+import 'package:flutter/material.dart';
 
 class CustomerFormConfig {
   final CustomerFormController controller;
@@ -38,9 +40,12 @@ class CustomerFormConfig {
       FormFieldConfig(
         name: 'name',
         label: 'Nama',
+        hintText: CustomerStrings.nameHint,
+        prefixIcon: Icons.person_outline,
         controller: controller.name,
         validators: [
-          (v) => AppValidator.required(v, field: 'Nama'),
+          (v) =>
+              AppValidator.required(v, message: CustomerStrings.nameRequired),
           (v) => AppValidator.minLength(v, 3, field: 'Nama'),
         ],
       ),
@@ -51,6 +56,8 @@ class CustomerFormConfig {
       FormFieldConfig(
         name: 'phone',
         label: 'No HP',
+        hintText: CustomerStrings.phoneHint,
+        prefixIcon: Icons.phone_outlined,
         controller: controller.phone,
         type: FormFieldType.number,
         validators: [AppValidator.phone],
@@ -64,7 +71,15 @@ class CustomerFormConfig {
         label: 'Alamat',
         controller: controller.address,
         type: FormFieldType.multiline,
-        validators: [(v) => AppValidator.required(v, field: 'Alamat')],
+        hintText: CustomerStrings.addressHint,
+        prefixIcon: Icons.location_on_outlined,
+        maxLines: 3,
+        validators: [
+          (v) => AppValidator.required(
+            v,
+            message: CustomerStrings.addressRequired,
+          ),
+        ],
       ),
     ];
   }
@@ -73,6 +88,6 @@ class CustomerFormConfig {
   /// SUBMIT BUTTON LABEL
   /// =========================
   String get submitLabel {
-    return controller.isEdit ? CustomerStrings.edit : CustomerStrings.add;
+    return controller.isEdit ? CustomerStrings.update : CustomerStrings.create;
   }
 }

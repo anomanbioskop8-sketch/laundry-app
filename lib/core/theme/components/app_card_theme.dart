@@ -1,3 +1,4 @@
+import 'package:app_laundry/core/theme/helpers/radius_ext.dart';
 import 'package:app_laundry/core/theme/tokens/app_elevation.dart';
 import 'package:app_laundry/core/theme/tokens/app_radius.dart';
 import 'package:flutter/material.dart';
@@ -11,13 +12,8 @@ class AppCardTheme {
       elevation: AppElevation.low,
       color: colorScheme.surfaceContainer,
       shadowColor: colorScheme.shadow.withValues(alpha: 0.1),
-
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(radius.lg),
-      ),
-
+      shape: RoundedRectangleBorder(borderRadius: radius.lg.r),
       margin: EdgeInsets.zero,
-
       clipBehavior: Clip.antiAlias,
     );
   }

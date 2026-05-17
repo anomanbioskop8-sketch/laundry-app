@@ -59,7 +59,7 @@ class CustomerActionBuilder {
         canShow: () => canUpdate,
         onTap: () async {
           await context.pushNamed(
-            RoutePaths.customerDetailName,
+            CustomerPaths.customerDetailName,
             extra: customer,
           );
         },
@@ -74,7 +74,10 @@ class CustomerActionBuilder {
         intent: ActionIntent.update,
         canShow: () => canUpdate,
         onTap: () async {
-          await context.pushNamed(RoutePaths.customerFormName, extra: customer);
+          await context.pushNamed(
+            CustomerPaths.customerFormName,
+            extra: customer,
+          );
         },
       ),
 

@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomerPageWrapper extends StatelessWidget {
-  const CustomerPageWrapper({super.key});
+  final bool isPicker;
+  const CustomerPageWrapper({super.key, this.isPicker = false});
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,8 @@ class CustomerPageWrapper extends StatelessWidget {
         BlocProvider(create: (_) => sl<CustomerActionCubit>()),
         BlocProvider(create: (_) => sl<CustomerCubit>()..listenCustomers()),
       ],
-      child: const BaseActionListener<CustomerActionCubit, void>(
-        child: CustomerPage(),
+      child: BaseActionListener<CustomerActionCubit, void>(
+        child: CustomerPage(isPicker: isPicker),
       ),
     );
   }

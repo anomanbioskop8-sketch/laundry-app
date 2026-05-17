@@ -28,7 +28,7 @@ class LaundryPriceActionBuilder {
         canShow: () => canUpdate,
         onTap: () async {
           await context.pushNamed(
-            RoutePaths.laundryPriceFormName,
+            LaundryPricePaths.laundryPriceFormName,
             extra: price,
           );
         },

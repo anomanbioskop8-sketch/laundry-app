@@ -1,16 +1,53 @@
-// core/base/ui/bottom_sheet/base_action_sheet.dart
+// =============================================================================
+// File        : app_action_sheet.dart
+// Path        : lib/core/ui/bottom_sheet/app_action_sheet.dart
+// Layer       : Presentation (Bottom Sheet)
+// -----------------------------------------------------------------------------
+// Fungsi:
+// - Menampilkan action sheet global berbasis modal bottom sheet
+// - Digunakan untuk daftar aksi seperti:
+//   → View
+//   → Edit
+//   → Delete
+//   → Share
+// - Mendukung filtering visibility melalui ActionItem.canShow
+// - Menyediakan UI action yang konsisten di seluruh aplikasi
+//
+// Features:
+// - Rounded top corner
+// - Safe area support
+// - Auto hide jika tidak ada action visible
+// - Scrollable jika action terlalu banyak
+// - Support destructive / warning color via ActionIntent
+// =============================================================================
 
-import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
-import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
-import 'package:app_laundry/core/ui/bottom_sheet/action_intent_ext.dart';
 import 'package:app_laundry/core/theme/helpers/radius_ext.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
+import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
+import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
+import 'package:app_laundry/core/ui/bottom_sheet/action_intent_ext.dart';
 import 'package:flutter/material.dart';
+
 import 'action_item.dart';
 
 class AppActionSheet {
   AppActionSheet._();
+
+  // ===========================================================================
+  // SHOW
+  // ===========================================================================
+  //
+  // Menampilkan modal action sheet.
+  //
+  // Params:
+  // - [title]   → Judul action sheet
+  // - [actions] → List action yang akan ditampilkan
+  //
+  // Notes:
+  // - Action dengan canShow == false otomatis disembunyikan
+  // - Jika semua action hidden maka sheet tidak ditampilkan
+  // ===========================================================================
 
   static void show(
     BuildContext context, {
@@ -21,85 +58,162 @@ class AppActionSheet {
         .where((a) => a.canShow?.call() ?? true)
         .toList();
 
-    if (visibleActions.isEmpty) return;
+    // 🔒 Tidak tampil jika kosong
+    if (visibleActions.isEmpty) {
+      return;
+    }
+
+    final spacing = context.spacing;
 
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
-        borderRadius: context.radius.lg.rt, // 🔥 only top radius
-      ),
-      builder: (_) {
-        return SafeArea(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height * 0.7,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // =========================
-                // HEADER
-                // =========================
-                if (title != null) ...[
-                  context.spacing.sm.h,
 
-                  /// Drag handle
-                  Container(
-                    width: 40,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: context.colors.outlineVariant,
-                      borderRadius: context.radius.sm.r,
+      backgroundColor: Colors.transparent,
+
+      isScrollControlled: true,
+
+      builder: (_) => Padding(
+        padding: EdgeInsets.all(spacing.lg),
+
+        child: SafeArea(
+          child: Container(
+            decoration: BoxDecoration(
+              color: context.colors.surface,
+
+              borderRadius: context.radius.lg.r,
+            ),
+
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.7,
+              ),
+
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+
+                children: [
+                  // =========================
+                  // HEADER
+                  // =========================
+                  if (title != null) _Header(title: title),
+
+                  // =========================
+                  // ACTIONS
+                  // =========================
+                  Flexible(
+                    child: ListView.separated(
+                      shrinkWrap: true,
+
+                      itemCount: visibleActions.length,
+
+                      separatorBuilder: (_, _) => const Divider(),
+
+                      itemBuilder: (_, index) {
+                        final action = visibleActions[index];
+
+                        return _ActionTile(action: action);
+                      },
                     ),
                   ),
 
-                  context.spacing.md.h,
-
-                  Text(title, style: context.text.titleMedium!.semiBold),
-
-                  context.spacing.sm.h,
+                  spacing.sm.h,
                 ],
-
-                // =========================
-                // ACTION LIST
-                // =========================
-                Flexible(
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: visibleActions.length,
-
-                    /// Divider
-                    separatorBuilder: (_, _) => Divider(),
-
-                    itemBuilder: (_, index) {
-                      final action = visibleActions[index];
-
-                      return ListTile(
-                        leading: Icon(
-                          action.icon,
-                          color: action.intent.color(context),
-                        ),
-                        title: Text(
-                          action.title,
-                          style: context.text.labelLarge?.onSurfaceVariant(
-                            context,
-                          ),
-                        ),
-                        onTap: () {
-                          Navigator.pop(context);
-                          action.onTap();
-                        },
-                      );
-                    },
-                  ),
-                ),
-
-                context.spacing.sm.h,
-              ],
+              ),
             ),
           ),
-        );
+        ),
+      ),
+    );
+  }
+}
+
+// =============================================================================
+// HEADER
+// -----------------------------------------------------------------------------
+// Header section untuk Action Sheet.
+//
+// Fungsi:
+// - Menampilkan drag handle
+// - Menampilkan title action sheet
+// =============================================================================
+
+class _Header extends StatelessWidget {
+  final String title;
+
+  const _Header({required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    final spacing = context.spacing;
+
+    return Column(
+      children: [
+        spacing.sm.h,
+
+        // =========================
+        // DRAG HANDLE
+        // =========================
+        Container(
+          width: 40,
+          height: 4,
+
+          decoration: BoxDecoration(
+            color: context.colors.outlineVariant,
+
+            borderRadius: context.radius.sm.r,
+          ),
+        ),
+
+        spacing.md.h,
+
+        // =========================
+        // TITLE
+        // =========================
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: spacing.lg),
+
+          child: Text(title, style: context.text.titleMedium!.semiBold),
+        ),
+
+        spacing.sm.h,
+      ],
+    );
+  }
+}
+
+// =============================================================================
+// ACTION TILE
+// -----------------------------------------------------------------------------
+// Tile item untuk setiap action.
+//
+// Fungsi:
+// - Menampilkan icon action
+// - Menampilkan title action
+// - Menjalankan callback saat ditekan
+// =============================================================================
+
+class _ActionTile extends StatelessWidget {
+  final ActionItem action;
+
+  const _ActionTile({required this.action});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: EdgeInsets.symmetric(horizontal: context.spacing.lg),
+
+      leading: Icon(action.icon, color: action.intent.color(context)),
+
+      title: Text(
+        action.title,
+
+        style: context.text.labelLarge?.onSurface(context),
+      ),
+
+      onTap: () {
+        Navigator.pop(context);
+
+        action.onTap();
       },
     );
   }

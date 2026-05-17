@@ -13,6 +13,7 @@ import 'package:app_laundry/features/order/domain/enums/payment_status.dart';
 import 'package:app_laundry/features/order/domain/enums/payment_status_ext.dart';
 
 import 'package:app_laundry/features/order/presentation/controllers/order_form_controller.dart';
+import 'package:app_laundry/features/order/presentation/widgets/customer_field_widget.dart';
 import 'package:app_laundry/features/order/presentation/widgets/order_group_field_widget.dart';
 
 import 'package:flutter/material.dart';
@@ -36,15 +37,19 @@ class OrderFormConfig {
       FormFieldConfig(
         name: 'customer',
         label: OrderStrings.customer,
-        type: FormFieldType.dropdown,
+        type: FormFieldType.custom,
         controller: controller.customerId,
-        options: customers
-            .map(
-              (e) => FormOption(value: e.id, label: e.name, icon: Icons.person),
-            )
-            .toList(),
+        customBuilder: (context) {
+          return CustomerFieldWidget(
+            customer: controller.customer,
+            onChanged: (value) {
+              controller.setCustomer(value);
+            },
+          );
+        },
         validators: [
-          (v) => AppValidator.required(v, field: OrderStrings.customer),
+          (v) =>
+              AppValidator.required(v, message: OrderStrings.customerRequired),
         ],
       ),
 
@@ -62,7 +67,12 @@ class OrderFormConfig {
               (e) => FormOption(value: e.value, label: e.label, icon: e.icon),
             )
             .toList(),
-        validators: [(v) => AppValidator.required(v, field: 'Payment')],
+        validators: [
+          (v) => AppValidator.required(
+            v,
+            message: OrderStrings.paymentStatusRequired,
+          ),
+        ],
       ),
 
       FormFieldConfig(
@@ -73,12 +83,17 @@ class OrderFormConfig {
         customBuilder: (context) {
           return OrderGroupFieldWidget(
             groups: controller.groups,
-
             onChanged: (value) {
               controller.groups = value;
             },
           );
         },
+        validators: [
+          (_) => AppValidator.requiredCollection(
+            controller.groups,
+            message: OrderStrings.orderGroupRequired,
+          ),
+        ],
       ),
     ];
   }
@@ -88,6 +103,6 @@ class OrderFormConfig {
   // =========================
 
   String get submitLabel {
-    return OrderStrings.add;
+    return OrderStrings.create;
   }
 }

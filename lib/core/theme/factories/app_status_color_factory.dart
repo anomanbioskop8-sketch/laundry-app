@@ -19,15 +19,15 @@ class AppStatusColorsFactory {
 
   static AppStatusColors dark(ColorScheme scheme) {
     return AppStatusColors(
-      success: AppSemanticColors.success,
-      warning: AppSemanticColors.warning,
-      error: AppSemanticColors.error,
-      info: AppSemanticColors.info,
+      success: AppSemanticColors.successDark,
+      warning: AppSemanticColors.warningDark,
+      error: AppSemanticColors.errorDark,
+      info: AppSemanticColors.infoDark,
 
-      pending: AppSemanticColors.pending,
-      process: AppSemanticColors.process,
-      done: AppSemanticColors.done,
-      cancel: AppSemanticColors.cancel,
+      pending: AppSemanticColors.pendingDark,
+      process: AppSemanticColors.processDark,
+      done: AppSemanticColors.doneDark,
+      cancel: AppSemanticColors.cancelDark,
     );
   }
 }

@@ -8,8 +8,6 @@ class AppColorScheme {
         brightness: Brightness.light,
       ).copyWith(
         primary: AppSemanticColors.primary,
-        onSurface: AppSemanticColors.textPrimaryLight,
-        onSurfaceVariant: AppSemanticColors.textSecondaryLight,
         error: AppSemanticColors.error,
       );
 
@@ -18,8 +16,7 @@ class AppColorScheme {
         seedColor: AppSemanticColors.primary,
         brightness: Brightness.dark,
       ).copyWith(
-        onSurface: AppSemanticColors.textPrimaryDark,
-        onSurfaceVariant: AppSemanticColors.textSecondaryDark,
-        error: AppSemanticColors.error,
+        primary: AppSemanticColors.primaryDark,
+        error: AppSemanticColors.errorDark,
       );
 }

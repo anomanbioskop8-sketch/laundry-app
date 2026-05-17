@@ -1,15 +1,14 @@
-// =============================================================================
-// File        : register_core.dart
-// Path        : lib/app/di/register_core.dart
-// Layer       : Core (Dependency Injection)
-// -----------------------------------------------------------------------------
-// Fungsi:
-// - Register dependency global (logger, firebase, session, permission)
-// =============================================================================
-
+import 'package:app_laundry/app/router/navigation_service.dart';
 import 'package:app_laundry/core/auth/policy/customer/customer_delete_policy.dart';
 import 'package:app_laundry/core/auth/policy/customer/customer_policy.dart';
 import 'package:app_laundry/core/auth/policy/customer/customer_update_policy.dart';
+
+import 'package:app_laundry/core/auth/policy/order/order_delete_policy.dart';
+import 'package:app_laundry/core/auth/policy/order/order_payment_policy.dart';
+import 'package:app_laundry/core/auth/policy/order/order_policy.dart';
+import 'package:app_laundry/core/auth/policy/order/order_status_policy.dart';
+import 'package:app_laundry/core/auth/policy/order/order_update_policy.dart';
+
 import 'package:app_laundry/core/auth/policy/permission_policy.dart';
 import 'package:app_laundry/core/auth/permission/policy_resolver.dart';
 import 'package:app_laundry/core/auth/permission/permission_service.dart';
@@ -28,6 +27,7 @@ Future<void> registerCore(GetIt sl) async {
   _session(sl);
   _policy(sl);
   _permission(sl);
+  _navigation(sl);
 }
 
 // =========================
@@ -50,12 +50,10 @@ void _firebase(GetIt sl) {
 // SESSION
 // =========================
 void _session(GetIt sl) {
-  /// 🔥 SessionCubit = source of truth (UI state)
   sl.registerLazySingleton<SessionCubit>(
     () => SessionCubit(sl<GetCurrentUser>()),
   );
 
-  /// 🔥 SessionService = abstraction untuk domain layer
   sl.registerLazySingleton<SessionService>(
     () => SessionServiceImpl(sl<SessionCubit>()),
   );
@@ -65,7 +63,9 @@ void _session(GetIt sl) {
 // POLICY (AUTHORIZATION)
 // =========================
 void _policy(GetIt sl) {
-  /// granular policy
+  // =========================
+  // CUSTOMER POLICY
+  // =========================
   sl.registerLazySingleton<CustomerDeletePolicy>(
     () => CustomerDeletePolicy(sl<SessionService>()),
   );
@@ -74,11 +74,38 @@ void _policy(GetIt sl) {
     () => CustomerUpdatePolicy(sl<SessionService>()),
   );
 
-  /// aggregate policy
   sl.registerLazySingleton<CustomerPolicy>(
     () => CustomerPolicy(
       deletePolicy: sl<CustomerDeletePolicy>(),
       updatePolicy: sl<CustomerUpdatePolicy>(),
+    ),
+  );
+
+  // =========================
+  // ORDER POLICY (NEW)
+  // =========================
+  sl.registerLazySingleton<OrderDeletePolicy>(
+    () => OrderDeletePolicy(sl<SessionService>()),
+  );
+
+  sl.registerLazySingleton<OrderUpdatePolicy>(
+    () => OrderUpdatePolicy(sl<SessionService>()),
+  );
+
+  sl.registerLazySingleton<OrderPaymentPolicy>(
+    () => OrderPaymentPolicy(sl<SessionService>()),
+  );
+
+  sl.registerLazySingleton<OrderStatusPolicy>(
+    () => OrderStatusPolicy(sl<SessionService>()),
+  );
+
+  sl.registerLazySingleton<OrderPolicy>(
+    () => OrderPolicy(
+      deletePolicy: sl<OrderDeletePolicy>(),
+      updatePolicy: sl<OrderUpdatePolicy>(),
+      paymentPolicy: sl<OrderPaymentPolicy>(),
+      statusPolicy: sl<OrderStatusPolicy>(),
     ),
   );
 }
@@ -87,12 +114,13 @@ void _policy(GetIt sl) {
 // PERMISSION SYSTEM
 // =========================
 void _permission(GetIt sl) {
-  /// 🔥 resolve policy berdasarkan context (dynamic)
   sl.registerLazySingleton<PolicyResolver>(
-    () => PolicyResolver(customerPolicy: sl()),
+    () => PolicyResolver(
+      customerPolicy: sl<CustomerPolicy>(),
+      orderPolicy: sl<OrderPolicy>(),
+    ),
   );
 
-  /// 🔥 central permission checker
   sl.registerLazySingleton<PermissionPolicy>(
     () => PermissionPolicy(
       resolver: sl<PolicyResolver>(),
@@ -100,8 +128,14 @@ void _permission(GetIt sl) {
     ),
   );
 
-  /// 🔥 digunakan oleh UI / Cubit
   sl.registerLazySingleton<PermissionService>(
     () => PermissionService(sl<PermissionPolicy>()),
   );
+}
+
+// =========================
+// NAVIGATION
+// =========================
+void _navigation(GetIt sl) {
+  sl.registerLazySingleton<NavigationService>(() => NavigationService(sl()));
 }

@@ -36,8 +36,12 @@ class DropdownFieldWidget extends StatelessWidget {
               value: e.value,
               child: Row(
                 children: [
-                  Icon(e.icon, size: context.sizes.iconMd),
-                  context.spacing.md.w,
+                  Icon(
+                    e.icon,
+                    size: context.sizes.iconLg,
+                    color: context.primary,
+                  ),
+                  context.spacing.lg.w,
                   Text(e.label, style: context.labelLarge!.onSurface(context)),
                 ],
               ),

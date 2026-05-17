@@ -3,7 +3,7 @@
 // Path        : lib/features/order/domain/enums/payment_status_ext.dart
 // =============================================================================
 
-import 'package:app_laundry/core/theme/tokens/app_semantic_colors.dart';
+import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:flutter/material.dart';
 
 import 'payment_status.dart';
@@ -60,14 +60,14 @@ extension PaymentStatusExt on PaymentStatus {
     }
   }
 
-  Color get color {
+  Color color(BuildContext context) {
     switch (this) {
       case PaymentStatus.unpaid:
-        return AppSemanticColors.cancel;
+        return context.status.cancel;
       case PaymentStatus.partial:
-        return AppSemanticColors.warning;
+        return context.status.warning;
       case PaymentStatus.paid:
-        return AppSemanticColors.success;
+        return context.status.success;
     }
   }
 

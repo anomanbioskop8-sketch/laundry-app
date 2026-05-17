@@ -1,3 +1,8 @@
+// =============================================================================
+// File        : customer_view.dart
+// Path        : lib/features/customer/presentation/widgets/customer_view.dart
+// =============================================================================
+
 import 'package:app_laundry/core/base/builders/base_stream_builder.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_cubit.dart';
@@ -5,7 +10,9 @@ import 'package:app_laundry/features/customer/presentation/widgets/customer_list
 import 'package:flutter/material.dart';
 
 class CustomerView extends StatelessWidget {
-  const CustomerView({super.key});
+  final bool isPicker;
+
+  const CustomerView({super.key, this.isPicker = false});
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +21,13 @@ class CustomerView extends StatelessWidget {
         return ListView.separated(
           itemCount: customers.length,
 
-          /// 🔥 item
           itemBuilder: (_, i) {
-            return CustomerListItem(customer: customers[i]);
+            return CustomerListItem(customer: customers[i], isPicker: isPicker);
           },
 
-          /// 🔥 separator
-          separatorBuilder: (_, i) => const Divider(),
+          separatorBuilder: (_, i) {
+            return const Divider();
+          },
         );
       },
     );

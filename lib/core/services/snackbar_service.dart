@@ -1,24 +1,24 @@
 // =============================================================================
 // File        : app_snackbar.dart
-// Path        : core/services/app_snackbar.dart
+// Path        : lib/core/services/app_snackbar.dart
 // Layer       : Core (UI Service)
 // -----------------------------------------------------------------------------
-// Global Snackbar Service.
+// Fungsi:
+// - Menampilkan snackbar global tanpa perlu BuildContext
+// - Digunakan oleh Cubit / Service layer
+// - Menjaga konsistensi feedback UI
 //
-// Responsibility:
-// - Menampilkan snackbar global tanpa perlu BuildContext.
-// - Digunakan oleh Cubit / Service layer (bukan langsung dari UI).
-// - Menjaga konsistensi UI feedback (success, error, info).
-//
-// Notes:
-// - Bergantung pada AppNavigator.messengerKey.
-// - Pastikan sudah di-assign di MaterialApp.
+// Features:
+// - Floating snackbar
+// - Global access via AppNavigator
+// - Semantic success & error state
+// - Custom margin & rounded style
 // =============================================================================
 
+import 'package:app_laundry/core/services/app_navigator.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:flutter/material.dart';
-import 'app_navigator.dart';
 
 class AppSnackbar {
   AppSnackbar._();
@@ -26,9 +26,12 @@ class AppSnackbar {
   // =========================
   // SUCCESS
   // =========================
+
   static void success(String message) {
     final context = AppNavigator.navigatorKey.currentContext;
+
     if (context == null) return;
+
     _show(
       context,
       message: message,
@@ -40,9 +43,12 @@ class AppSnackbar {
   // =========================
   // ERROR
   // =========================
+
   static void error(String message) {
     final context = AppNavigator.navigatorKey.currentContext;
+
     if (context == null) return;
+
     _show(
       context,
       message: message,
@@ -54,6 +60,7 @@ class AppSnackbar {
   // =========================
   // CORE
   // =========================
+
   static void _show(
     BuildContext context, {
     required String message,
@@ -66,13 +73,15 @@ class AppSnackbar {
 
     messenger.showSnackBar(
       SnackBar(
-        elevation: 0,
-        behavior: SnackBarBehavior.floating,
         content: _SnackbarContent(message: message, icon: icon, color: color),
       ),
     );
   }
 }
+
+// =============================================================================
+// SNACKBAR CONTENT
+// =============================================================================
 
 class _SnackbarContent extends StatelessWidget {
   final String message;

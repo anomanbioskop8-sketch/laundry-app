@@ -20,7 +20,12 @@ class LaundryPriceFormConfig {
         type: FormFieldType.number,
         controller: controller.price,
 
-        validators: [(v) => AppValidator.required(v, field: 'Harga')],
+        validators: [
+          (v) => AppValidator.required(
+            v,
+            message: LaundryPriceStrings.priceRequired,
+          ),
+        ],
       ),
     ];
   }

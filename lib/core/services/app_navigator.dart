@@ -20,7 +20,9 @@
 // - Menjadi dependency utama untuk AppUIService.
 // =============================================================================
 
+import 'package:app_laundry/app/router/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AppNavigator {
   AppNavigator._(); // ❌ prevent instantiation
@@ -47,4 +49,6 @@ class AppNavigator {
 
   static final GlobalKey<ScaffoldMessengerState> messengerKey =
       GlobalKey<ScaffoldMessengerState>();
+
+  static final GoRouter router = AppRouter().router;
 }

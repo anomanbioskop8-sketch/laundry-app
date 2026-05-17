@@ -10,7 +10,10 @@ class LaundryItemFab extends StatelessWidget {
     return FloatingActionButton(
       heroTag: 'fab_laundry_item',
       onPressed: () async {
-        await context.pushNamed(RoutePaths.laundryItemFormName, extra: null);
+        await context.pushNamed(
+          LaundryItemPaths.laundryItemFormName,
+          extra: null,
+        );
       },
       child: const Icon(Icons.add),
     );

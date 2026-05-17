@@ -4,7 +4,7 @@
 // =============================================================================
 
 import 'package:app_laundry/core/constants/order_strings.dart';
-import 'package:app_laundry/core/theme/tokens/app_semantic_colors.dart';
+import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:flutter/material.dart';
 
 import 'order_status.dart';
@@ -79,18 +79,18 @@ extension OrderStatusExt on OrderStatus {
     }
   }
 
-  Color get color {
+  Color color(BuildContext context) {
     switch (this) {
       case OrderStatus.pending:
-        return AppSemanticColors.pending;
+        return context.status.pending;
       case OrderStatus.process:
-        return AppSemanticColors.process;
+        return context.status.process;
       case OrderStatus.done:
-        return AppSemanticColors.done;
+        return context.status.done;
       case OrderStatus.pickedUp:
-        return AppSemanticColors.process;
+        return context.status.process;
       case OrderStatus.canceled:
-        return AppSemanticColors.cancel;
+        return context.status.cancel;
     }
   }
 

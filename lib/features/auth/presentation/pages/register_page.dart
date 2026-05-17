@@ -1,3 +1,4 @@
+import 'package:app_laundry/app/router/route_paths.dart';
 import 'package:app_laundry/core/base/form/form_builder.dart';
 import 'package:app_laundry/core/services/app_ui_service.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
@@ -9,6 +10,7 @@ import 'package:app_laundry/features/auth/presentation/cubit/auth_state.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -62,7 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/register');
+                  context.pushNamed(AuthPaths.loginName);
                 },
                 child: const Text('Belum punya akun? Register'),
               ),

@@ -19,11 +19,18 @@ class OrderActionBuilder {
   OrderActionBuilder({required this.order});
 
   static List<ActionItem> build(BuildContext context, OrderEntity order) {
-    final canChangeStatus = sl<PermissionService>().can(
+    final canChangeStatus = sl<PermissionService>().canWith(
       Permission.canChangeStatus,
+      resource: order,
     );
-    final canPay = sl<PermissionService>().can(Permission.canPayOrder);
-    final canDelete = sl<PermissionService>().can(Permission.canDeleteOrder);
+    final canPay = sl<PermissionService>().canWith(
+      Permission.canPayOrder,
+      resource: order,
+    );
+    final canDelete = sl<PermissionService>().canWith(
+      Permission.canDeleteOrder,
+      resource: order,
+    );
 
     return [
       ActionItem(

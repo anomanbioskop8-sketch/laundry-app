@@ -1,3 +1,4 @@
+import 'package:app_laundry/core/theme/helpers/radius_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:app_laundry/core/theme/tokens/app_sizes.dart';
 import 'package:app_laundry/core/theme/tokens/app_radius.dart';
@@ -12,37 +13,22 @@ class AppFloatingActionButtonTheme {
     return FloatingActionButtonThemeData(
       backgroundColor: cs.primary,
       foregroundColor: cs.onPrimary,
-
       elevation: 3,
       focusElevation: 4,
       hoverElevation: 4,
       highlightElevation: 6,
-
-      /// 🔥 shadow pakai color scheme
       splashColor: cs.primary.withValues(alpha: 0.12),
-
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(radius.lg),
-      ),
-
-      /// size default (regular FAB)
+      shape: RoundedRectangleBorder(borderRadius: radius.lg.r),
       sizeConstraints: BoxConstraints(
-        minWidth: sizes.buttonLg, // 56
+        minWidth: sizes.buttonLg,
         minHeight: sizes.buttonLg,
       ),
-
-      /// icon theme
-      iconSize: sizes.iconLg, // 24
-      /// extended FAB text style
+      iconSize: sizes.iconLg,
       extendedTextStyle: TextStyle(
         color: cs.onPrimary,
         fontWeight: FontWeight.w600,
       ),
-
-      /// spacing extended FAB
       extendedPadding: EdgeInsets.symmetric(horizontal: sizes.buttonMd / 2),
-
-      /// 🔥 modern feel
       enableFeedback: true,
     );
   }

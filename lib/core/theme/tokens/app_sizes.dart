@@ -1,41 +1,83 @@
+// =============================================================================
+// File        : app_sizes.dart
+// Path        : lib/core/theme/tokens/app_sizes.dart
+// Layer       : Core (Theme Tokens)
+// -----------------------------------------------------------------------------
+// Fungsi:
+// - Menyediakan standard ukuran global aplikasi
+// - Menjaga konsistensi ukuran UI di seluruh aplikasi
+// - Menyediakan token ukuran untuk:
+//   - icon
+//   - button
+//   - avatar
+//   - input
+//   - border
+// - Menggunakan pendekatan scalable sizing berbasis design system
+// =============================================================================
+
 class AppSizes {
   const AppSizes();
 
-  //static const _phi = 1.618;
+  // =========================
+  // ICON SIZE
+  // =========================
+  /// Ukuran icon extra small
+  final double iconXs = 12;
+
+  /// Ukuran icon small
+  final double iconSm = 16;
+
+  /// Ukuran icon medium
+  final double iconMd = 20;
+
+  /// Ukuran icon large
+  final double iconLg = 24;
+
+  /// Ukuran icon extra large
+  final double iconXl = 32;
 
   // =========================
-  // ICON (base: 12)
+  // BUTTON HEIGHT
   // =========================
-  final double iconXs = 12; // base
-  final double iconSm = 16; // ~12 * φ
-  final double iconMd = 20; // adjusted
-  final double iconLg = 24; // standard material
-  final double iconXl = 32; // ~24 * φ
+  /// Tinggi button small
+  final double buttonSm = 36;
+
+  /// Tinggi button medium
+  final double buttonMd = 44;
+
+  /// Tinggi button large
+  final double buttonLg = 56;
 
   // =========================
-  // BUTTON HEIGHT (base: 36)
+  // AVATAR SIZE
   // =========================
-  final double buttonSm = 36; // compact
-  final double buttonMd = 44; // ~36 * φ
-  final double buttonLg = 56; // ~44 * φ
+  /// Ukuran avatar extra small
+  final double avatarXs = 24;
 
-  // =========================
-  // AVATAR (pure golden scaling)
-  // =========================
-  final double avatarXs = 24; // chip / compact
-  final double avatarSm = 40; // list dense (≈ φ)
-  final double avatarMd = 64; // ✅ standard list / card
-  final double avatarLg = 96; // detail header
-  final double avatarXl = 120; // profile (clamped)
+  /// Ukuran avatar small
+  final double avatarSm = 40;
+
+  /// Ukuran avatar medium
+  final double avatarMd = 64;
+
+  /// Ukuran avatar large
+  final double avatarLg = 96;
+
+  /// Ukuran avatar extra large
+  final double avatarXl = 120;
 
   // =========================
   // INPUT
   // =========================
-  final double inputHeight = 48; // UX standard (jangan diubah)
+  /// Tinggi standard input field
+  final double inputHeight = 48;
 
   // =========================
   // BORDER WIDTH
   // =========================
+  /// Ketebalan border tipis
   final double borderThin = 1;
+
+  /// Ketebalan border tebal
   final double borderThick = 2;
 }

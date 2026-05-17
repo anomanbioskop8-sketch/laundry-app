@@ -1,3 +1,8 @@
+// =============================================================================
+// File        : customer_page.dart
+// Path        : lib/features/customer/presentation/pages/customer_page.dart
+// =============================================================================
+
 import 'package:app_laundry/core/ui/search_field.dart';
 import 'package:app_laundry/core/constants/customer_strings.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
@@ -8,28 +13,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomerPage extends StatelessWidget {
-  const CustomerPage({super.key});
+  final bool isPicker;
+
+  const CustomerPage({super.key, this.isPicker = false});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text(CustomerStrings.title)),
+      appBar: AppBar(
+        title: Text(
+          isPicker ? 'Pilih ${CustomerStrings.title}' : CustomerStrings.title,
+        ),
+      ),
+
       body: Column(
         children: [
-          /// 🔍 SEARCH BAR
+          // =========================
+          // SEARCH BAR
+          // =========================
           Padding(
             padding: EdgeInsets.all(context.spacing.lg),
+
             child: AppSearchField(
               hintText: 'Cari nama atau nomor...',
               onChanged: context.read<CustomerCubit>().search,
             ),
           ),
 
-          /// 📋 LIST
-          const Expanded(child: CustomerView()),
+          // =========================
+          // LIST
+          // =========================
+          Expanded(child: CustomerView(isPicker: isPicker)),
         ],
       ),
-      floatingActionButton: const CustomerFab(),
+
+      floatingActionButton: isPicker ? null : const CustomerFab(),
     );
   }
 }

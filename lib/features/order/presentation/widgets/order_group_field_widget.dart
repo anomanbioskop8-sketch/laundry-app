@@ -3,29 +3,21 @@
 // =============================================================================
 
 import 'package:app_laundry/app/router/route_paths.dart';
-
 import 'package:app_laundry/core/constants/order_strings.dart';
-
+import 'package:app_laundry/core/ui/components/app_outlined_action_button.dart';
 import 'package:app_laundry/core/ui/states/app_empty_widget.dart';
-
 import 'package:app_laundry/features/order/domain/entities/order_group_entity.dart';
-
 import 'package:app_laundry/features/order/presentation/widgets/order_group_card.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:go_router/go_router.dart';
 
 class OrderGroupFieldWidget extends StatefulWidget {
   final List<OrderGroupEntity> groups;
-
   final ValueChanged<List<OrderGroupEntity>> onChanged;
 
   const OrderGroupFieldWidget({
     super.key,
-
     required this.groups,
-
     required this.onChanged,
   });
 
@@ -39,7 +31,6 @@ class _OrderGroupFieldWidgetState extends State<OrderGroupFieldWidget> {
   @override
   void initState() {
     super.initState();
-
     groups = [...widget.groups];
   }
 
@@ -49,7 +40,7 @@ class _OrderGroupFieldWidgetState extends State<OrderGroupFieldWidget> {
 
   Future<void> _addGroup() async {
     final result = await context.pushNamed<OrderGroupEntity>(
-      RoutePaths.orderGroupFormName,
+      OrderPaths.orderGroupFormName,
     );
 
     if (result == null) return;
@@ -85,12 +76,10 @@ class _OrderGroupFieldWidgetState extends State<OrderGroupFieldWidget> {
         SizedBox(
           width: double.infinity,
 
-          child: ElevatedButton.icon(
+          child: AppOutlinedActionButton(
             onPressed: _addGroup,
-
-            icon: const Icon(Icons.add),
-
-            label: Text(OrderStrings.addGroup),
+            icon: Icons.add_outlined,
+            label: OrderStrings.addGroup,
           ),
         ),
 
@@ -99,7 +88,7 @@ class _OrderGroupFieldWidgetState extends State<OrderGroupFieldWidget> {
         // =========================
         // EMPTY
         // =========================
-        if (groups.isEmpty) const AppEmptyWidget(),
+        if (groups.isEmpty) AppEmptyWidget(message: OrderStrings.emptyGroup),
 
         // =========================
         // LIST

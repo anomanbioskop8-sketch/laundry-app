@@ -4,13 +4,19 @@
 // Layer       : Presentation (Reusable Field Widget)
 // -----------------------------------------------------------------------------
 // Fungsi:
-// - Render Text-based field (text, email, number, password, multiline)
+// - Render reusable text-based field
+// - Mendukung:
+//   - text
+//   - email
+//   - number
+//   - password
+//   - multiline
 // - Digunakan oleh AppFormFieldRenderer
 // =============================================================================
 
+import 'package:app_laundry/core/base/form/form_field_config.dart';
 import 'package:app_laundry/core/base/form/form_field_type.dart';
 import 'package:flutter/material.dart';
-import '../form_field_config.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final FormFieldConfig field;
@@ -19,20 +25,82 @@ class TextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMultiline = field.maxLines != null && field.maxLines! > 1;
+
     return TextFormField(
+      // =========================
+      // CONTROLLER
+      // =========================
       controller: field.controller,
+
+      // =========================
+      // STATE
+      // =========================
+      enabled: field.enabled,
+      readOnly: field.readOnly,
+      obscureText: _isObscure,
+
+      // =========================
+      // INPUT
+      // =========================
       keyboardType: field.keyboardType ?? _mapKeyboard(field.type),
-      obscureText: field.type == FormFieldType.password || field.obscureText,
-      validator: field.validate,
+      textInputAction: field.textInputAction,
       autofillHints: field.autofillHints,
-      maxLines: field.type == FormFieldType.multiline ? 3 : 1,
-      decoration: InputDecoration(labelText: field.label),
+      inputFormatters: field.inputFormatters,
+      onChanged: field.onChanged,
+
+      // =========================
+      // TEXT
+      // =========================
+      minLines: isMultiline ? field.minLines ?? 3 : 1,
+      maxLines: isMultiline ? field.maxLines : 1,
+      maxLength: field.maxLength,
+
+      // =========================
+      // VALIDATION
+      // =========================
+      validator: field.validate,
+
+      // =========================
+      // UI
+      // =========================
+      decoration: InputDecoration(
+        labelText: field.displayLabel,
+        hintText: field.hintText,
+
+        // 🔥 hanya multiline
+        alignLabelWithHint: isMultiline,
+
+        // =========================
+        // PREFIX ICON
+        // =========================
+        prefixIcon: field.prefixIcon != null
+            ? Padding(
+                padding: EdgeInsets.only(bottom: isMultiline ? 48 : 0),
+                child: Icon(field.prefixIcon),
+              )
+            : null,
+
+        // =========================
+        // SUFFIX ICON
+        // =========================
+        suffixIcon: field.suffixIcon != null ? Icon(field.suffixIcon) : null,
+      ),
     );
   }
 
-  /// =========================
-  /// KEYBOARD TYPE MAPPER
-  /// =========================
+  // =========================
+  // PASSWORD CHECK
+  // =========================
+
+  bool get _isObscure {
+    return field.type == FormFieldType.password || field.obscureText;
+  }
+
+  // =========================
+  // KEYBOARD TYPE MAPPER
+  // =========================
+
   TextInputType _mapKeyboard(FormFieldType type) {
     switch (type) {
       case FormFieldType.email:

@@ -56,7 +56,10 @@ class OrderGroupFormConfig {
             .toList(),
 
         validators: [
-          (v) => AppValidator.required(v, field: OrderStrings.serviceType),
+          (v) => AppValidator.required(
+            v,
+            message: OrderStrings.serviceTypeRequired,
+          ),
         ],
       ),
 
@@ -79,7 +82,8 @@ class OrderGroupFormConfig {
             .toList(),
 
         validators: [
-          (v) => AppValidator.required(v, field: OrderStrings.speedType),
+          (v) =>
+              AppValidator.required(v, message: OrderStrings.speedTypeRequired),
         ],
       ),
 
@@ -102,7 +106,8 @@ class OrderGroupFormConfig {
             .toList(),
 
         validators: [
-          (v) => AppValidator.required(v, field: OrderStrings.orderType),
+          (v) =>
+              AppValidator.required(v, message: OrderStrings.orderTypeRequired),
         ],
       ),
 
@@ -132,7 +137,7 @@ class OrderGroupFormConfig {
         controller: controller.price,
 
         validators: [
-          (v) => AppValidator.required(v, field: OrderStrings.price),
+          (v) => AppValidator.required(v, message: OrderStrings.priceRequired),
         ],
       ),
     ];

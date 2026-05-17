@@ -20,10 +20,7 @@ class LoginFormConfig {
         controller: controller.email,
         keyboardType: TextInputType.emailAddress,
         autofillHints: [AutofillHints.email],
-        validators: [
-          (v) => AppValidator.required(v, field: 'Email'),
-          AppValidator.email,
-        ],
+        validators: [AppValidator.email],
       ),
 
       /// 🔒 PASSWORD
@@ -33,10 +30,7 @@ class LoginFormConfig {
         controller: controller.pass,
         obscureText: true, // 🔥 penting
         autofillHints: [AutofillHints.password],
-        validators: [
-          (v) => AppValidator.required(v, field: 'Password'),
-          AppValidator.password,
-        ],
+        validators: [AppValidator.password],
       ),
     ];
   }

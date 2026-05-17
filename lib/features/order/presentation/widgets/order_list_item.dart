@@ -99,7 +99,7 @@ class OrderListItem extends StatelessWidget {
                                 AppChip(
                                   label: paymentStatus.label,
                                   icon: paymentStatus.icon,
-                                  color: paymentStatus.color,
+                                  color: paymentStatus.color(context),
                                 ),
                               ],
                             ),
@@ -136,7 +136,7 @@ class OrderListItem extends StatelessWidget {
         AppChip(
           label: orderStatus.label,
           icon: orderStatus.icon,
-          color: orderStatus.color,
+          color: orderStatus.color(context),
         ),
       ],
     );

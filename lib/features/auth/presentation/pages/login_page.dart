@@ -1,12 +1,12 @@
+import 'package:app_laundry/app/router/route_paths.dart';
 import 'package:app_laundry/core/base/form/form_builder.dart';
 import 'package:app_laundry/core/constants/auth_strings.dart';
-import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/features/auth/presentation/config/login_form_config.dart';
 import 'package:app_laundry/features/auth/presentation/controllers/login_form_controller.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -31,29 +31,23 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       appBar: AppBar(title: const Text(AuthStrings.loginTitle)),
+      body: Column(
+        children: [
+          FormBuilder(
+            formKey: controller.formKey,
+            fields: config.fields,
+            onSubmit: () {
+              cubit.login(controller.buildParams());
+            },
+          ),
 
-      body: Padding(
-        padding: EdgeInsets.all(context.spacing.lg),
-        child: Column(
-          children: [
-            FormBuilder(
-              formKey: controller.formKey,
-              fields: config.fields,
-              onSubmit: () {
-                cubit.login(controller.buildParams());
-              },
-            ),
-
-            context.spacing.md.h,
-
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/register');
-              },
-              child: const Text('Belum punya akun? Register'),
-            ),
-          ],
-        ),
+          TextButton(
+            onPressed: () {
+              context.pushNamed(AuthPaths.registerName);
+            },
+            child: const Text('Belum punya akun? Register'),
+          ),
+        ],
       ),
     );
   }

@@ -4,9 +4,10 @@
 // =============================================================================
 
 import 'package:app_laundry/features/laundry_item/domain/enums/laundry_item_category.dart';
+import 'package:app_laundry/features/laundry_item/domain/extensions/laundry_item_category_ext.dart';
 
 extension StringLaundryItemCategoryExt on String {
   LaundryItemCategory get toLaundryItemCategory {
-    return LaundryItemCategoryX.fromString(this);
+    return LaundryItemCategoryExt.fromString(this);
   }
 }

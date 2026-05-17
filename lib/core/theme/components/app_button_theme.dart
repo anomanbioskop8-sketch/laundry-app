@@ -1,3 +1,4 @@
+import 'package:app_laundry/core/theme/helpers/radius_ext.dart';
 import 'package:app_laundry/core/theme/tokens/app_radius.dart';
 import 'package:app_laundry/core/theme/tokens/app_spacing.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +16,7 @@ class AppButtonTheme {
           horizontal: spacing.lg,
           vertical: spacing.md,
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(radius.md),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: radius.md.r),
       ),
     );
   }

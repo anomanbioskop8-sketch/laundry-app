@@ -1,6 +1,8 @@
 import 'package:app_laundry/core/base/form/controllers/form_controller.dart';
 import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_entity.dart';
 import 'package:app_laundry/features/laundry_item/domain/enums/laundry_item_category.dart';
+import 'package:app_laundry/features/laundry_item/domain/extensions/laundry_item_category_ext.dart';
+import 'package:app_laundry/features/laundry_item/domain/extensions/string_laundry_item_category_ext.dart';
 import 'package:app_laundry/features/laundry_item/domain/usecases/laundry_item_params.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +14,14 @@ class LaundryItemFormController extends FormController {
 
   @override
   List<TextEditingController> get controllers => [name, category];
+
+  LaundryItemFormController() {
+    category.text = LaundryItemCategory.clothes.value;
+  }
+
+  LaundryItemCategory get selectedItemCategory {
+    return category.text.trim().toLaundryItemCategory;
+  }
 
   /// =========================
   /// SET DATA (EDIT)
@@ -34,7 +44,7 @@ class LaundryItemFormController extends FormController {
     return SaveLaundryItemParams(
       id: _id,
       name: name.text.trim(),
-      category: LaundryItemCategoryX.fromString(category.text.trim()),
+      category: selectedItemCategory,
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
 import 'package:app_laundry/features/order/domain/entities/order_group_entity.dart';
 
@@ -21,12 +22,12 @@ class SaveOrderParams {
 }
 
 class CreateOrderParams {
-  final String customerId;
+  final CustomerEntity customer;
   final List<OrderGroupEntity> groups;
   final PaymentStatus paymentStatus;
 
   CreateOrderParams({
-    required this.customerId,
+    required this.customer,
     required this.groups,
     required this.paymentStatus,
   });

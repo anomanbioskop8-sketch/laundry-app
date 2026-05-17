@@ -1,6 +1,6 @@
 import 'package:app_laundry/core/auth/role/user_role.dart';
 import 'package:app_laundry/core/constants/firestore_path.dart';
-import 'package:app_laundry/core/error/mappers/firebase_error_mapper.dart';
+import 'package:app_laundry/core/error/extensions/firebase_exception_extension.dart';
 import 'package:app_laundry/core/network/base_remote_datasource.dart';
 import 'package:app_laundry/features/auth/data/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -45,7 +45,7 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
 
         return UserModel.fromMap(doc.data()!, uid);
       } catch (e) {
-        throw FirebaseErrorMapper.map(e);
+        throw e.toAppException;
       }
     });
   }
@@ -82,7 +82,7 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
 
         return UserModel.fromMap(freshDoc.data()!, uid);
       } catch (e) {
-        throw FirebaseErrorMapper.map(e);
+        throw e.toAppException;
       }
     });
   }

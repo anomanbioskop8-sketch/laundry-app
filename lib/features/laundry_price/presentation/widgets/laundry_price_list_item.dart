@@ -25,7 +25,10 @@ class LaundryPriceListItem extends StatelessWidget {
     return ListTile(
       tileColor: context.colors.surfaceContainer,
 
-      leading: AppIconAvatar(icon: speedIcon, backgroundColor: speedColor),
+      leading: AppIconAvatar(
+        icon: speedIcon,
+        backgroundColor: speedColor(context),
+      ),
 
       title: Text(
         serviceLabel,
