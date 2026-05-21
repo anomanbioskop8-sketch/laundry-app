@@ -23,16 +23,16 @@ class AuthCubit extends Cubit<AuthState> {
     final result = await getCurrentUserUseCase();
     result.fold(
       (failure) {
+        sessionCubit.clearSession();
         emit(AuthState.error(failure.message));
-        sessionCubit.emit(const SessionState.inactive());
       },
       (user) async {
         if (user != null) {
-          sessionCubit.setSession(user);
+          sessionCubit.clearSession();
           emit(AuthState.authenticated(user));
         } else {
-          emit(const AuthState.unauthenticated());
           sessionCubit.emit(const SessionState.inactive());
+          emit(const AuthState.unauthenticated());
         }
       },
     );

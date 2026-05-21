@@ -1,4 +1,5 @@
 import 'package:app_laundry/app/di/module/auth_module.dart';
+import 'package:app_laundry/app/di/module/company_module.dart';
 import 'package:app_laundry/app/di/module/customer_module.dart';
 import 'package:app_laundry/app/di/module/laundry_item_module.dart';
 import 'package:app_laundry/app/di/module/laundry_price_module.dart';
@@ -11,4 +12,5 @@ Future<void> registerFeatures(GetIt sl) async {
   await LaundryItemModule(sl).init();
   await LaundryPriceModule(sl).init();
   await OrderModule(sl).init();
+  await CompanyModule(sl).init();
 }

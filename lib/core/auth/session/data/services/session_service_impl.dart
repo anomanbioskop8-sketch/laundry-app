@@ -9,11 +9,19 @@
 // =============================================================================
 
 import 'package:app_laundry/core/auth/role/user_role.dart';
+
 import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
 import 'package:app_laundry/core/auth/session/cubit/session_state.dart';
+
+import 'package:app_laundry/core/auth/session/domain/entities/session_auth_entity.dart';
+
 import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
+
 import 'package:app_laundry/core/error/exceptions.dart';
+
 import 'package:app_laundry/features/auth/domain/entities/user_entity.dart';
+
+import 'package:app_laundry/features/company/domain/entities/company_entity.dart';
 
 class SessionServiceImpl implements SessionService {
   final SessionCubit cubit;
@@ -23,36 +31,57 @@ class SessionServiceImpl implements SessionService {
   /// =========================
   /// INTERNAL SAFE ACCESS
   /// =========================
-  UserEntity get _user {
+
+  SessionAuthEntity get _session {
     return cubit.state.maybeWhen(
-      active: (user) => user,
+      active: (session) => session,
       orElse: () => throw const UnauthorizedException('Session belum aktif'),
     );
   }
 
-  /// =========================
-  /// STATUS
-  /// =========================
+  // =========================
+  // STATUS
+  // =========================
+
   @override
   bool get isActive => cubit.isActive;
 
-  /// =========================
-  /// DATA ACCESS
-  /// =========================
-  @override
-  String get userId => _user.id;
+  // =========================
+  // SESSION
+  // =========================
 
   @override
-  String get companyId => _user.companyId;
-
-  @override
-  UserRole get role => _user.role;
-
-  /// =========================
-  /// OPTIONAL SAFE ACCESS
-  /// =========================
-  @override
-  UserEntity? get userOrNull {
-    return cubit.state.maybeWhen(active: (user) => user, orElse: () => null);
+  SessionAuthEntity? get sessionOrNull {
+    return cubit.state.maybeWhen(
+      active: (session) => session,
+      orElse: () => null,
+    );
   }
+
+  // =========================
+  // USER
+  // =========================
+
+  @override
+  String get userId => _session.user.id;
+
+  @override
+  UserEntity? get userOrNull => sessionOrNull?.user;
+
+  // =========================
+  // COMPANY
+  // =========================
+
+  @override
+  String get companyId => _session.user.companyId;
+
+  @override
+  CompanyEntity? get companyOrNull => sessionOrNull?.company;
+
+  // =========================
+  // ROLE
+  // =========================
+
+  @override
+  UserRole get role => _session.user.role;
 }

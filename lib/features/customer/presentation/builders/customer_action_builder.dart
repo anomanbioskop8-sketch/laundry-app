@@ -17,9 +17,10 @@
 import 'package:app_laundry/app/di/injection_container.dart';
 import 'package:app_laundry/app/router/route_paths.dart';
 import 'package:app_laundry/core/auth/permission/permission.dart';
+import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/ui/bottom_sheet/action_intent.dart';
 import 'package:app_laundry/core/ui/bottom_sheet/action_item.dart';
-import 'package:app_laundry/core/constants/customer_strings.dart';
+import 'package:app_laundry/core/constants/strings/customer_strings.dart';
 import 'package:app_laundry/core/services/app_ui_service.dart';
 import 'package:app_laundry/core/auth/permission/permission_service.dart';
 import 'package:app_laundry/core/theme/dialog/dialog_type.dart';
@@ -54,7 +55,7 @@ class CustomerActionBuilder {
       /// =========================
       ActionItem(
         title: 'View',
-        icon: Icons.view_agenda,
+        icon: AppIcons.view,
         intent: ActionIntent.view,
         canShow: () => canUpdate,
         onTap: () async {
@@ -70,7 +71,7 @@ class CustomerActionBuilder {
       /// =========================
       ActionItem(
         title: 'Edit',
-        icon: Icons.edit_outlined,
+        icon: AppIcons.edit,
         intent: ActionIntent.update,
         canShow: () => canUpdate,
         onTap: () async {
@@ -86,7 +87,7 @@ class CustomerActionBuilder {
       /// =========================
       ActionItem(
         title: CustomerStrings.delete,
-        icon: Icons.delete_outline,
+        icon: AppIcons.delete,
         intent: ActionIntent.delete,
         canShow: () => canDelete,
         onTap: () async {

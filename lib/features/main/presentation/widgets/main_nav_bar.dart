@@ -18,6 +18,11 @@ class MainNavBar extends StatelessWidget {
           label: 'Customer',
         ),
         NavigationDestination(
+          icon: Icon(Icons.settings_outlined),
+          selectedIcon: Icon(Icons.settings),
+          label: 'Items',
+        ),
+        NavigationDestination(
           icon: Icon(Icons.receipt_long_outlined),
           selectedIcon: Icon(Icons.receipt_long),
           label: 'Order',
@@ -25,12 +30,7 @@ class MainNavBar extends StatelessWidget {
         NavigationDestination(
           icon: Icon(Icons.bar_chart_outlined),
           selectedIcon: Icon(Icons.bar_chart),
-          label: 'Report',
-        ),
-        NavigationDestination(
-          icon: Icon(Icons.settings_outlined),
-          selectedIcon: Icon(Icons.settings),
-          label: 'Settings',
+          label: 'Company',
         ),
       ],
     );

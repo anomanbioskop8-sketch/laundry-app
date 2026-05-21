@@ -128,12 +128,12 @@ return inactive(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( UserEntity user)?  active,TResult Function()?  inactive,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( SessionAuthEntity session)?  active,TResult Function()?  inactive,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Active() when active != null:
-return active(_that.user);case _Inactive() when inactive != null:
+return active(_that.session);case _Inactive() when inactive != null:
 return inactive();case _:
   return orElse();
 
@@ -152,12 +152,12 @@ return inactive();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( UserEntity user)  active,required TResult Function()  inactive,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( SessionAuthEntity session)  active,required TResult Function()  inactive,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Active():
-return active(_that.user);case _Inactive():
+return active(_that.session);case _Inactive():
 return inactive();case _:
   throw StateError('Unexpected subclass');
 
@@ -175,12 +175,12 @@ return inactive();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( UserEntity user)?  active,TResult? Function()?  inactive,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( SessionAuthEntity session)?  active,TResult? Function()?  inactive,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Active() when active != null:
-return active(_that.user);case _Inactive() when inactive != null:
+return active(_that.session);case _Inactive() when inactive != null:
 return inactive();case _:
   return null;
 
@@ -257,10 +257,10 @@ String toString() {
 
 
 class _Active implements SessionState {
-  const _Active(this.user);
+  const _Active(this.session);
   
 
- final  UserEntity user;
+ final  SessionAuthEntity session;
 
 /// Create a copy of SessionState
 /// with the given fields replaced by the non-null parameter values.
@@ -272,16 +272,16 @@ _$ActiveCopyWith<_Active> get copyWith => __$ActiveCopyWithImpl<_Active>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Active&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Active&&(identical(other.session, session) || other.session == session));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,user);
+int get hashCode => Object.hash(runtimeType,session);
 
 @override
 String toString() {
-  return 'SessionState.active(user: $user)';
+  return 'SessionState.active(session: $session)';
 }
 
 
@@ -292,7 +292,7 @@ abstract mixin class _$ActiveCopyWith<$Res> implements $SessionStateCopyWith<$Re
   factory _$ActiveCopyWith(_Active value, $Res Function(_Active) _then) = __$ActiveCopyWithImpl;
 @useResult
 $Res call({
- UserEntity user
+ SessionAuthEntity session
 });
 
 
@@ -309,10 +309,10 @@ class __$ActiveCopyWithImpl<$Res>
 
 /// Create a copy of SessionState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? user = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? session = null,}) {
   return _then(_Active(
-null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserEntity,
+null == session ? _self.session : session // ignore: cast_nullable_to_non_nullable
+as SessionAuthEntity,
   ));
 }
 

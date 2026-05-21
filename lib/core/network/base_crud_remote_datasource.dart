@@ -1,35 +1,39 @@
 // =============================================================================
 // File        : base_crud_remote_datasource.dart
 // Path        : lib/core/network/datasources/base_crud_remote_datasource.dart
-// Layer       : Core (Data)
-// -----------------------------------------------------------------------------
-// Fungsi:
-// - Abstraksi CRUD untuk Firestore berbasis multi-tenant (companyId)
-// - Menyediakan operasi standar: create, update, delete, get, stream
 // =============================================================================
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:app_laundry/core/network/base_remote_datasource.dart';
+import 'package:flutter/material.dart';
 
 abstract class BaseCrudRemoteDataSource<T> extends BaseRemoteDataSource {
-  final FirebaseFirestore firestore;
+  final FirebaseFirestore _firestore;
 
-  BaseCrudRemoteDataSource(super.logger, {required this.firestore});
+  BaseCrudRemoteDataSource(super.logger, {required FirebaseFirestore firestore})
+    : _firestore = firestore;
+
+  // protected access
+  @protected
+  FirebaseFirestore get firestore => _firestore;
 
   // =========================
   // CONTRACT
   // =========================
 
   String get collection;
+
   T fromMap(Map<String, dynamic> map, String id);
+
   Map<String, dynamic> toMap(T data);
 
   // =========================
-  // COLLECTION REFERENCE
+  // COLLECTION
   // =========================
 
   CollectionReference<Map<String, dynamic>> collectionRef(String companyId) {
-    return firestore
+    return _firestore
         .collection('companies')
         .doc(companyId)
         .collection(collection);
@@ -51,7 +55,6 @@ abstract class BaseCrudRemoteDataSource<T> extends BaseRemoteDataSource {
     return safeStream(() {
       Query<Map<String, dynamic>> query = collectionRef(companyId);
 
-      /// Optional query customization
       if (queryBuilder != null) {
         query = queryBuilder(query);
       }

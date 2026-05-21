@@ -1,4 +1,6 @@
 import 'package:app_laundry/core/base/builders/base_stream_builder.dart';
+import 'package:app_laundry/core/constants/laundry_item_strings.dart';
+import 'package:app_laundry/core/ui/states/app_empty_widget.dart';
 import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_entity.dart';
 import 'package:app_laundry/features/laundry_item/presentation/cubit/laundry_item_cubit.dart';
 import 'package:app_laundry/features/laundry_item/presentation/widgets/laundry_item_list_item.dart';
@@ -10,6 +12,7 @@ class LaundryItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseStreamBuilder<LaundryItemCubit, LaundryItemEntity>(
+      empty: AppEmptyWidget(message: LaundryItemStrings.empty),
       builder: (items) {
         return ListView.separated(
           itemCount: items.length,

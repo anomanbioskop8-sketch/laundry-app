@@ -1,5 +1,7 @@
+import 'package:app_laundry/features/company/presentation/pages/company_page_wrapper.dart';
 import 'package:app_laundry/features/customer/presentation/pages/customer_page_wrapper.dart';
 import 'package:app_laundry/features/laundry_item/presentation/pages/laundry_item_page_wrapper.dart';
+import 'package:app_laundry/features/main/presentation/widgets/main_nav_bar.dart';
 import 'package:app_laundry/features/order/presentation/pages/order_page_wrapper.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +19,7 @@ class _MainPageState extends State<MainPage> {
     CustomerPageWrapper(),
     LaundryItemPageWrapper(),
     OrderPageWrapper(),
-    _PlaceholderPage(title: 'Settings'),
+    CompanyPageWrapper(),
   ];
 
   void _onTap(int i) {
@@ -29,45 +31,34 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: IndexedStack(index: _index, children: _pages),
 
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _index,
-        onDestinationSelected: _onTap,
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.people_outline),
-            selectedIcon: Icon(Icons.people),
-            label: 'Customer',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.receipt_long_outlined),
-            selectedIcon: Icon(Icons.receipt_long),
-            label: 'Items',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.bar_chart_outlined),
-            selectedIcon: Icon(Icons.bar_chart),
-            label: 'Orders',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.settings_outlined),
-            selectedIcon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-      ),
-    );
-  }
-}
+      bottomNavigationBar: MainNavBar(index: _index, onTap: _onTap),
 
-class _PlaceholderPage extends StatelessWidget {
-  final String title;
-
-  const _PlaceholderPage({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(title, style: Theme.of(context).textTheme.headlineMedium),
+      // NavigationBar(
+      //   selectedIndex: _index,
+      //   onDestinationSelected: _onTap,
+      //   destinations: const [
+      //     NavigationDestination(
+      //       icon: Icon(Icons.people_outline),
+      //       selectedIcon: Icon(Icons.people),
+      //       label: 'Customer',
+      //     ),
+      //     NavigationDestination(
+      //       icon: Icon(Icons.receipt_long_outlined),
+      //       selectedIcon: Icon(Icons.receipt_long),
+      //       label: 'Items',
+      //     ),
+      //     NavigationDestination(
+      //       icon: Icon(Icons.bar_chart_outlined),
+      //       selectedIcon: Icon(Icons.bar_chart),
+      //       label: 'Orders',
+      //     ),
+      //     NavigationDestination(
+      //       icon: Icon(Icons.settings_outlined),
+      //       selectedIcon: Icon(Icons.settings),
+      //       label: 'Company',
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

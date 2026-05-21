@@ -12,9 +12,9 @@ import 'package:app_laundry/core/error/exceptions.dart';
 import 'package:app_laundry/core/utils/logger_service.dart';
 
 abstract class BaseRemoteDataSource {
-  final LoggerService logger;
+  final LoggerService _logger;
 
-  const BaseRemoteDataSource(this.logger);
+  const BaseRemoteDataSource(this._logger);
 
   // =========================
   // SAFE FUTURE CALL
@@ -29,7 +29,7 @@ abstract class BaseRemoteDataSource {
     } on AppException {
       rethrow;
     } catch (error, stackTrace) {
-      logger.error(error, stackTrace);
+      _logger.error(error, stackTrace);
 
       throw UnknownException(
         errorMessage ?? 'Terjadi kesalahan tidak diketahui',
@@ -46,7 +46,7 @@ abstract class BaseRemoteDataSource {
 
     try {
       return stream().handleError((error, stackTrace) {
-        logger.error(error, stackTrace);
+        _logger.error(error, stackTrace);
 
         if (error is AppException) {
           throw error;
@@ -55,7 +55,7 @@ abstract class BaseRemoteDataSource {
         throw UnknownException(message);
       });
     } catch (error, stackTrace) {
-      logger.error(error, stackTrace);
+      _logger.error(error, stackTrace);
 
       return Stream.error(UnknownException('Gagal membuat stream'));
     }

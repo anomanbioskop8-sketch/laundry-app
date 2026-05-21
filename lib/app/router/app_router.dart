@@ -8,6 +8,7 @@ import 'package:app_laundry/app/router/go_router_refresh_stream.dart';
 import 'package:app_laundry/app/router/route_paths.dart';
 import 'package:app_laundry/app/router/router_guard.dart';
 import 'package:app_laundry/app/router/routes/auth_routes.dart';
+import 'package:app_laundry/app/router/routes/company_routes.dart';
 import 'package:app_laundry/app/router/routes/customer_routes.dart';
 import 'package:app_laundry/app/router/routes/laundry_item_routes.dart';
 import 'package:app_laundry/app/router/routes/laundry_price_routes.dart';
@@ -51,6 +52,7 @@ class AppRouter {
       ...LaundryItemRoutes.routes,
       ...LaundryPriceRoutes.routes,
       ...OrderRoutes.routes,
+      ...CompanyRoutes.routes,
     ],
   );
 }
