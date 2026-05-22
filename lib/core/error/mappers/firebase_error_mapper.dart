@@ -6,7 +6,7 @@
 
 import 'package:app_laundry/core/error/exceptions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:app_laundry/core/constants/auth_strings.dart';
+import 'package:app_laundry/core/constants/strings/auth_strings.dart';
 
 class FirebaseErrorMapper {
   /// =========================

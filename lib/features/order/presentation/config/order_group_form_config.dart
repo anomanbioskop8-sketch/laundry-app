@@ -10,7 +10,7 @@ import 'package:app_laundry/core/base/form/form_field_type.dart';
 
 import 'package:app_laundry/core/base/validators/app_validator.dart';
 
-import 'package:app_laundry/core/constants/order_strings.dart';
+import 'package:app_laundry/core/constants/strings/order_strings.dart';
 
 import 'package:app_laundry/features/laundry/domain/enums/laundry_order_type.dart';
 

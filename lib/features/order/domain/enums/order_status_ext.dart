@@ -3,7 +3,7 @@
 // Path        : lib/features/order/domain/enums/order_status_ext.dart
 // =============================================================================
 
-import 'package:app_laundry/core/constants/order_strings.dart';
+import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:flutter/material.dart';
 

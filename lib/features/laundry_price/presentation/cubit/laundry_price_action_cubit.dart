@@ -11,7 +11,7 @@
 // =============================================================================
 
 import 'package:app_laundry/core/base/cubit/base_action_cubit.dart';
-import 'package:app_laundry/core/constants/laundry_price_strings.dart';
+import 'package:app_laundry/core/constants/strings/laundry_price_strings.dart';
 import 'package:app_laundry/features/laundry_price/domain/usecases/delete_laundry_price.dart';
 import 'package:app_laundry/features/laundry_price/domain/usecases/laundry_price_params.dart';
 import 'package:app_laundry/features/laundry_price/domain/usecases/update_laundry_price.dart';

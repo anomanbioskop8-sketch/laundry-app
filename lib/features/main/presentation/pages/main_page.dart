@@ -3,6 +3,7 @@ import 'package:app_laundry/features/customer/presentation/pages/customer_page_w
 import 'package:app_laundry/features/laundry_item/presentation/pages/laundry_item_page_wrapper.dart';
 import 'package:app_laundry/features/main/presentation/widgets/main_nav_bar.dart';
 import 'package:app_laundry/features/order/presentation/pages/order_page_wrapper.dart';
+import 'package:app_laundry/features/setting/presentation/wrappers/setting_page_wrapper.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -19,7 +20,7 @@ class _MainPageState extends State<MainPage> {
     CustomerPageWrapper(),
     LaundryItemPageWrapper(),
     OrderPageWrapper(),
-    CompanyPageWrapper(),
+    SettingPageWrapper(),
   ];
 
   void _onTap(int i) {

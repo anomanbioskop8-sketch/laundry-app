@@ -52,6 +52,16 @@ abstract final class AppIcons {
   static const currency = Icons.attach_money_rounded;
 
   // =========================
+  // SETTING
+  // =========================
+
+  static const setting = Icons.settings;
+
+  static const money = Icons.attach_money;
+
+  static const schedule = Icons.schedule;
+
+  // =========================
   // CUSTOMER
   // =========================
 
@@ -78,4 +88,6 @@ abstract final class AppIcons {
   static const createdAt = Icons.calendar_today_outlined;
 
   static const updatedAt = Icons.update_rounded;
+
+  static const logout = Icons.logout_rounded;
 }

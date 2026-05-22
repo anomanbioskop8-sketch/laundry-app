@@ -36,6 +36,12 @@ class CompanyModel {
   final String currency;
 
   // =========================
+  // SUBSCRIPTION
+  // =========================
+
+  final DateTime? activeUntil;
+
+  // =========================
   // TIMESTAMP
   // =========================
 
@@ -50,6 +56,7 @@ class CompanyModel {
     required this.phone,
     required this.address,
     required this.currency,
+    this.activeUntil,
     this.createdAt,
     this.updatedAt,
   });
@@ -72,6 +79,8 @@ class CompanyModel {
 
       currency: map['currency'] ?? 'IDR',
 
+      activeUntil: map.timestamp('activeUntil'),
+
       createdAt: map.timestamp('createdAt'),
 
       updatedAt: map.timestamp('updatedAt'),
@@ -93,6 +102,8 @@ class CompanyModel {
       'address': address,
 
       'currency': currency,
+
+      'activeUntil': activeUntil,
     };
   }
 
@@ -107,6 +118,7 @@ class CompanyModel {
     String? phone,
     String? address,
     String? currency,
+    DateTime? activeUntil,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -122,6 +134,8 @@ class CompanyModel {
       address: address ?? this.address,
 
       currency: currency ?? this.currency,
+
+      activeUntil: activeUntil ?? this.activeUntil,
 
       createdAt: createdAt ?? this.createdAt,
 

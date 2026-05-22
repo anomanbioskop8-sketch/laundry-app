@@ -1,5 +1,5 @@
 import 'package:app_laundry/app/di/injection_container.dart';
-import 'package:app_laundry/core/constants/auth_strings.dart';
+import 'package:app_laundry/core/constants/strings/auth_strings.dart';
 import 'package:app_laundry/core/services/app_ui_service.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/login_cubit.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/login_state.dart';

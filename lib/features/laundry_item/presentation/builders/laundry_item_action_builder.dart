@@ -1,7 +1,7 @@
 import 'package:app_laundry/app/di/injection_container.dart';
 import 'package:app_laundry/app/router/route_paths.dart';
 import 'package:app_laundry/core/auth/permission/permission.dart';
-import 'package:app_laundry/core/constants/laundry_item_strings.dart';
+import 'package:app_laundry/core/constants/strings/laundry_item_strings.dart';
 import 'package:app_laundry/core/ui/bottom_sheet/action_intent.dart';
 import 'package:app_laundry/core/ui/bottom_sheet/action_item.dart';
 import 'package:app_laundry/core/services/app_ui_service.dart';

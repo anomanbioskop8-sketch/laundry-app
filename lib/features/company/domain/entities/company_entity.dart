@@ -7,6 +7,8 @@
 // - Representasi data company pada domain layer
 // =============================================================================
 
+import 'package:flutter/material.dart';
+
 class CompanyEntity {
   // =========================
   // IDENTITY
@@ -33,6 +35,12 @@ class CompanyEntity {
   final String currency;
 
   // =========================
+  // SUBSCRIPTION
+  // =========================
+
+  final DateTime? activeUntil;
+
+  // =========================
   // TIMESTAMP
   // =========================
 
@@ -53,10 +61,23 @@ class CompanyEntity {
 
     required this.currency,
 
+    this.activeUntil,
+
     this.createdAt,
 
     this.updatedAt,
   });
+
+  // =========================
+  // GETTER
+  // =========================
+
+  bool get isActive {
+    if (activeUntil == null) return false;
+    return activeUntil!.isAfter(DateTime.now());
+  }
+
+  bool get isExpired => !isActive;
 
   // =========================
   // COPY WITH
@@ -69,6 +90,7 @@ class CompanyEntity {
     String? phone,
     String? address,
     String? currency,
+    DateTime? activeUntil,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -77,13 +99,15 @@ class CompanyEntity {
 
       name: name ?? this.name,
 
-      phone: phone ?? this.phone,
-
       email: email ?? this.email,
+
+      phone: phone ?? this.phone,
 
       address: address ?? this.address,
 
       currency: currency ?? this.currency,
+
+      activeUntil: activeUntil ?? this.activeUntil,
 
       createdAt: createdAt ?? this.createdAt,
 

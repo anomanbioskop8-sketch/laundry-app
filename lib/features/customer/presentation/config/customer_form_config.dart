@@ -20,7 +20,7 @@
 import 'package:app_laundry/core/base/form/form_field_config.dart';
 import 'package:app_laundry/core/base/form/form_field_type.dart';
 import 'package:app_laundry/core/base/validators/app_validator.dart';
-import 'package:app_laundry/core/constants/customer_strings.dart';
+import 'package:app_laundry/core/constants/strings/customer_strings.dart';
 import 'package:app_laundry/features/customer/presentation/controllers/customer_form_controller.dart';
 import 'package:flutter/material.dart';
 

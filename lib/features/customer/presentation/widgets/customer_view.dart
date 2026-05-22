@@ -4,7 +4,7 @@
 // =============================================================================
 
 import 'package:app_laundry/core/base/builders/base_stream_builder.dart';
-import 'package:app_laundry/core/constants/customer_strings.dart';
+import 'package:app_laundry/core/constants/strings/customer_strings.dart';
 import 'package:app_laundry/core/ui/states/app_empty_widget.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_cubit.dart';

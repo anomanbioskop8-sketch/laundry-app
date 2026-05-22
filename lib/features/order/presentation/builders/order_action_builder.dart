@@ -1,6 +1,6 @@
 import 'package:app_laundry/app/di/injection_container.dart';
 import 'package:app_laundry/core/auth/permission/permission.dart';
-import 'package:app_laundry/core/constants/order_strings.dart';
+import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/core/services/app_ui_service.dart';
 import 'package:app_laundry/core/theme/dialog/dialog_type.dart';
 import 'package:app_laundry/core/ui/bottom_sheet/action_intent.dart';

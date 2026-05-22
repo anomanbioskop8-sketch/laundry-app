@@ -14,6 +14,8 @@ import 'package:app_laundry/app/router/routes/laundry_item_routes.dart';
 import 'package:app_laundry/app/router/routes/laundry_price_routes.dart';
 import 'package:app_laundry/app/router/routes/main_routes.dart';
 import 'package:app_laundry/app/router/routes/order_routes.dart';
+import 'package:app_laundry/app/router/routes/setting_routes.dart';
+import 'package:app_laundry/app/router/routes/subscription_routes.dart';
 import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
 import 'package:app_laundry/core/services/app_navigator.dart';
 import 'package:go_router/go_router.dart';
@@ -53,6 +55,8 @@ class AppRouter {
       ...LaundryPriceRoutes.routes,
       ...OrderRoutes.routes,
       ...CompanyRoutes.routes,
+      ...SettingRoutes.routes,
+      ...SubscriptionRoutes.routes,
     ],
   );
 }

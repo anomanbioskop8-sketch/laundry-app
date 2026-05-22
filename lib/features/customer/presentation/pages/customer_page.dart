@@ -4,7 +4,7 @@
 // =============================================================================
 
 import 'package:app_laundry/core/ui/search_field.dart';
-import 'package:app_laundry/core/constants/customer_strings.dart';
+import 'package:app_laundry/core/constants/strings/customer_strings.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_cubit.dart';
 import 'package:app_laundry/features/customer/presentation/widgets/customer_fab.dart';

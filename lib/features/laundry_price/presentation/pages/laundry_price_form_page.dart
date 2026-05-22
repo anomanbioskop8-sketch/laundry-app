@@ -1,5 +1,5 @@
 import 'package:app_laundry/core/base/form/form_builder.dart';
-import 'package:app_laundry/core/constants/app_strings.dart';
+import 'package:app_laundry/core/constants/strings/app_strings.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
 import 'package:app_laundry/features/laundry_price/presentation/config/laundry_price_form_config.dart';
 import 'package:app_laundry/features/laundry_price/presentation/controllers/laundry_price_form_controller.dart';

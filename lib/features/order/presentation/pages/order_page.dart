@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/constants/order_strings.dart';
+import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/core/ui/search_field.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_cubit.dart';

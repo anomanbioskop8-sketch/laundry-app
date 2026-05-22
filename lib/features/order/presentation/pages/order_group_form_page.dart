@@ -1,6 +1,6 @@
 import 'package:app_laundry/core/base/form/form_builder.dart';
-import 'package:app_laundry/core/constants/app_strings.dart';
-import 'package:app_laundry/core/constants/order_strings.dart';
+import 'package:app_laundry/core/constants/strings/app_strings.dart';
+import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/features/order/presentation/config/order_group_form_config.dart';
 import 'package:app_laundry/features/order/presentation/controllers/order_group_form_controller.dart';
 import 'package:flutter/material.dart';

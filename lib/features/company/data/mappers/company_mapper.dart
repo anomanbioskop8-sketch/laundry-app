@@ -30,6 +30,8 @@ class CompanyMapper {
 
       currency: model.currency,
 
+      activeUntil: model.activeUntil,
+
       createdAt: model.createdAt,
 
       updatedAt: model.updatedAt,
@@ -53,6 +55,8 @@ class CompanyMapper {
       address: entity.address,
 
       currency: entity.currency,
+
+      activeUntil: entity.activeUntil,
 
       createdAt: entity.createdAt,
 

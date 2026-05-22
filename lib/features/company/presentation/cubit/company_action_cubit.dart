@@ -1,6 +1,6 @@
 import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
 import 'package:app_laundry/core/base/cubit/base_action_cubit.dart';
-import 'package:app_laundry/core/constants/company_strings.dart';
+import 'package:app_laundry/core/constants/strings/company_strings.dart';
 import 'package:app_laundry/features/company/domain/usecases/company_params.dart';
 import 'package:app_laundry/features/company/domain/usecases/update_company.dart';
 

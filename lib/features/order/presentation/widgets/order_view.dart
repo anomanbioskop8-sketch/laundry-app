@@ -1,5 +1,5 @@
 import 'package:app_laundry/core/base/builders/base_stream_builder.dart';
-import 'package:app_laundry/core/constants/order_strings.dart';
+import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/core/ui/states/app_empty_widget.dart';
 import 'package:app_laundry/features/order/domain/entities/order_entity.dart';

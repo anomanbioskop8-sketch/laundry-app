@@ -1,7 +1,7 @@
 import 'package:app_laundry/core/base/builders/base_stream_builder.dart';
 import 'package:app_laundry/core/base/form/form_builder.dart';
-import 'package:app_laundry/core/constants/app_strings.dart';
-import 'package:app_laundry/core/constants/order_strings.dart';
+import 'package:app_laundry/core/constants/strings/app_strings.dart';
+import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_cubit.dart';
 import 'package:app_laundry/features/order/presentation/config/order_form_config.dart';
