@@ -3,11 +3,13 @@
 // Path        : lib/features/customer/presentation/pages/customer_page.dart
 // =============================================================================
 
+import 'package:app_laundry/app/router/extensions/push/customer_navigation_ext.dart';
+import 'package:app_laundry/core/constants/app_icons.dart';
+import 'package:app_laundry/core/ui/components/app_fab.dart';
 import 'package:app_laundry/core/ui/search_field.dart';
 import 'package:app_laundry/core/constants/strings/customer_strings.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_cubit.dart';
-import 'package:app_laundry/features/customer/presentation/widgets/customer_fab.dart';
 import 'package:app_laundry/features/customer/presentation/widgets/customer_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +37,8 @@ class CustomerPage extends StatelessWidget {
             padding: EdgeInsets.all(context.spacing.lg),
 
             child: AppSearchField(
-              hintText: 'Cari nama atau nomor...',
+              prefixIcon: AppIcons.searchCustomers,
+              hintText: CustomerStrings.searchHint,
               onChanged: context.read<CustomerCubit>().search,
             ),
           ),
@@ -47,7 +50,14 @@ class CustomerPage extends StatelessWidget {
         ],
       ),
 
-      floatingActionButton: isPicker ? null : const CustomerFab(),
+      floatingActionButton: isPicker
+          ? null
+          : AppFab(
+              icon: AppIcons.addCustomers,
+              tooltip: CustomerStrings.create,
+              heroTag: 'fab_customer',
+              onPressed: () => context.pushCustomerForm(),
+            ),
     );
   }
 }

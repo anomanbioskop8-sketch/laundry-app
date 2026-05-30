@@ -1,3 +1,5 @@
+import 'package:app_laundry/core/constants/app_icons.dart';
+import 'package:app_laundry/core/constants/strings/company_strings.dart';
 import 'package:app_laundry/core/extensions/date_time_ext.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/core/ui/components/app_info_card.dart';
@@ -22,43 +24,43 @@ class InfoCompanyView extends StatelessWidget {
       child: AppInfoCard(
         items: [
           AppInfoItem(
-            icon: Icons.business_outlined,
-            label: 'Nama',
+            icon: AppIcons.company,
+            label: CompanyStrings.name,
             value: company.name,
           ),
 
           AppInfoItem(
-            icon: Icons.email_outlined,
-            label: 'Email',
+            icon: AppIcons.email,
+            label: CompanyStrings.email,
             value: company.email,
           ),
 
           AppInfoItem(
-            icon: Icons.phone_outlined,
-            label: 'Telepon',
+            icon: AppIcons.phone,
+            label: CompanyStrings.phone,
             value: company.phone,
           ),
 
           AppInfoItem(
-            icon: Icons.location_on_outlined,
-            label: 'Alamat',
+            icon: AppIcons.address,
+            label: CompanyStrings.address,
             value: company.address,
           ),
 
           AppInfoItem(
-            icon: Icons.attach_money_outlined,
+            icon: AppIcons.price,
             label: 'Currency',
             value: company.currency,
           ),
 
           AppInfoItem(
-            icon: Icons.calendar_today_outlined,
+            icon: AppIcons.createdAt,
             label: 'Created',
             value: company.createdAt.readable,
           ),
 
           AppInfoItem(
-            icon: Icons.update_outlined,
+            icon: AppIcons.updatedAt,
             label: 'Updated',
             value: company.updatedAt.readable,
           ),

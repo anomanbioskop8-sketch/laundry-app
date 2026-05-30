@@ -7,8 +7,8 @@ import 'package:app_laundry/app/router/route_paths.dart';
 import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_entity.dart';
 import 'package:app_laundry/features/laundry_item/domain/extensions/laundry_item_entity_ext.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
-import 'package:app_laundry/features/laundry_price/presentation/pages/laundry_price_form_page_wrapper.dart';
-import 'package:app_laundry/features/laundry_price/presentation/pages/laundry_price_page_wrapper.dart';
+import 'package:app_laundry/features/laundry_price/presentation/wrappers/laundry_price_form_page_wrapper.dart';
+import 'package:app_laundry/features/laundry_price/presentation/wrappers/laundry_price_page_wrapper.dart';
 import 'package:go_router/go_router.dart';
 
 class LaundryPriceRoutes {
@@ -16,9 +16,8 @@ class LaundryPriceRoutes {
 
   static final routes = <GoRoute>[
     GoRoute(
-      path: LaundryPricePaths.laundryPrice,
-      name: LaundryPricePaths.laundryPriceName,
-
+      path: LaundryPricePaths.laundryPricePath,
+      name: LaundryPricePaths.laundryPrice,
       builder: (context, state) {
         final item = state.extra as LaundryItemEntity;
 
@@ -27,9 +26,8 @@ class LaundryPriceRoutes {
     ),
 
     GoRoute(
-      path: LaundryPricePaths.laundryPriceForm,
-      name: LaundryPricePaths.laundryPriceFormName,
-
+      path: LaundryPricePaths.laundryPriceFormPath,
+      name: LaundryPricePaths.laundryPriceForm,
       builder: (context, state) {
         final price = state.extra as LaundryPriceEntity?;
 

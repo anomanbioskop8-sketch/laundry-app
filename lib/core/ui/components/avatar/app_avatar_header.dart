@@ -27,7 +27,7 @@ class AppAvatarHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = context.text;
-    final size = radius ?? context.sizes.avatarXl.radius;
+    final size = radius ?? context.sizes.avatarLg.radius;
 
     return Column(
       mainAxisSize: MainAxisSize.min,

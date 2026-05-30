@@ -17,7 +17,8 @@ import 'package:app_laundry/features/order/domain/enums/order_status_ext.dart';
 import 'package:app_laundry/features/order/domain/usecase/change_order_status.dart';
 import 'package:app_laundry/features/order/domain/usecase/create_order.dart';
 import 'package:app_laundry/features/order/domain/usecase/delete_order.dart';
-import 'package:app_laundry/features/order/domain/usecase/order_params.dart';
+import 'package:app_laundry/features/order/domain/usecase/params/create_order_params.dart';
+import 'package:app_laundry/features/order/domain/usecase/params/pay_order_params.dart';
 import 'package:app_laundry/features/order/domain/usecase/pay_order.dart';
 
 class OrderActionCubit extends BaseActionCubit<void> {

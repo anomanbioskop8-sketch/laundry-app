@@ -4,6 +4,7 @@
 // =============================================================================
 
 import 'package:app_laundry/core/base/builders/base_stream_builder.dart';
+import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/customer_strings.dart';
 import 'package:app_laundry/core/ui/states/app_empty_widget.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
@@ -19,15 +20,16 @@ class CustomerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseStreamBuilder<CustomerCubit, CustomerEntity>(
-      empty: AppEmptyWidget(message: CustomerStrings.empty),
+      empty: AppEmptyWidget(
+        message: CustomerStrings.empty,
+        icon: AppIcons.customers,
+      ),
       builder: (customers) {
         return ListView.separated(
           itemCount: customers.length,
-
           itemBuilder: (_, i) {
             return CustomerListItem(customer: customers[i], isPicker: isPicker);
           },
-
           separatorBuilder: (_, i) {
             return const Divider();
           },

@@ -8,29 +8,18 @@ class AppTabBarTheme {
     required TextTheme text,
   }) {
     return TabBarThemeData(
-      // 🔥 Indicator
       indicator: UnderlineTabIndicator(
-        borderSide: BorderSide(color: cs.primary, width: 2),
+        borderSide: BorderSide(color: cs.primary, width: 3),
       ),
-
       indicatorSize: TabBarIndicatorSize.label,
-
-      // 🔥 Label color
       labelColor: cs.primary,
+      labelStyle: text.labelLarge?.copyWith(fontWeight: FontWeight.w600),
       unselectedLabelColor: cs.onSurfaceVariant,
-
-      // 🔥 Text style (pakai AppTextTheme)
-      labelStyle: text.labelMedium?.copyWith(fontWeight: FontWeight.w600),
-      unselectedLabelStyle: text.labelMedium?.copyWith(
+      unselectedLabelStyle: text.labelLarge?.copyWith(
         fontWeight: FontWeight.w500,
       ),
-
-      // 🔥 Interaction
       overlayColor: WidgetStateProperty.all(cs.primary.withValues(alpha: 0.08)),
-
       splashFactory: InkRipple.splashFactory,
-
-      // 🔥 Divider (M3 style)
       dividerColor: cs.outlineVariant,
     );
   }

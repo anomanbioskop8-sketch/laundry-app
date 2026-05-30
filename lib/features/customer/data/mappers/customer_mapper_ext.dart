@@ -28,7 +28,7 @@ extension CustomerEntityExt on CustomerEntity {
 
 extension CustomerModelListExt on List<CustomerModel> {
   List<CustomerEntity> get toEntities {
-    return map((e) => e.toEntity).toList();
+    return CustomerMapper.toEntityList(this);
   }
 }
 
@@ -38,6 +38,6 @@ extension CustomerModelListExt on List<CustomerModel> {
 
 extension CustomerEntityListExt on List<CustomerEntity> {
   List<CustomerModel> get toModels {
-    return map((e) => e.toModel).toList();
+    return CustomerMapper.toModelList(this);
   }
 }

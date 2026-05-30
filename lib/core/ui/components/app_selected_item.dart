@@ -4,13 +4,10 @@ import 'package:flutter/material.dart';
 
 class AppSelectedItem extends StatelessWidget {
   final Widget? leading;
-
   final String title;
   final String? subtitle;
-
   final TextStyle? titleStyle;
   final TextStyle? subtitleStyle;
-
   final VoidCallback? onTap;
 
   const AppSelectedItem({
@@ -34,9 +31,7 @@ class AppSelectedItem extends StatelessWidget {
           borderSide: BorderSide(color: context.colors.outlineVariant),
         ),
         leading: leading,
-
         title: Text(title, style: titleStyle),
-
         subtitle: subtitle != null
             ? Text(subtitle!, style: subtitleStyle)
             : null,

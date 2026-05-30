@@ -8,14 +8,9 @@
 // =============================================================================
 
 import 'package:app_laundry/app/router/paths/setting_paths.dart';
-
 import 'package:app_laundry/features/setting/domain/entities/setting_entity.dart';
-
-import 'package:app_laundry/features/setting/presentation/pages/setting_form_page.dart';
 import 'package:app_laundry/features/setting/presentation/wrappers/setting_form_page_wrapper.dart';
-
 import 'package:app_laundry/features/setting/presentation/wrappers/setting_page_wrapper.dart';
-
 import 'package:go_router/go_router.dart';
 
 abstract final class SettingRoutes {
@@ -28,10 +23,8 @@ abstract final class SettingRoutes {
     // SETTING
     // =========================
     GoRoute(
-      path: SettingPaths.root,
-
-      name: SettingPaths.settingName,
-
+      path: SettingPaths.settingPath,
+      name: SettingPaths.setting,
       builder: (_, _) {
         return const SettingPageWrapper();
       },
@@ -41,10 +34,8 @@ abstract final class SettingRoutes {
     // FORM
     // =========================
     GoRoute(
-      path: SettingPaths.form,
-
-      name: SettingPaths.formName,
-
+      path: SettingPaths.settingFormPath,
+      name: SettingPaths.settingForm,
       builder: (_, state) {
         final setting = state.extra as SettingEntity;
 

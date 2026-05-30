@@ -25,16 +25,19 @@ class AppSizes {
   final double iconXs = 12;
 
   /// Ukuran icon small
-  final double iconSm = 16;
+  final double iconSm = 18;
 
   /// Ukuran icon medium
-  final double iconMd = 20;
+  final double iconMd = 24;
 
   /// Ukuran icon large
-  final double iconLg = 24;
+  final double iconLg = 32;
 
   /// Ukuran icon extra large
-  final double iconXl = 32;
+  final double iconXl = 40;
+
+  /// Ukuran icon extra extra large
+  final double iconXxl = 50;
 
   // =========================
   // BUTTON HEIGHT

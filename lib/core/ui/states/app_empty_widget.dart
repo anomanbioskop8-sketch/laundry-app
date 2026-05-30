@@ -22,7 +22,7 @@ class AppEmptyWidget extends StatelessWidget {
         children: [
           Icon(
             icon,
-            size: context.sizes.avatarMd,
+            size: context.sizes.iconXxl,
             color: context.colors.onSurfaceVariant,
           ),
           context.spacing.md.h,

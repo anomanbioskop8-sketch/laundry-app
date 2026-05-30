@@ -15,7 +15,7 @@
 // =============================================================================
 
 import 'package:app_laundry/app/di/injection_container.dart';
-import 'package:app_laundry/app/router/route_paths.dart';
+import 'package:app_laundry/app/router/extensions/push/customer_navigation_ext.dart';
 import 'package:app_laundry/core/auth/permission/permission.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/ui/bottom_sheet/action_intent.dart';
@@ -28,7 +28,6 @@ import 'package:app_laundry/features/customer/domain/entities/customer_entity.da
 import 'package:app_laundry/features/customer/presentation/cubit/customer_action_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class CustomerActionBuilder {
   final CustomerEntity customer;
@@ -37,8 +36,7 @@ class CustomerActionBuilder {
 
   /// Membangun daftar action customer
   static List<ActionItem> build(BuildContext context, CustomerEntity customer) {
-    // final canView =
-    //     sl<PermissionService>().canWith(Permission.canViewCustomer);
+    final canView = sl<PermissionService>().canWith(Permission.canViewCustomer);
 
     final canUpdate = sl<PermissionService>().canWith(
       Permission.canUpdateCustomer,
@@ -54,32 +52,22 @@ class CustomerActionBuilder {
       /// VIEW CUSTOMER
       /// =========================
       ActionItem(
-        title: 'View',
-        icon: AppIcons.view,
+        title: CustomerStrings.detail,
+        icon: AppIcons.detailCustomer,
         intent: ActionIntent.view,
-        canShow: () => canUpdate,
-        onTap: () async {
-          await context.pushNamed(
-            CustomerPaths.customerDetailName,
-            extra: customer,
-          );
-        },
+        canShow: () => canView,
+        onTap: () => context.pushCustomerDetail(customer: customer),
       ),
 
       /// =========================
       /// EDIT CUSTOMER
       /// =========================
       ActionItem(
-        title: 'Edit',
-        icon: AppIcons.edit,
+        title: CustomerStrings.update,
+        icon: AppIcons.editCustomers,
         intent: ActionIntent.update,
         canShow: () => canUpdate,
-        onTap: () async {
-          await context.pushNamed(
-            CustomerPaths.customerFormName,
-            extra: customer,
-          );
-        },
+        onTap: () => context.pushCustomerForm(customer: customer),
       ),
 
       /// =========================
@@ -87,13 +75,13 @@ class CustomerActionBuilder {
       /// =========================
       ActionItem(
         title: CustomerStrings.delete,
-        icon: AppIcons.delete,
+        icon: AppIcons.deleteCustomers,
         intent: ActionIntent.delete,
         canShow: () => canDelete,
         onTap: () async {
           final confirmed = await AppUIService.confirm(
             title: CustomerStrings.delete,
-            type: DialogType.danger,
+            type: DialogType.alert,
             message: CustomerStrings.confirmDelete,
           );
 

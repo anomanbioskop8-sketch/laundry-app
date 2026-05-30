@@ -14,10 +14,7 @@ import 'package:flutter/material.dart';
 class AppOutlinedActionButton extends StatelessWidget {
   final String label;
   final VoidCallback? onPressed;
-
   final IconData? icon;
-
-  /// custom color
   final Color? color;
 
   const AppOutlinedActionButton({
@@ -52,9 +49,7 @@ class AppOutlinedActionButton extends StatelessWidget {
     return OutlinedButton.icon(
       onPressed: onPressed,
       style: style,
-
-      icon: Icon(icon, size: context.sizes.iconLg),
-
+      icon: Icon(icon, size: context.sizes.iconMd),
       label: Text(label),
     );
   }

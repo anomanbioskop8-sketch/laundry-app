@@ -10,9 +10,7 @@
 // =============================================================================
 
 import 'package:app_laundry/core/network/base_remote_datasource.dart';
-
 import 'package:app_laundry/features/company/data/models/company_model.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CompanyRemoteDataSource extends BaseRemoteDataSource {
@@ -38,24 +36,6 @@ class CompanyRemoteDataSource extends BaseRemoteDataSource {
   }
 
   // =========================
-  // GET COMPANY
-  // =========================
-
-  Future<CompanyModel?> getById(String companyId) {
-    return safeCall(() async {
-      final doc = await docRef(companyId).get();
-
-      final data = doc.data();
-
-      if (!doc.exists || data == null) {
-        return null;
-      }
-
-      return CompanyModel.fromMap(data, doc.id);
-    });
-  }
-
-  // =========================
   // STREAM COMPANY
   // =========================
 
@@ -70,6 +50,24 @@ class CompanyRemoteDataSource extends BaseRemoteDataSource {
 
         return CompanyModel.fromMap(data, doc.id);
       });
+    });
+  }
+
+  // =========================
+  // GET COMPANY
+  // =========================
+
+  Future<CompanyModel?> getById(String companyId) {
+    return safeCall(() async {
+      final doc = await docRef(companyId).get();
+
+      final data = doc.data();
+
+      if (!doc.exists || data == null) {
+        return null;
+      }
+
+      return CompanyModel.fromMap(data, doc.id);
     });
   }
 

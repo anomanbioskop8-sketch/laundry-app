@@ -1,4 +1,4 @@
-import 'package:app_laundry/app/router/route_paths.dart';
+import 'package:app_laundry/app/router/extensions/go/auth_navigation_ext.dart';
 import 'package:app_laundry/core/base/form/form_builder.dart';
 import 'package:app_laundry/core/constants/strings/auth_strings.dart';
 import 'package:app_laundry/features/auth/presentation/config/login_form_config.dart';
@@ -6,7 +6,6 @@ import 'package:app_laundry/features/auth/presentation/controllers/login_form_co
 import 'package:app_laundry/features/auth/presentation/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,36 +15,58 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final controller = LoginFormController();
+  // =========================
+  // CONTROLLER
+  // =========================
+
+  late final LoginFormController _controller;
+  late final LoginFormConfig _config;
+
+  // =========================
+  // INIT
+  // =========================
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = LoginFormController();
+    _config = LoginFormConfig(_controller);
+  }
+
+  // =========================
+  // DISPOSE
+  // =========================
 
   @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
+  }
+
+  // =========================
+  // SUBMIT
+  // =========================
+
+  Future<void> _submit() async {
+    await context.read<LoginCubit>().login(_controller.buildParams());
   }
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<LoginCubit>();
-    final config = LoginFormConfig(controller);
-
     return Scaffold(
       appBar: AppBar(title: const Text(AuthStrings.loginTitle)),
       body: Column(
         children: [
           FormBuilder(
-            formKey: controller.formKey,
-            fields: config.fields,
-            onSubmit: () {
-              cubit.login(controller.buildParams());
-            },
+            formKey: _controller.formKey,
+            fields: _config.fields,
+            onSubmit: _submit,
+            submitLabel: AuthStrings.loginTitle,
           ),
 
           TextButton(
-            onPressed: () {
-              context.pushNamed(AuthPaths.registerName);
-            },
-            child: const Text('Belum punya akun? Register'),
+            onPressed: () => context.goRegister(),
+            child: const Text(AuthStrings.registerHint),
           ),
         ],
       ),

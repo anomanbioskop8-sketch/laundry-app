@@ -4,63 +4,70 @@
 // =============================================================================
 
 import 'package:app_laundry/core/base/form/form_builder.dart';
-
-import 'package:app_laundry/core/constants/strings/app_strings.dart';
-
+import 'package:app_laundry/core/constants/strings/company_strings.dart';
 import 'package:app_laundry/features/company/domain/entities/company_entity.dart';
-
 import 'package:app_laundry/features/company/presentation/config/company_form_config.dart';
-
 import 'package:app_laundry/features/company/presentation/controllers/company_form_controller.dart';
 import 'package:app_laundry/features/company/presentation/cubit/company_action_cubit.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CompanyFormPage extends StatefulWidget {
-  final CompanyEntity? company;
+  final CompanyEntity company;
 
-  const CompanyFormPage({super.key, this.company});
+  const CompanyFormPage({super.key, required this.company});
 
   @override
   State<CompanyFormPage> createState() => _CompanyFormPageState();
 }
 
 class _CompanyFormPageState extends State<CompanyFormPage> {
-  final controller = CompanyFormController();
+  // =========================
+  // CONTROLLER
+  // =========================
+
+  late final CompanyFormController _controller;
+  late final CompanyFormConfig _config;
+
+  // =========================
+  // INIT
+  // =========================
 
   @override
   void initState() {
     super.initState();
-
-    if (widget.company != null) {
-      controller.setCompany(widget.company!);
-    }
+    _controller = CompanyFormController();
+    _config = CompanyFormConfig(_controller);
+    _controller.setCompany(widget.company);
   }
+
+  // =========================
+  // DISPOSE
+  // =========================
 
   @override
   void dispose() {
-    controller.dispose();
-
+    _controller.dispose();
     super.dispose();
+  }
+
+  // =========================
+  // SUBMIT
+  // =========================
+
+  Future<void> _submit() async {
+    await context.read<CompanyActionCubit>().submit(_controller.buildParams());
   }
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<CompanyActionCubit>();
-    final config = CompanyFormConfig(controller);
-
     return Scaffold(
-      appBar: AppBar(title: const Text('Edit Company')),
-
+      appBar: AppBar(title: const Text(CompanyStrings.edit)),
       body: FormBuilder(
-        formKey: controller.formKey,
-        fields: config.fields,
-        submitLabel: AppStrings.save,
-        onSubmit: () {
-          cubit.submit(controller.buildParams());
-        },
+        formKey: _controller.formKey,
+        fields: _config.fields,
+        submitLabel: CompanyStrings.save,
+        onSubmit: _submit,
       ),
     );
   }

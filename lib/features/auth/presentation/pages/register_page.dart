@@ -1,16 +1,11 @@
-import 'package:app_laundry/app/router/route_paths.dart';
+import 'package:app_laundry/app/router/extensions/go/auth_navigation_ext.dart';
 import 'package:app_laundry/core/base/form/form_builder.dart';
-import 'package:app_laundry/core/services/app_ui_service.dart';
-import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
-import 'package:app_laundry/features/auth/presentation/config/login_form_config.dart';
-import 'package:app_laundry/features/auth/presentation/controllers/login_form_controller.dart';
-import 'package:app_laundry/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:app_laundry/features/auth/presentation/cubit/auth_state.dart';
+import 'package:app_laundry/core/constants/strings/auth_strings.dart';
+import 'package:app_laundry/features/auth/presentation/config/register_form_config.dart';
+import 'package:app_laundry/features/auth/presentation/controllers/register_form_controller.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -20,57 +15,61 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final controller = LoginFormController();
+  // =========================
+  // CONTROLLER
+  // =========================
+
+  late final RegisterFormController _controller;
+  late final RegisterFormConfig _config;
+
+  // =========================
+  // INIT
+  // =========================
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = RegisterFormController();
+    _config = RegisterFormConfig(_controller);
+  }
+
+  // =========================
+  // DISPOSE
+  // =========================
 
   @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
+  }
+
+  // =========================
+  // SUBMIT
+  // =========================
+
+  Future<void> _submit() async {
+    await context.read<LoginCubit>().register(_controller.buildParams());
   }
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<LoginCubit>();
-    final config = LoginFormConfig(controller);
-
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
+      appBar: AppBar(title: const Text(AuthStrings.registerTitle)),
 
-      body: BlocListener<AuthCubit, AuthState>(
-        listener: (context, state) {
-          state.whenOrNull(
-            authenticated: (user) {
-              AppUIService.success('Login berhasil');
-            },
-            error: (message) {
-              AppUIService.error(message);
-            },
-          );
-        },
-
-        child: Padding(
-          padding: EdgeInsets.all(context.spacing.lg),
-          child: Column(
-            children: [
-              FormBuilder(
-                formKey: controller.formKey,
-                fields: config.fields,
-                onSubmit: () {
-                  cubit.login(controller.buildParams());
-                },
-              ),
-
-              context.spacing.md.h,
-
-              TextButton(
-                onPressed: () {
-                  context.pushNamed(AuthPaths.loginName);
-                },
-                child: const Text('Belum punya akun? Register'),
-              ),
-            ],
+      body: Column(
+        children: [
+          FormBuilder(
+            formKey: _controller.formKey,
+            fields: _config.fields,
+            onSubmit: _submit,
+            submitLabel: AuthStrings.registerTitle,
           ),
-        ),
+
+          TextButton(
+            onPressed: () => context.goLogin(),
+            child: const Text(AuthStrings.loginHint),
+          ),
+        ],
       ),
     );
   }

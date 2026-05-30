@@ -3,6 +3,7 @@
 // Path        : lib/features/order/domain/enums/payment_status_ext.dart
 // =============================================================================
 
+import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:flutter/material.dart';
 
@@ -18,9 +19,6 @@ extension PaymentStatusExt on PaymentStatus {
       case PaymentStatus.unpaid:
         return 'unpaid';
 
-      case PaymentStatus.partial:
-        return 'partial';
-
       case PaymentStatus.paid:
         return 'paid';
     }
@@ -35,9 +33,6 @@ extension PaymentStatusExt on PaymentStatus {
       case PaymentStatus.unpaid:
         return 'Belum Bayar';
 
-      case PaymentStatus.partial:
-        return 'DP';
-
       case PaymentStatus.paid:
         return 'Lunas';
     }
@@ -50,22 +45,18 @@ extension PaymentStatusExt on PaymentStatus {
   IconData get icon {
     switch (this) {
       case PaymentStatus.unpaid:
-        return Icons.money_off_rounded;
-
-      case PaymentStatus.partial:
-        return Icons.payments_rounded;
+        return AppIcons.unPaid;
 
       case PaymentStatus.paid:
-        return Icons.check_circle_rounded;
+        return AppIcons.paid;
     }
   }
 
   Color color(BuildContext context) {
     switch (this) {
       case PaymentStatus.unpaid:
-        return context.status.cancel;
-      case PaymentStatus.partial:
-        return context.status.warning;
+        return context.status.error;
+
       case PaymentStatus.paid:
         return context.status.success;
     }
@@ -77,9 +68,6 @@ extension PaymentStatusExt on PaymentStatus {
 
   static PaymentStatus fromString(String value) {
     switch (value) {
-      case 'partial':
-        return PaymentStatus.partial;
-
       case 'paid':
         return PaymentStatus.paid;
 

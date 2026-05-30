@@ -5,13 +5,9 @@ import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dar
 
 class SaveLaundryPriceParams {
   final String? id;
-
   final String laundryItemId;
-
   final LaundrySpeedType speedType;
-
   final LaundryServiceType serviceType;
-
   final int price;
 
   const SaveLaundryPriceParams({
@@ -21,16 +17,4 @@ class SaveLaundryPriceParams {
     required this.serviceType,
     required this.price,
   });
-}
-
-class DeleteLaundryPriceParams {
-  final String id;
-
-  const DeleteLaundryPriceParams({required this.id});
-}
-
-class DeleteLaundryPriceByItemIdParams {
-  final String itemId;
-
-  const DeleteLaundryPriceByItemIdParams({required this.itemId});
 }

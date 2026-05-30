@@ -112,7 +112,6 @@ class SessionCubit extends Cubit<SessionState> {
   // =========================
 
   UserEntity get user => session.user;
-
   String get userId => user.id;
 
   // =========================
@@ -120,7 +119,6 @@ class SessionCubit extends Cubit<SessionState> {
   // =========================
 
   CompanyEntity? get company => session.company;
-
   String get companyId => user.companyId;
 
   // =========================

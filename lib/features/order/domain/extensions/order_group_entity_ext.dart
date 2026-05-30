@@ -75,6 +75,6 @@ extension OrderGroupEntityX on OrderGroupEntity {
   bool get hasWeight => weight != null && weight! > 0;
 
   int get totalQuantity {
-    return items.fold(0, (sum, e) => sum + e.quantity);
+    return items.fold(0, (sum, e) => sum + e.qty);
   }
 }

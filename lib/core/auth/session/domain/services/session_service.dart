@@ -9,11 +9,8 @@
 // =============================================================================
 
 import 'package:app_laundry/core/auth/role/user_role.dart';
-
 import 'package:app_laundry/core/auth/session/domain/entities/session_auth_entity.dart';
-
 import 'package:app_laundry/features/auth/domain/entities/user_entity.dart';
-
 import 'package:app_laundry/features/company/domain/entities/company_entity.dart';
 
 abstract class SessionService {

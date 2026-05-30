@@ -6,6 +6,7 @@ class AppColorScheme {
       ColorScheme.fromSeed(
         seedColor: AppSemanticColors.primary,
         brightness: Brightness.light,
+        dynamicSchemeVariant: DynamicSchemeVariant.vibrant,
       ).copyWith(
         primary: AppSemanticColors.primary,
         error: AppSemanticColors.error,
@@ -15,6 +16,7 @@ class AppColorScheme {
       ColorScheme.fromSeed(
         seedColor: AppSemanticColors.primary,
         brightness: Brightness.dark,
+        dynamicSchemeVariant: DynamicSchemeVariant.vibrant,
       ).copyWith(
         primary: AppSemanticColors.primaryDark,
         error: AppSemanticColors.errorDark,

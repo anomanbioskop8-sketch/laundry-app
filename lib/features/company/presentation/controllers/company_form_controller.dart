@@ -17,6 +17,10 @@ class CompanyFormController extends FormController {
   final phone = TextEditingController();
   final address = TextEditingController();
 
+  // =========================
+  // ENTITY
+  // =========================
+
   late CompanyEntity _company;
 
   // =========================

@@ -11,16 +11,25 @@
 // =============================================================================
 
 import 'package:app_laundry/core/base/cubit/base_search_cubit.dart';
+import 'package:app_laundry/features/laundry/domain/enums/laundry_service_type.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
 import 'package:app_laundry/features/laundry/domain/extensions/laundry_speed_type_ext.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
 import 'package:app_laundry/features/laundry_price/domain/usecases/stream_laundry_prices.dart';
+import 'package:app_laundry/features/laundry_price/domain/usecases/stream_laundry_prices_by_service_and_speed.dart';
 
 class LaundryPriceCubit extends BaseSearchCubit<LaundryPriceEntity> {
   final StreamLaundryPrices _streamLaundryPrices;
+  final StreamLaundryPricesByServiceAndSpeed
+  _streamLaundryPricesByServiceAndSpeed;
 
-  LaundryPriceCubit(StreamLaundryPrices streamLaundryPrices)
-    : _streamLaundryPrices = streamLaundryPrices;
+  LaundryPriceCubit({
+    required StreamLaundryPrices streamLaundryPrices,
+    required StreamLaundryPricesByServiceAndSpeed
+    streamLaundryPricesByServiceAndSpeed,
+  }) : _streamLaundryPrices = streamLaundryPrices,
+       _streamLaundryPricesByServiceAndSpeed =
+           streamLaundryPricesByServiceAndSpeed;
 
   @override
   List<FieldSelector<LaundryPriceEntity>> get searchFields => [(c) => c.id];
@@ -28,6 +37,18 @@ class LaundryPriceCubit extends BaseSearchCubit<LaundryPriceEntity> {
   /// Mendengarkan perubahan data laundry item secara realtime
   void listenLaundryItems(String laundryItemId) {
     listen(() => _streamLaundryPrices(laundryItemId));
+  }
+
+  void listenLaundryItemsByServiceAndSpeed({
+    required LaundryServiceType serviceType,
+    required LaundrySpeedType speedType,
+  }) {
+    listen(
+      () => _streamLaundryPricesByServiceAndSpeed(
+        serviceType: serviceType,
+        speedType: speedType,
+      ),
+    );
   }
 
   List<LaundryPriceEntity> filterByServiceType(

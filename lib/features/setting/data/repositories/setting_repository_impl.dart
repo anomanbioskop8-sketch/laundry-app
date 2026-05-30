@@ -9,19 +9,12 @@
 // =============================================================================
 
 import 'package:app_laundry/core/error/exceptions.dart';
-
 import 'package:app_laundry/core/error/extensions/app_exception_ext.dart';
-
 import 'package:app_laundry/core/error/failure.dart';
-
 import 'package:app_laundry/core/utils/either.dart';
-
 import 'package:app_laundry/features/setting/data/datasources/setting_remote_data_source.dart';
-
 import 'package:app_laundry/features/setting/data/mappers/setting_mapper_ext.dart';
-
 import 'package:app_laundry/features/setting/domain/entities/setting_entity.dart';
-
 import 'package:app_laundry/features/setting/domain/repositories/setting_repository.dart';
 
 class SettingRepositoryImpl implements SettingRepository {
@@ -32,6 +25,21 @@ class SettingRepositoryImpl implements SettingRepository {
   final SettingRemoteDataSource _remote;
 
   SettingRepositoryImpl(this._remote);
+
+  // =========================
+  // STREAM
+  // =========================
+
+  @override
+  Stream<Either<Failure, SettingEntity?>> stream({
+    required String companyId,
+  }) async* {
+    try {
+      yield* _remote.stream(companyId).map((event) => Right(event?.toEntity));
+    } on AppException catch (e) {
+      yield Left(e.toFailure);
+    }
+  }
 
   // =========================
   // GET
@@ -51,21 +59,6 @@ class SettingRepositoryImpl implements SettingRepository {
       return Right(model.toEntity);
     } on AppException catch (e) {
       return Left(e.toFailure);
-    }
-  }
-
-  // =========================
-  // STREAM
-  // =========================
-
-  @override
-  Stream<Either<Failure, SettingEntity?>> stream({
-    required String companyId,
-  }) async* {
-    try {
-      yield* _remote.stream(companyId).map((event) => Right(event?.toEntity));
-    } on AppException catch (e) {
-      yield Left(e.toFailure);
     }
   }
 

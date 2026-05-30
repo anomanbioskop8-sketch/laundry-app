@@ -8,9 +8,9 @@ import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_e
 import 'package:app_laundry/features/laundry_item/domain/repositories/laundry_item_repository.dart';
 
 class LaundryItemRepositoryImpl implements LaundryItemRepository {
-  final LaundryItemRemoteDataSource remote;
+  final LaundryItemRemoteDataSource _remote;
 
-  LaundryItemRepositoryImpl(this.remote);
+  LaundryItemRepositoryImpl(this._remote);
 
   /// =========================
   /// STREAM ALL (REALTIME)
@@ -20,7 +20,7 @@ class LaundryItemRepositoryImpl implements LaundryItemRepository {
     String companyId,
   ) async* {
     try {
-      await for (final models in remote.streamAll(companyId)) {
+      await for (final models in _remote.streamAll(companyId)) {
         yield Right(models.toEntities);
       }
     } on AppException catch (e) {
@@ -37,7 +37,7 @@ class LaundryItemRepositoryImpl implements LaundryItemRepository {
     required String id,
   }) async {
     try {
-      final model = await remote.getById(companyId: companyId, id: id);
+      final model = await _remote.getById(companyId: companyId, id: id);
 
       if (model == null) return const Right(null);
 
@@ -58,7 +58,7 @@ class LaundryItemRepositoryImpl implements LaundryItemRepository {
     try {
       final model = item.toModel;
 
-      await remote.create(companyId: companyId, id: model.id, data: model);
+      await _remote.create(companyId: companyId, id: model.id, data: model);
 
       return Right(item);
     } on AppException catch (e) {
@@ -77,7 +77,7 @@ class LaundryItemRepositoryImpl implements LaundryItemRepository {
     try {
       final model = item.toModel;
 
-      await remote.update(companyId: companyId, id: model.id, data: model);
+      await _remote.update(companyId: companyId, id: model.id, data: model);
 
       return const Right(null);
     } on AppException catch (e) {
@@ -94,7 +94,7 @@ class LaundryItemRepositoryImpl implements LaundryItemRepository {
     required String id,
   }) async {
     try {
-      await remote.delete(companyId: companyId, id: id);
+      await _remote.delete(companyId: companyId, id: id);
       return const Right(null);
     } on AppException catch (e) {
       return Left(e.toFailure);

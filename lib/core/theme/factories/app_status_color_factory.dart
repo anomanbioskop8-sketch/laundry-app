@@ -10,10 +10,11 @@ class AppStatusColorsFactory {
       error: AppSemanticColors.error,
       info: AppSemanticColors.info,
 
-      pending: AppSemanticColors.pending,
-      process: AppSemanticColors.process,
-      done: AppSemanticColors.done,
-      cancel: AppSemanticColors.cancel,
+      received: AppSemanticColors.received,
+      inProgress: AppSemanticColors.inProgress,
+      ready: AppSemanticColors.ready,
+      pickedUp: AppSemanticColors.pickedUp,
+      canceled: AppSemanticColors.canceled,
     );
   }
 
@@ -24,10 +25,11 @@ class AppStatusColorsFactory {
       error: AppSemanticColors.errorDark,
       info: AppSemanticColors.infoDark,
 
-      pending: AppSemanticColors.pendingDark,
-      process: AppSemanticColors.processDark,
-      done: AppSemanticColors.doneDark,
-      cancel: AppSemanticColors.cancelDark,
+      received: AppSemanticColors.receivedDark,
+      inProgress: AppSemanticColors.inProgressDark,
+      ready: AppSemanticColors.readyDark,
+      pickedUp: AppSemanticColors.pickedUpDark,
+      canceled: AppSemanticColors.canceledDark,
     );
   }
 }

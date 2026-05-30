@@ -18,7 +18,11 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
   /// =========================
   /// REGISTER
   /// =========================
-  Future<UserModel> register(String name, String email, String password) async {
+  Future<UserModel> register({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
     return safeCall(() async {
       try {
         final credential = await auth.createUserWithEmailAndPassword(
@@ -53,7 +57,10 @@ class AuthRemoteDataSource extends BaseRemoteDataSource {
   /// =========================
   /// LOGIN
   /// =========================
-  Future<UserModel> login(String email, String password) async {
+  Future<UserModel> login({
+    required String email,
+    required String password,
+  }) async {
     return safeCall(() async {
       try {
         final credential = await auth.signInWithEmailAndPassword(

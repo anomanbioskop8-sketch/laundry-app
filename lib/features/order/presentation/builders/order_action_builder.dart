@@ -1,5 +1,6 @@
 import 'package:app_laundry/app/di/injection_container.dart';
 import 'package:app_laundry/core/auth/permission/permission.dart';
+import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/core/services/app_ui_service.dart';
 import 'package:app_laundry/core/theme/dialog/dialog_type.dart';
@@ -8,7 +9,7 @@ import 'package:app_laundry/core/ui/bottom_sheet/action_item.dart';
 import 'package:app_laundry/core/auth/permission/permission_service.dart';
 import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
 import 'package:app_laundry/features/order/domain/enums/order_status_ext.dart';
-import 'package:app_laundry/features/order/domain/usecase/order_params.dart';
+import 'package:app_laundry/features/order/domain/usecase/params/pay_order_params.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_action_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,13 +36,13 @@ class OrderActionBuilder {
     return [
       ActionItem(
         title: order.orderStatus.actionLabel,
-        icon: Icons.payment,
+        icon: order.orderStatus.actionIcon,
         intent: ActionIntent.update,
         canShow: () => canChangeStatus,
         onTap: () async {
           final confirmed = await AppUIService.confirm(
             title: order.orderStatus.actionLabel,
-            type: DialogType.info,
+            type: DialogType.confirm,
             message: order.orderStatus.confirmMessage,
           );
 
@@ -52,13 +53,13 @@ class OrderActionBuilder {
       ),
       ActionItem(
         title: OrderStrings.pay,
-        icon: Icons.payment,
+        icon: AppIcons.pay,
         intent: ActionIntent.update,
         canShow: () => canPay,
         onTap: () async {
           final confirmed = await AppUIService.confirm(
             title: OrderStrings.pay,
-            type: DialogType.info,
+            type: DialogType.confirm,
             message: OrderStrings.confirmPay,
           );
 
@@ -71,13 +72,13 @@ class OrderActionBuilder {
       ),
       ActionItem(
         title: OrderStrings.delete,
-        icon: Icons.delete_outline,
+        icon: AppIcons.delete,
         intent: ActionIntent.delete,
         canShow: () => canDelete,
         onTap: () async {
           final confirmed = await AppUIService.confirm(
             title: OrderStrings.delete,
-            type: DialogType.danger,
+            type: DialogType.alert,
             message: OrderStrings.confirmDelete,
           );
 

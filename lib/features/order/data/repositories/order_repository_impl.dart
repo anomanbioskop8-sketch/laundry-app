@@ -20,9 +20,9 @@ import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
 import 'package:app_laundry/features/order/domain/repositories/order_repository.dart';
 
 class OrderRepositoryImpl implements OrderRepository {
-  final OrderRemoteDataSource remote;
+  final OrderRemoteDataSource _remote;
 
-  const OrderRepositoryImpl(this.remote);
+  const OrderRepositoryImpl(this._remote);
 
   // =========================
   // STREAM ALL
@@ -33,7 +33,7 @@ class OrderRepositoryImpl implements OrderRepository {
     String companyId,
   ) async* {
     try {
-      await for (final models in remote.streamAll(companyId)) {
+      await for (final models in _remote.streamAll(companyId)) {
         yield Right(models.toEntities);
       }
     } on AppException catch (e) {
@@ -51,7 +51,7 @@ class OrderRepositoryImpl implements OrderRepository {
     required String id,
   }) async {
     try {
-      final model = await remote.getById(companyId: companyId, id: id);
+      final model = await _remote.getById(companyId: companyId, id: id);
 
       if (model == null) {
         return const Right(null);
@@ -75,7 +75,7 @@ class OrderRepositoryImpl implements OrderRepository {
     try {
       final model = order.toModel;
 
-      await remote.create(companyId: companyId, id: model.id, data: model);
+      await _remote.create(companyId: companyId, id: model.id, data: model);
 
       return Right(order);
     } on AppException catch (e) {
@@ -95,7 +95,7 @@ class OrderRepositoryImpl implements OrderRepository {
     try {
       final model = order.toModel;
 
-      await remote.update(companyId: companyId, id: model.id, data: model);
+      await _remote.update(companyId: companyId, id: model.id, data: model);
 
       return const Right(null);
     } on AppException catch (e) {
@@ -113,7 +113,7 @@ class OrderRepositoryImpl implements OrderRepository {
     required String id,
   }) async {
     try {
-      await remote.delete(companyId: companyId, id: id);
+      await _remote.delete(companyId: companyId, id: id);
 
       return const Right(null);
     } on AppException catch (e) {

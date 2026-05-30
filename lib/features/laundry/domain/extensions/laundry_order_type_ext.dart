@@ -2,9 +2,9 @@
 // File : laundry_order_type_ext.dart
 // =============================================================================
 
+import 'package:app_laundry/core/constants/app_icons.dart';
+import 'package:app_laundry/features/laundry/domain/enums/laundry_order_type.dart';
 import 'package:flutter/material.dart';
-
-import '../enums/laundry_order_type.dart';
 
 extension LaundryOrderTypeExt on LaundryOrderType {
   // =========================
@@ -28,7 +28,7 @@ extension LaundryOrderTypeExt on LaundryOrderType {
   String get label {
     switch (this) {
       case LaundryOrderType.pcs:
-        return 'Per Item';
+        return 'Per Pcs';
 
       case LaundryOrderType.kg:
         return 'Per Kg';
@@ -42,10 +42,10 @@ extension LaundryOrderTypeExt on LaundryOrderType {
   IconData get icon {
     switch (this) {
       case LaundryOrderType.pcs:
-        return Icons.checkroom;
+        return AppIcons.pcs;
 
       case LaundryOrderType.kg:
-        return Icons.scale;
+        return AppIcons.kg;
     }
   }
 

@@ -5,17 +5,15 @@ import 'package:app_laundry/core/error/failure.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_entity.dart';
 import 'package:app_laundry/features/laundry_item/domain/repositories/laundry_item_repository.dart';
-import 'package:app_laundry/features/laundry_item/domain/usecases/laundry_item_params.dart';
+import 'package:app_laundry/features/laundry_item/domain/usecases/params/create_laundry_item_params.dart';
 import 'package:uuid/uuid.dart';
 
 class CreateLaundryItem {
   final LaundryItemRepository _repository;
-
   final SessionService _session;
 
   const CreateLaundryItem({
     required LaundryItemRepository repository,
-
     required SessionService session,
   }) : _repository = repository,
        _session = session;

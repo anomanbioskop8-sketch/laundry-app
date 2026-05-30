@@ -9,7 +9,6 @@
 // =============================================================================
 
 import 'package:app_laundry/features/auth/domain/entities/user_entity.dart';
-
 import 'package:app_laundry/features/company/domain/entities/company_entity.dart';
 
 class SessionAuthEntity {
@@ -34,7 +33,6 @@ class SessionAuthEntity {
   SessionAuthEntity copyWith({UserEntity? user, CompanyEntity? company}) {
     return SessionAuthEntity(
       user: user ?? this.user,
-
       company: company ?? this.company,
     );
   }

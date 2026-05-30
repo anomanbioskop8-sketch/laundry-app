@@ -1,30 +1,20 @@
 // =============================================================================
 // File        : setting_paths.dart
 // Path        : lib/app/router/paths/setting_paths.dart
-// Layer       : App (Routing)
-// -----------------------------------------------------------------------------
-// Fungsi:
-// - Kumpulan route path & route name feature Setting
 // =============================================================================
 
 abstract final class SettingPaths {
   // =========================
-  // ROOT
+  // NAME
   // =========================
 
-  static const root = '/setting';
+  static const setting = 'setting';
+  static const settingForm = 'settingForm';
 
   // =========================
-  // FORM
+  // PATH
   // =========================
 
-  static const form = '/setting/form';
-
-  // =========================
-  // NAMES
-  // =========================
-
-  static const settingName = 'setting';
-
-  static const formName = 'setting-form';
+  static const settingPath = '/settings';
+  static const settingFormPath = '/settings/form';
 }

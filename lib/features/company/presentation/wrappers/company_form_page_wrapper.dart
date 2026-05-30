@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CompanyFormPageWrapper extends StatelessWidget {
-  final CompanyEntity? company;
+  final CompanyEntity company;
 
-  const CompanyFormPageWrapper({super.key, this.company});
+  const CompanyFormPageWrapper({super.key, required this.company});
 
   @override
   Widget build(BuildContext context) {

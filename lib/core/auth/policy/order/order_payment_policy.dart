@@ -69,7 +69,6 @@ class OrderPaymentPolicy {
     // =========================
     switch (order.paymentStatus) {
       case PaymentStatus.unpaid:
-      case PaymentStatus.partial:
         return true;
 
       case PaymentStatus.paid:

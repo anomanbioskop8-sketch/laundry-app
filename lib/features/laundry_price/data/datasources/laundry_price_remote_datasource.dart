@@ -1,4 +1,8 @@
 import 'package:app_laundry/core/network/base_crud_remote_datasource.dart';
+import 'package:app_laundry/features/laundry/domain/enums/laundry_service_type.dart';
+import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
+import 'package:app_laundry/features/laundry/domain/extensions/laundry_service_type_ext.dart';
+import 'package:app_laundry/features/laundry/domain/extensions/laundry_speed_type_ext.dart';
 import 'package:app_laundry/features/laundry_price/data/models/laundry_price_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -38,6 +42,18 @@ class LaundryPriceRemoteDataSource
     return collectionRef(companyId).where('laundryItemId', isEqualTo: itemId);
   }
 
+  Query<Map<String, dynamic>> _itemQueryWithFilters({
+    required String companyId,
+    required String itemId,
+    required LaundryServiceType serviceType,
+    required LaundrySpeedType speedType,
+  }) {
+    return collectionRef(companyId)
+        .where('laundryItemId', isEqualTo: itemId)
+        .where('serviceType', isEqualTo: serviceType.value)
+        .where('speedType', isEqualTo: speedType.value);
+  }
+
   // =========================
   // STREAM BY ITEM ID
   // =========================
@@ -54,23 +70,46 @@ class LaundryPriceRemoteDataSource
     );
   }
 
+  Stream<List<LaundryPriceModel>> streamByServiceAndSpeed({
+    required String companyId,
+    required LaundryServiceType serviceType,
+    required LaundrySpeedType speedType,
+  }) {
+    return streamAll(
+      companyId,
+      queryBuilder: (query) {
+        return query
+            .where('serviceType', isEqualTo: serviceType.value)
+            .where('speedType', isEqualTo: speedType.value);
+      },
+    );
+  }
+
   // =========================
   // GET BY ITEM ID
   // =========================
 
-  Future<List<LaundryPriceModel>> getByLaundryItemId({
+  Future<LaundryPriceModel?> getLaundryPrice({
     required String companyId,
     required String itemId,
+    required LaundryServiceType serviceType,
+    required LaundrySpeedType speedType,
   }) {
     return safeCall(() async {
-      final snapshot = await _itemQuery(
+      final snapshot = await _itemQueryWithFilters(
         companyId: companyId,
         itemId: itemId,
-      ).get();
+        serviceType: serviceType,
+        speedType: speedType,
+      ).limit(1).get();
 
-      return snapshot.docs.map((doc) {
-        return fromMap(doc.data(), doc.id);
-      }).toList();
+      if (snapshot.docs.isEmpty) {
+        return null;
+      }
+
+      final doc = snapshot.docs.first;
+
+      return fromMap(doc.data(), doc.id);
     });
   }
 

@@ -73,13 +73,13 @@ class OrderStatusPolicy {
     // STATUS FLOW
     // =========================
     switch (from) {
-      case OrderStatus.pending:
-        return to == OrderStatus.process || to == OrderStatus.canceled;
+      case OrderStatus.received:
+        return to == OrderStatus.inProgress || to == OrderStatus.canceled;
 
-      case OrderStatus.process:
-        return to == OrderStatus.done || to == OrderStatus.canceled;
+      case OrderStatus.inProgress:
+        return to == OrderStatus.ready || to == OrderStatus.canceled;
 
-      case OrderStatus.done:
+      case OrderStatus.ready:
         return to == OrderStatus.pickedUp;
 
       case OrderStatus.pickedUp:

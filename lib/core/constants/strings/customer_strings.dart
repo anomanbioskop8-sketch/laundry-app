@@ -6,11 +6,12 @@ class CustomerStrings {
   // =========================
   // TITLE
   // =========================
-  static const title = 'Customer';
+  static const title = 'Pelanggan';
 
   // =========================
   // ACTION
   // =========================
+  static const detail = 'Detail Customer';
   static const create = 'Tambah Customer';
   static const update = 'Edit Customer';
   static const delete = 'Hapus Customer';
@@ -32,11 +33,19 @@ class CustomerStrings {
   static const empty = 'Belum ada customer';
 
   // =========================
+  // FIELD
+  // =========================
+  static const name = 'Nama';
+  static const phone = 'No HP';
+  static const address = 'Alamat';
+
+  // =========================
   // HINT TEXT
   // =========================
   static const nameHint = 'Masukkan nama customer';
   static const phoneHint = 'Masukkan nomor HP';
   static const addressHint = 'Masukkan alamat customer';
+  static const searchHint = 'Cari nama atau nomor HP...';
 
   // =========================
   // VALIDATION

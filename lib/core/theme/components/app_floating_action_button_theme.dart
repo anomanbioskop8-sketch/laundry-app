@@ -23,7 +23,7 @@ class AppFloatingActionButtonTheme {
         minWidth: sizes.buttonLg,
         minHeight: sizes.buttonLg,
       ),
-      iconSize: sizes.iconLg,
+
       extendedTextStyle: TextStyle(
         color: cs.onPrimary,
         fontWeight: FontWeight.w600,

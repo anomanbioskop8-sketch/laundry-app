@@ -3,6 +3,7 @@
 // Path        : lib/features/order/domain/enums/order_status_ext.dart
 // =============================================================================
 
+import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:flutter/material.dart';
@@ -16,14 +17,14 @@ extension OrderStatusExt on OrderStatus {
 
   String get value {
     switch (this) {
-      case OrderStatus.pending:
-        return 'pending';
+      case OrderStatus.received:
+        return 'received';
 
-      case OrderStatus.process:
-        return 'process';
+      case OrderStatus.inProgress:
+        return 'in_progress';
 
-      case OrderStatus.done:
-        return 'done';
+      case OrderStatus.ready:
+        return 'ready';
 
       case OrderStatus.pickedUp:
         return 'picked_up';
@@ -39,20 +40,20 @@ extension OrderStatusExt on OrderStatus {
 
   String get label {
     switch (this) {
-      case OrderStatus.pending:
-        return 'Pending';
+      case OrderStatus.received:
+        return 'Received';
 
-      case OrderStatus.process:
-        return 'Diproses';
+      case OrderStatus.inProgress:
+        return 'In Progress';
 
-      case OrderStatus.done:
-        return 'Selesai';
+      case OrderStatus.ready:
+        return 'Ready';
 
       case OrderStatus.pickedUp:
-        return 'Diambil';
+        return 'Picked Up';
 
       case OrderStatus.canceled:
-        return 'Dibatalkan';
+        return 'Canceled';
     }
   }
 
@@ -62,35 +63,35 @@ extension OrderStatusExt on OrderStatus {
 
   IconData get icon {
     switch (this) {
-      case OrderStatus.pending:
-        return Icons.schedule_rounded;
+      case OrderStatus.received:
+        return AppIcons.received;
 
-      case OrderStatus.process:
-        return Icons.local_laundry_service_rounded;
+      case OrderStatus.inProgress:
+        return AppIcons.inProgress;
 
-      case OrderStatus.done:
-        return Icons.check_circle_rounded;
+      case OrderStatus.ready:
+        return AppIcons.ready;
 
       case OrderStatus.pickedUp:
-        return Icons.inventory_2_rounded;
+        return AppIcons.pickedUp;
 
       case OrderStatus.canceled:
-        return Icons.cancel_rounded;
+        return AppIcons.canceled;
     }
   }
 
   Color color(BuildContext context) {
     switch (this) {
-      case OrderStatus.pending:
-        return context.status.pending;
-      case OrderStatus.process:
-        return context.status.process;
-      case OrderStatus.done:
-        return context.status.done;
+      case OrderStatus.received:
+        return context.status.received;
+      case OrderStatus.inProgress:
+        return context.status.inProgress;
+      case OrderStatus.ready:
+        return context.status.ready;
       case OrderStatus.pickedUp:
-        return context.status.process;
+        return context.status.pickedUp;
       case OrderStatus.canceled:
-        return context.status.cancel;
+        return context.status.canceled;
     }
   }
 
@@ -100,13 +101,13 @@ extension OrderStatusExt on OrderStatus {
 
   OrderStatus? get next {
     switch (this) {
-      case OrderStatus.pending:
-        return OrderStatus.process;
+      case OrderStatus.received:
+        return OrderStatus.inProgress;
 
-      case OrderStatus.process:
-        return OrderStatus.done;
+      case OrderStatus.inProgress:
+        return OrderStatus.ready;
 
-      case OrderStatus.done:
+      case OrderStatus.ready:
         return OrderStatus.pickedUp;
 
       case OrderStatus.pickedUp:
@@ -139,11 +140,14 @@ extension OrderStatusExt on OrderStatus {
 
   static OrderStatus fromString(String value) {
     switch (value) {
-      case 'process':
-        return OrderStatus.process;
+      case 'received':
+        return OrderStatus.received;
 
-      case 'done':
-        return OrderStatus.done;
+      case 'in_progress':
+        return OrderStatus.inProgress;
+
+      case 'ready':
+        return OrderStatus.ready;
 
       case 'picked_up':
         return OrderStatus.pickedUp;
@@ -152,7 +156,7 @@ extension OrderStatusExt on OrderStatus {
         return OrderStatus.canceled;
 
       default:
-        return OrderStatus.pending;
+        return OrderStatus.received;
     }
   }
 
@@ -162,13 +166,13 @@ extension OrderStatusExt on OrderStatus {
 
   String get actionLabel {
     switch (this) {
-      case OrderStatus.pending:
+      case OrderStatus.received:
         return OrderStrings.process;
 
-      case OrderStatus.process:
+      case OrderStatus.inProgress:
         return OrderStrings.complete;
 
-      case OrderStatus.done:
+      case OrderStatus.ready:
         return OrderStrings.pickup;
 
       case OrderStatus.pickedUp:
@@ -180,18 +184,41 @@ extension OrderStatusExt on OrderStatus {
   }
 
   // =========================
+  // ACTION ICON
+  // =========================
+
+  IconData get actionIcon {
+    switch (this) {
+      case OrderStatus.received:
+        return AppIcons.inProgress;
+
+      case OrderStatus.inProgress:
+        return AppIcons.ready;
+
+      case OrderStatus.ready:
+        return AppIcons.pickedUp;
+
+      case OrderStatus.pickedUp:
+        return AppIcons.pickedUp;
+
+      case OrderStatus.canceled:
+        return AppIcons.canceled;
+    }
+  }
+
+  // =========================
   // SUCCESS MESSAGE
   // =========================
 
   String get successMessage {
     switch (this) {
-      case OrderStatus.pending:
+      case OrderStatus.received:
         return OrderStrings.processSuccess;
 
-      case OrderStatus.process:
+      case OrderStatus.inProgress:
         return OrderStrings.completeSuccess;
 
-      case OrderStatus.done:
+      case OrderStatus.ready:
         return OrderStrings.pickupSuccess;
 
       case OrderStatus.pickedUp:
@@ -208,13 +235,13 @@ extension OrderStatusExt on OrderStatus {
 
   String get confirmMessage {
     switch (this) {
-      case OrderStatus.pending:
+      case OrderStatus.received:
         return OrderStrings.confirmProcess;
 
-      case OrderStatus.process:
+      case OrderStatus.inProgress:
         return OrderStrings.confirmComplete;
 
-      case OrderStatus.done:
+      case OrderStatus.ready:
         return OrderStrings.confirmPickup;
 
       case OrderStatus.pickedUp:

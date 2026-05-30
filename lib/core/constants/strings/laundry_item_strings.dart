@@ -11,6 +11,7 @@ class LaundryItemStrings {
   // =========================
   // ACTION
   // =========================
+  static const view = 'Lihat Item Laundry';
   static const add = 'Tambah Item Laundry';
   static const edit = 'Edit Item Laundry';
   static const delete = 'Hapus Item Laundry';
@@ -36,6 +37,8 @@ class LaundryItemStrings {
   // =========================
   static const name = 'Nama Item';
   static const category = 'Kategori';
+
+  static const searchHint = 'Cari item laundry...';
 
   // =========================
   // VALIDATION

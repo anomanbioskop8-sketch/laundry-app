@@ -5,17 +5,11 @@ import 'dialog_type.dart';
 class DialogColorMapper {
   static Color color(BuildContext context, DialogType type) {
     switch (type) {
-      case DialogType.info:
-        return context.status.info;
-
-      case DialogType.success:
-        return context.status.success;
-
-      case DialogType.warning:
-        return context.status.warning;
-
-      case DialogType.danger:
+      case DialogType.alert:
         return context.status.error;
+
+      case DialogType.confirm:
+        return context.status.info;
     }
   }
 }

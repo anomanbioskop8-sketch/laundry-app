@@ -3,7 +3,7 @@ import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_e
 import 'package:app_laundry/features/laundry_item/domain/enums/laundry_item_category.dart';
 import 'package:app_laundry/features/laundry_item/domain/extensions/laundry_item_category_ext.dart';
 import 'package:app_laundry/features/laundry_item/domain/extensions/string_laundry_item_category_ext.dart';
-import 'package:app_laundry/features/laundry_item/domain/usecases/laundry_item_params.dart';
+import 'package:app_laundry/features/laundry_item/domain/usecases/params/save_laundry_item_params.dart';
 import 'package:flutter/material.dart';
 
 class LaundryItemFormController extends FormController {

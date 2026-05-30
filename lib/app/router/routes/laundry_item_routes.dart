@@ -5,7 +5,7 @@
 
 import 'package:app_laundry/app/router/route_paths.dart';
 import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_entity.dart';
-import 'package:app_laundry/features/laundry_item/presentation/pages/laundry_item_form_page_wrapper.dart';
+import 'package:app_laundry/features/laundry_item/presentation/wrappers/laundry_item_form_page_wrapper.dart';
 import 'package:go_router/go_router.dart';
 
 class LaundryItemRoutes {
@@ -13,9 +13,8 @@ class LaundryItemRoutes {
 
   static final routes = <GoRoute>[
     GoRoute(
-      path: LaundryItemPaths.laundryItemForm,
-      name: LaundryItemPaths.laundryItemFormName,
-
+      path: LaundryItemPaths.laundryItemFormPath,
+      name: LaundryItemPaths.laundryItemForm,
       builder: (context, state) {
         final item = state.extra as LaundryItemEntity?;
 

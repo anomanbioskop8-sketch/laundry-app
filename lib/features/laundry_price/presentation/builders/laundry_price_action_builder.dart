@@ -1,12 +1,13 @@
 import 'package:app_laundry/app/di/injection_container.dart';
-import 'package:app_laundry/app/router/route_paths.dart';
+import 'package:app_laundry/app/router/extensions/push/laundry_price_navigation_ext.dart';
 import 'package:app_laundry/core/auth/permission/permission.dart';
+import 'package:app_laundry/core/constants/app_icons.dart';
+import 'package:app_laundry/core/constants/strings/laundry_price_strings.dart';
 import 'package:app_laundry/core/ui/bottom_sheet/action_intent.dart';
 import 'package:app_laundry/core/ui/bottom_sheet/action_item.dart';
 import 'package:app_laundry/core/auth/permission/permission_service.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class LaundryPriceActionBuilder {
   final LaundryPriceEntity price;
@@ -22,16 +23,11 @@ class LaundryPriceActionBuilder {
 
     return [
       ActionItem(
-        title: 'Edit',
-        icon: Icons.edit_outlined,
+        title: LaundryPriceStrings.edit,
+        icon: AppIcons.edit,
         intent: ActionIntent.update,
         canShow: () => canUpdate,
-        onTap: () async {
-          await context.pushNamed(
-            LaundryPricePaths.laundryPriceFormName,
-            extra: price,
-          );
-        },
+        onTap: () => context.pushLaundryPriceForm(laundryPrice: price),
       ),
     ];
   }

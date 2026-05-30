@@ -18,11 +18,12 @@ class OrderLaundryItemMapper {
 
   static OrderLaundryItemEntity toEntity(OrderLaundryItemModel model) {
     return OrderLaundryItemEntity(
-      laundryItemId: model.laundryItemId,
+      itemId: model.laundryItemId,
 
-      laundryItemName: model.laundryItemName,
+      itemName: model.laundryItemName,
 
-      quantity: model.quantity,
+      qty: model.quantity,
+      price: model.price,
     );
   }
 
@@ -32,11 +33,12 @@ class OrderLaundryItemMapper {
 
   static OrderLaundryItemModel toModel(OrderLaundryItemEntity entity) {
     return OrderLaundryItemModel(
-      laundryItemId: entity.laundryItemId,
+      laundryItemId: entity.itemId,
 
-      laundryItemName: entity.laundryItemName,
+      laundryItemName: entity.itemName,
 
-      quantity: entity.quantity,
+      quantity: entity.qty,
+      price: entity.price,
     );
   }
 

@@ -57,12 +57,12 @@ class OrderDeletePolicy {
     // BUSINESS RULE
     // =========================
     switch (order.orderStatus) {
-      case OrderStatus.pending:
+      case OrderStatus.received:
       case OrderStatus.canceled:
         return true;
 
-      case OrderStatus.process:
-      case OrderStatus.done:
+      case OrderStatus.inProgress:
+      case OrderStatus.ready:
       case OrderStatus.pickedUp:
         return false;
     }

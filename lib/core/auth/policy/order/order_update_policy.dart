@@ -57,11 +57,11 @@ class OrderUpdatePolicy {
     // BUSINESS RULE
     // =========================
     switch (order.orderStatus) {
-      case OrderStatus.pending:
-      case OrderStatus.process:
+      case OrderStatus.received:
+      case OrderStatus.inProgress:
         return true;
 
-      case OrderStatus.done:
+      case OrderStatus.ready:
       case OrderStatus.pickedUp:
       case OrderStatus.canceled:
         return false;

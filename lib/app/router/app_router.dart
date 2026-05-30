@@ -39,14 +39,10 @@ class AppRouter {
   // =========================
 
   late final GoRouter router = GoRouter(
-    initialLocation: AuthPaths.splash,
-
+    initialLocation: AuthPaths.splashPath,
     navigatorKey: AppNavigator.navigatorKey,
-
     refreshListenable: GoRouterRefreshStream(sessionCubit.stream),
-
     redirect: guard.redirect,
-
     routes: [
       ...AuthRoutes.routes,
       ...MainRoutes.routes,

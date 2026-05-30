@@ -12,7 +12,7 @@ import 'package:app_laundry/core/utils/invoice_generator.dart';
 import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
 import 'package:app_laundry/features/order/domain/enums/order_status.dart';
 import 'package:app_laundry/features/order/domain/repositories/order_repository.dart';
-import 'package:app_laundry/features/order/domain/usecase/order_params.dart';
+import 'package:app_laundry/features/order/domain/usecase/params/create_order_params.dart';
 import 'package:uuid/uuid.dart';
 
 class CreateOrder {
@@ -38,7 +38,7 @@ class CreateOrder {
         invoiceNumber: InvoiceGenerator.generate(),
         customerId: params.customer.id,
         groups: params.groups,
-        orderStatus: OrderStatus.pending,
+        orderStatus: OrderStatus.received,
         paymentStatus: params.paymentStatus,
         total: 0,
       );

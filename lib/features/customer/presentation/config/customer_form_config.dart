@@ -20,9 +20,9 @@
 import 'package:app_laundry/core/base/form/form_field_config.dart';
 import 'package:app_laundry/core/base/form/form_field_type.dart';
 import 'package:app_laundry/core/base/validators/app_validator.dart';
+import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/customer_strings.dart';
 import 'package:app_laundry/features/customer/presentation/controllers/customer_form_controller.dart';
-import 'package:flutter/material.dart';
 
 class CustomerFormConfig {
   final CustomerFormController controller;
@@ -39,14 +39,14 @@ class CustomerFormConfig {
       /// =========================
       FormFieldConfig(
         name: 'name',
-        label: 'Nama',
-        hintText: CustomerStrings.nameHint,
-        prefixIcon: Icons.person_outline,
+        label: CustomerStrings.name,
         controller: controller.name,
+        prefixIcon: AppIcons.user,
+        hintText: CustomerStrings.nameHint,
         validators: [
           (v) =>
               AppValidator.required(v, message: CustomerStrings.nameRequired),
-          (v) => AppValidator.minLength(v, 3, field: 'Nama'),
+          (v) => AppValidator.minLength(v, 3, field: CustomerStrings.name),
         ],
       ),
 
@@ -55,10 +55,10 @@ class CustomerFormConfig {
       /// =========================
       FormFieldConfig(
         name: 'phone',
-        label: 'No HP',
-        hintText: CustomerStrings.phoneHint,
-        prefixIcon: Icons.phone_outlined,
+        label: CustomerStrings.phone,
         controller: controller.phone,
+        prefixIcon: AppIcons.phone,
+        hintText: CustomerStrings.phoneHint,
         type: FormFieldType.number,
         validators: [AppValidator.phone],
       ),
@@ -68,12 +68,12 @@ class CustomerFormConfig {
       /// =========================
       FormFieldConfig(
         name: 'address',
-        label: 'Alamat',
+        label: CustomerStrings.address,
         controller: controller.address,
-        type: FormFieldType.multiline,
+        prefixIcon: AppIcons.address,
         hintText: CustomerStrings.addressHint,
-        prefixIcon: Icons.location_on_outlined,
         maxLines: 3,
+        type: FormFieldType.multiline,
         validators: [
           (v) => AppValidator.required(
             v,

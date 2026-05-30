@@ -10,20 +10,18 @@
 // - Mendukung clear selected customer
 // =============================================================================
 
-import 'package:app_laundry/app/router/route_paths.dart';
+import 'package:app_laundry/app/router/extensions/push/customer_navigation_ext.dart';
+import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/core/ui/components/app_selected_item.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class CustomerFieldWidget extends StatelessWidget {
   final CustomerEntity? customer;
-
   final ValueChanged<CustomerEntity> onChanged;
-
   final VoidCallback? onClear;
 
   const CustomerFieldWidget({
@@ -38,10 +36,7 @@ class CustomerFieldWidget extends StatelessWidget {
   // =========================
 
   Future<void> _pickCustomer(BuildContext context) async {
-    final result = await context.pushNamed(
-      CustomerPaths.customersName,
-      extra: true,
-    );
+    final result = await context.goCustomer(isPicker: true);
 
     if (result is CustomerEntity) {
       onChanged(result);
@@ -55,23 +50,18 @@ class CustomerFieldWidget extends StatelessWidget {
 
     return AppSelectedItem(
       leading: Icon(
-        Icons.person_outline,
+        AppIcons.customers,
         color: context.colors.primary,
-        size: context.sizes.iconLg,
+        size: context.sizes.iconMd,
       ),
-
       title: hasCustomer ? selectedCustomer.name : 'Pilih Customer',
-
       subtitle: hasCustomer
           ? selectedCustomer.phone
           : 'Belum ada customer dipilih',
-
       titleStyle: hasCustomer
           ? context.bodyMedium!.semiBold.onSurface(context)
           : context.bodyMedium!.semiBold.primary(context),
-
       subtitleStyle: context.bodySmall!.onSurfaceVariant(context),
-
       onTap: () {
         _pickCustomer(context);
       },

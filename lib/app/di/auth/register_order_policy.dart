@@ -12,17 +12,11 @@
 // =============================================================================
 
 import 'package:app_laundry/core/auth/policy/order/order_delete_policy.dart';
-
 import 'package:app_laundry/core/auth/policy/order/order_payment_policy.dart';
-
 import 'package:app_laundry/core/auth/policy/order/order_policy.dart';
-
 import 'package:app_laundry/core/auth/policy/order/order_status_policy.dart';
-
 import 'package:app_laundry/core/auth/policy/order/order_update_policy.dart';
-
 import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
-
 import 'package:get_it/get_it.dart';
 
 // =============================================================================
@@ -69,11 +63,8 @@ void registerOrderPolicy(GetIt sl) {
   sl.registerLazySingleton<OrderPolicy>(
     () => OrderPolicy(
       deletePolicy: sl<OrderDeletePolicy>(),
-
       updatePolicy: sl<OrderUpdatePolicy>(),
-
       paymentPolicy: sl<OrderPaymentPolicy>(),
-
       statusPolicy: sl<OrderStatusPolicy>(),
     ),
   );

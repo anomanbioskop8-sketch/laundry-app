@@ -82,6 +82,12 @@ class OrderStrings {
   static const invoice = 'No. Invoice';
 
   // =========================
+  // HINT
+  // =========================
+  static const weightHint = 'Masukkan berat laundry';
+  static const searchHint = 'Cari order berdasarkan nomor invoice...';
+
+  // =========================
   // VALIDATION
   // =========================
 

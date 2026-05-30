@@ -12,24 +12,15 @@
 
 import 'package:app_laundry/app/di/injection_container.dart';
 import 'package:app_laundry/app/router/app_router.dart';
-
 import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
-
 import 'package:app_laundry/core/base/cubit/base_action_cubit.dart';
-
 import 'package:app_laundry/core/services/app_navigator.dart';
-
 import 'package:app_laundry/core/theme/core_theme.dart';
-
 import 'package:firebase_core/firebase_core.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'package:go_router/go_router.dart';
-
 import 'package:intl/date_symbol_data_local.dart';
 
 Future<void> main() async {
@@ -107,9 +98,7 @@ class MyApp extends StatelessWidget {
         // THEME
         // =========================
         theme: CoreTheme.light(),
-
-        darkTheme: CoreTheme.dark(),
-
+        //darkTheme: CoreTheme.dark(),
         themeMode: ThemeMode.system,
 
         // =========================
@@ -126,9 +115,7 @@ class MyApp extends StatelessWidget {
         // LOCALIZATION
         // =========================
         locale: const Locale('id', 'ID'),
-
         supportedLocales: const [Locale('id', 'ID'), Locale('en', 'US')],
-
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,

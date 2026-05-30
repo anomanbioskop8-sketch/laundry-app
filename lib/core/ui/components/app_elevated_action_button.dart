@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 class AppElevatedActionButton extends StatelessWidget {
   final String label;
   final VoidCallback? onPressed;
-
   final IconData? icon;
 
   /// custom background color
@@ -56,9 +55,7 @@ class AppElevatedActionButton extends StatelessWidget {
     return ElevatedButton.icon(
       onPressed: onPressed,
       style: style,
-
       icon: Icon(icon, size: context.sizes.iconLg),
-
       label: Text(label),
     );
   }

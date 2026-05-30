@@ -10,9 +10,7 @@ import 'package:flutter/material.dart';
 
 class AppChip extends StatelessWidget {
   final String label;
-
   final IconData? icon;
-
   final Color color;
 
   const AppChip({
@@ -32,7 +30,6 @@ class AppChip extends StatelessWidget {
 
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.2),
-
         borderRadius: context.radius.sm.r,
       ),
 
@@ -43,7 +40,6 @@ class AppChip extends StatelessWidget {
           /// ICON
           if (icon != null) ...[
             Icon(icon, size: context.sizes.iconSm, color: color),
-
             context.spacing.xs.w,
           ],
 

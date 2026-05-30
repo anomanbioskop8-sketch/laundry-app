@@ -9,17 +9,12 @@ class AppNavigationBarTheme {
     required TextTheme text,
   }) {
     final sizes = AppSizes();
-    final label = text.labelSmall ?? const TextStyle(fontSize: 12);
+    final label = text.labelMedium ?? const TextStyle(fontSize: 12);
 
     return NavigationBarThemeData(
-      /// ======================
-      /// SIZE (FROM TOKEN 🔥)
-      /// ======================
-      height: sizes.buttonLg + 16, // 56 + padding → ~72
-
+      height: sizes.buttonLg + 16,
       backgroundColor: cs.surfaceContainer,
       indicatorColor: cs.primary.withValues(alpha: 0.2),
-
       labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
 
       /// ======================
@@ -51,7 +46,7 @@ class AppNavigationBarTheme {
         }
 
         if (states.contains(WidgetState.selected)) {
-          return IconThemeData(color: cs.primary, size: sizes.iconLg);
+          return IconThemeData(color: cs.primary, size: sizes.iconMd + 5);
         }
 
         return IconThemeData(color: cs.onSurfaceVariant, size: sizes.iconMd);

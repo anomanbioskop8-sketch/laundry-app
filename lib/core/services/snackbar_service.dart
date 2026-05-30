@@ -15,6 +15,7 @@
 // - Custom margin & rounded style
 // =============================================================================
 
+import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/services/app_navigator.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
@@ -35,7 +36,7 @@ class AppSnackbar {
     _show(
       context,
       message: message,
-      icon: Icons.check_circle_rounded,
+      icon: AppIcons.success,
       color: context.status.success,
     );
   }
@@ -52,7 +53,7 @@ class AppSnackbar {
     _show(
       context,
       message: message,
-      icon: Icons.error_rounded,
+      icon: AppIcons.error,
       color: context.status.error,
     );
   }

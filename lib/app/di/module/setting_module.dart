@@ -8,7 +8,6 @@
 // =============================================================================
 
 import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
-import 'package:app_laundry/core/utils/logger_service.dart';
 import 'package:app_laundry/features/setting/data/datasources/setting_remote_data_source.dart';
 import 'package:app_laundry/features/setting/data/repositories/setting_repository_impl.dart';
 import 'package:app_laundry/features/setting/domain/repositories/setting_repository.dart';
@@ -17,7 +16,6 @@ import 'package:app_laundry/features/setting/domain/usecases/stream_setting.dart
 import 'package:app_laundry/features/setting/domain/usecases/update_setting.dart';
 import 'package:app_laundry/features/setting/presentation/cubit/setting_action_cubit.dart';
 import 'package:app_laundry/features/setting/presentation/cubit/setting_cubit.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 
 class SettingModule {

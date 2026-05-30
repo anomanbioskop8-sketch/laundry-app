@@ -2,15 +2,17 @@ import 'package:app_laundry/core/error/exceptions.dart';
 import 'package:app_laundry/core/error/extensions/app_exception_ext.dart';
 import 'package:app_laundry/core/error/failure.dart';
 import 'package:app_laundry/core/utils/either.dart';
+import 'package:app_laundry/features/laundry/domain/enums/laundry_service_type.dart';
+import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
 import 'package:app_laundry/features/laundry_price/data/datasources/laundry_price_remote_datasource.dart';
 import 'package:app_laundry/features/laundry_price/data/mappers/laundry_item_mapper_ext.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
 import 'package:app_laundry/features/laundry_price/domain/repositories/laundry_price_repository.dart';
 
 class LaundryPriceRepositoryImpl implements LaundryPriceRepository {
-  final LaundryPriceRemoteDataSource remote;
+  final LaundryPriceRemoteDataSource _remote;
 
-  LaundryPriceRepositoryImpl(this.remote);
+  LaundryPriceRepositoryImpl(this._remote);
 
   /// =========================
   /// STREAM ALL (REALTIME)
@@ -21,7 +23,7 @@ class LaundryPriceRepositoryImpl implements LaundryPriceRepository {
     required String itemId,
   }) async* {
     try {
-      await for (final models in remote.streamByLaundryItemId(
+      await for (final models in _remote.streamByLaundryItemId(
         companyId: companyId,
         itemId: itemId,
       )) {
@@ -29,6 +31,51 @@ class LaundryPriceRepositoryImpl implements LaundryPriceRepository {
       }
     } on AppException catch (e) {
       yield Left(e.toFailure);
+    }
+  }
+
+  @override
+  Stream<Either<Failure, List<LaundryPriceEntity>>> streamByServiceAndSpeed({
+    required String companyId,
+    required LaundryServiceType serviceType,
+    required LaundrySpeedType speedType,
+  }) async* {
+    try {
+      await for (final models in _remote.streamByServiceAndSpeed(
+        companyId: companyId,
+        serviceType: serviceType,
+        speedType: speedType,
+      )) {
+        yield Right(models.toEntities);
+      }
+    } on AppException catch (e) {
+      yield Left(e.toFailure);
+    }
+  }
+
+  /// =========================
+  /// GET LAUNDRY PRICE
+  /// =========================
+  @override
+  Future<Either<Failure, LaundryPriceEntity?>> getLaundryPrice({
+    required String companyId,
+    required String itemId,
+    required LaundryServiceType serviceType,
+    required LaundrySpeedType speedType,
+  }) async {
+    try {
+      final model = await _remote.getLaundryPrice(
+        companyId: companyId,
+        itemId: itemId,
+        serviceType: serviceType,
+        speedType: speedType,
+      );
+
+      if (model == null) return const Right(null);
+
+      return Right(model.toEntity);
+    } on AppException catch (e) {
+      return Left(e.toFailure);
     }
   }
 
@@ -41,7 +88,7 @@ class LaundryPriceRepositoryImpl implements LaundryPriceRepository {
     required String id,
   }) async {
     try {
-      final model = await remote.getById(companyId: companyId, id: id);
+      final model = await _remote.getById(companyId: companyId, id: id);
 
       if (model == null) return const Right(null);
 
@@ -62,7 +109,7 @@ class LaundryPriceRepositoryImpl implements LaundryPriceRepository {
     try {
       final model = price.toModel;
 
-      await remote.create(companyId: companyId, id: model.id, data: model);
+      await _remote.create(companyId: companyId, id: model.id, data: model);
 
       return const Right(null);
     } on AppException catch (e) {
@@ -81,7 +128,7 @@ class LaundryPriceRepositoryImpl implements LaundryPriceRepository {
     try {
       final model = price.toModel;
 
-      await remote.update(companyId: companyId, id: model.id, data: model);
+      await _remote.update(companyId: companyId, id: model.id, data: model);
 
       return const Right(null);
     } on AppException catch (e) {
@@ -98,7 +145,7 @@ class LaundryPriceRepositoryImpl implements LaundryPriceRepository {
     required String id,
   }) async {
     try {
-      await remote.delete(companyId: companyId, id: id);
+      await _remote.delete(companyId: companyId, id: id);
       return const Right(null);
     } on AppException catch (e) {
       return Left(e.toFailure);
@@ -111,7 +158,7 @@ class LaundryPriceRepositoryImpl implements LaundryPriceRepository {
     required String itemId,
   }) async {
     try {
-      await remote.deleteByItemId(companyId: companyId, itemId: itemId);
+      await _remote.deleteByItemId(companyId: companyId, itemId: itemId);
       return const Right(null);
     } on AppException catch (e) {
       return Left(e.toFailure);

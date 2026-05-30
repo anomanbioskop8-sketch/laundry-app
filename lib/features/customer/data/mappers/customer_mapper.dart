@@ -22,12 +22,17 @@ class CustomerMapper {
       phone: entity.phone,
       address: entity.address,
       createdAt: entity.createdAt,
-      updatedAt: entity.createdAt,
+      updatedAt: entity.updatedAt,
     );
   }
 
   /// List Model → List Entity
   static List<CustomerEntity> toEntityList(List<CustomerModel> models) {
     return models.map(toEntity).toList();
+  }
+
+  /// List Model → List Entity
+  static List<CustomerModel> toModelList(List<CustomerEntity> entities) {
+    return entities.map(toModel).toList();
   }
 }

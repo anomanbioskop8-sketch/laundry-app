@@ -10,11 +10,9 @@
 import 'package:app_laundry/core/base/form/form_field_config.dart';
 import 'package:app_laundry/core/base/form/form_field_type.dart';
 import 'package:app_laundry/core/base/validators/app_validator.dart';
+import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/company_strings.dart';
-
 import 'package:app_laundry/features/company/presentation/controllers/company_form_controller.dart';
-
-import 'package:flutter/material.dart';
 
 class CompanyFormConfig {
   final CompanyFormController _controller;
@@ -29,9 +27,10 @@ class CompanyFormConfig {
     return [
       FormFieldConfig(
         name: 'name',
-        label: 'Nama Company',
+        label: CompanyStrings.name,
         controller: _controller.name,
-        prefixIcon: Icons.business_outlined,
+        prefixIcon: AppIcons.company,
+        hintText: CompanyStrings.nameHint,
         validators: [
           (v) => AppValidator.required(v, message: CompanyStrings.nameRequired),
         ],
@@ -39,10 +38,11 @@ class CompanyFormConfig {
 
       FormFieldConfig(
         name: 'phone',
-        label: 'Phone',
-        type: FormFieldType.number,
+        label: CompanyStrings.phone,
         controller: _controller.phone,
-        prefixIcon: Icons.phone_outlined,
+        prefixIcon: AppIcons.phone,
+        hintText: CompanyStrings.phoneHint,
+        type: FormFieldType.number,
         validators: [
           (v) =>
               AppValidator.required(v, message: CompanyStrings.phoneRequired),
@@ -51,11 +51,12 @@ class CompanyFormConfig {
 
       FormFieldConfig(
         name: 'address',
-        label: 'Address',
-        type: FormFieldType.multiline,
+        label: CompanyStrings.address,
         controller: _controller.address,
-        prefixIcon: Icons.location_on_outlined,
+        prefixIcon: AppIcons.address,
+        hintText: CompanyStrings.addressHint,
         maxLines: 3,
+        type: FormFieldType.multiline,
         validators: [
           (v) =>
               AppValidator.required(v, message: CompanyStrings.addressRequired),

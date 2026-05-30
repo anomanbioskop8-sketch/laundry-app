@@ -6,11 +6,8 @@ import 'package:flutter/material.dart';
 
 class AppIconAvatar extends StatelessWidget {
   final IconData icon;
-
   final double? radius;
-
   final Color? backgroundColor;
-
   final Color? iconColor;
 
   const AppIconAvatar({

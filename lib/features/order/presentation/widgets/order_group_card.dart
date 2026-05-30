@@ -2,6 +2,7 @@
 // File : order_group_card.dart
 // =============================================================================
 
+import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
@@ -13,7 +14,6 @@ import 'package:flutter/material.dart';
 
 class OrderGroupCard extends StatelessWidget {
   final OrderGroupEntity group;
-
   final VoidCallback? onDelete;
 
   const OrderGroupCard({super.key, required this.group, this.onDelete});
@@ -55,7 +55,7 @@ class OrderGroupCard extends StatelessWidget {
 
                 IconButton(
                   onPressed: onDelete,
-                  icon: Icon(Icons.delete_outline, color: context.error),
+                  icon: Icon(AppIcons.delete, color: context.error),
                 ),
               ],
             ),

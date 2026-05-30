@@ -12,8 +12,8 @@ class MainRoutes {
 
   static final routes = <GoRoute>[
     GoRoute(
-      path: MainPaths.main,
-      name: MainPaths.mainName,
+      path: MainPaths.mainPath,
+      name: MainPaths.main,
       builder: (_, _) => const MainPage(),
     ),
   ];

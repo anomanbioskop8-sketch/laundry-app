@@ -9,7 +9,7 @@ import 'package:app_laundry/features/order/domain/enums/payment_status_ext.dart'
 
 import 'package:app_laundry/features/order/domain/extensions/string_payment_status_ext.dart';
 
-import 'package:app_laundry/features/order/domain/usecase/order_params.dart';
+import 'package:app_laundry/features/order/domain/usecase/params/create_order_params.dart';
 
 import 'package:flutter/material.dart';
 

@@ -5,7 +5,7 @@ import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
 import 'package:app_laundry/features/order/domain/enums/payment_status.dart';
 import 'package:app_laundry/features/order/domain/repositories/order_repository.dart';
-import 'package:app_laundry/features/order/domain/usecase/order_params.dart';
+import 'package:app_laundry/features/order/domain/usecase/params/pay_order_params.dart';
 
 class PayOrder {
   final OrderRepository _repository;

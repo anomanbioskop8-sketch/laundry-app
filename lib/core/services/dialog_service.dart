@@ -35,12 +35,9 @@ class DialogService {
   static Future<bool> confirm({
     required String title,
     required String message,
-
-    DialogType type = DialogType.info,
-
+    DialogType type = DialogType.confirm,
     String confirmText = 'OK',
     String cancelText = 'Batal',
-
     Color? confirmColor,
   }) async {
     final context = AppNavigator.navigatorKey.currentContext;
@@ -58,12 +55,9 @@ class DialogService {
         return _ConfirmDialog(
           title: title,
           message: message,
-
           type: type,
-
           confirmText: confirmText,
           cancelText: cancelText,
-
           confirmColor: confirmColor,
         );
       },
@@ -80,23 +74,17 @@ class DialogService {
 class _ConfirmDialog extends StatelessWidget {
   final String title;
   final String message;
-
   final DialogType type;
-
   final String confirmText;
   final String cancelText;
-
   final Color? confirmColor;
 
   const _ConfirmDialog({
     required this.title,
     required this.message,
-
     required this.type,
-
     required this.confirmText,
     required this.cancelText,
-
     this.confirmColor,
   });
 
@@ -165,7 +153,6 @@ class _ConfirmDialog extends StatelessWidget {
             // =========================
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
-
               children: [
                 // CANCEL
                 AppOutlinedActionButton(

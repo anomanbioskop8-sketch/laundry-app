@@ -9,18 +9,12 @@
 // =============================================================================
 
 import 'package:app_laundry/core/auth/role/user_role.dart';
-
 import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
 import 'package:app_laundry/core/auth/session/cubit/session_state.dart';
-
 import 'package:app_laundry/core/auth/session/domain/entities/session_auth_entity.dart';
-
 import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
-
 import 'package:app_laundry/core/error/exceptions.dart';
-
 import 'package:app_laundry/features/auth/domain/entities/user_entity.dart';
-
 import 'package:app_laundry/features/company/domain/entities/company_entity.dart';
 
 class SessionServiceImpl implements SessionService {

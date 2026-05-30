@@ -51,21 +51,24 @@ class AppSemanticColors {
   // ORDER STATUS COLORS
   // =========================
 
-  /// Status pending
-  static const pending = AppPalette.blueGrey500;
-  static const pendingDark = AppPalette.blueGrey300;
+  /// Status received
+  static const received = AppPalette.blueGrey500;
+  static const receivedDark = AppPalette.blueGrey300;
 
-  /// Status proses
-  static const process = AppPalette.orange500;
-  static const processDark = AppPalette.orange300;
+  /// Status in progress
+  static const inProgress = AppPalette.orange500;
+  static const inProgressDark = AppPalette.orange300;
 
-  /// Status selesai
-  static const done = AppPalette.green500;
-  static const doneDark = AppPalette.green300;
+  /// Status ready
+  static const ready = AppPalette.green500;
+  static const readyDark = AppPalette.green300;
+
+  static const pickedUp = AppPalette.cyan500;
+  static const pickedUpDark = AppPalette.cyan300;
 
   /// Status dibatalkan
-  static const cancel = AppPalette.red500;
-  static const cancelDark = AppPalette.red300;
+  static const canceled = AppPalette.red500;
+  static const canceledDark = AppPalette.red300;
 
   // =========================
   // TEXT COLORS (LIGHT MODE)

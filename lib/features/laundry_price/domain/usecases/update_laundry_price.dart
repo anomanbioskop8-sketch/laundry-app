@@ -5,7 +5,7 @@ import 'package:app_laundry/core/error/failure.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
 import 'package:app_laundry/features/laundry_price/domain/repositories/laundry_price_repository.dart';
-import 'package:app_laundry/features/laundry_price/domain/usecases/laundry_price_params.dart';
+import 'package:app_laundry/features/laundry_price/domain/usecases/params/save_laundry_price_params.dart';
 
 class UpdateLaundryPrice {
   final LaundryPriceRepository _repository;

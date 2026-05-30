@@ -8,20 +8,12 @@
 // =============================================================================
 
 import 'package:app_laundry/core/base/form/form_builder.dart';
-import 'package:app_laundry/core/base/listeners/base_action_listener.dart';
-
 import 'package:app_laundry/core/constants/strings/setting_strings.dart';
-
 import 'package:app_laundry/features/setting/domain/entities/setting_entity.dart';
-
 import 'package:app_laundry/features/setting/presentation/config/setting_form_config.dart';
-
 import 'package:app_laundry/features/setting/presentation/controllers/setting_form_controller.dart';
-
 import 'package:app_laundry/features/setting/presentation/cubit/setting_action_cubit.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingFormPage extends StatefulWidget {
@@ -45,7 +37,6 @@ class _SettingFormPageState extends State<SettingFormPage> {
   // =========================
 
   late final SettingFormController _controller;
-
   late final SettingFormConfig _config;
 
   // =========================
@@ -55,11 +46,8 @@ class _SettingFormPageState extends State<SettingFormPage> {
   @override
   void initState() {
     super.initState();
-
     _controller = SettingFormController();
-
     _config = SettingFormConfig(_controller);
-
     _controller.setSetting(widget.setting);
   }
 
@@ -70,7 +58,6 @@ class _SettingFormPageState extends State<SettingFormPage> {
   @override
   void dispose() {
     _controller.dispose();
-
     super.dispose();
   }
 
@@ -86,14 +73,10 @@ class _SettingFormPageState extends State<SettingFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(SettingStrings.title)),
-
       body: FormBuilder(
         formKey: _controller.formKey,
-
         fields: _config.fields,
-
         submitLabel: 'Simpan',
-
         onSubmit: _submit,
       ),
     );

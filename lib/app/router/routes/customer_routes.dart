@@ -5,9 +5,9 @@
 
 import 'package:app_laundry/app/router/route_paths.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
-import 'package:app_laundry/features/customer/presentation/pages/customer_detail_page.dart';
-import 'package:app_laundry/features/customer/presentation/pages/customer_form_page_wrapper.dart';
-import 'package:app_laundry/features/customer/presentation/pages/customer_page_wrapper.dart';
+import 'package:app_laundry/features/customer/presentation/wrappers/customer_detail_page_wrapper.dart';
+import 'package:app_laundry/features/customer/presentation/wrappers/customer_form_page_wrapper.dart';
+import 'package:app_laundry/features/customer/presentation/wrappers/customer_page_wrapper.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomerRoutes {
@@ -15,9 +15,8 @@ class CustomerRoutes {
 
   static final routes = <GoRoute>[
     GoRoute(
-      path: CustomerPaths.customers,
-      name: CustomerPaths.customersName,
-
+      path: CustomerPaths.customerPath,
+      name: CustomerPaths.customer,
       builder: (context, state) {
         final isPicker = state.extra as bool? ?? false;
 
@@ -26,9 +25,8 @@ class CustomerRoutes {
     ),
 
     GoRoute(
-      path: CustomerPaths.customerForm,
-      name: CustomerPaths.customerFormName,
-
+      path: CustomerPaths.customerFormPath,
+      name: CustomerPaths.customerForm,
       builder: (context, state) {
         final customer = state.extra as CustomerEntity?;
 
@@ -37,13 +35,12 @@ class CustomerRoutes {
     ),
 
     GoRoute(
-      path: CustomerPaths.customerDetail,
-      name: CustomerPaths.customerDetailName,
-
+      path: CustomerPaths.customerDetailPath,
+      name: CustomerPaths.customerDetail,
       builder: (context, state) {
         final customer = state.extra as CustomerEntity;
 
-        return CustomerDetailPage(customer: customer);
+        return CustomerDetailPageWrapper(customer: customer);
       },
     ),
   ];

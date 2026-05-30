@@ -1,4 +1,5 @@
 import 'package:app_laundry/core/base/builders/base_stream_builder.dart';
+import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/core/ui/states/app_empty_widget.dart';
@@ -13,17 +14,15 @@ class OrderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseStreamBuilder<OrderCubit, OrderEntity>(
-      empty: AppEmptyWidget(message: OrderStrings.empty),
+      empty: AppEmptyWidget(message: OrderStrings.empty, icon: AppIcons.order),
       builder: (items) {
         return ListView.separated(
+          padding: EdgeInsets.symmetric(horizontal: context.spacing.lg),
           itemCount: items.length,
 
           /// 🔥 item
           itemBuilder: (_, i) {
-            return Padding(
-              padding: EdgeInsets.all(context.spacing.sm),
-              child: OrderListItem(order: items[i]),
-            );
+            return OrderListItem(order: items[i]);
           },
 
           /// 🔥 separator

@@ -1,117 +1,26 @@
+import 'combine_validator.dart';
+import 'email_validator.dart';
+import 'length_validator.dart';
+import 'password_validator.dart';
+import 'phone_validator.dart';
+import 'required_validator.dart';
+
 class AppValidator {
-  /// =========================
-  /// REQUIRED COLLECTION
-  /// =========================
+  static final required = RequiredValidator.validate;
 
-  static String? requiredCollection(
-    Iterable<dynamic>? items, {
-    String message = 'Data wajib diisi',
-  }) {
-    if (items == null || items.isEmpty) {
-      return message;
-    }
+  static final requiredCollection = RequiredValidator.collection;
 
-    return null;
-  }
+  static final email = EmailValidator.validate;
 
-  /// =========================
-  /// REQUIRED
-  /// =========================
-  static String? required(
-    String? value, {
-    String message = 'Field wajib diisi',
-  }) {
-    if (value == null || value.trim().isEmpty) {
-      return message;
-    }
-    return null;
-  }
+  static final password = PasswordValidator.validate;
 
-  /// =========================
-  /// EMAIL
-  /// =========================
-  static String? email(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Email wajib diisi';
-    }
+  static final confirmPassword = PasswordValidator.confirm;
 
-    final emailRegex = RegExp(r'^[\w\.-]+@[\w\.-]+\.\w+$');
+  static final strongPassword = PasswordValidator.strong;
 
-    if (!emailRegex.hasMatch(value)) {
-      return 'Format email tidak valid';
-    }
+  static final phone = PhoneValidator.validate;
 
-    return null;
-  }
+  static final combine = CombineValidator.validate;
 
-  /// =========================
-  /// PASSWORD
-  /// =========================
-  static String? password(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Password wajib diisi';
-    }
-
-    if (value.length < 6) {
-      return 'Password minimal 6 karakter';
-    }
-
-    return null;
-  }
-
-  /// 🔥 OPTIONAL (STRONG PASSWORD)
-  static String? strongPassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Password wajib diisi';
-    }
-
-    final regex = RegExp(r'^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}$');
-
-    if (!regex.hasMatch(value)) {
-      return 'Password harus ada huruf besar, kecil, dan angka (min 8 karakter)';
-    }
-
-    return null;
-  }
-
-  /// =========================
-  /// PHONE
-  /// =========================
-  static String? phone(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Nomor HP wajib diisi';
-    }
-
-    final phoneRegex = RegExp(r'^[0-9]{8,15}$');
-
-    if (!phoneRegex.hasMatch(value)) {
-      return 'Nomor HP tidak valid';
-    }
-
-    return null;
-  }
-
-  /// =========================
-  /// MIN LENGTH
-  /// =========================
-  static String? minLength(String? value, int min, {String field = 'Field'}) {
-    if (value == null || value.length < min) {
-      return '$field minimal $min karakter';
-    }
-    return null;
-  }
-
-  /// =========================
-  /// COMBINE VALIDATOR
-  /// =========================
-  static String? combine(
-    List<String? Function(String?)> validators,
-    String? value,
-  ) {
-    for (final validator in validators) {
-      final result = validator(value);
-      if (result != null) return result;
-    }
-    return null;
-  }
+  static final minLength = LengthValidator.min;
 }

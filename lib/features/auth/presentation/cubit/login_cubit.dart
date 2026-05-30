@@ -12,8 +12,9 @@
 // =============================================================================
 
 import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
-import 'package:app_laundry/features/auth/domain/usecases/auth_params.dart';
+import 'package:app_laundry/features/auth/domain/usecases/params/login_params.dart';
 import 'package:app_laundry/features/auth/domain/usecases/login.dart';
+import 'package:app_laundry/features/auth/domain/usecases/params/register_params.dart';
 import 'package:app_laundry/features/auth/domain/usecases/register.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/login_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,10 +43,10 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   /// Proses registrasi pengguna baru
-  Future<void> register(String name, String email, String password) async {
+  Future<void> register(RegisterParams params) async {
     emit(const LoginState.loading());
 
-    final result = await registerUseCase(name, email, password);
+    final result = await registerUseCase(params);
 
     result.fold(
       (failure) {

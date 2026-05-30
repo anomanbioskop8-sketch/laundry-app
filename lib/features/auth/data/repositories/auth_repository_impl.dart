@@ -13,33 +13,6 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this.remote);
 
   @override
-  Future<Either<Failure, UserEntity>> login(
-    String email,
-    String password,
-  ) async {
-    try {
-      final model = await remote.login(email, password);
-      return Right(model.toEntity);
-    } on AppException catch (e) {
-      return Left(e.toFailure);
-    }
-  }
-
-  @override
-  Future<Either<Failure, UserEntity>> register(
-    String name,
-    String email,
-    String password,
-  ) async {
-    try {
-      final model = await remote.register(name, email, password);
-      return Right(model.toEntity);
-    } on AppException catch (e) {
-      return Left(e.toFailure);
-    }
-  }
-
-  @override
   Future<Either<Failure, UserEntity?>> getCurrentUser() async {
     try {
       final model = await remote.getCurrentUser();
@@ -49,6 +22,37 @@ class AuthRepositoryImpl implements AuthRepository {
         return const Right(null);
       }
 
+      return Right(model.toEntity);
+    } on AppException catch (e) {
+      return Left(e.toFailure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> login({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final model = await remote.login(email: email, password: password);
+      return Right(model.toEntity);
+    } on AppException catch (e) {
+      return Left(e.toFailure);
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> register({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final model = await remote.register(
+        name: name,
+        email: email,
+        password: password,
+      );
       return Right(model.toEntity);
     } on AppException catch (e) {
       return Left(e.toFailure);

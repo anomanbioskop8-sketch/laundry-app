@@ -79,7 +79,7 @@ class OrderGroupFormController extends FormController {
   // =========================
 
   int get totalItems {
-    return items.fold<int>(0, (sum, e) => sum + e.quantity);
+    return items.fold<int>(0, (sum, e) => sum + e.qty);
   }
 
   // =========================

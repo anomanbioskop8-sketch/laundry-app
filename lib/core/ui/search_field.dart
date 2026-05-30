@@ -1,12 +1,15 @@
+import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:flutter/material.dart';
 
 class AppSearchField extends StatefulWidget {
   final ValueChanged<String> onChanged;
+  final IconData prefixIcon;
   final String hintText;
 
   const AppSearchField({
     super.key,
     required this.onChanged,
+    this.prefixIcon = AppIcons.search,
     this.hintText = 'Search...',
   });
 
@@ -46,14 +49,11 @@ class _AppSearchFieldState extends State<AppSearchField> {
       onChanged: widget.onChanged,
       decoration: InputDecoration(
         hintText: widget.hintText,
-        prefixIcon: const Icon(Icons.search),
-
-        /// 🔥 clear button
+        isDense: true,
+        prefixIcon: Icon(widget.prefixIcon),
         suffixIcon: _controller.text.isNotEmpty
             ? IconButton(icon: const Icon(Icons.clear), onPressed: _clear)
             : null,
-
-        isDense: true,
       ),
     );
   }

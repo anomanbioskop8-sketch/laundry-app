@@ -1,3 +1,4 @@
+import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
@@ -30,6 +31,7 @@ class OrderListItem extends StatelessWidget {
 
     return GestureDetector(
       child: Card(
+        margin: EdgeInsets.symmetric(vertical: context.spacing.md),
         child: Padding(
           padding: EdgeInsets.symmetric(
             vertical: context.spacing.md,
@@ -52,7 +54,7 @@ class OrderListItem extends StatelessWidget {
               Row(
                 //crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppIconAvatar(icon: Icons.receipt_long_rounded),
+                  AppIconAvatar(icon: AppIcons.order),
                   context.spacing.md.w,
                   Expanded(
                     child: Column(

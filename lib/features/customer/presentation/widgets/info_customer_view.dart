@@ -1,3 +1,5 @@
+import 'package:app_laundry/core/constants/app_icons.dart';
+import 'package:app_laundry/core/constants/strings/customer_strings.dart';
 import 'package:app_laundry/core/extensions/date_time_ext.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/core/ui/components/app_info_card.dart';
@@ -16,19 +18,23 @@ class InfoCustomerView extends StatelessWidget {
       padding: EdgeInsets.all(context.spacing.lg),
       child: AppInfoCard(
         items: [
-          AppInfoItem(icon: Icons.person, label: 'Nama', value: customer.name),
           AppInfoItem(
-            icon: Icons.phone,
-            label: 'Telepon',
+            icon: AppIcons.user,
+            label: CustomerStrings.name,
+            value: customer.name,
+          ),
+          AppInfoItem(
+            icon: AppIcons.phone,
+            label: CustomerStrings.phone,
             value: customer.phone,
           ),
           AppInfoItem(
-            icon: Icons.calendar_today,
+            icon: AppIcons.createdAt,
             label: 'Created',
             value: customer.createdAt.readable,
           ),
           AppInfoItem(
-            icon: Icons.update,
+            icon: AppIcons.updatedAt,
             label: 'Update',
             value: customer.updatedAt.readable,
           ),

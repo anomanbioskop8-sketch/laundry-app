@@ -1,5 +1,6 @@
 // features/laundry_price/domain/enums/laundry_service_type_ext.dart
 
+import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
 import 'package:flutter/material.dart';
@@ -38,13 +39,13 @@ extension LaundrySpeedTypeExt on LaundrySpeedType {
   IconData get icon {
     switch (this) {
       case LaundrySpeedType.regular:
-        return Icons.local_laundry_service;
+        return AppIcons.regular;
 
       case LaundrySpeedType.express:
-        return Icons.flash_on_rounded;
+        return AppIcons.express;
 
       case LaundrySpeedType.sameDay:
-        return Icons.bolt_rounded;
+        return AppIcons.sameDay;
     }
   }
 

@@ -1,1 +1,1 @@
-enum PaymentStatus { unpaid, partial, paid }
+enum PaymentStatus { unpaid, paid }

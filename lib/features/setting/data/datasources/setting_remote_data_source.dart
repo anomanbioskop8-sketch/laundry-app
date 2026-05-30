@@ -9,9 +9,7 @@
 // =============================================================================
 
 import 'package:app_laundry/core/network/base_remote_datasource.dart';
-
 import 'package:app_laundry/features/setting/data/models/setting_model.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SettingRemoteDataSource extends BaseRemoteDataSource {
@@ -37,24 +35,6 @@ class SettingRemoteDataSource extends BaseRemoteDataSource {
   }
 
   // =========================
-  // GET
-  // =========================
-
-  Future<SettingModel?> get(String companyId) {
-    return safeCall(() async {
-      final doc = await _docRef(companyId).get();
-
-      final data = doc.data();
-
-      if (!doc.exists || data == null) {
-        return null;
-      }
-
-      return SettingModel.fromMap(data, doc.id);
-    });
-  }
-
-  // =========================
   // STREAM
   // =========================
 
@@ -69,6 +49,24 @@ class SettingRemoteDataSource extends BaseRemoteDataSource {
 
         return SettingModel.fromMap(data, doc.id);
       });
+    });
+  }
+
+  // =========================
+  // GET
+  // =========================
+
+  Future<SettingModel?> get(String companyId) {
+    return safeCall(() async {
+      final doc = await _docRef(companyId).get();
+
+      final data = doc.data();
+
+      if (!doc.exists || data == null) {
+        return null;
+      }
+
+      return SettingModel.fromMap(data, doc.id);
     });
   }
 

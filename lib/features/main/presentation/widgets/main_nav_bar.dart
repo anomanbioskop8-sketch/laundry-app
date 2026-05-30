@@ -1,3 +1,8 @@
+import 'package:app_laundry/core/constants/app_icons.dart';
+import 'package:app_laundry/core/constants/strings/company_strings.dart';
+import 'package:app_laundry/core/constants/strings/customer_strings.dart';
+import 'package:app_laundry/core/constants/strings/laundry_item_strings.dart';
+import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:flutter/material.dart';
 
 class MainNavBar extends StatelessWidget {
@@ -13,24 +18,20 @@ class MainNavBar extends StatelessWidget {
       onDestinationSelected: onTap,
       destinations: const [
         NavigationDestination(
-          icon: Icon(Icons.people_outline),
-          selectedIcon: Icon(Icons.people),
-          label: 'Customer',
+          icon: Icon(AppIcons.customers),
+          label: CustomerStrings.title,
         ),
         NavigationDestination(
-          icon: Icon(Icons.settings_outlined),
-          selectedIcon: Icon(Icons.settings),
-          label: 'Items',
+          icon: Icon(AppIcons.items),
+          label: LaundryItemStrings.title,
         ),
         NavigationDestination(
-          icon: Icon(Icons.receipt_long_outlined),
-          selectedIcon: Icon(Icons.receipt_long),
-          label: 'Order',
+          icon: Icon(AppIcons.order),
+          label: OrderStrings.title,
         ),
         NavigationDestination(
-          icon: Icon(Icons.bar_chart_outlined),
-          selectedIcon: Icon(Icons.bar_chart),
-          label: 'Company',
+          icon: Icon(AppIcons.company),
+          label: CompanyStrings.title,
         ),
       ],
     );

@@ -1,7 +1,7 @@
 import 'package:app_laundry/core/error/failure.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/laundry_item/domain/usecases/create_laundry_item.dart';
-import 'package:app_laundry/features/laundry_item/domain/usecases/laundry_item_params.dart';
+import 'package:app_laundry/features/laundry_item/domain/usecases/params/create_laundry_item_params.dart';
 import 'package:app_laundry/features/laundry_price/domain/usecases/create_default_price_item.dart';
 
 class CreateLaundryItemOrchestration {

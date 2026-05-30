@@ -1,9 +1,8 @@
-import 'package:app_laundry/features/company/presentation/pages/company_page_wrapper.dart';
-import 'package:app_laundry/features/customer/presentation/pages/customer_page_wrapper.dart';
-import 'package:app_laundry/features/laundry_item/presentation/pages/laundry_item_page_wrapper.dart';
+import 'package:app_laundry/features/company/presentation/wrappers/company_page_wrapper.dart';
+import 'package:app_laundry/features/customer/presentation/wrappers/customer_page_wrapper.dart';
+import 'package:app_laundry/features/laundry_item/presentation/wrappers/laundry_item_page_wrapper.dart';
 import 'package:app_laundry/features/main/presentation/widgets/main_nav_bar.dart';
-import 'package:app_laundry/features/order/presentation/pages/order_page_wrapper.dart';
-import 'package:app_laundry/features/setting/presentation/wrappers/setting_page_wrapper.dart';
+import 'package:app_laundry/features/order/presentation/wrappers/order_page_wrapper.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -20,7 +19,8 @@ class _MainPageState extends State<MainPage> {
     CustomerPageWrapper(),
     LaundryItemPageWrapper(),
     OrderPageWrapper(),
-    SettingPageWrapper(),
+    //SettingPageWrapper(),
+    CompanyPageWrapper(),
   ];
 
   void _onTap(int i) {
@@ -31,35 +31,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(index: _index, children: _pages),
-
       bottomNavigationBar: MainNavBar(index: _index, onTap: _onTap),
-
-      // NavigationBar(
-      //   selectedIndex: _index,
-      //   onDestinationSelected: _onTap,
-      //   destinations: const [
-      //     NavigationDestination(
-      //       icon: Icon(Icons.people_outline),
-      //       selectedIcon: Icon(Icons.people),
-      //       label: 'Customer',
-      //     ),
-      //     NavigationDestination(
-      //       icon: Icon(Icons.receipt_long_outlined),
-      //       selectedIcon: Icon(Icons.receipt_long),
-      //       label: 'Items',
-      //     ),
-      //     NavigationDestination(
-      //       icon: Icon(Icons.bar_chart_outlined),
-      //       selectedIcon: Icon(Icons.bar_chart),
-      //       label: 'Orders',
-      //     ),
-      //     NavigationDestination(
-      //       icon: Icon(Icons.settings_outlined),
-      //       selectedIcon: Icon(Icons.settings),
-      //       label: 'Company',
-      //     ),
-      //   ],
-      // ),
     );
   }
 }

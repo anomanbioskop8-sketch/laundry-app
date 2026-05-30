@@ -10,13 +10,9 @@
 // =============================================================================
 
 import 'package:app_laundry/core/auth/policy/customer/customer_delete_policy.dart';
-
 import 'package:app_laundry/core/auth/policy/customer/customer_policy.dart';
-
 import 'package:app_laundry/core/auth/policy/customer/customer_update_policy.dart';
-
 import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
-
 import 'package:get_it/get_it.dart';
 
 // =============================================================================
@@ -47,7 +43,6 @@ void registerCustomerPolicy(GetIt sl) {
   sl.registerLazySingleton<CustomerPolicy>(
     () => CustomerPolicy(
       deletePolicy: sl<CustomerDeletePolicy>(),
-
       updatePolicy: sl<CustomerUpdatePolicy>(),
     ),
   );

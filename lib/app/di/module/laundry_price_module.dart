@@ -13,7 +13,9 @@ import 'package:app_laundry/features/laundry_price/domain/repositories/laundry_p
 import 'package:app_laundry/features/laundry_price/domain/usecases/create_default_price_item.dart';
 import 'package:app_laundry/features/laundry_price/domain/usecases/delete_laundry_price.dart';
 import 'package:app_laundry/features/laundry_price/domain/usecases/delete_laundry_price_by_item_id.dart';
+import 'package:app_laundry/features/laundry_price/domain/usecases/get_laundry_price.dart';
 import 'package:app_laundry/features/laundry_price/domain/usecases/stream_laundry_prices.dart';
+import 'package:app_laundry/features/laundry_price/domain/usecases/stream_laundry_prices_by_service_and_speed.dart';
 import 'package:app_laundry/features/laundry_price/domain/usecases/update_laundry_price.dart';
 import 'package:app_laundry/features/laundry_price/presentation/cubit/laundry_price_action_cubit.dart';
 import 'package:app_laundry/features/laundry_price/presentation/cubit/laundry_price_cubit.dart';
@@ -70,6 +72,20 @@ class LaundryPriceModule {
       ),
     );
 
+    sl.registerLazySingleton<StreamLaundryPricesByServiceAndSpeed>(
+      () => StreamLaundryPricesByServiceAndSpeed(
+        repository: sl<LaundryPriceRepository>(),
+        session: sl(), // ⚠️ butuh session aktif
+      ),
+    );
+
+    sl.registerLazySingleton<GetLaundryPrice>(
+      () => GetLaundryPrice(
+        repository: sl<LaundryPriceRepository>(),
+        session: sl(), // ⚠️ butuh session aktif
+      ),
+    );
+
     sl.registerLazySingleton<CreateDefaultLaundryPrices>(
       () => CreateDefaultLaundryPrices(
         repository: sl<LaundryPriceRepository>(),
@@ -112,7 +128,11 @@ class LaundryPriceModule {
   void _cubits() {
     /// CustomerCubit → stream data (list)
     sl.registerFactory<LaundryPriceCubit>(
-      () => LaundryPriceCubit(sl<StreamLaundryPrices>()),
+      () => LaundryPriceCubit(
+        streamLaundryPrices: sl<StreamLaundryPrices>(),
+        streamLaundryPricesByServiceAndSpeed:
+            sl<StreamLaundryPricesByServiceAndSpeed>(),
+      ),
     );
 
     /// CustomerActionCubit → create / update / delete

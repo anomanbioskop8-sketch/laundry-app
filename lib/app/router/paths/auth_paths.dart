@@ -3,22 +3,20 @@
 // Path        : lib/app/router/paths/auth_paths.dart
 // =============================================================================
 
-class AuthPaths {
-  AuthPaths._();
+abstract final class AuthPaths {
+  // =========================
+  // NAME
+  // =========================
+
+  static const splash = 'splash';
+  static const login = 'login';
+  static const register = 'register';
 
   // =========================
   // PATH
   // =========================
 
-  static const splash = '/';
-  static const login = '/login';
-  static const register = '/register';
-
-  // =========================
-  // NAME
-  // =========================
-
-  static const splashName = 'splash';
-  static const loginName = 'login';
-  static const registerName = 'register';
+  static const splashPath = '/';
+  static const loginPath = '/login';
+  static const registerPath = '/register';
 }

@@ -14,9 +14,7 @@ class LaundryPriceStrings {
   // =========================
 
   static const add = 'Tambah Harga Laundry';
-
   static const edit = 'Edit Harga Laundry';
-
   static const delete = 'Hapus Harga Laundry';
 
   // =========================
@@ -24,7 +22,6 @@ class LaundryPriceStrings {
   // =========================
 
   static const saveSuccess = 'Harga laundry berhasil disimpan';
-
   static const deleteSuccess = 'Harga laundry berhasil dihapus';
 
   // =========================
@@ -44,22 +41,22 @@ class LaundryPriceStrings {
   // =========================
 
   static const price = 'Harga';
-
   static const orderType = 'Jenis Layanan';
-
   static const serviceType = 'Jenis Service';
-
   static const laundryItem = 'Item Laundry';
+
+  // =========================
+  // HINT
+  // =========================
+
+  static const priceHint = 'Masukkan harga laundry';
 
   // =========================
   // VALIDATION
   // =========================
 
   static const priceRequired = 'Harga wajib diisi';
-
   static const orderTypeRequired = 'Jenis layanan wajib dipilih';
-
   static const serviceTypeRequired = 'Jenis service wajib dipilih';
-
   static const laundryItemRequired = 'Item laundry wajib dipilih';
 }

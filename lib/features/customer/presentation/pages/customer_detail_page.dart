@@ -1,10 +1,7 @@
 import 'package:app_laundry/core/ui/components/app_tab_bar.dart';
-import 'package:app_laundry/core/ui/components/avatar/app_avatar_header.dart';
-import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
-import 'package:app_laundry/features/customer/presentation/extensions/customer_ui_extension.dart';
 import 'package:app_laundry/features/customer/presentation/widgets/info_customer_view.dart';
+import 'package:app_laundry/features/customer/presentation/widgets/order_customer_view.dart';
 import 'package:flutter/material.dart';
 
 class CustomerDetailPage extends StatelessWidget {
@@ -17,20 +14,22 @@ class CustomerDetailPage extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(title: Text(customer.name)),
         body: Column(
           children: [
+            //context.spacing.lg.h,
+
             /// =========================
             /// HEADER
             /// =========================
-            AppAvatarHeader(
-              name: customer.name,
-              subtitle: customer.phone,
-              initials: customer.initials,
-              backgroundColor: customer.avatarColor,
-            ),
+            // AppAvatarHeader(
+            //   name: customer.name,
+            //   subtitle: customer.phone,
+            //   initials: customer.initials,
+            //   backgroundColor: customer.avatarColor,
+            // ),
 
-            context.spacing.md.h,
+            // context.spacing.md.h,
 
             /// =========================
             /// TAB BAR (DI BAWAH HEADER)
@@ -44,7 +43,7 @@ class CustomerDetailPage extends StatelessWidget {
               child: TabBarView(
                 children: [
                   InfoCustomerView(customer: customer),
-                  SizedBox(),
+                  OrderCustomerView(),
                 ],
               ),
             ),

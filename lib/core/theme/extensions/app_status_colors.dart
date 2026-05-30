@@ -7,20 +7,22 @@ class AppStatusColors extends ThemeExtension<AppStatusColors> {
   final Color error;
   final Color info;
 
-  final Color pending;
-  final Color process;
-  final Color done;
-  final Color cancel;
+  final Color received;
+  final Color inProgress;
+  final Color ready;
+  final Color pickedUp;
+  final Color canceled;
 
   const AppStatusColors({
     required this.success,
     required this.warning,
     required this.error,
     required this.info,
-    required this.pending,
-    required this.process,
-    required this.done,
-    required this.cancel,
+    required this.received,
+    required this.inProgress,
+    required this.ready,
+    required this.pickedUp,
+    required this.canceled,
   });
 
   // ✅ Light Theme
@@ -30,10 +32,11 @@ class AppStatusColors extends ThemeExtension<AppStatusColors> {
     error: AppSemanticColors.error,
     info: AppSemanticColors.info,
 
-    pending: AppSemanticColors.pending,
-    process: AppSemanticColors.process,
-    done: AppSemanticColors.done,
-    cancel: AppSemanticColors.cancel,
+    received: AppSemanticColors.received,
+    inProgress: AppSemanticColors.inProgress,
+    ready: AppSemanticColors.ready,
+    pickedUp: AppSemanticColors.pickedUp,
+    canceled: AppSemanticColors.canceled,
   );
 
   // ✅ Dark Theme
@@ -43,10 +46,11 @@ class AppStatusColors extends ThemeExtension<AppStatusColors> {
     error: AppSemanticColors.errorDark,
     info: AppSemanticColors.infoDark,
 
-    pending: AppSemanticColors.pendingDark,
-    process: AppSemanticColors.processDark,
-    done: AppSemanticColors.doneDark,
-    cancel: AppSemanticColors.cancelDark,
+    received: AppSemanticColors.receivedDark,
+    inProgress: AppSemanticColors.inProgressDark,
+    ready: AppSemanticColors.readyDark,
+    pickedUp: AppSemanticColors.pickedUpDark,
+    canceled: AppSemanticColors.canceledDark,
   );
 
   // ✅ Fallback (anti crash)
@@ -58,20 +62,22 @@ class AppStatusColors extends ThemeExtension<AppStatusColors> {
     Color? warning,
     Color? error,
     Color? info,
-    Color? pending,
-    Color? process,
-    Color? done,
-    Color? cancel,
+    Color? received,
+    Color? inProgress,
+    Color? ready,
+    Color? pickedUp,
+    Color? canceled,
   }) {
     return AppStatusColors(
       success: success ?? this.success,
       warning: warning ?? this.warning,
       error: error ?? this.error,
       info: info ?? this.info,
-      pending: pending ?? this.pending,
-      process: process ?? this.process,
-      done: done ?? this.done,
-      cancel: cancel ?? this.cancel,
+      received: received ?? this.received,
+      inProgress: inProgress ?? this.inProgress,
+      ready: ready ?? this.ready,
+      pickedUp: pickedUp ?? this.pickedUp,
+      canceled: canceled ?? this.canceled,
     );
   }
 
@@ -84,10 +90,11 @@ class AppStatusColors extends ThemeExtension<AppStatusColors> {
       warning: Color.lerp(warning, other.warning, t)!,
       error: Color.lerp(error, other.error, t)!,
       info: Color.lerp(info, other.info, t)!,
-      pending: Color.lerp(pending, other.pending, t)!,
-      process: Color.lerp(process, other.process, t)!,
-      done: Color.lerp(done, other.done, t)!,
-      cancel: Color.lerp(cancel, other.cancel, t)!,
+      received: Color.lerp(received, other.received, t)!,
+      inProgress: Color.lerp(inProgress, other.inProgress, t)!,
+      ready: Color.lerp(ready, other.ready, t)!,
+      pickedUp: Color.lerp(pickedUp, other.pickedUp, t)!,
+      canceled: Color.lerp(canceled, other.canceled, t)!,
     );
   }
 }

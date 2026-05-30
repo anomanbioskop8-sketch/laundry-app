@@ -12,9 +12,8 @@ import 'package:go_router/go_router.dart';
 class SubscriptionRoutes {
   static List<RouteBase> routes = [
     GoRoute(
-      path: SubscriptionPaths.subscription,
-      name: SubscriptionPaths.subscriptionName,
-
+      path: SubscriptionPaths.subscriptionPath,
+      name: SubscriptionPaths.subscription,
       builder: (_, _) {
         return const SubscriptionPage();
       },

@@ -1,23 +1,25 @@
-class OrderPaths {
-  OrderPaths._();
+// =============================================================================
+// File        : order_paths.dart
+// Path        : lib/app/router/paths/order_paths.dart
+// =============================================================================
+
+abstract final class OrderPaths {
+  // =========================
+  // NAME
+  // =========================
+
+  static const order = 'order';
+  static const orderForm = 'orderForm';
+  static const orderGroupForm = 'orderGroupForm';
+  static const orderLaundryItemForm = 'orderLaundryItemForm';
 
   // =========================
   // PATH
   // =========================
 
-  static const orders = '/orders';
-
-  static const orderForm = '/order/form';
-
-  static const orderGroupForm = '/order/form/groupForm';
-
-  // =========================
-  // NAME
-  // =========================
-
-  static const ordersName = 'orders';
-
-  static const orderFormName = 'orderForm';
-
-  static const orderGroupFormName = 'orderGroupForm';
+  static const orderPath = '/orders';
+  static const orderFormPath = '/orders/form';
+  static const orderGroupFormPath = '/orders/form/group-form';
+  static const orderLaundryItemFormPath =
+      '/orders/form/group-form/laundry-item-form';
 }
