@@ -1,19 +1,18 @@
-// features/laundry_price/domain/entities/laundry_price_entity_ext.dart
+// features/order/domain/extensions/order_entity_ext.dart
 
 import 'package:app_laundry/core/extensions/date_time_ext.dart';
 import 'package:app_laundry/core/utils/formatters/currency_formatter.dart';
 import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
+import 'package:app_laundry/features/order/domain/extensions/order_group_entity_ext.dart';
 
 extension OrderEntityExt on OrderEntity {
+  int get subtotal => groups.subtotal;
+
   /// =========================
-  /// PRICE
+  /// FORMATTING
   /// =========================
 
-  String get formattedTotal {
-    return CurrencyFormatter.idr(total);
-  }
+  String get formattedTotal => CurrencyFormatter.idr(total);
 
-  String get createOrder {
-    return createdAt.short;
-  }
+  String get formattedCreatedAt => createdAt.short;
 }

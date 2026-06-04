@@ -42,13 +42,13 @@ class OrderGroupCard extends StatelessWidget {
                     AppChip(
                       label: group.speedLabel,
                       icon: group.speedIcon,
-                      color: group.orderColor(context),
+                      color: group.speedColor(context),
                     ),
                     context.spacing.sm.w,
                     AppChip(
                       label: group.orderLabel,
                       icon: group.orderIcon,
-                      color: group.orderColor(context),
+                      color: group.speedColor(context),
                     ),
                   ],
                 ),

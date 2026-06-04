@@ -12,6 +12,7 @@ import 'package:app_laundry/features/customer/data/repositories/customer_reposit
 import 'package:app_laundry/features/customer/domain/repositories/customer_repository.dart';
 import 'package:app_laundry/features/customer/domain/usecase/create_customer.dart';
 import 'package:app_laundry/features/customer/domain/usecase/delete_customer.dart';
+import 'package:app_laundry/features/customer/domain/usecase/get_customers_by_ids.dart';
 import 'package:app_laundry/features/customer/domain/usecase/save_customer.dart';
 import 'package:app_laundry/features/customer/domain/usecase/stream_customers.dart';
 import 'package:app_laundry/features/customer/domain/usecase/update_customer.dart';
@@ -58,6 +59,13 @@ class CustomerModule {
   void _useCases() {
     sl.registerLazySingleton<StreamCustomers>(
       () => StreamCustomers(
+        repository: sl<CustomerRepository>(),
+        session: sl(), // SessionCubit
+      ),
+    );
+
+    sl.registerLazySingleton<GetCustomersByIds>(
+      () => GetCustomersByIds(
         repository: sl<CustomerRepository>(),
         session: sl(), // SessionCubit
       ),

@@ -25,6 +25,7 @@ class BaseActionListener<C extends BaseActionCubit<T>, T>
   /// Callback
   final VoidCallback? onSuccess;
   final Function(T data)? onSuccessWithData;
+  final void Function(BuildContext context, T data)? onNavigate;
   final VoidCallback? onError;
 
   const BaseActionListener({
@@ -34,6 +35,7 @@ class BaseActionListener<C extends BaseActionCubit<T>, T>
     this.popResult,
     this.onSuccess,
     this.onSuccessWithData,
+    this.onNavigate,
     this.onError,
   });
 
@@ -69,6 +71,11 @@ class BaseActionListener<C extends BaseActionCubit<T>, T>
     /// Callback
     onSuccess?.call();
     onSuccessWithData?.call(data);
+
+    if (onNavigate != null) {
+      onNavigate!(context, data);
+      return;
+    }
 
     /// Auto pop
     if (popOnSuccess && Navigator.canPop(context)) {

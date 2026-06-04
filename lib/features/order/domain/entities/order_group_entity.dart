@@ -4,55 +4,41 @@ import 'package:app_laundry/features/laundry/domain/enums/laundry_order_type.dar
 import 'package:app_laundry/features/order/domain/entities/order_laundry_item_entity.dart';
 
 class OrderGroupEntity {
-  // =========================
-  // SERVICE
-  // =========================
-
   final LaundryServiceType serviceType;
-
   final LaundrySpeedType speedType;
-
   final LaundryOrderType orderType;
-
-  // =========================
-  // ITEMS
-  // =========================
-
   final List<OrderLaundryItemEntity> items;
-
-  // =========================
-  // QTY
-  // =========================
-
-  // untuk KG
   final double? weight;
-
-  // total item fisik
   final int totalItems;
-
-  // =========================
-  // PRICE
-  // =========================
-
   final int price;
-
-  final int subtotal;
 
   const OrderGroupEntity({
     required this.serviceType,
-
     required this.speedType,
-
     required this.orderType,
-
     required this.items,
-
-    this.weight,
-
     required this.totalItems,
-
     required this.price,
-
-    required this.subtotal,
+    this.weight,
   });
+
+  OrderGroupEntity copyWith({
+    LaundryServiceType? serviceType,
+    LaundrySpeedType? speedType,
+    LaundryOrderType? orderType,
+    List<OrderLaundryItemEntity>? items,
+    double? weight,
+    int? totalItems,
+    int? price,
+  }) {
+    return OrderGroupEntity(
+      serviceType: serviceType ?? this.serviceType,
+      speedType: speedType ?? this.speedType,
+      orderType: orderType ?? this.orderType,
+      items: items ?? this.items,
+      weight: weight ?? this.weight,
+      totalItems: totalItems ?? this.totalItems,
+      price: price ?? this.price,
+    );
+  }
 }

@@ -12,6 +12,7 @@ abstract final class OrderPaths {
   static const orderForm = 'orderForm';
   static const orderGroupForm = 'orderGroupForm';
   static const orderLaundryItemForm = 'orderLaundryItemForm';
+  static const orderConfirmation = 'orderConfirmation';
 
   // =========================
   // PATH
@@ -22,4 +23,5 @@ abstract final class OrderPaths {
   static const orderGroupFormPath = '/orders/form/group-form';
   static const orderLaundryItemFormPath =
       '/orders/form/group-form/laundry-item-form';
+  static const orderConfirmationPath = '/orders/confirmation';
 }

@@ -3,10 +3,9 @@
 // Path        : lib/features/order/presentation/pages/selected_order_item_page.dart
 // =============================================================================
 
-import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/selected_order_item_view.dart';
+import '../widgets/selected_order_item/selected_order_item_view.dart';
 
 class SelectedOrderItemPage extends StatelessWidget {
   const SelectedOrderItemPage({super.key});
@@ -15,7 +14,7 @@ class SelectedOrderItemPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Pilih Item')),
-      body: SelectedOrderItemView(type: LaundrySpeedType.regular),
+      body: SelectedOrderItemView(),
     );
   }
 }

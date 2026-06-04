@@ -8,61 +8,44 @@ import 'package:app_laundry/features/laundry/domain/extensions/laundry_order_typ
 import 'package:app_laundry/features/laundry/domain/extensions/laundry_service_type_ext.dart';
 import 'package:app_laundry/features/laundry/domain/extensions/laundry_speed_type_ext.dart';
 import 'package:app_laundry/features/order/domain/entities/order_group_entity.dart';
+import 'package:app_laundry/features/order/domain/extensions/order_laundry_item_entity_ext.dart';
 import 'package:flutter/material.dart';
 
-extension OrderGroupEntityX on OrderGroupEntity {
+extension OrderGroupListExt on List<OrderGroupEntity> {
+  int get subtotal => fold(0, (sum, group) => sum + group.itemSubtotal);
+}
+
+extension OrderGroupEntityExt on OrderGroupEntity {
   // =========================
-  // TITLE
+  // DISPLAY
   // =========================
 
-  String get serviceLabel {
-    return serviceType.label;
-  }
+  String get serviceLabel => serviceType.label;
 
-  String get orderLabel {
-    return orderType.label;
-  }
+  String get orderLabel => orderType.label;
 
-  String get speedLabel {
-    return speedType.label;
-  }
+  String get speedLabel => speedType.label;
 
-  IconData get orderIcon {
-    return orderType.icon;
-  }
+  IconData get orderIcon => orderType.icon;
 
-  IconData get speedIcon {
-    return speedType.icon;
-  }
+  IconData get speedIcon => speedType.icon;
 
-  Color orderColor(BuildContext context) {
-    return speedType.color(context);
-  }
+  Color speedColor(BuildContext context) => speedType.color(context);
 
   // =========================
   // DESCRIPTION
   // =========================
 
-  String get description {
-    if (orderType.isKg) {
-      return '${weight ?? 0} Kg • '
-          '$totalItems Item';
-    }
-
-    return '$totalItems Item';
-  }
+  String get description =>
+      isKg ? '${weight ?? 0} Kg • $totalQuantity Item' : '$totalQuantity Item';
 
   // =========================
-  // FORMATTED PRICE
+  // FORMATTING
   // =========================
 
-  String get formattedPrice {
-    return CurrencyFormatter.idr(price);
-  }
+  String get formattedPrice => CurrencyFormatter.idr(price);
 
-  String get formattedSubtotal {
-    return CurrencyFormatter.idr(subtotal);
-  }
+  String get formattedSubtotal => CurrencyFormatter.idr(itemSubtotal);
 
   // =========================
   // HELPERS
@@ -72,9 +55,15 @@ extension OrderGroupEntityX on OrderGroupEntity {
 
   bool get isPcs => orderType.isPcs;
 
-  bool get hasWeight => weight != null && weight! > 0;
+  bool get hasWeight => (weight ?? 0) > 0;
 
-  int get totalQuantity {
-    return items.fold(0, (sum, e) => sum + e.qty);
+  int get totalQuantity => items.totalQuantity;
+
+  int get itemSubtotal {
+    if (isKg) {
+      return ((weight ?? 0) * price).toInt();
+    }
+
+    return items.subtotal;
   }
 }

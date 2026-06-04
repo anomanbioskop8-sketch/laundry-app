@@ -16,6 +16,11 @@ abstract class CustomerRepository {
     required String id,
   });
 
+  Future<Either<Failure, List<CustomerEntity>>> getByIds({
+    required String companyId,
+    required List<String> ids,
+  });
+
   /// =========================
   /// CREATE
   /// =========================

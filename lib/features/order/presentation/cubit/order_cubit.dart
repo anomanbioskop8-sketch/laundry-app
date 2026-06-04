@@ -11,16 +11,19 @@
 // =============================================================================
 
 import 'package:app_laundry/core/base/cubit/base_search_cubit.dart';
-import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
-import 'package:app_laundry/features/order/domain/usecase/stream_orders.dart';
+import 'package:app_laundry/features/order/domain/entities/order_with_customer_entity.dart';
+import 'package:app_laundry/features/order/domain/usecase/stream_order_orchestration.dart';
 
-class OrderCubit extends BaseSearchCubit<OrderEntity> {
-  final StreamOrders _streamOrders;
+class OrderCubit extends BaseSearchCubit<OrderWithCustomerEntity> {
+  final StreamOrderOrchestration _streamOrders;
 
-  OrderCubit(StreamOrders streamOrders) : _streamOrders = streamOrders;
+  OrderCubit(StreamOrderOrchestration streamOrders)
+    : _streamOrders = streamOrders;
 
   @override
-  List<FieldSelector<OrderEntity>> get searchFields => [(c) => c.invoiceNumber];
+  List<FieldSelector<OrderWithCustomerEntity>> get searchFields => [
+    (c) => c.order.invoiceNumber,
+  ];
 
   /// Mendengarkan perubahan data laundry item secara realtime
   void listenOrders() {

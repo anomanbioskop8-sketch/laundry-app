@@ -6,6 +6,7 @@ icon delete - Per Kg: 5Kg - 5 Item
 
 //git status
 //git add .
+//git commit -m ""
 //git push -u origin main
 //flutter pub run build_runner watch --delete-conflicting-outputs
 //flutter pub run build_runner build --delete-conflicting-outputs

@@ -67,6 +67,20 @@ class CustomerRepositoryImpl implements CustomerRepository {
     }
   }
 
+  @override
+  Future<Either<Failure, List<CustomerEntity>>> getByIds({
+    required String companyId,
+    required List<String> ids,
+  }) async {
+    try {
+      final models = await _remote.getByIds(companyId: companyId, ids: ids);
+
+      return Right(models.toEntities);
+    } on AppException catch (e) {
+      return Left(e.toFailure);
+    }
+  }
+
   /// =========================
   /// CREATE CUSTOMER
   /// =========================

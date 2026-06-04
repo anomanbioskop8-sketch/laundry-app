@@ -14,9 +14,7 @@ import 'package:app_laundry/features/order/domain/enums/payment_status_ext.dart'
 
 import 'package:app_laundry/features/order/presentation/controllers/order_form_controller.dart';
 import 'package:app_laundry/features/order/presentation/widgets/customer_field_widget.dart';
-import 'package:app_laundry/features/order/presentation/widgets/order_group_field_widget.dart';
-
-import 'package:flutter/material.dart';
+import 'package:app_laundry/features/order/presentation/widgets/order_group_field/order_group_field_widget.dart';
 
 class OrderFormConfig {
   final OrderFormController controller;
@@ -40,17 +38,8 @@ class OrderFormConfig {
         type: FormFieldType.custom,
         controller: controller.customerId,
         customBuilder: (context) {
-          return CustomerFieldWidget(
-            customer: controller.customer,
-            onChanged: (value) {
-              controller.setCustomer(value);
-            },
-          );
+          return CustomerFieldWidget();
         },
-        validators: [
-          (v) =>
-              AppValidator.required(v, message: OrderStrings.customerRequired),
-        ],
       ),
 
       // =========================
@@ -79,21 +68,10 @@ class OrderFormConfig {
         name: 'groups',
         label: '',
         type: FormFieldType.custom,
-        controller: TextEditingController(),
-        customBuilder: (context) {
-          return OrderGroupFieldWidget(
-            groups: controller.groups,
-            onChanged: (value) {
-              controller.groups = value;
-            },
-          );
+        controller: controller.groups,
+        customBuilder: (_) {
+          return OrderGroupFieldWidget();
         },
-        validators: [
-          (_) => AppValidator.requiredCollection(
-            controller.groups,
-            message: OrderStrings.orderGroupRequired,
-          ),
-        ],
       ),
     ];
   }

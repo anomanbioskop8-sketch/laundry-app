@@ -23,6 +23,7 @@ class OrderStrings {
   static const complete = 'Selesaikan Order';
   static const pickup = 'Ambil Order';
   static const cancel = 'Batalkan Order';
+  static const confirm = 'Konfirmasi Order';
 
   // =========================
   // SUCCESS MESSAGE

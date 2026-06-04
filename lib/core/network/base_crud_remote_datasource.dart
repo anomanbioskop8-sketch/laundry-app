@@ -84,6 +84,31 @@ abstract class BaseCrudRemoteDataSource<T> extends BaseRemoteDataSource {
     });
   }
 
+  Future<List<T>> getByIds({
+    required String companyId,
+    required List<String> ids,
+  }) {
+    return safeCall(() async {
+      if (ids.isEmpty) return [];
+
+      final result = <T>[];
+
+      const chunkSize = 10;
+
+      for (var i = 0; i < ids.length; i += chunkSize) {
+        final chunk = ids.skip(i).take(chunkSize).toList();
+
+        final snapshot = await collectionRef(
+          companyId,
+        ).where(FieldPath.documentId, whereIn: chunk).get();
+
+        result.addAll(snapshot.docs.map((doc) => fromMap(doc.data(), doc.id)));
+      }
+
+      return result;
+    });
+  }
+
   // =========================
   // CREATE
   // =========================

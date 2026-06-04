@@ -43,8 +43,6 @@ class OrderGroupModel {
 
   final int price;
 
-  final int subtotal;
-
   const OrderGroupModel({
     required this.serviceType,
 
@@ -59,8 +57,6 @@ class OrderGroupModel {
     required this.totalItems,
 
     required this.price,
-
-    required this.subtotal,
   });
 
   // =========================
@@ -82,8 +78,6 @@ class OrderGroupModel {
       totalItems: map['totalItems'] ?? 0,
 
       price: map['price'] ?? 0,
-
-      subtotal: map['subtotal'] ?? 0,
     );
   }
 
@@ -106,8 +100,6 @@ class OrderGroupModel {
       'totalItems': totalItems,
 
       'price': price,
-
-      'subtotal': subtotal,
     };
   }
 }

@@ -10,15 +10,19 @@ import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/core/ui/components/app_outlined_action_button.dart';
 import 'package:app_laundry/core/ui/states/app_empty_widget.dart';
 import 'package:app_laundry/features/order/domain/entities/order_laundry_item_entity.dart';
+import 'package:app_laundry/features/order/domain/usecase/params/stream_order_laundry_items_params.dart';
+import 'package:app_laundry/features/order/presentation/widgets/order_laundry_item_tile.dart';
 import 'package:flutter/material.dart';
 
 class OrderLaundryItemFieldWidget extends StatefulWidget {
   final List<OrderLaundryItemEntity> items;
+  final StreamOrderLaundryItemsParams params;
   final ValueChanged<List<OrderLaundryItemEntity>> onChanged;
 
   const OrderLaundryItemFieldWidget({
     super.key,
     required this.items,
+    required this.params,
     required this.onChanged,
   });
 
@@ -51,7 +55,9 @@ class _OrderLaundryItemFieldWidgetState
   // =========================
 
   Future<void> _addItem() async {
-    final result = await context.pushOrderLaundryItemForm();
+    final result = await context.pushOrderLaundryItemForm(
+      params: widget.params,
+    );
 
     if (result == null) return;
 
@@ -127,53 +133,16 @@ class _OrderLaundryItemFieldWidgetState
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: items.length,
-            separatorBuilder: (_, __) => const Divider(),
+            separatorBuilder: (_, _) => const Divider(),
             itemBuilder: (_, index) {
               final item = items[index];
 
-              return ListTile(
-                contentPadding: EdgeInsets.zero,
-
-                title: Text(item.itemName, style: context.titleSmall),
-
-                subtitle: Text(
-                  '${item.qty} x ${item.price.toStringAsFixed(0)}',
-                ),
-
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      (item.qty * item.price).toStringAsFixed(0),
-                      style: context.titleSmall,
-                    ),
-
-                    IconButton(
-                      onPressed: () {
-                        _removeItem(item);
-                      },
-                      icon: const Icon(Icons.delete_outline),
-                    ),
-                  ],
-                ),
+              return OrderLaundryItemTile(
+                item: item,
+                onDelete: () => _removeItem(item),
               );
             },
           ),
-
-        // =========================
-        // TOTAL
-        // =========================
-        if (items.isNotEmpty) ...[
-          context.spacing.sm.h,
-          const Divider(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Total', style: context.titleMedium),
-              Text(totalPrice.toStringAsFixed(0), style: context.titleMedium),
-            ],
-          ),
-        ],
       ],
     );
   }

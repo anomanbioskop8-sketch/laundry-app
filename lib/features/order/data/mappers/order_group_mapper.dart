@@ -45,8 +45,6 @@ class OrderGroupMapper {
       totalItems: model.totalItems,
 
       price: model.price,
-
-      subtotal: model.subtotal,
     );
   }
 
@@ -69,8 +67,6 @@ class OrderGroupMapper {
       totalItems: entity.totalItems,
 
       price: entity.price,
-
-      subtotal: entity.subtotal,
     );
   }
 
