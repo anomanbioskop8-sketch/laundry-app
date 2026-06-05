@@ -22,10 +22,12 @@ import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/core/ui/components/app_elevated_action_button.dart';
 import 'package:flutter/material.dart';
 
+typedef AsyncCallback = Future<void> Function();
+
 class FormBuilder extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   final List<FormFieldConfig> fields;
-  final VoidCallback onSubmit;
+  final AsyncCallback onSubmit;
   final String submitLabel;
 
   const FormBuilder({
@@ -44,8 +46,8 @@ class FormBuilder extends StatelessWidget {
 
       child: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
-          horizontal: context.spacing.lg,
-          vertical: context.spacing.xl,
+          horizontal: context.spacing.md,
+          vertical: context.spacing.lg,
         ),
 
         child: Column(
@@ -57,12 +59,12 @@ class FormBuilder extends StatelessWidget {
             // =========================
             ...fields.map((f) {
               return Padding(
-                padding: EdgeInsets.only(bottom: context.spacing.lg),
+                padding: EdgeInsets.only(bottom: context.spacing.md),
                 child: AppFormFieldRenderer.build(f),
               );
             }),
 
-            context.spacing.lg.h,
+            context.spacing.md.h,
 
             // =========================
             // SUBMIT BUTTON
@@ -72,7 +74,7 @@ class FormBuilder extends StatelessWidget {
 
               child: AppElevatedActionButton(
                 label: submitLabel,
-                onPressed: () {
+                onPressed: () async {
                   // =========================
                   // DEFAULT FORM VALIDATION
                   // =========================
@@ -100,7 +102,7 @@ class FormBuilder extends StatelessWidget {
                   // =========================
 
                   try {
-                    onSubmit();
+                    await onSubmit();
                   } on ValidationException catch (e) {
                     AppUIService.error(e.message);
                   } catch (e) {

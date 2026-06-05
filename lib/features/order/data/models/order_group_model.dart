@@ -9,54 +9,23 @@
 // =============================================================================
 
 import 'package:app_laundry/core/extensions/map_list_ext.dart';
-
 import 'package:app_laundry/features/order/data/models/order_laundry_item_model.dart';
 
 class OrderGroupModel {
-  // =========================
-  // SERVICE
-  // =========================
-
   final String serviceType;
-
   final String speedType;
-
   final String orderType;
-
-  // =========================
-  // ITEMS
-  // =========================
-
   final List<OrderLaundryItemModel> items;
-
-  // =========================
-  // QTY
-  // =========================
-
   final double? weight;
-
-  final int totalItems;
-
-  // =========================
-  // PRICE
-  // =========================
-
   final int price;
 
   const OrderGroupModel({
     required this.serviceType,
-
     required this.speedType,
-
     required this.orderType,
-
     required this.items,
-
-    this.weight,
-
-    required this.totalItems,
-
     required this.price,
+    this.weight,
   });
 
   // =========================
@@ -66,17 +35,10 @@ class OrderGroupModel {
   factory OrderGroupModel.fromMap(Map<String, dynamic> map) {
     return OrderGroupModel(
       serviceType: map['serviceType'] ?? '',
-
       speedType: map['speedType'] ?? '',
-
       orderType: map['orderType'] ?? '',
-
       items: map.toModelList('items', OrderLaundryItemModel.fromMap),
-
       weight: (map['weight'] as num?)?.toDouble(),
-
-      totalItems: map['totalItems'] ?? 0,
-
       price: map['price'] ?? 0,
     );
   }
@@ -88,17 +50,10 @@ class OrderGroupModel {
   Map<String, dynamic> toMap() {
     return {
       'serviceType': serviceType,
-
       'speedType': speedType,
-
       'orderType': orderType,
-
       'items': items.map((e) => e.toMap()).toList(),
-
       'weight': weight,
-
-      'totalItems': totalItems,
-
       'price': price,
     };
   }

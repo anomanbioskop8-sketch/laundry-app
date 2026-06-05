@@ -45,7 +45,7 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
         formKey: controller.formKey,
         fields: config.fields,
         submitLabel: AppStrings.save,
-        onSubmit: () {
+        onSubmit: () async {
           cubit.submit(controller.buildParams());
         },
       ),

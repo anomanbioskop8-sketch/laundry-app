@@ -5,6 +5,7 @@ import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
 import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/core/ui/components/app_selected_item.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
+import 'package:app_laundry/features/customer/domain/extensions/customer_entity_ext.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_form_cubit.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_form_state.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +28,8 @@ class CustomerFieldWidget extends StatelessWidget {
             color: context.colors.primary,
             size: context.sizes.iconMd,
           ),
-          title: hasCustomer ? customer.name : 'Pilih Customer',
-          subtitle: hasCustomer ? customer.phone : 'Belum ada customer dipilih',
+          title: customer.selectedCustomerName,
+          subtitle: customer.selectedCustomerPhone,
           titleStyle: hasCustomer
               ? context.bodyMedium!.semiBold.onSurface(context)
               : context.bodyMedium!.semiBold.primary(context),

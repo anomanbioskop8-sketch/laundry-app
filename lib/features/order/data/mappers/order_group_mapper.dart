@@ -42,8 +42,6 @@ class OrderGroupMapper {
 
       weight: model.weight,
 
-      totalItems: model.totalItems,
-
       price: model.price,
     );
   }
@@ -63,8 +61,6 @@ class OrderGroupMapper {
       items: OrderLaundryItemMapper.toModelList(entity.items),
 
       weight: entity.weight,
-
-      totalItems: entity.totalItems,
 
       price: entity.price,
     );

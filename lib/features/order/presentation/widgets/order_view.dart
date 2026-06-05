@@ -17,15 +17,9 @@ class OrderView extends StatelessWidget {
       empty: AppEmptyWidget(message: OrderStrings.empty, icon: AppIcons.order),
       builder: (items) {
         return ListView.separated(
-          padding: EdgeInsets.symmetric(horizontal: context.spacing.lg),
+          padding: EdgeInsets.symmetric(horizontal: context.spacing.md),
           itemCount: items.length,
-
-          /// 🔥 item
-          itemBuilder: (_, i) {
-            return OrderListItem(order: items[i]);
-          },
-
-          /// 🔥 separator
+          itemBuilder: (_, i) => OrderListItem(order: items[i]),
           separatorBuilder: (_, i) => const Divider(),
         );
       },

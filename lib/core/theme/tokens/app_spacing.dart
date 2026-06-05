@@ -34,19 +34,19 @@ class AppSpacing {
   // MEDIUM SPACING
   // =========================
   /// Jarak standard antar komponen
-  final double md = 12;
+  final double md = 16;
 
   // =========================
   // LARGE SPACING
   // =========================
   /// Jarak besar untuk section ringan
-  final double lg = 16;
+  final double lg = 24;
 
   // =========================
   // EXTRA LARGE SPACING
   // =========================
   /// Jarak extra besar antar section
-  final double xl = 24;
+  final double xl = 32;
 
   // =========================
   // EXTRA EXTRA LARGE SPACING
@@ -58,5 +58,5 @@ class AppSpacing {
   // EXTRA EXTRA EXTRA LARGE SPACING
   // =========================
   /// Jarak maksimal untuk layout luas
-  final double xxxl = 64;
+  final double xxxl = 48;
 }

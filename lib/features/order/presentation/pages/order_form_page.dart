@@ -46,12 +46,11 @@ class OrderFormPageState extends State<OrderFormPage> {
             formKey: controller.formKey,
             fields: config.fields,
             submitLabel: AppStrings.save,
-            onSubmit: () {
+            onSubmit: () async {
               final params = context.read<OrderFormCubit>().buildParams(
                 paymentStatus: controller.selectedPaymentStatus,
               );
 
-              context.pushConfirmationOrder(order: params);
               context.pushConfirmationOrder(order: params);
             },
           );

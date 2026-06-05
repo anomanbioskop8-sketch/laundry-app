@@ -100,7 +100,8 @@ class OrderStrings {
   static const serviceTypeRequired = 'Jenis laundry wajib dipilih';
   static const paymentStatusRequired = 'Status pembayaran wajib dipilih';
   static const quantityRequired = 'Jumlah wajib diisi';
-  static const weightRequired = 'Berat wajib diisi';
+  static const weightRequired = 'Berat minimal 1 Kg';
+  static const itemRequired = 'Item laundry wajib dipilih';
   static const priceRequired = 'Harga wajib diisi';
   static const invalidQuantity = 'Jumlah tidak valid';
   static const invalidWeight = 'Berat tidak valid';

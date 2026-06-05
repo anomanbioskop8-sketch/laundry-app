@@ -14,6 +14,7 @@ import 'package:app_laundry/features/order/data/datasources/order_remote_data_so
 import 'package:app_laundry/features/order/data/repositories/order_repository_impl.dart';
 import 'package:app_laundry/features/order/domain/repositories/order_repository.dart';
 import 'package:app_laundry/features/order/domain/usecase/build_create_order_params.dart';
+import 'package:app_laundry/features/order/domain/usecase/build_order_group.dart';
 import 'package:app_laundry/features/order/domain/usecase/change_order_status.dart';
 import 'package:app_laundry/features/order/domain/usecase/create_order.dart';
 import 'package:app_laundry/features/order/domain/usecase/delete_order.dart';
@@ -24,8 +25,10 @@ import 'package:app_laundry/features/order/domain/usecase/stream_orders.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_action_cubit.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_cubit.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_form_cubit.dart';
+import 'package:app_laundry/features/order/presentation/cubit/order_group_form_cubit.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_item_selection_cubit.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_laundry_item_cubit.dart';
+import 'package:app_laundry/features/setting/domain/usecases/get_setting.dart';
 import 'package:get_it/get_it.dart';
 
 class OrderModule {
@@ -117,6 +120,8 @@ class OrderModule {
     sl.registerLazySingleton<BuildCreateOrderParams>(
       () => BuildCreateOrderParams(),
     );
+
+    sl.registerLazySingleton<BuildOrderGroup>(() => BuildOrderGroup());
   }
 
   // =========================
@@ -147,5 +152,12 @@ class OrderModule {
     );
 
     sl.registerFactory(() => OrderFormCubit(sl<BuildCreateOrderParams>()));
+
+    sl.registerFactory(
+      () => OrderGroupFormCubit(
+        buildOrderGroup: sl<BuildOrderGroup>(),
+        getSetting: sl<GetSetting>(),
+      ),
+    );
   }
 }

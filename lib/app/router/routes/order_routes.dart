@@ -9,7 +9,7 @@ import 'package:app_laundry/features/order/domain/usecase/params/create_order_pa
 import 'package:app_laundry/features/order/domain/usecase/params/stream_order_laundry_items_params.dart';
 import 'package:app_laundry/features/order/presentation/wrappers/order_confirmation_page_wrapper.dart';
 import 'package:app_laundry/features/order/presentation/wrappers/order_form_page_wrapper.dart';
-import 'package:app_laundry/features/order/presentation/pages/order_group_form_page.dart';
+import 'package:app_laundry/features/order/presentation/wrappers/order_group_form_page_wrapper.dart';
 import 'package:app_laundry/features/order/presentation/wrappers/order_laundry_item_page_wrapper.dart';
 import 'package:go_router/go_router.dart';
 
@@ -31,7 +31,7 @@ class OrderRoutes {
       path: OrderPaths.orderGroupFormPath,
       name: OrderPaths.orderGroupForm,
       builder: (_, _) {
-        return const OrderGroupFormPage();
+        return const OrderGroupFormPageWrapper();
       },
     ),
 

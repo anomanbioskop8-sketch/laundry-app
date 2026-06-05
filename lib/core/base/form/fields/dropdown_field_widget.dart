@@ -50,7 +50,11 @@ class DropdownFieldWidget extends StatelessWidget {
           .toList(),
 
       onChanged: (value) {
-        field.controller.text = value ?? '';
+        if (value == null) return;
+
+        field.controller.text = value;
+
+        field.onChanged?.call(value);
       },
       validator: field.validate,
       hint: Text(

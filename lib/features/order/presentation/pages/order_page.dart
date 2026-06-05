@@ -20,7 +20,7 @@ class OrderPage extends StatelessWidget {
         children: [
           /// 🔍 SEARCH BAR
           Padding(
-            padding: EdgeInsets.all(context.spacing.lg),
+            padding: EdgeInsets.all(context.spacing.md),
             child: AppSearchField(
               hintText: OrderStrings.searchHint,
               onChanged: context.read<OrderCubit>().search,

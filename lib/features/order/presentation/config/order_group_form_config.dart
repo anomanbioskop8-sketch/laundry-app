@@ -2,10 +2,9 @@
 // File : order_group_form_config.dart
 // =============================================================================
 
-import 'package:app_laundry/core/base/form/fields/form_option.dart';
+import 'package:app_laundry/core/base/form/extensions/form_option_ext.dart';
 import 'package:app_laundry/core/base/form/form_field_config.dart';
 import 'package:app_laundry/core/base/form/form_field_type.dart';
-import 'package:app_laundry/core/base/validators/app_validator.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_order_type.dart';
@@ -14,19 +13,19 @@ import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dar
 import 'package:app_laundry/features/laundry/domain/extensions/laundry_order_type_ext.dart';
 import 'package:app_laundry/features/laundry/domain/extensions/laundry_service_type_ext.dart';
 import 'package:app_laundry/features/laundry/domain/extensions/laundry_speed_type_ext.dart';
-import 'package:app_laundry/features/laundry/domain/extensions/string_laundry_order_type_ext.dart';
+import 'package:app_laundry/features/order/domain/usecase/params/stream_order_laundry_items_params.dart';
 import 'package:app_laundry/features/order/presentation/controllers/order_group_form_controller.dart';
-import 'package:app_laundry/features/order/presentation/widgets/order_laundry_item_field_widget.dart';
+import 'package:app_laundry/features/order/presentation/widgets/order_laundry_item_field/order_laundry_item_field_widget.dart';
 import 'package:flutter/material.dart';
 
 class OrderGroupFormConfig {
   final OrderGroupFormController controller;
+  final VoidCallback onLaundryTypeChanged;
 
-  OrderGroupFormConfig(this.controller);
-
-  // =========================
-  // FIELDS
-  // =========================
+  OrderGroupFormConfig({
+    required this.controller,
+    required this.onLaundryTypeChanged,
+  });
 
   List<FormFieldConfig> get fields => [
     _serviceTypeField,
@@ -46,13 +45,12 @@ class OrderGroupFormConfig {
       label: OrderStrings.serviceType,
       type: FormFieldType.dropdown,
       controller: controller.serviceType,
-      options: LaundryServiceType.values
-          .map((e) => FormOption(value: e.value, label: e.label, icon: e.icon))
-          .toList(),
-      validators: [
-        (v) =>
-            AppValidator.required(v, message: OrderStrings.serviceTypeRequired),
-      ],
+      options: LaundryServiceType.values.toFormOptions(
+        value: (e) => e.value,
+        label: (e) => e.label,
+        icon: (e) => e.icon,
+      ),
+      onChanged: (_) => onLaundryTypeChanged(),
     );
   }
 
@@ -66,13 +64,12 @@ class OrderGroupFormConfig {
       label: OrderStrings.speedType,
       type: FormFieldType.dropdown,
       controller: controller.speedType,
-      options: LaundrySpeedType.values
-          .map((e) => FormOption(value: e.value, label: e.label, icon: e.icon))
-          .toList(),
-      validators: [
-        (v) =>
-            AppValidator.required(v, message: OrderStrings.speedTypeRequired),
-      ],
+      options: LaundrySpeedType.values.toFormOptions(
+        value: (e) => e.value,
+        label: (e) => e.label,
+        icon: (e) => e.icon,
+      ),
+      onChanged: (_) => onLaundryTypeChanged(),
     );
   }
 
@@ -86,13 +83,11 @@ class OrderGroupFormConfig {
       label: OrderStrings.orderType,
       type: FormFieldType.dropdown,
       controller: controller.orderType,
-      options: LaundryOrderType.values
-          .map((e) => FormOption(value: e.value, label: e.label, icon: e.icon))
-          .toList(),
-      validators: [
-        (v) =>
-            AppValidator.required(v, message: OrderStrings.orderTypeRequired),
-      ],
+      options: LaundryOrderType.values.toFormOptions(
+        value: (e) => e.value,
+        label: (e) => e.label,
+        icon: (e) => e.icon,
+      ),
     );
   }
 
@@ -110,7 +105,7 @@ class OrderGroupFormConfig {
         return ValueListenableBuilder<TextEditingValue>(
           valueListenable: controller.orderType,
           builder: (_, _, _) {
-            final isKg = controller.orderType.text.toLaundryOrderType.isKg;
+            final isKg = controller.selectedOrderType.isKg;
 
             return TextFormField(
               controller: controller.weight,
@@ -128,31 +123,25 @@ class OrderGroupFormConfig {
     );
   }
 
-  // =========================
-  // ITEMS
-  // =========================
-
   FormFieldConfig get _itemsField {
     return FormFieldConfig(
-      name: 'groups',
+      name: 'items',
       label: '',
       type: FormFieldType.custom,
       controller: TextEditingController(),
       customBuilder: (_) {
-        return ValueListenableBuilder<TextEditingValue>(
-          valueListenable: controller.serviceType,
-          builder: (_, _, _) {
-            return ValueListenableBuilder<TextEditingValue>(
-              valueListenable: controller.speedType,
-              builder: (_, _, _) {
-                return OrderLaundryItemFieldWidget(
-                  items: controller.items,
-                  params: controller.laundryItemParams,
-                  onChanged: (items) {
-                    controller.items = items;
-                  },
-                );
-              },
+        return ListenableBuilder(
+          listenable: Listenable.merge([
+            controller.serviceType,
+            controller.speedType,
+            controller.orderType,
+          ]),
+          builder: (_, _) {
+            return OrderLaundryItemFieldWidget(
+              params: StreamOrderLaundryItemsParams(
+                serviceType: controller.selectedServiceType,
+                speedType: controller.selectedSpeedType,
+              ),
             );
           },
         );

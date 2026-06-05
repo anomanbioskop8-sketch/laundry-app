@@ -25,10 +25,7 @@ class AppInputTheme {
       isDense: false,
       alignLabelWithHint: true,
 
-      contentPadding: EdgeInsets.symmetric(
-        horizontal: spacing.md,
-        vertical: spacing.lg,
-      ),
+      contentPadding: EdgeInsets.all(spacing.md),
 
       // ======================
       // BORDER
@@ -36,6 +33,9 @@ class AppInputTheme {
       border: base,
 
       enabledBorder: base.copyWith(
+        borderSide: BorderSide(color: cs.outlineVariant),
+      ),
+      disabledBorder: base.copyWith(
         borderSide: BorderSide(color: cs.outlineVariant),
       ),
 

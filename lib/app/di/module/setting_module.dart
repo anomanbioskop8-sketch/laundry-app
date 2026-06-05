@@ -58,7 +58,10 @@ class SettingModule {
   // =========================
   void _useCases() {
     sl.registerLazySingleton<GetSetting>(
-      () => GetSetting(sl<SettingRepository>()),
+      () => GetSetting(
+        repository: sl<SettingRepository>(),
+        session: sl<SessionService>(),
+      ),
     );
 
     sl.registerLazySingleton<StreamSetting>(

@@ -10,17 +10,13 @@
 
 class OrderLaundryItemModel {
   final String laundryItemId;
-
   final String laundryItemName;
-
   final int quantity;
   final int price;
 
   const OrderLaundryItemModel({
     required this.laundryItemId,
-
     required this.laundryItemName,
-
     required this.quantity,
     required this.price,
   });
@@ -32,9 +28,7 @@ class OrderLaundryItemModel {
   factory OrderLaundryItemModel.fromMap(Map<String, dynamic> map) {
     return OrderLaundryItemModel(
       laundryItemId: map['laundryItemId'] ?? '',
-
       laundryItemName: map['laundryItemName'] ?? '',
-
       quantity: map['quantity'] ?? 0,
       price: map['price']?.toDouble() ?? 0,
     );
@@ -47,9 +41,7 @@ class OrderLaundryItemModel {
   Map<String, dynamic> toMap() {
     return {
       'laundryItemId': laundryItemId,
-
       'laundryItemName': laundryItemName,
-
       'quantity': quantity,
       'price': price,
     };

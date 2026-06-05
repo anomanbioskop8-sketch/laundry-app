@@ -45,8 +45,8 @@ class _LaundryPriceFormPageState extends State<LaundryPriceFormPage> {
         formKey: controller.formKey,
         fields: config.fields,
         submitLabel: AppStrings.save,
-        onSubmit: () {
-          cubit.submit(controller.buildParams());
+        onSubmit: () async {
+          await cubit.submit(controller.buildParams());
         },
       ),
     );

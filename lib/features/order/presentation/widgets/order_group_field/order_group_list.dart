@@ -15,7 +15,7 @@ class OrderGroupList extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: groups.length,
-      separatorBuilder: (_, __) => const Divider(),
+      separatorBuilder: (_, _) => const Divider(),
       itemBuilder: (_, index) {
         return OrderGroupCard(
           group: groups[index],

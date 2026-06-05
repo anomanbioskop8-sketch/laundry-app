@@ -34,7 +34,7 @@ class CustomerPage extends StatelessWidget {
           // SEARCH BAR
           // =========================
           Padding(
-            padding: EdgeInsets.all(context.spacing.lg),
+            padding: EdgeInsets.all(context.spacing.md),
 
             child: AppSearchField(
               prefixIcon: AppIcons.searchCustomers,
