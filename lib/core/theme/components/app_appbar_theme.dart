@@ -1,13 +1,18 @@
+import 'package:app_laundry/core/theme/tokens/app_sizes.dart';
 import 'package:flutter/material.dart';
 
 class AppAppBarTheme {
-  static AppBarTheme build(ColorScheme scheme) {
+  static AppBarTheme build({required ColorScheme cs, required TextTheme text}) {
     return AppBarTheme(
-      backgroundColor: scheme.primary,
-      foregroundColor: scheme.onPrimary,
+      backgroundColor: cs.primary,
+      foregroundColor: cs.onPrimary,
       elevation: 0,
       centerTitle: true,
-      toolbarHeight: 72,
+      toolbarHeight: AppSizes().buttonXxl,
+      titleTextStyle: text.titleLarge?.copyWith(
+        color: cs.onPrimary,
+        fontWeight: FontWeight.w500,
+      ),
     );
   }
 }

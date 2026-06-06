@@ -7,7 +7,7 @@
 // - Menampilkan detail setting aplikasi
 // =============================================================================
 
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
 
 import 'package:app_laundry/core/ui/components/app_info_card.dart';
 

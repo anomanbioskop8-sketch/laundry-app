@@ -21,11 +21,14 @@
 // - Support destructive / warning color via ActionIntent
 // =============================================================================
 
+import 'package:app_laundry/core/theme/extensions/theme_radius_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
 import 'package:app_laundry/core/theme/helpers/radius_ext.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
+import 'package:app_laundry/core/ui/bottom_sheet/action_intent.dart';
 import 'package:app_laundry/core/ui/bottom_sheet/action_intent_ext.dart';
 import 'package:flutter/material.dart';
 
@@ -172,7 +175,10 @@ class _Header extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: spacing.lg),
 
-          child: Text(title, style: context.text.titleMedium!.semiBold),
+          child: Text(
+            title,
+            style: context.text.titleMedium!.semiBold.onSurface(context),
+          ),
         ),
 
         spacing.sm.h,
@@ -200,19 +206,17 @@ class _ActionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: context.spacing.lg),
-
       leading: Icon(action.icon, color: action.intent.color(context)),
-
       title: Text(
         action.title,
-
-        style: context.text.labelLarge?.onSurface(context),
+        style: action.intent == ActionIntent.delete
+            ? context.text.labelLarge?.semiBold.copyWith(
+                color: action.intent.color(context),
+              )
+            : context.text.labelLarge?.onSurface(context),
       ),
-
       onTap: () {
         Navigator.pop(context);
-
         action.onTap();
       },
     );

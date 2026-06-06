@@ -23,6 +23,7 @@ class OrderCubit extends BaseSearchCubit<OrderWithCustomerEntity> {
   @override
   List<FieldSelector<OrderWithCustomerEntity>> get searchFields => [
     (c) => c.order.invoiceNumber,
+    (c) => c.customer!.name,
   ];
 
   /// Mendengarkan perubahan data laundry item secara realtime

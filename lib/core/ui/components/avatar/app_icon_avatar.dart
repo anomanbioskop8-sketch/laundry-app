@@ -1,7 +1,8 @@
 // core/ui/widgets/app_icon_avatar.dart
 
+import 'package:app_laundry/core/theme/extensions/theme_size_ext.dart';
 import 'package:app_laundry/core/theme/helpers/avatar_size_ext.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
 import 'package:flutter/material.dart';
 
 class AppIconAvatar extends StatelessWidget {
@@ -21,7 +22,7 @@ class AppIconAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: radius ?? context.sizes.avatarSm.radius,
+      radius: radius ?? context.sizes.avatarMd.radius,
       backgroundColor: backgroundColor ?? context.colors.primary,
       child: Icon(icon, color: iconColor ?? context.colors.onPrimary),
     );

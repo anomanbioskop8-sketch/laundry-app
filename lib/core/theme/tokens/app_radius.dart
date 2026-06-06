@@ -19,33 +19,24 @@
 class AppRadius {
   AppRadius();
 
-  // =========================
-  // SMALL RADIUS
-  // =========================
-  /// Radius kecil untuk komponen compact
-  final double sm = 6.0;
+  /// Nilai radius: 0px (Sudut tajam/kotak sempurna)
+  final double none = 0.0;
 
-  // =========================
-  // MEDIUM RADIUS
-  // =========================
-  /// Radius standard untuk sebagian besar komponen
-  final double md = 10.0;
+  /// Nilai radius: 4px (Untuk komponen mini seperti checkbox/badge)
+  final double xs = 4.0;
 
-  // =========================
-  // LARGE RADIUS
-  // =========================
-  /// Radius besar untuk card dan dialog
+  /// Nilai radius: 8px (Untuk komponen kecil seperti tombol kecil/tag)
+  final double sm = 8.0;
+
+  /// Nilai radius: 12px (Standar industri untuk Tombol Utama & Card kecil)
+  final double md = 12.0;
+
+  /// Nilai radius: 16px (Untuk Card besar, Dialog, atau Bottom Sheet)
   final double lg = 16.0;
 
-  // =========================
-  // EXTRA LARGE RADIUS
-  // =========================
-  /// Radius extra besar untuk container modern UI
+  /// Nilai radius: 24px (Untuk container besar atau area profile)
   final double xl = 24.0;
 
-  // =========================
-  // EXTRA EXTRA LARGE RADIUS
-  // =========================
-  /// Radius maksimal untuk layout premium / rounded UI
-  final double xxl = 32.0;
+  /// Nilai radius: 999px (Untuk membuat bentuk lingkaran/capsule sempurna)
+  final double circular = 999.0;
 }

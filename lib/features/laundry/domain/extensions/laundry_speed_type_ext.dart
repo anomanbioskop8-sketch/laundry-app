@@ -1,7 +1,7 @@
 // features/laundry_price/domain/enums/laundry_service_type_ext.dart
 
 import 'package:app_laundry/core/constants/app_icons.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,8 @@
+import 'package:app_laundry/core/theme/extensions/theme_size_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_text_ext.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
 import 'package:flutter/material.dart';
 
 class AppEmptyWidget extends StatelessWidget {

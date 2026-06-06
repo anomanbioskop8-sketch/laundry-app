@@ -12,7 +12,7 @@ class AppCardTheme {
       elevation: AppElevation.medium,
       color: colorScheme.surfaceContainer,
       shadowColor: colorScheme.shadow.withValues(alpha: 0.1),
-      shape: RoundedRectangleBorder(borderRadius: radius.lg.r),
+      shape: RoundedRectangleBorder(borderRadius: radius.md.r),
       margin: EdgeInsets.zero,
       clipBehavior: Clip.antiAlias,
     );

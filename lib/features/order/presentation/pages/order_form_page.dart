@@ -19,36 +19,40 @@ class OrderFormPage extends StatefulWidget {
 }
 
 class OrderFormPageState extends State<OrderFormPage> {
-  final controller = OrderFormController();
+  late final OrderFormController _controller;
 
   @override
   void initState() {
     super.initState();
+    _controller = OrderFormController();
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(OrderStrings.create)),
+      appBar: AppBar(title: const Text(OrderStrings.create)),
       body: BaseStreamBuilder<CustomerCubit, CustomerEntity>(
         builder: (customers) {
           final config = OrderFormConfig(
-            controller: controller,
+            controller: _controller,
             customers: customers,
           );
+
           return FormBuilder(
-            formKey: controller.formKey,
+            formKey: _controller.formKey,
             fields: config.fields,
             submitLabel: AppStrings.save,
             onSubmit: () async {
-              final params = context.read<OrderFormCubit>().buildParams(
-                paymentStatus: controller.selectedPaymentStatus,
+              final orderFormCubit = context.read<OrderFormCubit>();
+
+              final params = orderFormCubit.buildParams(
+                paymentStatus: _controller.selectedPaymentStatus,
               );
 
               context.pushConfirmationOrder(order: params);

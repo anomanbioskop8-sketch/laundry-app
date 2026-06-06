@@ -5,8 +5,8 @@
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/customer_strings.dart';
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
+import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/core/ui/components/app_elevated_action_button.dart';
 import 'package:app_laundry/core/ui/components/app_info_card.dart';
 import 'package:app_laundry/core/ui/components/info_info_item.dart';

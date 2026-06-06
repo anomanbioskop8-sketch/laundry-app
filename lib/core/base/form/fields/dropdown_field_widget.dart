@@ -9,9 +9,12 @@
 // - Integrasi dengan FormFieldConfig
 // =============================================================================
 
+import 'package:app_laundry/core/theme/extensions/theme_size_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_text_ext.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
 import 'package:flutter/material.dart';
 import '../form_field_config.dart';
 
@@ -39,7 +42,7 @@ class DropdownFieldWidget extends StatelessWidget {
                   Icon(
                     e.icon,
                     size: context.sizes.iconMd,
-                    color: context.primary,
+                    color: context.colors.primary,
                   ),
                   context.spacing.lg.w,
                   Text(e.label, style: context.labelLarge!.onSurface(context)),

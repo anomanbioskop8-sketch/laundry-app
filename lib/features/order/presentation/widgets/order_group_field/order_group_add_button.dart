@@ -11,11 +11,9 @@ class OrderGroupAddButton extends StatelessWidget {
 
   Future<void> _addGroup(BuildContext context) async {
     final result = await context.pushOrderGroupForm();
-
     if (result == null || !context.mounted) return;
 
     final cubit = context.read<OrderFormCubit>();
-
     cubit.addGroup(result);
   }
 

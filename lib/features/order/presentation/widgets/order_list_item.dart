@@ -1,8 +1,9 @@
 import 'package:app_laundry/core/constants/app_icons.dart';
+import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_text_ext.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/core/ui/bottom_sheet/app_action_sheet.dart';
 import 'package:app_laundry/core/ui/components/app_chip.dart';
 import 'package:app_laundry/core/ui/components/avatar/app_icon_avatar.dart';
@@ -46,10 +47,7 @@ class _OrderCard extends StatelessWidget {
     return Card(
       margin: EdgeInsets.symmetric(vertical: context.spacing.md),
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: context.spacing.md,
-          horizontal: context.spacing.lg,
-        ),
+        padding: EdgeInsets.all(context.spacing.md),
 
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +57,7 @@ class _OrderCard extends StatelessWidget {
             /// =========================
             _HeaderOrderItem(order: order.order),
 
-            Divider(height: context.spacing.lg),
+            Divider(height: context.spacing.md),
 
             /// =========================
             /// CONTENT
@@ -68,7 +66,7 @@ class _OrderCard extends StatelessWidget {
               //crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppIconAvatar(icon: AppIcons.order),
-                context.spacing.md.w,
+                context.spacing.sm.w,
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +74,7 @@ class _OrderCard extends StatelessWidget {
                       /// CUSTOMER
                       Text(
                         customerName,
-                        style: context.titleSmall!.semiBold.onSurface(context),
+                        style: context.titleMedium!.semiBold.onSurface(context),
                       ),
 
                       // context.spacing.xs.h,
@@ -90,11 +88,13 @@ class _OrderCard extends StatelessWidget {
                             children: [
                               Text(
                                 'Masuk:  $createdAt',
-                                style: context.labelSmall!.secondary(context),
+                                style: context.bodyMedium!.onSurfaceVariant(
+                                  context,
+                                ),
                               ),
                               Text(
-                                '0 Item',
-                                style: context.labelSmall!.secondary(context),
+                                'Deadline: 24 Jam',
+                                style: context.bodyMedium!.warning(context),
                               ),
                             ],
                           ),
@@ -104,9 +104,9 @@ class _OrderCard extends StatelessWidget {
                             children: [
                               Text(
                                 formattedTotal,
-                                style: context.bodyMedium!
-                                    .primary(context)
-                                    .semiBold,
+                                style: context.bodyMedium!.semiBold.primary(
+                                  context,
+                                ),
                               ),
                               context.spacing.xs.h,
                               AppChip(
@@ -142,7 +142,7 @@ class _HeaderOrderItem extends StatelessWidget {
       children: [
         Text(
           order.invoiceNumber,
-          style: context.labelSmall!.semiBold.onSurface(context),
+          style: context.labelMedium!.semiBold.onSurface(context),
         ),
         AppChip(
           label: order.orderStatus.label,

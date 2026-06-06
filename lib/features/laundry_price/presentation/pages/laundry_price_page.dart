@@ -1,5 +1,5 @@
+import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/core/ui/components/app_tab_bar.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
 import 'package:app_laundry/features/laundry/domain/extensions/laundry_speed_type_ext.dart';

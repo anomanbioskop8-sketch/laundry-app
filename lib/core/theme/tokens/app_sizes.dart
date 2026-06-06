@@ -25,7 +25,7 @@ class AppSizes {
   final double iconXs = 12;
 
   /// Ukuran icon small
-  final double iconSm = 18;
+  final double iconSm = 16;
 
   /// Ukuran icon medium
   final double iconMd = 24;
@@ -37,19 +37,25 @@ class AppSizes {
   final double iconXl = 40;
 
   /// Ukuran icon extra extra large
-  final double iconXxl = 50;
+  final double iconXxl = 48;
 
   // =========================
   // BUTTON HEIGHT
   // =========================
   /// Tinggi button small
-  final double buttonSm = 36;
+  final double buttonSm = 32;
 
   /// Tinggi button medium
-  final double buttonMd = 44;
+  final double buttonMd = 40;
 
   /// Tinggi button large
-  final double buttonLg = 56;
+  final double buttonLg = 48;
+
+  /// Tinggi button extra large
+  final double buttonXl = 56;
+
+  /// Tinggi button extra extra large
+  final double buttonXxl = 64;
 
   // =========================
   // AVATAR SIZE
@@ -58,16 +64,16 @@ class AppSizes {
   final double avatarXs = 24;
 
   /// Ukuran avatar small
-  final double avatarSm = 40;
+  final double avatarSm = 32;
 
   /// Ukuran avatar medium
-  final double avatarMd = 64;
+  final double avatarMd = 40;
 
   /// Ukuran avatar large
-  final double avatarLg = 96;
+  final double avatarLg = 48;
 
   /// Ukuran avatar extra large
-  final double avatarXl = 120;
+  final double avatarXl = 56;
 
   // =========================
   // INPUT

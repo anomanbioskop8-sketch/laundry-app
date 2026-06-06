@@ -3,9 +3,12 @@
 // Path        : lib/core/ui/components/chip/app_chip.dart
 // =============================================================================
 
+import 'package:app_laundry/core/theme/extensions/theme_radius_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_size_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_text_ext.dart';
 import 'package:app_laundry/core/theme/helpers/radius_ext.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:flutter/material.dart';
 
 class AppChip extends StatelessWidget {
@@ -29,8 +32,8 @@ class AppChip extends StatelessWidget {
       ),
 
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.2),
-        borderRadius: context.radius.sm.r,
+        color: color.withValues(alpha: 0.15),
+        borderRadius: context.radius.xs.r,
       ),
 
       child: Row(
@@ -44,7 +47,7 @@ class AppChip extends StatelessWidget {
           ],
 
           /// LABEL
-          Text(label, style: context.labelSmall!.copyWith(color: color)),
+          Text(label, style: context.labelMedium!.copyWith(color: color)),
         ],
       ),
     );

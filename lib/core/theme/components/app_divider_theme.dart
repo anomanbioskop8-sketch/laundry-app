@@ -11,14 +11,8 @@ class AppDividerTheme {
 
     return DividerThemeData(
       color: cs.outlineVariant,
-
-      /// 🔥 thickness pakai token
       thickness: sizes.borderThin,
-
-      /// tinggi total area divider
-      space: spacing.lg,
-
-      /// indent kiri/kanan (biar tidak nempel)
+      space: spacing.md,
       indent: 0,
       endIndent: 0,
     );

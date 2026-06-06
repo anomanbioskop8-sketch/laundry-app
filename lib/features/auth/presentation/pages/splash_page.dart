@@ -1,5 +1,7 @@
+import 'package:app_laundry/core/theme/extensions/theme_radius_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
 import 'package:flutter/material.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
 import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
 import 'package:app_laundry/core/theme/helpers/radius_ext.dart';
 
@@ -20,13 +22,13 @@ class SplashPage extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(context.spacing.lg),
               decoration: BoxDecoration(
-                color: context.primary.withValues(alpha: 0.1),
+                color: context.colors.primary.withValues(alpha: 0.1),
                 borderRadius: context.radius.xl.r,
               ),
               child: Icon(
                 Icons.local_laundry_service,
                 size: 48,
-                color: context.primary,
+                color: context.colors.primary,
               ),
             ),
 
@@ -64,7 +66,7 @@ class SplashPage extends StatelessWidget {
               height: 28,
               child: CircularProgressIndicator(
                 strokeWidth: 3,
-                color: context.primary,
+                color: context.colors.primary,
               ),
             ),
           ],

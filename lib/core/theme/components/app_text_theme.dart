@@ -1,3 +1,4 @@
+import 'package:app_laundry/core/theme/tokens/app_font_size.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -5,50 +6,31 @@ class AppTextTheme {
   static TextTheme build(ColorScheme scheme) {
     final base = GoogleFonts.robotoTextTheme();
 
-    // 🔥 Golden Ratio (compressed for mobile)
-    const displayLarge = 40.0;
-    const headlineLarge = 32.0;
-    const headlineMedium = 26.0;
-    const headlineSmall = 22.0;
-
-    const titleLarge = 20.0;
-    const titleMedium = 18.0;
-    const titleSmall = 16.0;
-
-    const bodyLarge = 16.0;
-    const bodyMedium = 14.0;
-    const bodySmall = 13.0;
-
-    const labelLarge = 14.0;
-    const labelMedium = 13.0;
-    const labelSmall = 12.0;
-
     return base.copyWith(
       // =========================
       // DISPLAY
       // =========================
       displayLarge: base.displayLarge?.copyWith(
-        fontSize: displayLarge,
-        fontWeight: FontWeight.w700,
-        color: scheme.onSurface,
+        fontSize: AppFontSize.displayLarge,
+        fontWeight: FontWeight.w400,
       ),
 
       // =========================
       // HEADLINE
       // =========================
       headlineLarge: base.headlineLarge?.copyWith(
-        fontSize: headlineLarge,
-        fontWeight: FontWeight.w700,
+        fontSize: AppFontSize.headlineLarge,
+        fontWeight: FontWeight.w400,
         color: scheme.onSurface,
       ),
       headlineMedium: base.headlineMedium?.copyWith(
-        fontSize: headlineMedium,
-        fontWeight: FontWeight.w600,
+        fontSize: AppFontSize.headlineMedium,
+        fontWeight: FontWeight.w400,
         color: scheme.onSurface,
       ),
       headlineSmall: base.headlineSmall?.copyWith(
-        fontSize: headlineSmall,
-        fontWeight: FontWeight.w600,
+        fontSize: AppFontSize.headlineSmall,
+        fontWeight: FontWeight.w400,
         color: scheme.onSurface,
       ),
 
@@ -56,52 +38,60 @@ class AppTextTheme {
       // TITLE
       // =========================
       titleLarge: base.titleLarge?.copyWith(
-        fontSize: titleLarge,
-        fontWeight: FontWeight.w600,
+        fontSize: AppFontSize.titleLarge,
+        fontWeight: FontWeight.w400,
         color: scheme.onSurface,
       ),
       titleMedium: base.titleMedium?.copyWith(
-        fontSize: titleMedium,
-        fontWeight: FontWeight.w500,
+        fontSize: AppFontSize.titleMedium,
+        fontWeight: FontWeight.w400,
         color: scheme.onSurface,
       ),
       titleSmall: base.titleSmall?.copyWith(
-        fontSize: titleSmall,
-        fontWeight: FontWeight.w500,
-        color: scheme.onSurfaceVariant,
+        fontSize: AppFontSize.titleSmall,
+        fontWeight: FontWeight.w400,
+        color: scheme.onSurface,
       ),
 
       // =========================
       // BODY
       // =========================
       bodyLarge: base.bodyLarge?.copyWith(
-        fontSize: bodyLarge,
+        fontSize: AppFontSize.bodyLarge,
+        fontWeight: FontWeight.w400,
         color: scheme.onSurface,
       ),
       bodyMedium: base.bodyMedium?.copyWith(
-        fontSize: bodyMedium,
+        fontSize: AppFontSize.bodyMedium,
+        fontWeight: FontWeight.w400,
         color: scheme.onSurface,
       ),
       bodySmall: base.bodySmall?.copyWith(
-        fontSize: bodySmall,
-        color: scheme.onSurfaceVariant,
+        fontSize: AppFontSize.bodySmall,
+        fontWeight: FontWeight.w400,
+        color: scheme.onSurface,
       ),
 
       // =========================
       // LABEL (navigation, tab, chip)
       // =========================
       labelLarge: base.labelLarge?.copyWith(
-        fontSize: labelLarge,
-        fontWeight: FontWeight.w600,
-        color: scheme.onPrimary,
+        fontSize: AppFontSize.labelLarge,
+        fontWeight: FontWeight.w500,
+        color: scheme.onSurface,
+        letterSpacing: 0.1,
       ),
       labelMedium: base.labelMedium?.copyWith(
-        fontSize: labelMedium,
+        fontSize: AppFontSize.labelMedium,
+        fontWeight: FontWeight.w500,
         color: scheme.onSurface,
+        letterSpacing: 0.5,
       ),
       labelSmall: base.labelSmall?.copyWith(
-        fontSize: labelSmall,
-        color: scheme.onSurfaceVariant,
+        fontSize: AppFontSize.labelSmall,
+        fontWeight: FontWeight.w500,
+        color: scheme.onSurface,
+        letterSpacing: 0.5,
       ),
     );
   }

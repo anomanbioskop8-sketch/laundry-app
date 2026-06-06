@@ -1,6 +1,6 @@
 import 'package:app_laundry/core/ui/bottom_sheet/action_intent.dart';
 import 'package:flutter/material.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
 
 class ActionColorMapper {
   static Color resolve(BuildContext context, ActionIntent intent) {
@@ -9,7 +9,7 @@ class ActionColorMapper {
         return context.status.success;
 
       case ActionIntent.update:
-        return context.status.info;
+        return context.status.success;
 
       case ActionIntent.delete:
         return context.status.error; // 🔥 merah

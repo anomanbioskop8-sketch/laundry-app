@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
 import 'package:app_laundry/core/ui/components/info_info_item.dart';
 import 'package:flutter/material.dart';
 

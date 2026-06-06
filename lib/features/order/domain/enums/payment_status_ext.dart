@@ -4,7 +4,7 @@
 // =============================================================================
 
 import 'package:app_laundry/core/constants/app_icons.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
+import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
 import 'package:flutter/material.dart';
 
 import 'payment_status.dart';

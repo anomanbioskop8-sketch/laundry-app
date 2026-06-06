@@ -45,7 +45,7 @@ class AppTheme {
       textTheme: text,
 
       /// Components
-      appBarTheme: AppAppBarTheme.build(cs),
+      appBarTheme: AppAppBarTheme.build(cs: cs, text: text),
       elevatedButtonTheme: AppButtonTheme.build(cs),
       outlinedButtonTheme: AppOutlinedButtonTheme.build(cs),
       inputDecorationTheme: AppInputTheme.build(cs: cs, text: text),

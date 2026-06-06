@@ -1,6 +1,6 @@
+import 'package:app_laundry/core/theme/extensions/theme_text_ext.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
 import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
-import 'package:app_laundry/core/theme/helpers/theme_ext.dart';
 import 'package:app_laundry/features/order/domain/entities/order_laundry_item_entity.dart';
 import 'package:app_laundry/features/order/domain/extensions/order_laundry_item_entity_ext.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class SelectedOrderItemTile extends StatelessWidget {
 
       subtitle: Text(
         item.formattedPrice,
-        style: context.bodyMedium!.secondary(context),
+        style: context.bodyMedium!.onSurfaceVariant(context),
       ),
 
       trailing: SizedBox(
