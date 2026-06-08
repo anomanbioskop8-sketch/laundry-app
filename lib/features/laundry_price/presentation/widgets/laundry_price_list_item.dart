@@ -1,9 +1,6 @@
-import 'package:app_laundry/core/theme/extensions/theme_text_ext.dart';
-import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
-import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
-import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
-import 'package:app_laundry/core/ui/bottom_sheet/app_action_sheet.dart';
-import 'package:app_laundry/core/ui/components/avatar/app_icon_avatar.dart';
+import 'package:app_laundry/core/theme/theme_extensions.dart';
+import 'package:app_laundry/core/ui/bottom_sheets/app_action_sheet.dart';
+import 'package:app_laundry/core/ui/widgets/avatar/app_icon_avatar.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
 import 'package:app_laundry/features/laundry_price/domain/extensions/laundry_price_entity_ext.dart';
 import 'package:app_laundry/features/laundry_price/presentation/builders/laundry_price_action_builder.dart';
@@ -33,15 +30,15 @@ class LaundryPriceListItem extends StatelessWidget {
 
       title: Text(
         serviceLabel,
-        style: context.titleMedium!.semiBold.onSurface(context),
+        style: context.text.titleMedium!.semiBold.onSurface(context),
       ),
       subtitle: Text(
         speedLabel,
-        style: context.bodyMedium!.onSurfaceVariant(context),
+        style: context.text.bodyMedium!.onSurfaceVariant(context),
       ),
       trailing: Text(
         formattedPrice,
-        style: context.bodyMedium!.semiBold.copyWith(
+        style: context.text.bodyMedium!.semiBold.copyWith(
           color: speedColor(context),
         ),
       ),

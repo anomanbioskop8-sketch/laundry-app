@@ -7,7 +7,7 @@
 // - Handle form controller setting aplikasi
 // =============================================================================
 
-import 'package:app_laundry/core/base/form/controllers/form_controller.dart';
+import 'package:app_laundry/core/form/controllers/form_controller.dart';
 import 'package:app_laundry/core/extensions/string_ext.dart';
 import 'package:app_laundry/features/setting/domain/entities/setting_entity.dart';
 import 'package:app_laundry/features/setting/domain/usecases/setting_params.dart';

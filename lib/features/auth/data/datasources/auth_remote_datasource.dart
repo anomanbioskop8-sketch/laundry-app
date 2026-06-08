@@ -1,6 +1,6 @@
 import 'package:app_laundry/core/auth/role/user_role.dart';
 import 'package:app_laundry/core/constants/firestore_path.dart';
-import 'package:app_laundry/core/error/extensions/firebase_exception_extension.dart';
+import 'package:app_laundry/core/errors/extensions/firebase_exception_extension.dart';
 import 'package:app_laundry/core/network/base_remote_datasource.dart';
 import 'package:app_laundry/features/auth/data/models/user_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

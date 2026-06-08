@@ -3,7 +3,7 @@
 // Path        : lib/features/company/presentation/pages/company_form_page.dart
 // =============================================================================
 
-import 'package:app_laundry/core/base/form/form_builder.dart';
+import 'package:app_laundry/core/form/builders/form_builder.dart';
 import 'package:app_laundry/core/constants/strings/company_strings.dart';
 import 'package:app_laundry/features/company/domain/entities/company_entity.dart';
 import 'package:app_laundry/features/company/presentation/config/company_form_config.dart';

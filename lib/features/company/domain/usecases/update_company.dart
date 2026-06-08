@@ -7,7 +7,7 @@
 // - Update data company
 // =============================================================================
 
-import 'package:app_laundry/core/error/failure.dart';
+import 'package:app_laundry/core/errors/failure.dart';
 import 'package:app_laundry/core/utils/either.dart';
 
 import 'package:app_laundry/features/company/domain/repositories/company_repository.dart';

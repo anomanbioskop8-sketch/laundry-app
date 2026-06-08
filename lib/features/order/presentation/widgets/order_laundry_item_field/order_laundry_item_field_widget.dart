@@ -1,5 +1,4 @@
-import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
-import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
+import 'package:app_laundry/core/theme/theme_extensions.dart';
 import 'package:app_laundry/features/order/domain/usecase/params/stream_order_laundry_items_params.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_group_form_cubit.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_group_form_state.dart';

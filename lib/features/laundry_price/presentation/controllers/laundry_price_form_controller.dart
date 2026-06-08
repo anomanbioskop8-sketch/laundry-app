@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/base/form/controllers/form_controller.dart';
+import 'package:app_laundry/core/form/controllers/form_controller.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_service_type.dart';

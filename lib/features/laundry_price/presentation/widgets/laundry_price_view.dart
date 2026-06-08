@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/base/builders/base_stream_builder.dart';
+import 'package:app_laundry/core/base/stream/base_stream_builder.dart';
 import 'package:app_laundry/core/constants/strings/laundry_price_strings.dart';
 import 'package:app_laundry/core/ui/states/app_empty_widget.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';

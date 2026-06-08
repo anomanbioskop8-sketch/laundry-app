@@ -3,11 +3,8 @@
 // Path        : lib/features/customer/presentation/widgets/customer_list_item.dart
 // =============================================================================
 
-import 'package:app_laundry/core/theme/extensions/theme_text_ext.dart';
-import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
-import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
-import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
-import 'package:app_laundry/core/ui/bottom_sheet/app_action_sheet.dart';
+import 'package:app_laundry/core/theme/theme_extensions.dart';
+import 'package:app_laundry/core/ui/bottom_sheets/app_action_sheet.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/presentation/builders/customer_action_builder.dart';
 import 'package:app_laundry/features/customer/presentation/extensions/customer_ui_extension.dart';
@@ -38,11 +35,11 @@ class CustomerListItem extends StatelessWidget {
       ),
       title: Text(
         customer.displayName,
-        style: context.titleMedium!.semiBold.onSurface(context),
+        style: context.text.titleMedium!.semiBold.onSurface(context),
       ),
       subtitle: Text(
         phone,
-        style: context.bodyMedium!.onSurfaceVariant(context),
+        style: context.text.bodyMedium!.onSurfaceVariant(context),
       ),
       onTap: () {
         if (isPicker) {

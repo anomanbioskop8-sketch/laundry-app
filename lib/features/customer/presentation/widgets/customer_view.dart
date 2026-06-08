@@ -3,7 +3,7 @@
 // Path        : lib/features/customer/presentation/widgets/customer_view.dart
 // =============================================================================
 
-import 'package:app_laundry/core/base/builders/base_stream_builder.dart';
+import 'package:app_laundry/core/base/stream/base_stream_builder.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/customer_strings.dart';
 import 'package:app_laundry/core/ui/states/app_empty_widget.dart';

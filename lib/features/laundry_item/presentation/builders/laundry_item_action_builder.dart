@@ -3,11 +3,11 @@ import 'package:app_laundry/app/router/extensions/push/laundry_item_navigation_e
 import 'package:app_laundry/core/auth/permission/permission.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/laundry_item_strings.dart';
-import 'package:app_laundry/core/ui/bottom_sheet/action_intent.dart';
-import 'package:app_laundry/core/ui/bottom_sheet/action_item.dart';
+import 'package:app_laundry/core/ui/bottom_sheets/action_intent.dart';
+import 'package:app_laundry/core/ui/bottom_sheets/action_item.dart';
 import 'package:app_laundry/core/services/app_ui_service.dart';
 import 'package:app_laundry/core/auth/permission/permission_service.dart';
-import 'package:app_laundry/core/theme/dialog/dialog_type.dart';
+import 'package:app_laundry/core/ui/dialog/dialog_type.dart';
 import 'package:app_laundry/features/laundry_item/domain/entities/laundry_item_entity.dart';
 import 'package:app_laundry/features/laundry_item/presentation/cubit/laundry_item_action_cubit.dart';
 import 'package:flutter/material.dart';

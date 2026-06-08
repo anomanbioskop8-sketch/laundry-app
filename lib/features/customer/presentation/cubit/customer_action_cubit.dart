@@ -10,7 +10,7 @@
 // - Menyediakan pesan sukses setelah aksi berhasil dijalankan
 // =============================================================================
 
-import 'package:app_laundry/core/base/cubit/base_action_cubit.dart';
+import 'package:app_laundry/core/base/action/base_action_cubit.dart';
 import 'package:app_laundry/core/constants/strings/customer_strings.dart';
 import 'package:app_laundry/features/customer/domain/usecase/delete_customer.dart';
 import 'package:app_laundry/features/customer/domain/usecase/params/save_customer_params.dart';

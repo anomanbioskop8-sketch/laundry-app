@@ -1,5 +1,6 @@
 // features/laundry_price/domain/enums/order_type_ext.dart
 
+import 'package:app_laundry/core/form/fields/form_option.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_service_type.dart';
 import 'package:flutter/material.dart';
 
@@ -66,5 +67,21 @@ extension LaundryServiceTypeExt on LaundryServiceType {
       default:
         return LaundryServiceType.wash;
     }
+  }
+
+  // =========================
+  // FORM OPTION
+  // =========================
+
+  FormOption get option {
+    return FormOption(value: value, label: label, icon: icon);
+  }
+
+  // =========================
+  // FORM OPTIONS
+  // =========================
+
+  static List<FormOption> get options {
+    return LaundryServiceType.values.map((e) => e.option).toList();
   }
 }

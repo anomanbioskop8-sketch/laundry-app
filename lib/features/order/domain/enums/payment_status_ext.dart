@@ -3,6 +3,7 @@
 // Path        : lib/features/order/domain/enums/payment_status_ext.dart
 // =============================================================================
 
+import 'package:app_laundry/core/form/fields/form_option.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
 import 'package:flutter/material.dart';
@@ -74,5 +75,21 @@ extension PaymentStatusExt on PaymentStatus {
       default:
         return PaymentStatus.unpaid;
     }
+  }
+
+  // =========================
+  // FORM OPTION
+  // =========================
+
+  FormOption get option {
+    return FormOption(value: value, label: label, icon: icon);
+  }
+
+  // =========================
+  // FORM OPTIONS
+  // =========================
+
+  static List<FormOption> get options {
+    return PaymentStatus.values.map((e) => e.option).toList();
   }
 }

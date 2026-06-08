@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/base/form/form_builder.dart';
+import 'package:app_laundry/core/form/builders/form_builder.dart';
 import 'package:app_laundry/core/constants/strings/app_strings.dart';
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/features/order/presentation/config/order_group_form_config.dart';

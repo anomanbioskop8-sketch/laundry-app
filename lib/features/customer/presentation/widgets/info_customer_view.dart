@@ -1,9 +1,9 @@
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/customer_strings.dart';
 import 'package:app_laundry/core/extensions/date_time_ext.dart';
-import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
-import 'package:app_laundry/core/ui/components/app_info_card.dart';
-import 'package:app_laundry/core/ui/components/info_info_item.dart';
+import 'package:app_laundry/core/theme/theme_extensions.dart';
+import 'package:app_laundry/core/ui/widgets/cards/info_card/app_info_card.dart';
+import 'package:app_laundry/core/ui/widgets/cards/info_card/app_info_item.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/error/exceptions.dart';
+import 'package:app_laundry/core/errors/exceptions.dart';
 
 import 'user_role.dart';
 

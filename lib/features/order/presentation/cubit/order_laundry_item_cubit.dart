@@ -10,7 +10,7 @@
 // - Menghubungkan Presentation Layer dengan use case `StreamLaundryItems`
 // =============================================================================
 
-import 'package:app_laundry/core/base/cubit/base_search_cubit.dart';
+import 'package:app_laundry/core/base/stream/base_search_cubit.dart';
 import 'package:app_laundry/features/order/domain/entities/order_laundry_item_entity.dart';
 import 'package:app_laundry/features/order/domain/usecase/params/stream_order_laundry_items_params.dart';
 import 'package:app_laundry/features/order/domain/usecase/stream_order_laundry_items.dart';

@@ -1,12 +1,8 @@
 import 'package:app_laundry/core/constants/app_icons.dart';
-import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
-import 'package:app_laundry/core/theme/extensions/theme_text_ext.dart';
-import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
-import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
-import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
-import 'package:app_laundry/core/ui/bottom_sheet/app_action_sheet.dart';
-import 'package:app_laundry/core/ui/components/app_chip.dart';
-import 'package:app_laundry/core/ui/components/avatar/app_icon_avatar.dart';
+import 'package:app_laundry/core/theme/theme_extensions.dart';
+import 'package:app_laundry/core/ui/bottom_sheets/app_action_sheet.dart';
+import 'package:app_laundry/core/ui/widgets/chips/app_chip.dart';
+import 'package:app_laundry/core/ui/widgets/avatar/app_icon_avatar.dart';
 import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
 import 'package:app_laundry/features/order/domain/entities/order_with_customer_entity.dart';
 import 'package:app_laundry/features/order/domain/enums/order_status_ext.dart';
@@ -74,7 +70,9 @@ class _OrderCard extends StatelessWidget {
                       /// CUSTOMER
                       Text(
                         customerName,
-                        style: context.titleMedium!.semiBold.onSurface(context),
+                        style: context.text.titleMedium!.semiBold.onSurface(
+                          context,
+                        ),
                       ),
 
                       // context.spacing.xs.h,
@@ -88,13 +86,14 @@ class _OrderCard extends StatelessWidget {
                             children: [
                               Text(
                                 'Masuk:  $createdAt',
-                                style: context.bodyMedium!.onSurfaceVariant(
-                                  context,
-                                ),
+                                style: context.text.bodyMedium!
+                                    .onSurfaceVariant(context),
                               ),
                               Text(
                                 'Deadline: 24 Jam',
-                                style: context.bodyMedium!.warning(context),
+                                style: context.text.bodyMedium!.warning(
+                                  context,
+                                ),
                               ),
                             ],
                           ),
@@ -104,9 +103,8 @@ class _OrderCard extends StatelessWidget {
                             children: [
                               Text(
                                 formattedTotal,
-                                style: context.bodyMedium!.semiBold.primary(
-                                  context,
-                                ),
+                                style: context.text.bodyMedium!.semiBold
+                                    .primary(context),
                               ),
                               context.spacing.xs.h,
                               AppChip(
@@ -142,7 +140,7 @@ class _HeaderOrderItem extends StatelessWidget {
       children: [
         Text(
           order.invoiceNumber,
-          style: context.labelMedium!.semiBold.onSurface(context),
+          style: context.text.labelMedium!.semiBold.onSurface(context),
         ),
         AppChip(
           label: order.orderStatus.label,

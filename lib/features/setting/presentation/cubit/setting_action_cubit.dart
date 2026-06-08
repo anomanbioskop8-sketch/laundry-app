@@ -9,7 +9,7 @@
 
 import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
 
-import 'package:app_laundry/core/base/cubit/base_action_cubit.dart';
+import 'package:app_laundry/core/base/action/base_action_cubit.dart';
 
 import 'package:app_laundry/core/constants/strings/setting_strings.dart';
 

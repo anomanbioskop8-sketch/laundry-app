@@ -1,6 +1,6 @@
 import 'package:app_laundry/app/router/extensions/push/order_navigation_ext.dart';
-import 'package:app_laundry/core/base/builders/base_stream_builder.dart';
-import 'package:app_laundry/core/base/form/form_builder.dart';
+import 'package:app_laundry/core/base/stream/base_stream_builder.dart';
+import 'package:app_laundry/core/form/builders/form_builder.dart';
 import 'package:app_laundry/core/constants/strings/app_strings.dart';
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';

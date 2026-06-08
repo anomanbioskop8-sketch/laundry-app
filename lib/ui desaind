@@ -10,3 +10,106 @@ icon delete - Per Kg: 5Kg - 5 Item
 //git push -u origin main
 //flutter pub run build_runner watch --delete-conflicting-outputs
 //flutter pub run build_runner build --delete-conflicting-outputs
+
+Kita mulai dari struktur folder UI yang saya buat tolong bantu perbaiki struktur folder
+UI
+    -bottom_sheet
+        -action_color_mapper.dart
+        -action_intent_ext.dart
+        -action_item.dart
+        -app_action_sheet.dart
+    -components
+        -avatar
+            -app_avatar_header.dart
+            -app_icon_avatar.dart
+        -app_chip.dart
+        -app_dropdown_item.dart
+        -app_elevated_action_button.dart
+        -app_fab.dart
+        -app_info_card.dart
+        -app_outlined_action_button.dart
+        -app_selected_item.dart
+        -app_tab_bar.dart
+        -info_info_item.dart
+    -states
+        -app_empty_widget.dart
+        -app_error_widget.dart
+        -app_loading_widget.dart
+    -search_field.dart
+
+Sekarang pindah ke struktur folder base yang saya buat tolong bantu perbaiki struktur folder
+base
+    -builders
+        -base_stream_builder.dart
+    -cubit
+        -base_action_cubit.dart
+        -base_action_state.dart
+        -base_action_state.freezed.dart
+        -base_search_cubit.dart
+        -base_stream_cubit.dart
+        -base_stream_state.dart
+        -base_stream_state.freezed.dart
+    -form
+        -controllers
+            -bool_controller.dart
+            -form_controller.dart
+        -extensions
+            -form_option_dropdown_ext.dart
+            -form_option_ext.dart
+        -fields
+            -checkbox_field_widget.dart
+            -custom_field_widget.dart
+            -date_field_widget.dart
+            -dropdown_field_widget.dart
+            -form_option.dart
+            -text_field_widget.dart
+        -app_form_field_renderer
+        -form_builder.dart
+        -form_field_config.dart
+        -form_field_type.dart
+    -listeners
+        -base_action_listener.dart
+    -validators
+        -app_validator.dart
+        -combine_validator.dart
+        -email_validator.dart
+        -length_validator.dart
+        -password_validator.dart
+        -phone_validator.dart
+        -required_validator.dart
+    -wrapper
+        -base_page_wrapper.dart
+
+Sekarang pindah ke struktur folder theme yang saya buat tolong bantu perbaiki struktur folder
+theme
+
+theme
+    -components
+        -app_appbar_theme.dart
+        -...
+    -dialog
+        -dialog_color_mapper.dart
+        -dialog_ext.dart
+        -dialog_icon_mapper.dart
+        -dialog_type.dart
+    -extensions
+        -app_status_colors.dart
+        -theme_ext.dart
+        -theme_radius_ext.dart
+        -...
+    -factories
+        -app_status_color_factory.dart
+    -helpers
+        -avatar_size_ext.dart
+        -radius_ext.dart
+        -spacing_ext.dart
+        -text_style_color_scheme_ext.dart
+        -text_style_weight_ext.dart
+    -tokens
+        -app_elevation.dart
+        -app_font_size.dart
+        -...
+    -app_color_scheme.dart
+    -app_theme.dart
+    -core_theme.dart
+    -theme_extensions.dart

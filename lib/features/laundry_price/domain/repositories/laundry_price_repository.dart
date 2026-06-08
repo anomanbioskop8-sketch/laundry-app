@@ -1,6 +1,6 @@
 // features/laundry_price/domain/repositories/laundry_price_repository.dart
 
-import 'package:app_laundry/core/error/failure.dart';
+import 'package:app_laundry/core/errors/failure.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_service_type.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';

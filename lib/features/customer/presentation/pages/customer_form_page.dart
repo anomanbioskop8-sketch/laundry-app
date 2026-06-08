@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/base/form/form_builder.dart';
+import 'package:app_laundry/core/form/builders/form_builder.dart';
 import 'package:app_laundry/core/constants/strings/app_strings.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/presentation/config/customer_form_config.dart';

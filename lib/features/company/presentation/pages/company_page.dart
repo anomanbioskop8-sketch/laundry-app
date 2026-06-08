@@ -9,10 +9,10 @@
 // =============================================================================
 
 import 'package:app_laundry/app/router/extensions/push/company_navigation_ext.dart';
-import 'package:app_laundry/core/base/builders/base_stream_builder.dart';
+import 'package:app_laundry/core/base/stream/base_stream_builder.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/company_strings.dart';
-import 'package:app_laundry/core/ui/components/app_fab.dart';
+import 'package:app_laundry/core/ui/widgets/navigation/app_fab.dart';
 import 'package:app_laundry/core/ui/states/app_empty_widget.dart';
 import 'package:app_laundry/features/company/domain/entities/company_entity.dart';
 import 'package:app_laundry/features/company/presentation/cubit/company_cubit.dart';

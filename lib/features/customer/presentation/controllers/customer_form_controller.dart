@@ -12,7 +12,7 @@
 // - Mengelola lifecycle controller melalui FormController
 // =============================================================================
 
-import 'package:app_laundry/core/base/form/controllers/form_controller.dart';
+import 'package:app_laundry/core/form/controllers/form_controller.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/domain/usecase/params/save_customer_params.dart';
 import 'package:flutter/material.dart';

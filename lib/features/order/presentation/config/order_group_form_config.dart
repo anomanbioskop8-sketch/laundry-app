@@ -2,14 +2,11 @@
 // File : order_group_form_config.dart
 // =============================================================================
 
-import 'package:app_laundry/core/base/form/extensions/form_option_ext.dart';
-import 'package:app_laundry/core/base/form/form_field_config.dart';
-import 'package:app_laundry/core/base/form/form_field_type.dart';
+import 'package:app_laundry/core/form/fields/text_field_widget.dart';
+import 'package:app_laundry/core/form/configs/form_field_config.dart';
+import 'package:app_laundry/core/form/configs/form_field_type.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
-import 'package:app_laundry/features/laundry/domain/enums/laundry_order_type.dart';
-import 'package:app_laundry/features/laundry/domain/enums/laundry_service_type.dart';
-import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
 import 'package:app_laundry/features/laundry/domain/extensions/laundry_order_type_ext.dart';
 import 'package:app_laundry/features/laundry/domain/extensions/laundry_service_type_ext.dart';
 import 'package:app_laundry/features/laundry/domain/extensions/laundry_speed_type_ext.dart';
@@ -45,11 +42,7 @@ class OrderGroupFormConfig {
       label: OrderStrings.serviceType,
       type: FormFieldType.dropdown,
       controller: controller.serviceType,
-      options: LaundryServiceType.values.toFormOptions(
-        value: (e) => e.value,
-        label: (e) => e.label,
-        icon: (e) => e.icon,
-      ),
+      options: LaundryServiceTypeExt.options,
       onChanged: (_) => onLaundryTypeChanged(),
     );
   }
@@ -64,11 +57,7 @@ class OrderGroupFormConfig {
       label: OrderStrings.speedType,
       type: FormFieldType.dropdown,
       controller: controller.speedType,
-      options: LaundrySpeedType.values.toFormOptions(
-        value: (e) => e.value,
-        label: (e) => e.label,
-        icon: (e) => e.icon,
-      ),
+      options: LaundrySpeedTypeExt.options,
       onChanged: (_) => onLaundryTypeChanged(),
     );
   }
@@ -83,11 +72,7 @@ class OrderGroupFormConfig {
       label: OrderStrings.orderType,
       type: FormFieldType.dropdown,
       controller: controller.orderType,
-      options: LaundryOrderType.values.toFormOptions(
-        value: (e) => e.value,
-        label: (e) => e.label,
-        icon: (e) => e.icon,
-      ),
+      options: LaundryOrderTypeExt.options,
     );
   }
 
@@ -104,17 +89,18 @@ class OrderGroupFormConfig {
       customBuilder: (_) {
         return ValueListenableBuilder<TextEditingValue>(
           valueListenable: controller.orderType,
-          builder: (_, _, _) {
+          builder: (context, _, _) {
             final isKg = controller.selectedOrderType.isKg;
 
-            return TextFormField(
-              controller: controller.weight,
-              enabled: isKg,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: OrderStrings.weight,
+            return TextFieldWidget(
+              field: FormFieldConfig(
+                name: 'weight',
+                label: OrderStrings.weight,
+                enabled: isKg,
+                type: FormFieldType.number,
+                controller: controller.weight,
+                prefixIcon: AppIcons.weight,
                 hintText: OrderStrings.weightHint,
-                prefixIcon: Icon(AppIcons.weight),
               ),
             );
           },

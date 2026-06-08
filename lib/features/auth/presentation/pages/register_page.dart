@@ -1,5 +1,5 @@
 import 'package:app_laundry/app/router/extensions/go/auth_navigation_ext.dart';
-import 'package:app_laundry/core/base/form/form_builder.dart';
+import 'package:app_laundry/core/form/builders/form_builder.dart';
 import 'package:app_laundry/core/constants/strings/auth_strings.dart';
 import 'package:app_laundry/features/auth/presentation/config/register_form_config.dart';
 import 'package:app_laundry/features/auth/presentation/controllers/register_form_controller.dart';

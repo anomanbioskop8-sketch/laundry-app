@@ -2,7 +2,7 @@
 // File : stream_order_orchestration.dart
 // =============================================================================
 
-import 'package:app_laundry/core/error/failure.dart';
+import 'package:app_laundry/core/errors/failure.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/domain/usecase/get_customers_by_ids.dart';

@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/base/form/fields/form_option.dart';
+import 'package:app_laundry/core/form/fields/form_option.dart';
 import 'package:app_laundry/features/laundry_item/domain/enums/laundry_item_category.dart';
 import 'package:flutter/material.dart';
 
@@ -65,6 +65,11 @@ extension LaundryItemCategoryExt on LaundryItemCategory {
       default:
         return LaundryItemCategory.others;
     }
+  }
+
+  /// TAB LABELS
+  static List<String> get labels {
+    return ['Semua', ...LaundryItemCategory.values.map((e) => e.label)];
   }
 
   // =========================

@@ -5,9 +5,9 @@
 
 import 'package:app_laundry/app/router/extensions/push/customer_navigation_ext.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
-import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
-import 'package:app_laundry/core/ui/components/app_fab.dart';
-import 'package:app_laundry/core/ui/search_field.dart';
+import 'package:app_laundry/core/theme/theme_extensions.dart';
+import 'package:app_laundry/core/ui/widgets/navigation/app_fab.dart';
+import 'package:app_laundry/core/ui/widgets/forms/search_field.dart';
 import 'package:app_laundry/core/constants/strings/customer_strings.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_cubit.dart';
 import 'package:app_laundry/features/customer/presentation/widgets/customer_view.dart';

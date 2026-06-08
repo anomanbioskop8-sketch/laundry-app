@@ -8,7 +8,7 @@
 // =============================================================================
 
 import 'package:app_laundry/app/di/injection_container.dart';
-import 'package:app_laundry/core/base/listeners/base_action_listener.dart';
+import 'package:app_laundry/core/base/action/base_action_listener.dart';
 
 import 'package:app_laundry/features/setting/domain/entities/setting_entity.dart';
 

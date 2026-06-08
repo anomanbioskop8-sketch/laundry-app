@@ -1,8 +1,5 @@
-import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
-import 'package:app_laundry/core/theme/extensions/theme_size_ext.dart';
-import 'package:app_laundry/core/theme/helpers/avatar_size_ext.dart';
-import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
-import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
+import 'package:app_laundry/core/theme/theme_extensions.dart';
+import 'package:app_laundry/core/ui/widgets/avatar/avatar_size_ext.dart';
 import 'package:flutter/material.dart';
 
 class CustomerAvatar extends StatelessWidget {

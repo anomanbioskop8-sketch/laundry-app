@@ -1,5 +1,5 @@
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
-import 'package:app_laundry/core/error/exceptions.dart';
+import 'package:app_laundry/core/errors/exceptions.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_order_type.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_service_type.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';

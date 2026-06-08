@@ -7,7 +7,7 @@
 // - Update setting aplikasi
 // =============================================================================
 
-import 'package:app_laundry/core/error/failure.dart';
+import 'package:app_laundry/core/errors/failure.dart';
 
 import 'package:app_laundry/core/utils/either.dart';
 

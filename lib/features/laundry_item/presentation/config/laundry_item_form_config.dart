@@ -1,6 +1,6 @@
-import 'package:app_laundry/core/base/form/form_field_type.dart';
-import 'package:app_laundry/core/base/form/form_field_config.dart';
-import 'package:app_laundry/core/base/validators/app_validator.dart';
+import 'package:app_laundry/core/form/configs/form_field_type.dart';
+import 'package:app_laundry/core/form/configs/form_field_config.dart';
+import 'package:app_laundry/core/form/validators/app_validator.dart';
 import 'package:app_laundry/core/constants/strings/laundry_item_strings.dart';
 import 'package:app_laundry/features/laundry_item/domain/extensions/laundry_item_category_ext.dart';
 import 'package:app_laundry/features/laundry_item/presentation/controllers/laundry_item_form_controller.dart';

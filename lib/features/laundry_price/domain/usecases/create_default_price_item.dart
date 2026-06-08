@@ -1,7 +1,7 @@
 import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
-import 'package:app_laundry/core/error/exceptions.dart';
-import 'package:app_laundry/core/error/extensions/unauthorized_exception_ext.dart';
-import 'package:app_laundry/core/error/failure.dart';
+import 'package:app_laundry/core/errors/exceptions.dart';
+import 'package:app_laundry/core/errors/extensions/unauthorized_exception_ext.dart';
+import 'package:app_laundry/core/errors/failure.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
 import 'package:app_laundry/features/laundry_price/domain/entities/laundry_price_entity.dart';

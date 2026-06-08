@@ -5,8 +5,8 @@
 
 import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
 
-import 'package:app_laundry/core/error/exceptions.dart';
-import 'package:app_laundry/core/error/failure.dart';
+import 'package:app_laundry/core/errors/exceptions.dart';
+import 'package:app_laundry/core/errors/failure.dart';
 
 import 'package:app_laundry/core/utils/either.dart';
 

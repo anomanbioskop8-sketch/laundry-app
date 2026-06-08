@@ -7,9 +7,9 @@
 // - Konfigurasi field form company
 // =============================================================================
 
-import 'package:app_laundry/core/base/form/form_field_config.dart';
-import 'package:app_laundry/core/base/form/form_field_type.dart';
-import 'package:app_laundry/core/base/validators/app_validator.dart';
+import 'package:app_laundry/core/form/configs/form_field_config.dart';
+import 'package:app_laundry/core/form/configs/form_field_type.dart';
+import 'package:app_laundry/core/form/validators/app_validator.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/company_strings.dart';
 import 'package:app_laundry/features/company/presentation/controllers/company_form_controller.dart';

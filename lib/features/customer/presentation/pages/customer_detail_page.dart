@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/ui/components/app_tab_bar.dart';
+import 'package:app_laundry/core/ui/widgets/navigation/app_tab_bar.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/presentation/widgets/info_customer_view.dart';
 import 'package:app_laundry/features/customer/presentation/widgets/order_customer_view.dart';
@@ -34,7 +34,7 @@ class CustomerDetailPage extends StatelessWidget {
             /// =========================
             /// TAB BAR (DI BAWAH HEADER)
             /// =========================
-            const AppTabBar(tabs: ['Info', 'Orders']),
+            AppTabBar(tabs: ['Info', 'Orders']),
 
             /// =========================
             /// TAB CONTENT

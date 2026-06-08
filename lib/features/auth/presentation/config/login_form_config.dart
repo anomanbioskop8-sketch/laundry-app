@@ -1,8 +1,8 @@
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/auth_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:app_laundry/core/base/form/form_field_config.dart';
-import 'package:app_laundry/core/base/validators/app_validator.dart';
+import 'package:app_laundry/core/form/configs/form_field_config.dart';
+import 'package:app_laundry/core/form/validators/app_validator.dart';
 import 'package:app_laundry/features/auth/presentation/controllers/login_form_controller.dart';
 
 class LoginFormConfig {

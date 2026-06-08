@@ -5,11 +5,10 @@
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/customer_strings.dart';
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
-import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
-import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
-import 'package:app_laundry/core/ui/components/app_elevated_action_button.dart';
-import 'package:app_laundry/core/ui/components/app_info_card.dart';
-import 'package:app_laundry/core/ui/components/info_info_item.dart';
+import 'package:app_laundry/core/theme/theme_extensions.dart';
+import 'package:app_laundry/core/ui/widgets/buttons/app_elevated_action_button.dart';
+import 'package:app_laundry/core/ui/widgets/cards/info_card/app_info_card.dart';
+import 'package:app_laundry/core/ui/widgets/cards/info_card/app_info_item.dart';
 import 'package:app_laundry/features/order/domain/usecase/params/create_order_params.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_action_cubit.dart';
 import 'package:app_laundry/features/order/presentation/widgets/order_group_field/order_group_card.dart';

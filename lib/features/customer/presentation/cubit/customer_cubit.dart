@@ -10,7 +10,7 @@
 // - Menghubungkan Presentation Layer dengan Use Case `StreamCustomers`
 // =============================================================================
 
-import 'package:app_laundry/core/base/cubit/base_search_cubit.dart';
+import 'package:app_laundry/core/base/stream/base_search_cubit.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/domain/usecase/stream_customers.dart';
 

@@ -3,7 +3,7 @@
 // Path        : lib/features/company/presentation/controllers/company_form_controller.dart
 // =====================================================================
 
-import 'package:app_laundry/core/base/form/controllers/form_controller.dart';
+import 'package:app_laundry/core/form/controllers/form_controller.dart';
 import 'package:app_laundry/features/company/domain/entities/company_entity.dart';
 import 'package:app_laundry/features/company/domain/usecases/company_params.dart';
 import 'package:flutter/material.dart';

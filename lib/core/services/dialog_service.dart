@@ -16,16 +16,11 @@
 // =============================================================================
 
 import 'package:app_laundry/core/services/app_navigator.dart';
-import 'package:app_laundry/core/theme/dialog/dialog_ext.dart';
-import 'package:app_laundry/core/theme/dialog/dialog_type.dart';
-import 'package:app_laundry/core/theme/extensions/theme_radius_ext.dart';
-import 'package:app_laundry/core/theme/extensions/theme_size_ext.dart';
-import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
-import 'package:app_laundry/core/theme/extensions/theme_text_ext.dart';
-import 'package:app_laundry/core/theme/helpers/radius_ext.dart';
-import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
-import 'package:app_laundry/core/ui/components/app_elevated_action_button.dart';
-import 'package:app_laundry/core/ui/components/app_outlined_action_button.dart';
+import 'package:app_laundry/core/theme/theme_extensions.dart';
+import 'package:app_laundry/core/ui/dialog/dialog_ext.dart';
+import 'package:app_laundry/core/ui/dialog/dialog_type.dart';
+import 'package:app_laundry/core/ui/widgets/buttons/app_elevated_action_button.dart';
+import 'package:app_laundry/core/ui/widgets/buttons/app_outlined_action_button.dart';
 import 'package:flutter/material.dart';
 
 class DialogService {
@@ -133,7 +128,7 @@ class _ConfirmDialog extends StatelessWidget {
                 Expanded(
                   child: Text(
                     title,
-                    style: context.titleLarge?.copyWith(
+                    style: context.text.titleLarge?.copyWith(
                       color: type.color(context),
                       fontWeight: FontWeight.w600,
                     ),

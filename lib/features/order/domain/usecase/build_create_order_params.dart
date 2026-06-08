@@ -3,7 +3,7 @@
 // Path : features/order/domain/usecase/build_create_order_params.dart
 // =============================================================================
 
-import 'package:app_laundry/core/error/exceptions.dart';
+import 'package:app_laundry/core/errors/exceptions.dart';
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/order/domain/entities/order_group_entity.dart';

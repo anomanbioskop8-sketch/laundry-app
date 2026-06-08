@@ -7,15 +7,11 @@
 // - Menampilkan detail setting aplikasi
 // =============================================================================
 
-import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
-
-import 'package:app_laundry/core/ui/components/app_info_card.dart';
-
-import 'package:app_laundry/core/ui/components/info_info_item.dart';
-
+import 'package:app_laundry/core/theme/theme_extensions.dart';
+import 'package:app_laundry/core/ui/widgets/cards/info_card/app_info_card.dart';
+import 'package:app_laundry/core/ui/widgets/cards/info_card/app_info_item.dart';
 import 'package:app_laundry/features/setting/domain/entities/setting_entity.dart';
 import 'package:app_laundry/features/setting/domain/extensions/setting_entity_ext.dart';
-
 import 'package:flutter/material.dart';
 
 class SettingView extends StatelessWidget {

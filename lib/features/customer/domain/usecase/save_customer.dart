@@ -11,10 +11,10 @@
 // - Menjadi entry point utama proses penyimpanan customer
 // =============================================================================
 
-import 'package:app_laundry/core/error/exceptions.dart';
-import 'package:app_laundry/core/error/extensions/unauthorized_exception_ext.dart';
+import 'package:app_laundry/core/errors/exceptions.dart';
+import 'package:app_laundry/core/errors/extensions/unauthorized_exception_ext.dart';
 import 'package:app_laundry/core/utils/either.dart';
-import 'package:app_laundry/core/error/failure.dart';
+import 'package:app_laundry/core/errors/failure.dart';
 import 'package:app_laundry/features/customer/domain/usecase/create_customer.dart';
 import 'package:app_laundry/features/customer/domain/usecase/params/create_customer_params.dart';
 import 'package:app_laundry/features/customer/domain/usecase/params/save_customer_params.dart';

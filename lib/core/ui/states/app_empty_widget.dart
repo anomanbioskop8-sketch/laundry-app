@@ -1,8 +1,4 @@
-import 'package:app_laundry/core/theme/extensions/theme_size_ext.dart';
-import 'package:app_laundry/core/theme/extensions/theme_spacing_ext.dart';
-import 'package:app_laundry/core/theme/extensions/theme_text_ext.dart';
-import 'package:app_laundry/core/theme/helpers/spacing_ext.dart';
-import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
+import 'package:app_laundry/core/theme/theme_extensions.dart';
 import 'package:flutter/material.dart';
 
 class AppEmptyWidget extends StatelessWidget {
@@ -29,7 +25,7 @@ class AppEmptyWidget extends StatelessWidget {
             color: context.colors.onSurfaceVariant,
           ),
           context.spacing.md.h,
-          Text(message, style: context.bodyMedium),
+          Text(message, style: context.text.bodyMedium),
           if (onRetry != null) ...[
             context.spacing.md.h,
             TextButton(onPressed: onRetry, child: const Text('Coba Lagi')),

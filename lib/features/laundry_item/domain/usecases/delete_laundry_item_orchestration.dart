@@ -1,4 +1,4 @@
-import 'package:app_laundry/core/error/failure.dart';
+import 'package:app_laundry/core/errors/failure.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/laundry_item/domain/usecases/delete_laundry_item.dart';
 import 'package:app_laundry/features/laundry_price/domain/usecases/delete_laundry_price_by_item_id.dart';

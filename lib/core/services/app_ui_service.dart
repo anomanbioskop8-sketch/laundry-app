@@ -24,7 +24,7 @@
 // =============================================================================
 
 import 'package:flutter/material.dart';
-import 'package:app_laundry/core/theme/dialog/dialog_type.dart';
+import 'package:app_laundry/core/ui/dialog/dialog_type.dart';
 import 'snackbar_service.dart';
 import 'dialog_service.dart';
 import 'loading_overlay_service.dart';

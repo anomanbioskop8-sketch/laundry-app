@@ -2,6 +2,7 @@
 // File : laundry_order_type_ext.dart
 // =============================================================================
 
+import 'package:app_laundry/core/form/fields/form_option.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_order_type.dart';
 import 'package:flutter/material.dart';
@@ -69,5 +70,21 @@ extension LaundryOrderTypeExt on LaundryOrderType {
       default:
         return LaundryOrderType.pcs;
     }
+  }
+
+  // =========================
+  // FORM OPTION
+  // =========================
+
+  FormOption get option {
+    return FormOption(value: value, label: label, icon: icon);
+  }
+
+  // =========================
+  // FORM OPTIONS
+  // =========================
+
+  static List<FormOption> get options {
+    return LaundryOrderType.values.map((e) => e.option).toList();
   }
 }

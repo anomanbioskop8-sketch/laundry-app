@@ -8,9 +8,9 @@
 // - Bridge datasource <-> entity
 // =============================================================================
 
-import 'package:app_laundry/core/error/exceptions.dart';
-import 'package:app_laundry/core/error/extensions/app_exception_ext.dart';
-import 'package:app_laundry/core/error/failure.dart';
+import 'package:app_laundry/core/errors/exceptions.dart';
+import 'package:app_laundry/core/errors/extensions/app_exception_ext.dart';
+import 'package:app_laundry/core/errors/failure.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/company/data/datasources/company_remote_data_source.dart';
 import 'package:app_laundry/features/company/data/mappers/company_mapper_ext.dart';

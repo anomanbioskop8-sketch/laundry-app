@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
 import 'package:app_laundry/core/auth/session/cubit/session_state.dart';
-import 'package:app_laundry/core/base/cubit/base_search_cubit.dart';
-import 'package:app_laundry/core/base/cubit/base_stream_state.dart';
+import 'package:app_laundry/core/base/stream/base_search_cubit.dart';
+import 'package:app_laundry/core/base/stream/base_stream_state.dart';
 import 'package:app_laundry/features/company/domain/entities/company_entity.dart';
 
 class CompanyCubit extends BaseSearchCubit<CompanyEntity> {

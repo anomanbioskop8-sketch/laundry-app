@@ -1,6 +1,6 @@
-import 'package:app_laundry/core/error/exceptions.dart';
-import 'package:app_laundry/core/error/extensions/app_exception_ext.dart';
-import 'package:app_laundry/core/error/failure.dart';
+import 'package:app_laundry/core/errors/exceptions.dart';
+import 'package:app_laundry/core/errors/extensions/app_exception_ext.dart';
+import 'package:app_laundry/core/errors/failure.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/laundry_item/data/datasources/laundry_item_remote_datasource.dart';
 import 'package:app_laundry/features/laundry_item/data/mappers/laundry_item_mapper_ext.dart';

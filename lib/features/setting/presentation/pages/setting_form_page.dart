@@ -7,7 +7,7 @@
 // - Form update setting aplikasi
 // =============================================================================
 
-import 'package:app_laundry/core/base/form/form_builder.dart';
+import 'package:app_laundry/core/form/builders/form_builder.dart';
 import 'package:app_laundry/core/constants/strings/setting_strings.dart';
 import 'package:app_laundry/features/setting/domain/entities/setting_entity.dart';
 import 'package:app_laundry/features/setting/presentation/config/setting_form_config.dart';

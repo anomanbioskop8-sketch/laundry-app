@@ -8,10 +8,10 @@
 // =============================================================================
 
 import 'package:app_laundry/app/router/extensions/push/setting_navigation_ext.dart';
-import 'package:app_laundry/core/base/builders/base_stream_builder.dart';
+import 'package:app_laundry/core/base/stream/base_stream_builder.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/setting_strings.dart';
-import 'package:app_laundry/core/ui/components/app_fab.dart';
+import 'package:app_laundry/core/ui/widgets/navigation/app_fab.dart';
 import 'package:app_laundry/core/ui/states/app_empty_widget.dart';
 import 'package:app_laundry/features/setting/domain/entities/setting_entity.dart';
 import 'package:app_laundry/features/setting/presentation/cubit/setting_cubit.dart';

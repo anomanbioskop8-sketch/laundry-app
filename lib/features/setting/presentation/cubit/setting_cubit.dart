@@ -10,8 +10,8 @@
 
 import 'dart:async';
 
-import 'package:app_laundry/core/base/cubit/base_stream_cubit.dart';
-import 'package:app_laundry/core/base/cubit/base_stream_state.dart';
+import 'package:app_laundry/core/base/stream/base_stream_cubit.dart';
+import 'package:app_laundry/core/base/stream/base_stream_state.dart';
 
 import 'package:app_laundry/core/utils/either.dart';
 

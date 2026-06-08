@@ -8,7 +8,7 @@
 // - Menangani logging & mapping error secara konsisten
 // =============================================================================
 
-import 'package:app_laundry/core/error/exceptions.dart';
+import 'package:app_laundry/core/errors/exceptions.dart';
 import 'package:app_laundry/core/utils/logger_service.dart';
 
 abstract class BaseRemoteDataSource {

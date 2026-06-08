@@ -1,5 +1,6 @@
 // features/laundry_price/domain/enums/laundry_service_type_ext.dart
 
+import 'package:app_laundry/core/form/fields/form_option.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
@@ -98,5 +99,21 @@ extension LaundrySpeedTypeExt on LaundrySpeedType {
       default:
         return LaundrySpeedType.regular;
     }
+  }
+
+  // =========================
+  // FORM OPTION
+  // =========================
+
+  FormOption get option {
+    return FormOption(value: value, label: label, icon: icon);
+  }
+
+  // =========================
+  // FORM OPTIONS
+  // =========================
+
+  static List<FormOption> get options {
+    return LaundrySpeedType.values.map((e) => e.option).toList();
   }
 }

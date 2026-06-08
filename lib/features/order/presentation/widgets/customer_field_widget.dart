@@ -1,11 +1,6 @@
 import 'package:app_laundry/app/router/extensions/push/customer_navigation_ext.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
-import 'package:app_laundry/core/theme/extensions/theme_size_ext.dart';
-import 'package:app_laundry/core/theme/extensions/theme_text_ext.dart';
-import 'package:app_laundry/core/theme/helpers/text_style_color_scheme_ext.dart';
-import 'package:app_laundry/core/theme/helpers/text_style_weight_ext.dart';
-import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
-import 'package:app_laundry/core/ui/components/app_selected_item.dart';
+import 'package:app_laundry/core/ui/widgets/feedback/app_selected_item.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/domain/extensions/customer_entity_ext.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_form_cubit.dart';
@@ -25,17 +20,11 @@ class CustomerFieldWidget extends StatelessWidget {
         final hasCustomer = customer != null;
 
         return AppSelectedItem(
-          leading: Icon(
-            AppIcons.customers,
-            color: context.colors.primary,
-            size: context.sizes.iconMd,
-          ),
+          icon: AppIcons.customers,
           title: customer.selectedCustomerName,
           subtitle: customer.selectedCustomerPhone,
-          titleStyle: hasCustomer
-              ? context.bodyMedium!.semiBold.onSurface(context)
-              : context.bodyMedium!.semiBold.primary(context),
-          subtitleStyle: context.bodySmall!.onSurfaceVariant(context),
+          isSelected: hasCustomer,
+
           onTap: () => _pickCustomer(context),
         );
       },
