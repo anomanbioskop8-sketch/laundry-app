@@ -42,7 +42,7 @@ class OrderGroupMapper {
 
       weight: model.weight,
 
-      price: model.price,
+      unitPrice: model.unitPrice,
     );
   }
 
@@ -62,7 +62,7 @@ class OrderGroupMapper {
 
       weight: entity.weight,
 
-      price: entity.price,
+      unitPrice: entity.unitPrice,
     );
   }
 

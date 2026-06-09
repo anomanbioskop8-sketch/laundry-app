@@ -6,7 +6,7 @@ import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
 import 'package:app_laundry/features/order/domain/extensions/order_group_entity_ext.dart';
 
 extension OrderEntityExt on OrderEntity {
-  int get subtotal => groups.subtotal;
+  int get subtotal => groups.grandTotal;
 
   /// =========================
   /// FORMATTING

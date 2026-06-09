@@ -82,7 +82,7 @@ class OrderGroupFormCubit extends Cubit<OrderGroupFormState> {
           throw NotFoundException('Setting tidak ditemukan');
         }
 
-        final price = speedType == LaundrySpeedType.regular
+        final unitPrice = speedType == LaundrySpeedType.regular
             ? setting.regularPrice
             : setting.expressPrice;
 
@@ -92,7 +92,7 @@ class OrderGroupFormCubit extends Cubit<OrderGroupFormState> {
           orderType: orderType,
           items: state.items,
           weight: weight,
-          price: price,
+          unitPrice: unitPrice,
         );
       },
     );

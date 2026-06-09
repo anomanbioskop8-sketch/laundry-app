@@ -13,12 +13,14 @@ class OrderLaundryItemModel {
   final String laundryItemName;
   final int quantity;
   final int price;
+  final String category;
 
   const OrderLaundryItemModel({
     required this.laundryItemId,
     required this.laundryItemName,
     required this.quantity,
     required this.price,
+    required this.category,
   });
 
   // =========================
@@ -31,6 +33,7 @@ class OrderLaundryItemModel {
       laundryItemName: map['laundryItemName'] ?? '',
       quantity: map['quantity'] ?? 0,
       price: map['price']?.toDouble() ?? 0,
+      category: map['category'],
     );
   }
 
@@ -44,6 +47,7 @@ class OrderLaundryItemModel {
       'laundryItemName': laundryItemName,
       'quantity': quantity,
       'price': price,
+      'category': category,
     };
   }
 }

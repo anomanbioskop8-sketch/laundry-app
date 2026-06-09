@@ -14,7 +14,7 @@ class BuildOrderGroup {
     required LaundryOrderType orderType,
     required List<OrderLaundryItemEntity> items,
     required double weight,
-    required int price,
+    required int unitPrice,
   }) {
     // =========================
     // VALIDATION
@@ -34,7 +34,7 @@ class BuildOrderGroup {
       orderType: orderType,
       items: items,
       weight: orderType.isKg ? weight : 0,
-      price: price,
+      unitPrice: unitPrice,
     );
   }
 }

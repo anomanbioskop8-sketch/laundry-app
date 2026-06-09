@@ -12,7 +12,7 @@ import 'package:app_laundry/features/order/domain/extensions/order_laundry_item_
 import 'package:flutter/material.dart';
 
 extension OrderGroupListExt on List<OrderGroupEntity> {
-  int get subtotal => fold(0, (sum, group) => sum + group.itemSubtotal);
+  int get grandTotal => fold(0, (sum, group) => sum + group.subtotal);
 }
 
 extension OrderGroupEntityExt on OrderGroupEntity {
@@ -43,9 +43,9 @@ extension OrderGroupEntityExt on OrderGroupEntity {
   // FORMATTING
   // =========================
 
-  String get formattedPrice => CurrencyFormatter.idr(price);
+  String get formattedPrice => CurrencyFormatter.idr(unitPrice);
 
-  String get formattedSubtotal => CurrencyFormatter.idr(itemSubtotal);
+  String get formattedSubtotal => CurrencyFormatter.idr(subtotal);
 
   // =========================
   // HELPERS
@@ -59,11 +59,27 @@ extension OrderGroupEntityExt on OrderGroupEntity {
 
   int get totalQuantity => items.totalQuantity;
 
-  int get itemSubtotal {
+  int get subtotal {
     if (isKg) {
-      return ((weight ?? 0) * price).toInt();
+      return ((weight ?? 0) * unitPrice).round();
     }
 
     return items.subtotal;
+  }
+
+  String get calculationText {
+    if (isKg) {
+      return '${weight ?? 0} Kg × ${CurrencyFormatter.idr(unitPrice)}';
+    }
+
+    return '$totalQuantity Item';
+  }
+
+  String get subtotalDescription {
+    if (isKg) {
+      return '${weight ?? 0} Kg × ${CurrencyFormatter.idr(unitPrice)} = $formattedSubtotal';
+    }
+
+    return '$totalQuantity Item = $formattedSubtotal';
   }
 }

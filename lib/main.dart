@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Laundry SaaS App',
         theme: AppThemes.light(),
-        //darkTheme: AppThemes.dark(),
+        darkTheme: AppThemes.dark(),
         themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
         routerConfig: router,

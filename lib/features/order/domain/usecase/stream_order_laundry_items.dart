@@ -54,6 +54,7 @@ class StreamOrderLaundryItems {
             itemName: item.name,
             price: price?.price ?? 0,
             qty: 0,
+            category: item.category,
           ),
         );
       }

@@ -17,14 +17,14 @@ class OrderGroupModel {
   final String orderType;
   final List<OrderLaundryItemModel> items;
   final double? weight;
-  final int price;
+  final int unitPrice;
 
   const OrderGroupModel({
     required this.serviceType,
     required this.speedType,
     required this.orderType,
     required this.items,
-    required this.price,
+    required this.unitPrice,
     this.weight,
   });
 
@@ -39,7 +39,7 @@ class OrderGroupModel {
       orderType: map['orderType'] ?? '',
       items: map.toModelList('items', OrderLaundryItemModel.fromMap),
       weight: (map['weight'] as num?)?.toDouble(),
-      price: map['price'] ?? 0,
+      unitPrice: map['unitPrice'] ?? 0,
     );
   }
 
@@ -54,7 +54,7 @@ class OrderGroupModel {
       'orderType': orderType,
       'items': items.map((e) => e.toMap()).toList(),
       'weight': weight,
-      'price': price,
+      'price': unitPrice,
     };
   }
 }

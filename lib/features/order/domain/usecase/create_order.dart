@@ -41,7 +41,7 @@ class CreateOrder {
         groups: params.groups,
         orderStatus: OrderStatus.received,
         paymentStatus: params.paymentStatus,
-        total: params.groups.subtotal,
+        total: params.groups.grandTotal,
       );
 
       /// =========================
