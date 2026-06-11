@@ -6,10 +6,12 @@ class CreateOrderParams {
   final CustomerEntity customer;
   final List<OrderGroupEntity> groups;
   final PaymentStatus paymentStatus;
+  final DateTime createdAt;
 
   CreateOrderParams({
     required this.customer,
     required this.groups,
     required this.paymentStatus,
+    required this.createdAt,
   });
 }

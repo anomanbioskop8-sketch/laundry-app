@@ -14,6 +14,7 @@ class BuildOrderGroup {
     required LaundryOrderType orderType,
     required List<OrderLaundryItemEntity> items,
     required double weight,
+    required Duration estimatedDuration,
     required int unitPrice,
   }) {
     // =========================
@@ -33,8 +34,9 @@ class BuildOrderGroup {
       speedType: speedType,
       orderType: orderType,
       items: items,
-      weight: orderType.isKg ? weight : 0,
+      estimatedDuration: estimatedDuration,
       unitPrice: unitPrice,
+      weight: orderType.isKg ? weight : 0,
     );
   }
 }

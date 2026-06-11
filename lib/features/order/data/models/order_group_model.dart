@@ -16,6 +16,7 @@ class OrderGroupModel {
   final String speedType;
   final String orderType;
   final List<OrderLaundryItemModel> items;
+  final int estimatedDuration;
   final double? weight;
   final int unitPrice;
 
@@ -24,6 +25,7 @@ class OrderGroupModel {
     required this.speedType,
     required this.orderType,
     required this.items,
+    required this.estimatedDuration,
     required this.unitPrice,
     this.weight,
   });
@@ -38,6 +40,7 @@ class OrderGroupModel {
       speedType: map['speedType'] ?? '',
       orderType: map['orderType'] ?? '',
       items: map.toModelList('items', OrderLaundryItemModel.fromMap),
+      estimatedDuration: map['estimatedDuration'] ?? 0,
       weight: (map['weight'] as num?)?.toDouble(),
       unitPrice: map['unitPrice'] ?? 0,
     );
@@ -53,8 +56,9 @@ class OrderGroupModel {
       'speedType': speedType,
       'orderType': orderType,
       'items': items.map((e) => e.toMap()).toList(),
+      'estimatedDuration': estimatedDuration,
       'weight': weight,
-      'price': unitPrice,
+      'unitPrice': unitPrice,
     };
   }
 }

@@ -7,6 +7,7 @@ import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
 import 'package:app_laundry/features/order/domain/entities/order_with_customer_entity.dart';
 import 'package:app_laundry/features/order/domain/enums/order_status_ext.dart';
 import 'package:app_laundry/features/order/domain/enums/payment_status_ext.dart';
+import 'package:app_laundry/features/order/domain/extensions/order_entity_ext.dart';
 import 'package:app_laundry/features/order/domain/extensions/order_with_customer_entity_ext.dart';
 import 'package:app_laundry/features/order/presentation/builders/order_action_builder.dart';
 import 'package:flutter/material.dart';
@@ -90,7 +91,7 @@ class _OrderCard extends StatelessWidget {
                                     .onSurfaceVariant(context),
                               ),
                               Text(
-                                'Deadline: 24 Jam',
+                                'Deadline: ${order.order.deadlineDuration?.inDays ?? 0} Hari',
                                 style: context.text.bodyMedium!.warning(
                                   context,
                                 ),

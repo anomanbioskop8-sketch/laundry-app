@@ -15,4 +15,26 @@ extension OrderEntityExt on OrderEntity {
   String get formattedTotal => CurrencyFormatter.idr(total);
 
   String get formattedCreatedAt => createdAt.short;
+
+  String get estimatedFinishedAtFormatted => deadlineAt.short;
+
+  DateTime get deadlineAt => createdAt!.add(groups.longestDuration);
+
+  DateTime get nearestDeadlineAt => createdAt!.add(groups.shortestDuration);
+
+  Duration? get deadlineDuration {
+    if (groups.isEmpty) {
+      return null;
+    }
+
+    return groups.longestDuration;
+  }
+
+  Duration? get nearestDeadlineDuration {
+    if (groups.isEmpty) {
+      return null;
+    }
+
+    return groups.shortestDuration;
+  }
 }

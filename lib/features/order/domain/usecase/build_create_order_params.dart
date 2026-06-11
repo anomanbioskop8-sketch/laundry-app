@@ -11,8 +11,6 @@ import 'package:app_laundry/features/order/domain/enums/payment_status.dart';
 import 'package:app_laundry/features/order/domain/usecase/params/create_order_params.dart';
 
 class BuildCreateOrderParams {
-  const BuildCreateOrderParams();
-
   CreateOrderParams call({
     required CustomerEntity? customer,
     required List<OrderGroupEntity> groups,
@@ -30,6 +28,7 @@ class BuildCreateOrderParams {
       customer: customer,
       groups: groups,
       paymentStatus: paymentStatus,
+      createdAt: DateTime.now(),
     );
   }
 }

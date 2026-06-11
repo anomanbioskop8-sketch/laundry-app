@@ -47,7 +47,7 @@ class AppElevatedActionButton extends StatelessWidget {
         style: style,
         child: Text(
           label.toUpperCase(),
-          style: context.text.labelLarge?.onPrimary(context),
+          style: context.text.labelLarge?.semiBold.onPrimary(context),
         ),
       );
     }

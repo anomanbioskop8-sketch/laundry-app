@@ -29,6 +29,7 @@ class AppOutlinedActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final style = OutlinedButton.styleFrom(
       foregroundColor: color,
+      textStyle: context.text.labelLarge?.semiBold,
       side: BorderSide(color: color ?? context.colors.primary),
     );
 

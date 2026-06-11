@@ -1,12 +1,19 @@
-// features/laundry_price/domain/enums/laundry_service_type_ext.dart
+// =============================================================================
+// File : laundry_speed_type_ext.dart
+// =============================================================================
 
-import 'package:app_laundry/core/form/fields/form_option.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
+import 'package:app_laundry/core/form/fields/form_option.dart';
 import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
+import 'package:app_laundry/features/setting/domain/entities/setting_entity.dart';
 import 'package:flutter/material.dart';
 
 extension LaundrySpeedTypeExt on LaundrySpeedType {
+  // =========================
+  // VALUE
+  // =========================
+
   String get value {
     switch (this) {
       case LaundrySpeedType.regular:
@@ -19,6 +26,10 @@ extension LaundrySpeedTypeExt on LaundrySpeedType {
         return 'same_day';
     }
   }
+
+  // =========================
+  // LABEL
+  // =========================
 
   String get label {
     switch (this) {
@@ -68,20 +79,55 @@ extension LaundrySpeedTypeExt on LaundrySpeedType {
   }
 
   // =========================
+  // HELPERS
+  // =========================
+
+  bool get isRegular => this == LaundrySpeedType.regular;
+
+  bool get isExpress => this == LaundrySpeedType.express;
+
+  bool get isSameDay => this == LaundrySpeedType.sameDay;
+
+  // =========================
+  // PRICE
+  // =========================
+
+  int priceFrom(SettingEntity setting) {
+    switch (this) {
+      case LaundrySpeedType.regular:
+        return setting.regularPrice;
+
+      case LaundrySpeedType.express:
+        return setting.expressPrice;
+
+      case LaundrySpeedType.sameDay:
+        return setting.sameDayPrice;
+    }
+  }
+
+  // =========================
   // ESTIMATION
   // =========================
 
-  int get estimationHours {
+  Duration estimationFrom(SettingEntity setting) {
     switch (this) {
       case LaundrySpeedType.regular:
-        return 48;
+        return Duration(days: setting.regularEstimation);
 
       case LaundrySpeedType.express:
-        return 24;
+        return Duration(days: setting.expressEstimation);
 
       case LaundrySpeedType.sameDay:
-        return 6;
+        return Duration(days: setting.sameDayEstimation);
     }
+  }
+
+  // =========================
+  // FORM OPTION
+  // =========================
+
+  FormOption get option {
+    return FormOption(value: value, label: label, icon: icon);
   }
 
   // =========================
@@ -102,18 +148,14 @@ extension LaundrySpeedTypeExt on LaundrySpeedType {
   }
 
   // =========================
-  // FORM OPTION
-  // =========================
-
-  FormOption get option {
-    return FormOption(value: value, label: label, icon: icon);
-  }
-
-  // =========================
-  // FORM OPTIONS
+  // STATIC HELPERS
   // =========================
 
   static List<FormOption> get options {
     return LaundrySpeedType.values.map((e) => e.option).toList();
+  }
+
+  static List<String> get labels {
+    return LaundrySpeedType.values.map((e) => e.label).toList();
   }
 }

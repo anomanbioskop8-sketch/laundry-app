@@ -9,7 +9,7 @@ import 'package:app_laundry/core/ui/widgets/navigation/app_tab_bar.dart';
 import 'package:app_laundry/features/order/domain/usecase/params/create_order_params.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_action_cubit.dart';
 import 'package:app_laundry/features/order/presentation/widgets/order_confirmation/order_info_card.dart';
-import 'package:app_laundry/features/order/presentation/widgets/order_group_field/order_group_detail_card.dart';
+import 'package:app_laundry/features/order/presentation/widgets/order_group_field/order_group_detail_card/order_group_detail_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,8 +35,7 @@ class OrderConfirmationPage extends StatelessWidget {
                   ListView.separated(
                     padding: EdgeInsets.all(context.spacing.md),
                     itemCount: order.groups.length,
-                    separatorBuilder: (_, _) =>
-                        SizedBox(height: context.spacing.md),
+                    separatorBuilder: (_, _) => Divider(),
                     itemBuilder: (_, index) {
                       return OrderGroupDetailCard(group: order.groups[index]);
                     },

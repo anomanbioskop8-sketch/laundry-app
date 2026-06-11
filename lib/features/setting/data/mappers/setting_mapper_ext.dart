@@ -8,7 +8,6 @@
 // =============================================================================
 
 import 'package:app_laundry/features/setting/data/models/setting_model.dart';
-
 import 'package:app_laundry/features/setting/domain/entities/setting_entity.dart';
 
 extension SettingModelMapperExt on SettingModel {
@@ -19,17 +18,13 @@ extension SettingModelMapperExt on SettingModel {
   SettingEntity get toEntity {
     return SettingEntity(
       id: id,
-
       regularPrice: regularPrice,
-
       expressPrice: expressPrice,
-
+      sameDayPrice: sameDayPrice,
       regularEstimation: regularEstimation,
-
       expressEstimation: expressEstimation,
-
+      sameDayEstimation: expressEstimation,
       createdAt: createdAt,
-
       updatedAt: updatedAt,
     );
   }
@@ -43,17 +38,13 @@ extension SettingEntityMapperExt on SettingEntity {
   SettingModel get toModel {
     return SettingModel(
       id: id,
-
       regularPrice: regularPrice,
-
       expressPrice: expressPrice,
-
+      sameDayPrice: sameDayPrice,
       regularEstimation: regularEstimation,
-
       expressEstimation: expressEstimation,
-
+      sameDayEstimation: sameDayEstimation,
       createdAt: createdAt,
-
       updatedAt: updatedAt,
     );
   }

@@ -39,7 +39,7 @@ class OrderGroupMapper {
       orderType: model.orderType.toLaundryOrderType,
 
       items: OrderLaundryItemMapper.toEntityList(model.items),
-
+      estimatedDuration: Duration(days: model.estimatedDuration),
       weight: model.weight,
 
       unitPrice: model.unitPrice,
@@ -59,6 +59,7 @@ class OrderGroupMapper {
       orderType: entity.orderType.value,
 
       items: OrderLaundryItemMapper.toModelList(entity.items),
+      estimatedDuration: entity.estimatedDuration.inDays,
 
       weight: entity.weight,
 

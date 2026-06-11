@@ -2,9 +2,11 @@ import 'package:app_laundry/core/errors/exceptions.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_order_type.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_service_type.dart';
 import 'package:app_laundry/features/laundry/domain/enums/laundry_speed_type.dart';
+import 'package:app_laundry/features/laundry/domain/extensions/laundry_speed_type_ext.dart';
 import 'package:app_laundry/features/order/domain/entities/order_group_entity.dart';
 import 'package:app_laundry/features/order/domain/entities/order_laundry_item_entity.dart';
 import 'package:app_laundry/features/order/domain/usecase/build_order_group.dart';
+import 'package:app_laundry/features/setting/domain/entities/setting_entity.dart';
 import 'package:app_laundry/features/setting/domain/usecases/get_setting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -60,7 +62,7 @@ class OrderGroupFormCubit extends Cubit<OrderGroupFormState> {
   }
 
   void clearItems() {
-    emit(state.copyWith(items: []));
+    emit(state.copyWith(items: const []));
   }
 
   // =========================
@@ -73,6 +75,24 @@ class OrderGroupFormCubit extends Cubit<OrderGroupFormState> {
     required LaundryOrderType orderType,
     required double weight,
   }) async {
+    final setting = await _loadSetting();
+
+    return _buildOrderGroup(
+      serviceType: serviceType,
+      speedType: speedType,
+      orderType: orderType,
+      items: state.items,
+      weight: weight,
+      unitPrice: speedType.priceFrom(setting),
+      estimatedDuration: speedType.estimationFrom(setting),
+    );
+  }
+
+  // =========================
+  // HELPERS
+  // =========================
+
+  Future<SettingEntity> _loadSetting() async {
     final result = await _getSetting();
 
     return result.fold(
@@ -82,18 +102,7 @@ class OrderGroupFormCubit extends Cubit<OrderGroupFormState> {
           throw NotFoundException('Setting tidak ditemukan');
         }
 
-        final unitPrice = speedType == LaundrySpeedType.regular
-            ? setting.regularPrice
-            : setting.expressPrice;
-
-        return _buildOrderGroup(
-          serviceType: serviceType,
-          speedType: speedType,
-          orderType: orderType,
-          items: state.items,
-          weight: weight,
-          unitPrice: unitPrice,
-        );
+        return setting;
       },
     );
   }

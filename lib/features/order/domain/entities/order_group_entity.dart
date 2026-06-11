@@ -8,8 +8,9 @@ class OrderGroupEntity {
   final LaundrySpeedType speedType;
   final LaundryOrderType orderType;
   final List<OrderLaundryItemEntity> items;
-  final double? weight;
+  final Duration estimatedDuration;
   final int unitPrice;
+  final double? weight;
 
   const OrderGroupEntity({
     required this.serviceType,
@@ -17,6 +18,7 @@ class OrderGroupEntity {
     required this.orderType,
     required this.items,
     required this.unitPrice,
+    required this.estimatedDuration,
     this.weight,
   });
 
@@ -25,17 +27,19 @@ class OrderGroupEntity {
     LaundrySpeedType? speedType,
     LaundryOrderType? orderType,
     List<OrderLaundryItemEntity>? items,
-    double? weight,
     int? totalItems,
+    Duration? estimatedDuration,
     int? unitPrice,
+    double? weight,
   }) {
     return OrderGroupEntity(
       serviceType: serviceType ?? this.serviceType,
       speedType: speedType ?? this.speedType,
       orderType: orderType ?? this.orderType,
       items: items ?? this.items,
-      weight: weight ?? this.weight,
+      estimatedDuration: estimatedDuration ?? this.estimatedDuration,
       unitPrice: unitPrice ?? this.unitPrice,
+      weight: weight ?? this.weight,
     );
   }
 }

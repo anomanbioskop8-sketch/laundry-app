@@ -1,6 +1,7 @@
 import 'package:app_laundry/app/router/extensions/go/auth_navigation_ext.dart';
-import 'package:app_laundry/core/form/builders/form_builder.dart';
 import 'package:app_laundry/core/constants/strings/auth_strings.dart';
+import 'package:app_laundry/core/form/builders/form_builder.dart';
+import 'package:app_laundry/core/theme/theme_extensions.dart';
 import 'package:app_laundry/features/auth/presentation/config/login_form_config.dart';
 import 'package:app_laundry/features/auth/presentation/controllers/login_form_controller.dart';
 import 'package:app_laundry/features/auth/presentation/cubit/login_cubit.dart';
@@ -15,16 +16,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // =========================
-  // CONTROLLER
-  // =========================
-
   late final LoginFormController _controller;
   late final LoginFormConfig _config;
-
-  // =========================
-  // INIT
-  // =========================
 
   @override
   void initState() {
@@ -33,19 +26,11 @@ class _LoginPageState extends State<LoginPage> {
     _config = LoginFormConfig(_controller);
   }
 
-  // =========================
-  // DISPOSE
-  // =========================
-
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
-
-  // =========================
-  // SUBMIT
-  // =========================
 
   Future<void> _submit() async {
     await context.read<LoginCubit>().login(_controller.buildParams());
@@ -55,20 +40,48 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text(AuthStrings.loginTitle)),
-      body: Column(
-        children: [
-          FormBuilder(
-            formKey: _controller.formKey,
-            fields: _config.fields,
-            onSubmit: _submit,
-            submitLabel: AuthStrings.loginTitle,
-          ),
 
-          TextButton(
-            onPressed: () => context.goRegister(),
-            child: const Text(AuthStrings.registerHint),
-          ),
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(context.spacing.lg),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Selamat Datang',
+                    style: context.text.headlineSmall?.semiBold,
+                  ),
+
+                  context.spacing.sm.h,
+
+                  Text(
+                    'Masuk untuk melanjutkan ke aplikasi.',
+                    style: context.text.bodyMedium,
+                  ),
+                ],
+              ),
+            ),
+
+            Expanded(
+              child: FormBuilder(
+                formKey: _controller.formKey,
+                fields: _config.fields,
+                onSubmit: _submit,
+                submitLabel: AuthStrings.loginTitle,
+              ),
+            ),
+
+            Padding(
+              padding: EdgeInsets.only(bottom: context.spacing.lg),
+              child: TextButton(
+                onPressed: context.goRegister,
+                child: const Text(AuthStrings.registerHint),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
