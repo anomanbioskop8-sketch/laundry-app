@@ -9,10 +9,7 @@ class AppAppBarTheme {
       elevation: 0,
       centerTitle: true,
       toolbarHeight: AppSizes().buttonXxl,
-      titleTextStyle: text.titleLarge?.copyWith(
-        color: cs.onPrimary,
-        fontWeight: FontWeight.w500,
-      ),
+      titleTextStyle: text.titleLarge?.copyWith(color: cs.onPrimary),
     );
   }
 }

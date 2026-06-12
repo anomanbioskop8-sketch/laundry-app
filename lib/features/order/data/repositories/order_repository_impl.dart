@@ -15,7 +15,7 @@ import 'package:app_laundry/core/errors/extensions/app_exception_ext.dart';
 import 'package:app_laundry/core/errors/failure.dart';
 import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/features/order/data/datasources/order_remote_data_source.dart';
-import 'package:app_laundry/features/order/data/mappers/order_mapper_ext.dart';
+import 'package:app_laundry/features/order/data/extensions/order_mapper_ext.dart';
 import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
 import 'package:app_laundry/features/order/domain/repositories/order_repository.dart';
 

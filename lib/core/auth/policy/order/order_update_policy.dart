@@ -63,7 +63,7 @@ class OrderUpdatePolicy {
 
       case OrderStatus.ready:
       case OrderStatus.pickedUp:
-      case OrderStatus.canceled:
+      case OrderStatus.cancelled:
         return false;
     }
   }

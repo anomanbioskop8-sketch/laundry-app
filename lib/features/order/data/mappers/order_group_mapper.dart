@@ -8,21 +8,13 @@
 // =============================================================================
 
 import 'package:app_laundry/features/laundry/domain/extensions/laundry_order_type_ext.dart';
-
 import 'package:app_laundry/features/laundry/domain/extensions/laundry_service_type_ext.dart';
-
 import 'package:app_laundry/features/laundry/domain/extensions/laundry_speed_type_ext.dart';
-
 import 'package:app_laundry/features/laundry/domain/extensions/string_laundry_order_type_ext.dart';
-
 import 'package:app_laundry/features/laundry/domain/extensions/string_laundry_service_type_ext.dart';
-
 import 'package:app_laundry/features/laundry/domain/extensions/string_laundry_speed_type_ext.dart';
-
 import 'package:app_laundry/features/order/data/mappers/order_laundry_item_mapper.dart';
-
 import 'package:app_laundry/features/order/data/models/order_group_model.dart';
-
 import 'package:app_laundry/features/order/domain/entities/order_group_entity.dart';
 
 class OrderGroupMapper {
@@ -33,15 +25,11 @@ class OrderGroupMapper {
   static OrderGroupEntity toEntity(OrderGroupModel model) {
     return OrderGroupEntity(
       serviceType: model.serviceType.toLaundryServiceType,
-
       speedType: model.speedType.toLaundrySpeedType,
-
       orderType: model.orderType.toLaundryOrderType,
-
       items: OrderLaundryItemMapper.toEntityList(model.items),
       estimatedDuration: Duration(days: model.estimatedDuration),
       weight: model.weight,
-
       unitPrice: model.unitPrice,
     );
   }
@@ -53,16 +41,11 @@ class OrderGroupMapper {
   static OrderGroupModel toModel(OrderGroupEntity entity) {
     return OrderGroupModel(
       serviceType: entity.serviceType.value,
-
       speedType: entity.speedType.value,
-
       orderType: entity.orderType.value,
-
       items: OrderLaundryItemMapper.toModelList(entity.items),
       estimatedDuration: entity.estimatedDuration.inDays,
-
       weight: entity.weight,
-
       unitPrice: entity.unitPrice,
     );
   }

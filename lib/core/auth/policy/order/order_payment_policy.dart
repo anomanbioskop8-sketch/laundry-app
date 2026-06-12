@@ -60,7 +60,7 @@ class OrderPaymentPolicy {
     // =========================
     // ORDER STATUS
     // =========================
-    if (order.orderStatus == OrderStatus.canceled) {
+    if (order.orderStatus == OrderStatus.cancelled) {
       return false;
     }
 

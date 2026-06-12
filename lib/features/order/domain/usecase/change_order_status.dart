@@ -4,16 +4,11 @@
 // =============================================================================
 
 import 'package:app_laundry/core/auth/session/domain/services/session_service.dart';
-
 import 'package:app_laundry/core/errors/exceptions.dart';
 import 'package:app_laundry/core/errors/failure.dart';
-
 import 'package:app_laundry/core/utils/either.dart';
-
 import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
-
-import 'package:app_laundry/features/order/domain/enums/order_status_ext.dart';
-
+import 'package:app_laundry/features/order/domain/extensions/order_status/order_status_flow_ext.dart';
 import 'package:app_laundry/features/order/domain/repositories/order_repository.dart';
 
 class ChangeOrderStatus {

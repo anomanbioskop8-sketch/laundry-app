@@ -13,7 +13,7 @@
 import 'package:app_laundry/core/base/action/base_action_cubit.dart';
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
-import 'package:app_laundry/features/order/domain/enums/order_status_ext.dart';
+import 'package:app_laundry/features/order/domain/extensions/order_status/order_status_message_ext.dart';
 import 'package:app_laundry/features/order/domain/usecase/change_order_status.dart';
 import 'package:app_laundry/features/order/domain/usecase/create_order.dart';
 import 'package:app_laundry/features/order/domain/usecase/delete_order.dart';

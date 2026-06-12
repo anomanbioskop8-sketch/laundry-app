@@ -58,7 +58,7 @@ class OrderDeletePolicy {
     // =========================
     switch (order.orderStatus) {
       case OrderStatus.received:
-      case OrderStatus.canceled:
+      case OrderStatus.cancelled:
         return true;
 
       case OrderStatus.inProgress:

@@ -74,10 +74,10 @@ class OrderStatusPolicy {
     // =========================
     switch (from) {
       case OrderStatus.received:
-        return to == OrderStatus.inProgress || to == OrderStatus.canceled;
+        return to == OrderStatus.inProgress || to == OrderStatus.cancelled;
 
       case OrderStatus.inProgress:
-        return to == OrderStatus.ready || to == OrderStatus.canceled;
+        return to == OrderStatus.ready || to == OrderStatus.cancelled;
 
       case OrderStatus.ready:
         return to == OrderStatus.pickedUp;
@@ -85,7 +85,7 @@ class OrderStatusPolicy {
       case OrderStatus.pickedUp:
         return false;
 
-      case OrderStatus.canceled:
+      case OrderStatus.cancelled:
         return false;
     }
   }

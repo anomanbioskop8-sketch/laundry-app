@@ -5,7 +5,7 @@ import 'package:app_laundry/core/theme/theme_extensions.dart';
 import 'package:app_laundry/core/ui/states/app_empty_widget.dart';
 import 'package:app_laundry/features/order/domain/entities/order_with_customer_entity.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_cubit.dart';
-import 'package:app_laundry/features/order/presentation/widgets/order_list_item.dart';
+import 'package:app_laundry/features/order/presentation/widgets/order_list_item/order_list_item.dart';
 import 'package:flutter/material.dart';
 
 class OrderView extends StatelessWidget {

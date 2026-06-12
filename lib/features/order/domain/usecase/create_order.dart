@@ -11,7 +11,7 @@ import 'package:app_laundry/core/utils/either.dart';
 import 'package:app_laundry/core/utils/invoice_generator.dart';
 import 'package:app_laundry/features/order/domain/entities/order_entity.dart';
 import 'package:app_laundry/features/order/domain/enums/order_status.dart';
-import 'package:app_laundry/features/order/domain/extensions/order_group_entity_ext.dart';
+import 'package:app_laundry/features/order/domain/extensions/order_group/order_group_list_ext.dart';
 import 'package:app_laundry/features/order/domain/repositories/order_repository.dart';
 import 'package:app_laundry/features/order/domain/usecase/params/create_order_params.dart';
 import 'package:uuid/uuid.dart';
