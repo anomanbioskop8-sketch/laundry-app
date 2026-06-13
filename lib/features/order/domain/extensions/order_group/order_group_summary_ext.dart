@@ -5,7 +5,7 @@ import 'package:app_laundry/features/order/domain/extensions/order_laundry_item_
 extension OrderGroupSummaryExt on OrderGroupEntity {
   int get totalQuantity => items.totalQuantity;
 
-  String get description {
+  String get summaryDisplay {
     if (isKg) {
       return '${weight ?? 0} Kg • $totalQuantity Item';
     }

@@ -29,6 +29,11 @@ class InfoCustomerView extends StatelessWidget {
             value: customer.phone,
           ),
           AppInfoItem(
+            icon: AppIcons.address,
+            label: CustomerStrings.address,
+            value: customer.address,
+          ),
+          AppInfoItem(
             icon: AppIcons.createdAt,
             label: 'Created',
             value: customer.createdAt.readable,

@@ -102,6 +102,7 @@ abstract final class AppIcons {
   // =========================
 
   static const customers = LucideIcons.users;
+  static const customer = LucideIcons.user;
   static const detailCustomer = LucideIcons.contact;
   static const addCustomers = LucideIcons.userPlus;
   static const editCustomers = LucideIcons.userPen;
@@ -127,6 +128,7 @@ abstract final class AppIcons {
   static const money = Icons.payments_outlined;
 
   static const price = LucideIcons.circleDollarSign;
+  static const estimation = LucideIcons.calendarClock;
 
   // =========================
   // DATE & TIME

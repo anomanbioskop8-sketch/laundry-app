@@ -16,8 +16,8 @@ class AppInfoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      shape: RoundedRectangleBorder(borderRadius: context.radius.md.r),
       tileColor: context.colors.surfaceContainer,
+      shape: RoundedRectangleBorder(borderRadius: context.radius.md.r),
       contentPadding: EdgeInsets.symmetric(
         horizontal: context.spacing.md,
         vertical: context.spacing.xs,

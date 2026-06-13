@@ -21,7 +21,7 @@ class OrderInfoCard extends StatelessWidget {
         items: [
           AppInfoItem(
             label: CustomerStrings.title,
-            icon: AppIcons.customers,
+            icon: AppIcons.customer,
             value: order.customer.name,
           ),
           AppInfoItem(
@@ -32,12 +32,12 @@ class OrderInfoCard extends StatelessWidget {
           AppInfoItem(
             label: 'Tanggal Dibuat',
             icon: AppIcons.createdAt,
-            value: order.createdAtFormatted,
+            value: order.formattedCreatedAt,
           ),
           AppInfoItem(
             label: 'Estimasi Selesai',
-            icon: AppIcons.schedule,
-            value: order.estimatedFinishedAtFormatted,
+            icon: AppIcons.estimation,
+            value: order.formattedEstimatedFinishAt,
           ),
         ],
       ),

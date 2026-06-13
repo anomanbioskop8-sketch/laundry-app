@@ -17,28 +17,7 @@ class CustomerDetailPage extends StatelessWidget {
         appBar: AppBar(title: Text(customer.name)),
         body: Column(
           children: [
-            //context.spacing.lg.h,
-
-            /// =========================
-            /// HEADER
-            /// =========================
-            // AppAvatarHeader(
-            //   name: customer.name,
-            //   subtitle: customer.phone,
-            //   initials: customer.initials,
-            //   backgroundColor: customer.avatarColor,
-            // ),
-
-            // context.spacing.md.h,
-
-            /// =========================
-            /// TAB BAR (DI BAWAH HEADER)
-            /// =========================
             AppTabBar(tabs: ['Info', 'Orders']),
-
-            /// =========================
-            /// TAB CONTENT
-            /// =========================
             Expanded(
               child: TabBarView(
                 children: [

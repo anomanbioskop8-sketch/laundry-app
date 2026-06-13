@@ -6,13 +6,13 @@ extension OrderGroupListExt on List<OrderGroupEntity> {
     return fold(0, (sum, group) => sum + group.subtotal);
   }
 
-  Duration get longestDuration {
+  Duration get longestEstimatedDuration {
     if (isEmpty) return Duration.zero;
 
     return map((e) => e.estimatedDuration).reduce((a, b) => a > b ? a : b);
   }
 
-  Duration get shortestDuration {
+  Duration get shortestEstimatedDuration {
     if (isEmpty) return Duration.zero;
 
     return map((e) => e.estimatedDuration).reduce((a, b) => a < b ? a : b);

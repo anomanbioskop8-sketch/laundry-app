@@ -3,11 +3,10 @@ import 'package:app_laundry/features/order/domain/extensions/order_group/order_g
 import 'package:app_laundry/features/order/domain/usecase/params/create_order_params.dart';
 
 extension CreateOrderParamsExt on CreateOrderParams {
-  DateTime get deadlineAt => createdAt.add(groups.longestDuration);
+  DateTime get estimatedFinishAt =>
+      createdAt.add(groups.longestEstimatedDuration);
 
-  DateTime get nearestDeadlineAt => createdAt.add(groups.shortestDuration);
+  String get formattedCreatedAt => createdAt.readable;
 
-  String get createdAtFormatted => createdAt.readable;
-
-  String get estimatedFinishedAtFormatted => deadlineAt.readable;
+  String get formattedEstimatedFinishAt => estimatedFinishAt.readable;
 }

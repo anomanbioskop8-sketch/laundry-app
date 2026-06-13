@@ -1,7 +1,12 @@
 import 'package:app_laundry/core/extensions/date_time_ext.dart';
+import 'package:app_laundry/core/extensions/duration_ext.dart';
 import 'package:app_laundry/features/order/domain/entities/order_group_entity.dart';
 
 extension OrderGroupEstimationExt on OrderGroupEntity {
+  // ===========================================================================
+  // DATE
+  // ===========================================================================
+
   DateTime estimatedFinishAt(DateTime createdAt) {
     return createdAt.add(estimatedDuration);
   }
@@ -10,9 +15,15 @@ extension OrderGroupEstimationExt on OrderGroupEntity {
     return estimatedFinishAt(createdAt).short;
   }
 
-  int get estimationDays => estimatedDuration.inDays;
+  // ===========================================================================
+  // DURATION
+  // ===========================================================================
 
-  String get estimationLabel {
+  int get estimationDays {
+    return estimatedDuration.inDays;
+  }
+
+  String get estimationDurationLabel {
     switch (estimationDays) {
       case 0:
         return 'Same Day';
@@ -23,30 +34,25 @@ extension OrderGroupEstimationExt on OrderGroupEntity {
     }
   }
 
-  String get estimationDescription {
-    return 'Durasi: $estimationLabel';
+  // ===========================================================================
+  // ESTIMATION
+  // ===========================================================================
+
+  String estimationLabel(DateTime createdAt) {
+    final remaining = estimatedFinishAt(createdAt).difference(DateTime.now());
+
+    return remaining.remainingLabel;
   }
 
-  String deadlineLabel(DateTime createdAt) {
-    final deadline = estimatedFinishAt(createdAt);
-    final remaining = deadline.difference(DateTime.now());
+  // ===========================================================================
+  // DISPLAY
+  // ===========================================================================
 
-    if (remaining.isNegative) {
-      return 'Terlambat';
-    }
+  String get estimationDurationDisplay {
+    return 'Durasi: $estimationDurationLabel';
+  }
 
-    if (remaining.inDays > 0) {
-      return 'Deadline: ${remaining.inDays} hari lagi';
-    }
-
-    if (remaining.inHours > 0) {
-      return 'Deadline: ${remaining.inHours} jam lagi';
-    }
-
-    if (remaining.inMinutes > 0) {
-      return 'Deadline: ${remaining.inMinutes} menit lagi';
-    }
-
-    return 'Deadline: kurang dari 1 menit';
+  String estimationDisplay(DateTime createdAt) {
+    return 'Estimasi: ${estimationLabel(createdAt)}';
   }
 }

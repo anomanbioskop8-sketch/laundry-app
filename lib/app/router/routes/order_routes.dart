@@ -10,7 +10,7 @@ import 'package:app_laundry/features/order/domain/usecase/params/stream_order_la
 import 'package:app_laundry/features/order/presentation/wrappers/order_confirmation_page_wrapper.dart';
 import 'package:app_laundry/features/order/presentation/wrappers/order_form_page_wrapper.dart';
 import 'package:app_laundry/features/order/presentation/wrappers/order_group_form_page_wrapper.dart';
-import 'package:app_laundry/features/order/presentation/wrappers/order_laundry_item_page_wrapper.dart';
+import 'package:app_laundry/features/order/presentation/wrappers/order_item_selection_page_wrapper.dart';
 import 'package:go_router/go_router.dart';
 
 class OrderRoutes {
@@ -41,7 +41,7 @@ class OrderRoutes {
       builder: (context, state) {
         final params = state.extra as StreamOrderLaundryItemsParams;
 
-        return OrderLaundryItemPageWrapper(params: params);
+        return OrderItemSelectionPageWrapper(params: params);
       },
     ),
 

@@ -5,7 +5,7 @@ import 'package:app_laundry/features/customer/domain/entities/customer_entity.da
 import 'package:app_laundry/features/order/domain/enums/payment_status_ext.dart';
 import 'package:app_laundry/features/order/presentation/controllers/order_form_controller.dart';
 import 'package:app_laundry/features/order/presentation/widgets/customer_field_widget.dart';
-import 'package:app_laundry/features/order/presentation/widgets/order_group_field/order_group_field_widget.dart';
+import 'package:app_laundry/features/order/presentation/widgets/order_group/order_group_field/order_group_field.dart';
 
 class OrderFormConfig {
   final OrderFormController controller;
@@ -51,7 +51,7 @@ class OrderFormConfig {
         type: FormFieldType.custom,
         controller: controller.groups,
         customBuilder: (_) {
-          return OrderGroupFieldWidget();
+          return OrderGroupField();
         },
       ),
     ];
