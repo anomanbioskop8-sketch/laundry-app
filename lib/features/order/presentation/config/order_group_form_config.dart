@@ -12,7 +12,7 @@ import 'package:app_laundry/features/laundry/domain/extensions/laundry_service_t
 import 'package:app_laundry/features/laundry/domain/extensions/laundry_speed_type_ext.dart';
 import 'package:app_laundry/features/order/domain/usecase/params/stream_order_laundry_items_params.dart';
 import 'package:app_laundry/features/order/presentation/controllers/order_group_form_controller.dart';
-import 'package:app_laundry/features/order/presentation/widgets/order_laundry_item_field/order_laundry_item_field_widget.dart';
+import 'package:app_laundry/features/order/presentation/widgets/order_item/order_item_field/order_item_field.dart';
 import 'package:flutter/material.dart';
 
 class OrderGroupFormConfig {
@@ -123,7 +123,7 @@ class OrderGroupFormConfig {
             controller.orderType,
           ]),
           builder: (_, _) {
-            return OrderLaundryItemFieldWidget(
+            return OrderItemField(
               params: StreamOrderLaundryItemsParams(
                 serviceType: controller.selectedServiceType,
                 speedType: controller.selectedSpeedType,

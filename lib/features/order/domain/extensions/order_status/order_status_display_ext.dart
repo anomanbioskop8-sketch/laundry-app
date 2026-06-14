@@ -42,6 +42,10 @@ extension OrderStatusDisplayExt on OrderStatus {
     }
   }
 
+  static List<String> get labels {
+    return ['Semua', ...OrderStatus.values.map((e) => e.label)];
+  }
+
   // =========================
   // ICON
   // =========================

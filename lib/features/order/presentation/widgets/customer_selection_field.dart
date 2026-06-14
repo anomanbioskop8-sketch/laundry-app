@@ -8,8 +8,8 @@ import 'package:app_laundry/features/order/presentation/cubit/order_form_state.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CustomerFieldWidget extends StatelessWidget {
-  const CustomerFieldWidget({super.key});
+class CustomerSelectionField extends StatelessWidget {
+  const CustomerSelectionField({super.key});
 
   @override
   Widget build(BuildContext context) {

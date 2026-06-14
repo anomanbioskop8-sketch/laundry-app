@@ -10,8 +10,8 @@ import 'package:app_laundry/core/ui/widgets/navigation/app_tab_bar.dart';
 import 'package:app_laundry/features/laundry_item/domain/enums/laundry_item_category.dart';
 import 'package:app_laundry/features/laundry_item/domain/extensions/laundry_item_category_ext.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_laundry_item_cubit.dart';
-import 'package:app_laundry/features/order/presentation/widgets/order_item_selection/save_order_item_selection_button.dart';
-import 'package:app_laundry/features/order/presentation/widgets/order_item_selection/order_item_selection_view.dart';
+import 'package:app_laundry/features/order/presentation/widgets/order_item/order_item_selection/save_order_item_selection_button.dart';
+import 'package:app_laundry/features/order/presentation/widgets/order_item/order_item_selection/order_item_selection_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

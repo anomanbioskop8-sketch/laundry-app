@@ -4,15 +4,25 @@ import 'package:app_laundry/features/order/domain/extensions/order/order_duratio
 
 extension OrderDateExt on OrderEntity {
   // ===========================================================================
+  // SAFE BASE DATE
+  // ===========================================================================
+
+  DateTime? get _createdAt => createdAt;
+
+  // ===========================================================================
   // DATE
   // ===========================================================================
 
-  DateTime get estimatedFinishAt {
-    return createdAt!.add(estimatedDuration);
+  DateTime? get estimatedFinishAt {
+    final date = _createdAt;
+    if (date == null) return null;
+    return date.add(estimatedDuration);
   }
 
-  DateTime get earliestFinishAt {
-    return createdAt!.add(nearestEstimatedDuration);
+  DateTime? get earliestFinishAt {
+    final date = _createdAt;
+    if (date == null) return null;
+    return date.add(nearestEstimatedDuration);
   }
 
   // ===========================================================================
@@ -20,11 +30,11 @@ extension OrderDateExt on OrderEntity {
   // ===========================================================================
 
   String get formattedCreatedAt {
-    return createdAt?.short ?? '-';
+    return _createdAt?.short ?? '-';
   }
 
   String get formattedEstimatedFinishAt {
-    return estimatedFinishAt.short;
+    return estimatedFinishAt?.short ?? '-';
   }
 
   // ===========================================================================

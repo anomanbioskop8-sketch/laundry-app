@@ -5,6 +5,8 @@ extension OrderLaundryItemListExt on List<OrderLaundryItemEntity> {
   int get subtotal => fold(0, (sum, item) => sum + item.subtotal);
 
   int get totalQuantity => fold(0, (sum, item) => sum + item.qty);
+
+  String get formattedSubtotal => CurrencyFormatter.idr(subtotal);
 }
 
 extension OrderLaundryItemEntityExt on OrderLaundryItemEntity {
@@ -16,5 +18,5 @@ extension OrderLaundryItemEntityExt on OrderLaundryItemEntity {
 
   String get formattedSubtotal => CurrencyFormatter.idr(subtotal);
 
-  String get formattedQuantityAndPrice => '$qty x $formattedPrice';
+  String get quantityAndPriceDisplay => '$qty x $formattedPrice';
 }

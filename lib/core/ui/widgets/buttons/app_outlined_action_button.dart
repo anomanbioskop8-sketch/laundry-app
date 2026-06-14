@@ -30,7 +30,9 @@ class AppOutlinedActionButton extends StatelessWidget {
     final style = OutlinedButton.styleFrom(
       foregroundColor: color,
       textStyle: context.text.labelLarge?.semiBold,
+      minimumSize: Size(100, context.sizes.buttonMd),
       side: BorderSide(color: color ?? context.colors.primary),
+      shape: RoundedRectangleBorder(borderRadius: context.radius.md.r),
     );
 
     // =========================
@@ -40,7 +42,7 @@ class AppOutlinedActionButton extends StatelessWidget {
       return OutlinedButton(
         onPressed: onPressed,
         style: style,
-        child: Text(label),
+        child: Text(label.toUpperCase()),
       );
     }
 
@@ -51,7 +53,7 @@ class AppOutlinedActionButton extends StatelessWidget {
       onPressed: onPressed,
       style: style,
       icon: Icon(icon, size: context.sizes.iconMd),
-      label: Text(label),
+      label: Text(label.toUpperCase()),
     );
   }
 }

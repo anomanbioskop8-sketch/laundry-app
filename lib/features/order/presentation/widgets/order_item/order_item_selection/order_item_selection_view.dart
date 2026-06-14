@@ -7,7 +7,7 @@ import 'package:app_laundry/features/laundry_item/domain/enums/laundry_item_cate
 import 'package:app_laundry/features/order/domain/entities/order_laundry_item_entity.dart';
 import 'package:app_laundry/features/order/domain/extensions/order_laundry_item_list_ext.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_laundry_item_cubit.dart';
-import 'package:app_laundry/features/order/presentation/widgets/order_item_selection/order_item_selection_card/order_item_selection_builder.dart';
+import 'package:app_laundry/features/order/presentation/widgets/order_item/order_item_selection/order_item_selection_builder.dart';
 import 'package:flutter/material.dart';
 
 class OrderItemSelectionView extends StatelessWidget {

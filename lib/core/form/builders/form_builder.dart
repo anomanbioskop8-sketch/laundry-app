@@ -1,24 +1,13 @@
 // =============================================================================
 // File        : form_builder.dart
-// Path        : lib/core/base/form/form_builder.dart
-// Layer       : Presentation (Form)
-// -----------------------------------------------------------------------------
-// Fungsi:
-// - Builder global untuk form aplikasi
-// - Menangani:
-//   - rendering field
-//   - validasi form
-//   - submit action
-//   - custom field validation
-// - Mendukung field custom dengan validator manual
+// Path        : lib/core/form/builders/form_builder.dart
 // =============================================================================
 
-import 'package:app_laundry/core/form/renderers/app_form_field_renderer.dart';
+import 'package:app_laundry/core/constants/strings/app_strings.dart';
 import 'package:app_laundry/core/form/configs/form_field_config.dart';
-import 'package:app_laundry/core/errors/exceptions.dart';
-import 'package:app_laundry/core/services/app_ui_service.dart';
-import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
-import 'package:app_laundry/core/theme/extensions/spacing_ext.dart';
+import 'package:app_laundry/core/form/helpers/form_submit_helper.dart';
+import 'package:app_laundry/core/form/renderers/app_form_field_renderer.dart';
+import 'package:app_laundry/core/theme/theme_extensions.dart';
 import 'package:app_laundry/core/ui/widgets/buttons/app_elevated_action_button.dart';
 import 'package:flutter/material.dart';
 
@@ -29,13 +18,15 @@ class FormBuilder extends StatelessWidget {
   final List<FormFieldConfig> fields;
   final AsyncCallback onSubmit;
   final String submitLabel;
+  final bool showSubmitButton;
 
   const FormBuilder({
     super.key,
     required this.formKey,
     required this.fields,
     required this.onSubmit,
-    this.submitLabel = 'Submit',
+    this.submitLabel = AppStrings.save,
+    this.showSubmitButton = true,
   });
 
   @override
@@ -43,74 +34,44 @@ class FormBuilder extends StatelessWidget {
     return Form(
       key: formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-
       child: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
           horizontal: context.spacing.md,
           vertical: context.spacing.lg,
         ),
-
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-
           children: [
             // =========================
             // FIELDS
             // =========================
-            ...fields.map((f) {
-              return Padding(
+            ...fields.map(
+              (field) => Padding(
                 padding: EdgeInsets.only(bottom: context.spacing.md),
-                child: AppFormFieldRenderer.build(f),
-              );
-            }),
-
-            context.spacing.md.h,
+                child: AppFormFieldRenderer.build(field),
+              ),
+            ),
 
             // =========================
             // SUBMIT BUTTON
             // =========================
-            SizedBox(
-              width: double.infinity,
+            if (showSubmitButton) ...[
+              context.spacing.md.h,
 
-              child: AppElevatedActionButton(
-                label: submitLabel,
-                onPressed: () async {
-                  // =========================
-                  // DEFAULT FORM VALIDATION
-                  // =========================
-
-                  if (!formKey.currentState!.validate()) {
-                    return;
-                  }
-
-                  // =========================
-                  // CUSTOM FIELD VALIDATION
-                  // =========================
-
-                  for (final field in fields) {
-                    final error = field.validateValue();
-
-                    if (error != null) {
-                      AppUIService.error(error);
-
-                      return;
-                    }
-                  }
-
-                  // =========================
-                  // SUBMIT
-                  // =========================
-
-                  try {
-                    await onSubmit();
-                  } on ValidationException catch (e) {
-                    AppUIService.error(e.message);
-                  } catch (e) {
-                    AppUIService.error(e.toString());
-                  }
-                },
+              SizedBox(
+                width: double.infinity,
+                child: AppElevatedActionButton(
+                  label: submitLabel,
+                  onPressed: () {
+                    FormSubmitHelper.submit(
+                      formKey: formKey,
+                      fields: fields,
+                      onSubmit: onSubmit,
+                    );
+                  },
+                ),
               ),
-            ),
+            ],
           ],
         ),
       ),

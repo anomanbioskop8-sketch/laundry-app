@@ -1,25 +1,38 @@
+//lib\features\order\presentation\widgets\order_view.dart
+
 import 'package:app_laundry/core/base/stream/base_stream_builder.dart';
 import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/core/theme/theme_extensions.dart';
 import 'package:app_laundry/core/ui/states/app_empty_widget.dart';
 import 'package:app_laundry/features/order/domain/entities/order_with_customer_entity.dart';
+import 'package:app_laundry/features/order/domain/enums/order_status.dart';
+import 'package:app_laundry/features/order/domain/extensions/order_with_customer/order_with_customer_list_ext.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_cubit.dart';
 import 'package:app_laundry/features/order/presentation/widgets/order_card/order_card_button.dart';
 import 'package:flutter/material.dart';
 
 class OrderView extends StatelessWidget {
-  const OrderView({super.key});
+  final OrderStatus? status;
+  const OrderView({super.key, this.status});
 
   @override
   Widget build(BuildContext context) {
     return BaseStreamBuilder<OrderCubit, OrderWithCustomerEntity>(
       empty: AppEmptyWidget(message: OrderStrings.empty, icon: AppIcons.order),
       builder: (items) {
+        final visibleItems = items.byStatus(status);
+
+        if (visibleItems.isEmpty) {
+          return AppEmptyWidget(
+            message: OrderStrings.empty,
+            icon: AppIcons.order,
+          );
+        }
         return ListView.separated(
           padding: EdgeInsets.symmetric(horizontal: context.spacing.md),
-          itemCount: items.length,
-          itemBuilder: (_, i) => OrderCardButton(order: items[i]),
+          itemCount: visibleItems.length,
+          itemBuilder: (_, i) => OrderCardButton(order: visibleItems[i]),
           separatorBuilder: (_, i) => const Divider(),
         );
       },

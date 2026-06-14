@@ -13,8 +13,10 @@ extension OrderEstimationExt on OrderEntity {
       return 'Selesai';
     }
 
-    final remaining = estimatedFinishAt.difference(DateTime.now());
+    final finishAt = estimatedFinishAt;
+    if (finishAt == null) return '-';
 
+    final remaining = finishAt.difference(DateTime.now());
     return remaining.remainingLabel;
   }
 
@@ -23,8 +25,10 @@ extension OrderEstimationExt on OrderEntity {
       return 'Selesai';
     }
 
-    final remaining = earliestFinishAt.difference(DateTime.now());
+    final finishAt = earliestFinishAt;
+    if (finishAt == null) return '-';
 
+    final remaining = finishAt.difference(DateTime.now());
     return remaining.remainingLabel;
   }
 

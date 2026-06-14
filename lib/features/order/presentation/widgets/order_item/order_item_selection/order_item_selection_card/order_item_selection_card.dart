@@ -1,7 +1,7 @@
 import 'package:app_laundry/core/theme/theme_extensions.dart';
 import 'package:app_laundry/features/order/domain/entities/order_laundry_item_entity.dart';
 import 'package:app_laundry/features/order/domain/extensions/order_laundry_item_entity_ext.dart';
-import 'package:app_laundry/features/order/presentation/widgets/order_item_selection/order_item_selection_card/order_item_qty_field.dart';
+import 'package:app_laundry/features/order/presentation/widgets/order_item/order_item_selection/order_item_selection_card/order_item_qty_field.dart';
 import 'package:flutter/material.dart';
 
 class OrderItemSelectionCard extends StatelessWidget {

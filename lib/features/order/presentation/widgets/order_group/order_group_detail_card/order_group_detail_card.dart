@@ -14,7 +14,7 @@ class OrderGroupDetailCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.antiAlias,
-      margin: EdgeInsets.symmetric(vertical: context.spacing.md),
+      margin: EdgeInsets.symmetric(vertical: context.spacing.sm),
       child: Column(
         children: [
           ExpansionTile(

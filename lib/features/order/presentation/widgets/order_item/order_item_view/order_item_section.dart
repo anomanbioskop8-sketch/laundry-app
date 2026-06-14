@@ -2,13 +2,13 @@ import 'package:app_laundry/core/constants/app_icons.dart';
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/core/ui/states/app_empty_widget.dart';
 import 'package:app_laundry/features/order/domain/entities/order_laundry_item_entity.dart';
-import 'package:app_laundry/features/order/presentation/widgets/order_laundry_item/order_laundry_item_list.dart';
+import 'package:app_laundry/features/order/presentation/widgets/order_item/order_item_view/order_item_list.dart';
 import 'package:flutter/material.dart';
 
-class OrderLaundryItemContent extends StatelessWidget {
+class OrderItemSection extends StatelessWidget {
   final List<OrderLaundryItemEntity> items;
 
-  const OrderLaundryItemContent({super.key, required this.items});
+  const OrderItemSection({super.key, required this.items});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,6 @@ class OrderLaundryItemContent extends StatelessWidget {
       );
     }
 
-    return OrderLaundryItemList(items: items);
+    return OrderItemList(items: items);
   }
 }

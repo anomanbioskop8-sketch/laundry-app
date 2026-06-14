@@ -8,11 +8,11 @@ import 'package:app_laundry/features/order/domain/entities/order_laundry_item_en
 import 'package:app_laundry/features/order/domain/extensions/order_laundry_item_entity_ext.dart';
 import 'package:flutter/material.dart';
 
-class OrderLaundryItemCard extends StatelessWidget {
+class OrderItemCard extends StatelessWidget {
   final OrderLaundryItemEntity item;
   final VoidCallback? onDelete;
 
-  const OrderLaundryItemCard({super.key, required this.item, this.onDelete});
+  const OrderItemCard({super.key, required this.item, this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class OrderLaundryItemCard extends StatelessWidget {
       title: Text(item.itemName, style: context.text.titleSmall!.semiBold),
 
       subtitle: Text(
-        item.formattedQuantityAndPrice,
+        item.quantityAndPriceDisplay,
         style: context.text.bodyMedium!.onSurfaceVariant(context),
       ),
 

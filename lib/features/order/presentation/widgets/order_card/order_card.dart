@@ -23,7 +23,7 @@ class OrderCard extends StatelessWidget {
             Divider(height: context.spacing.md),
             Row(
               children: [
-                OrderCustomerInfo(order: order),
+                Expanded(child: OrderCustomerInfo(order: order)),
                 OrderPaymentInfo(order: order.order),
               ],
             ),

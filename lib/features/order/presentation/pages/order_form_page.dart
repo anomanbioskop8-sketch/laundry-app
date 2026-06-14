@@ -3,6 +3,9 @@ import 'package:app_laundry/core/base/stream/base_stream_builder.dart';
 import 'package:app_laundry/core/form/builders/form_builder.dart';
 import 'package:app_laundry/core/constants/strings/app_strings.dart';
 import 'package:app_laundry/core/constants/strings/order_strings.dart';
+import 'package:app_laundry/core/form/helpers/form_submit_helper.dart';
+import 'package:app_laundry/core/theme/extensions/theme_ext.dart';
+import 'package:app_laundry/core/ui/widgets/buttons/app_elevated_action_button.dart';
 import 'package:app_laundry/features/customer/domain/entities/customer_entity.dart';
 import 'package:app_laundry/features/customer/presentation/cubit/customer_cubit.dart';
 import 'package:app_laundry/features/order/presentation/config/order_form_config.dart';
@@ -33,33 +36,52 @@ class OrderFormPageState extends State<OrderFormPage> {
     super.dispose();
   }
 
+  Future<void> _submit() async {
+    final orderFormCubit = context.read<OrderFormCubit>();
+
+    final params = orderFormCubit.buildParams(
+      paymentStatus: _controller.selectedPaymentStatus,
+    );
+
+    await context.pushConfirmationOrder(order: params);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text(OrderStrings.create)),
-      body: BaseStreamBuilder<CustomerCubit, CustomerEntity>(
-        builder: (customers) {
-          final config = OrderFormConfig(
-            controller: _controller,
-            customers: customers,
-          );
+    return BaseStreamBuilder<CustomerCubit, CustomerEntity>(
+      builder: (customers) {
+        final config = OrderFormConfig(
+          controller: _controller,
+          customers: customers,
+        );
 
-          return FormBuilder(
+        return Scaffold(
+          appBar: AppBar(title: const Text(OrderStrings.create)),
+
+          body: FormBuilder(
             formKey: _controller.formKey,
             fields: config.fields,
-            submitLabel: AppStrings.save,
-            onSubmit: () async {
-              final orderFormCubit = context.read<OrderFormCubit>();
+            onSubmit: _submit,
+            showSubmitButton: false,
+          ),
 
-              final params = orderFormCubit.buildParams(
-                paymentStatus: _controller.selectedPaymentStatus,
-              );
-
-              context.pushConfirmationOrder(order: params);
-            },
-          );
-        },
-      ),
+          bottomNavigationBar: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(context.spacing.md),
+              child: AppElevatedActionButton(
+                label: AppStrings.save,
+                onPressed: () {
+                  FormSubmitHelper.submit(
+                    formKey: _controller.formKey,
+                    fields: config.fields,
+                    onSubmit: _submit,
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

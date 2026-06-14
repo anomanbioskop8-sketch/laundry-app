@@ -8,7 +8,7 @@
 // =============================================================================
 
 import 'package:app_laundry/core/auth/session/cubit/session_cubit.dart';
-import 'package:app_laundry/core/utils/logger_service.dart';
+import 'package:app_laundry/core/services/logging/logger_service.dart';
 import 'package:app_laundry/features/company/data/datasources/company_remote_data_source.dart';
 import 'package:app_laundry/features/company/data/repositories/company_repository_impl.dart';
 import 'package:app_laundry/features/company/domain/repositories/company_repository.dart';

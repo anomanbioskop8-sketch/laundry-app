@@ -6,6 +6,7 @@ import 'package:app_laundry/core/constants/strings/order_strings.dart';
 import 'package:app_laundry/core/theme/theme_extensions.dart';
 import 'package:app_laundry/core/ui/widgets/buttons/app_elevated_action_button.dart';
 import 'package:app_laundry/core/ui/widgets/navigation/app_tab_bar.dart';
+import 'package:app_laundry/features/order/domain/extensions/order_group/order_group_list_ext.dart';
 import 'package:app_laundry/features/order/domain/usecase/params/create_order_params.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_action_cubit.dart';
 import 'package:app_laundry/features/order/presentation/widgets/order_confirmation/order_info_card.dart';
@@ -48,11 +49,35 @@ class OrderConfirmationPage extends StatelessWidget {
         bottomNavigationBar: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(context.spacing.md),
-            child: AppElevatedActionButton(
-              label: OrderStrings.confirm,
-              onPressed: () {
-                context.read<OrderActionCubit>().create(order);
-              },
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  tileColor: context.colors.surfaceContainer,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: context.radius.md.r,
+                  ),
+                  title: Text('Grandtotal', style: context.text.titleSmall),
+                  subtitle: Text(
+                    '${order.groups.length} Order Service',
+                    style: context.text.labelMedium?.onSurfaceVariant(context),
+                  ),
+                  trailing: Text(
+                    order.groups.formattedGradtotal,
+                    style: context.text.titleMedium?.semiBold.primary(context),
+                  ),
+                ),
+                context.spacing.sm.h,
+                SizedBox(
+                  width: double.infinity,
+                  child: AppElevatedActionButton(
+                    label: OrderStrings.confirm,
+                    onPressed: () {
+                      context.read<OrderActionCubit>().create(order);
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         ),

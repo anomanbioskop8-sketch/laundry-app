@@ -36,6 +36,9 @@ class AppElevatedActionButton extends StatelessWidget {
     final style = ElevatedButton.styleFrom(
       backgroundColor: color,
       foregroundColor: foregroundColor,
+      textStyle: context.text.labelLarge?.semiBold,
+      minimumSize: Size(100, context.sizes.buttonMd),
+      shape: RoundedRectangleBorder(borderRadius: context.radius.md.r),
     );
 
     // =========================
@@ -45,10 +48,7 @@ class AppElevatedActionButton extends StatelessWidget {
       return ElevatedButton(
         onPressed: onPressed,
         style: style,
-        child: Text(
-          label.toUpperCase(),
-          style: context.text.labelLarge?.semiBold.onPrimary(context),
-        ),
+        child: Text(label.toUpperCase()),
       );
     }
 
@@ -59,10 +59,7 @@ class AppElevatedActionButton extends StatelessWidget {
       onPressed: onPressed,
       style: style,
       icon: Icon(icon, size: context.sizes.iconMd),
-      label: Text(
-        label.toUpperCase(),
-        style: context.text.labelLarge?.onPrimary(context),
-      ),
+      label: Text(label.toUpperCase()),
     );
   }
 }

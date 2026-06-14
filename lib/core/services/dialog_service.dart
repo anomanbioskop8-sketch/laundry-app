@@ -16,11 +16,8 @@
 // =============================================================================
 
 import 'package:app_laundry/core/services/app_navigator.dart';
-import 'package:app_laundry/core/theme/theme_extensions.dart';
-import 'package:app_laundry/core/ui/dialog/dialog_ext.dart';
+import 'package:app_laundry/core/ui/dialog/confirm_dialog.dart';
 import 'package:app_laundry/core/ui/dialog/dialog_type.dart';
-import 'package:app_laundry/core/ui/widgets/buttons/app_elevated_action_button.dart';
-import 'package:app_laundry/core/ui/widgets/buttons/app_outlined_action_button.dart';
 import 'package:flutter/material.dart';
 
 class DialogService {
@@ -50,7 +47,7 @@ class DialogService {
       barrierDismissible: false,
 
       builder: (_) {
-        return _ConfirmDialog(
+        return ConfirmDialog(
           title: title,
           message: message,
           type: type,
@@ -68,113 +65,3 @@ class DialogService {
 // =============================================================================
 // INTERNAL DIALOG
 // =============================================================================
-
-class _ConfirmDialog extends StatelessWidget {
-  final String title;
-  final String message;
-  final DialogType type;
-  final String confirmText;
-  final String cancelText;
-  final Color? confirmColor;
-
-  const _ConfirmDialog({
-    required this.title,
-    required this.message,
-    required this.type,
-    required this.confirmText,
-    required this.cancelText,
-    this.confirmColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final spacing = context.spacing;
-
-    return Dialog(
-      // =========================
-      // LAYOUT
-      // =========================
-      insetPadding: EdgeInsets.symmetric(
-        horizontal: spacing.xl,
-        vertical: spacing.xl,
-      ),
-
-      // =========================
-      // SHAPE
-      // =========================
-      shape: RoundedRectangleBorder(borderRadius: context.radius.md.r),
-
-      child: Padding(
-        padding: EdgeInsets.all(spacing.xl),
-
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-
-          children: [
-            // =========================
-            // HEADER
-            // =========================
-            Row(
-              children: [
-                Icon(
-                  type.icon(),
-                  size: context.sizes.iconLg,
-                  color: type.color(context),
-                ),
-
-                spacing.md.w,
-
-                Expanded(
-                  child: Text(
-                    title,
-                    style: context.text.titleLarge?.copyWith(
-                      color: type.color(context),
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            spacing.lg.h,
-
-            // =========================
-            // MESSAGE
-            // =========================
-            Text(message),
-
-            spacing.xl.h,
-
-            // =========================
-            // ACTIONS
-            // =========================
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                // CANCEL
-                AppOutlinedActionButton(
-                  label: cancelText,
-                  onPressed: () {
-                    Navigator.pop(context, false);
-                  },
-                ),
-
-                spacing.sm.w,
-
-                // CONFIRM
-                AppElevatedActionButton(
-                  label: confirmText,
-                  color: confirmColor ?? type.color(context),
-                  onPressed: () {
-                    Navigator.pop(context, true);
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

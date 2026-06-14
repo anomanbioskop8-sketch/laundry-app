@@ -12,41 +12,39 @@ class OrderCustomerInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Row(
-        children: [
-          AppIconAvatar(icon: AppIcons.order),
+    return Row(
+      children: [
+        AppIconAvatar(icon: AppIcons.order),
 
-          context.spacing.sm.w,
+        context.spacing.sm.w,
 
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  order.customerNameDisplay,
-                  overflow: TextOverflow.ellipsis,
-                  style: context.text.titleMedium!.semiBold.onSurface(context),
-                ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                order.customerNameDisplay,
+                overflow: TextOverflow.ellipsis,
+                style: context.text.titleMedium!.semiBold.onSurface(context),
+              ),
 
-                context.spacing.xs.h,
+              context.spacing.xs.h,
 
-                Text(
-                  order.createdAtDisplay,
-                  overflow: TextOverflow.ellipsis,
-                  style: context.text.bodyMedium!.onSurfaceVariant(context),
-                ),
+              Text(
+                order.createdAtDisplay,
+                overflow: TextOverflow.ellipsis,
+                style: context.text.bodyMedium!.onSurfaceVariant(context),
+              ),
 
-                Text(
-                  order.estimationDisplay,
-                  overflow: TextOverflow.ellipsis,
-                  style: context.text.bodyMedium!.warning(context),
-                ),
-              ],
-            ),
+              Text(
+                order.estimationDisplay,
+                overflow: TextOverflow.ellipsis,
+                style: context.text.bodyMedium!.warning(context),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

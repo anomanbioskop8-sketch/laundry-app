@@ -15,7 +15,7 @@ class OrderGroupDetailItemTile extends StatelessWidget {
       contentPadding: EdgeInsets.symmetric(horizontal: context.spacing.md),
       title: Text(item.itemName, style: context.text.titleSmall!.semiBold),
       subtitle: Text(
-        item.formattedQuantityAndPrice,
+        item.quantityAndPriceDisplay,
         style: context.text.labelMedium!.onSurfaceVariant(context),
       ),
       trailing: Text(

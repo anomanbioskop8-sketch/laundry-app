@@ -1,8 +1,10 @@
+//lib\features\order\presentation\widgets\order_item\order_item_selection\order_item_selection_card\order_item_selection_builder.dart
+
 import 'package:app_laundry/core/extensions/collection/iterable_ext.dart';
 import 'package:app_laundry/features/order/domain/entities/order_laundry_item_entity.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_item_selection_cubit.dart';
 import 'package:app_laundry/features/order/presentation/cubit/order_item_selection_state.dart';
-import 'package:app_laundry/features/order/presentation/widgets/order_item_selection/order_item_selection_card/order_item_selection_card.dart';
+import 'package:app_laundry/features/order/presentation/widgets/order_item/order_item_selection/order_item_selection_card/order_item_selection_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

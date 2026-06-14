@@ -8,10 +8,10 @@ import 'package:app_laundry/features/order/presentation/cubit/order_group_form_c
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class OrderLaundryItemAddButton extends StatelessWidget {
+class AddOrderItemButton extends StatelessWidget {
   final StreamOrderLaundryItemsParams params;
 
-  const OrderLaundryItemAddButton({super.key, required this.params});
+  const AddOrderItemButton({super.key, required this.params});
 
   Future<void> _addItem(BuildContext context) async {
     final result = await context.pushOrderLaundryItemForm(params: params);
